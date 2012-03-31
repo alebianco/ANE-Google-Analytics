@@ -1,0 +1,382 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D26BBCC21507931400D3EEBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCC11507931400D3EEBB /* Foundation.framework */; };
+		D26BBCD51507934B00D3EEBB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */; };
+		D26BBCD71507935700D3EEBB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCD61507935700D3EEBB /* CFNetwork.framework */; };
+		D2EAD6421518C56C003D539E /* FlashRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD63F1518C56C003D539E /* FlashRuntimeExtensions.h */; };
+		D2EAD6431518C56C003D539E /* GANTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6401518C56C003D539E /* GANTracker.h */; };
+		D2EAD6441518C56C003D539E /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2EAD6411518C56C003D539E /* libGoogleAnalytics.a */; };
+		D2EAD66D1518C785003D539E /* FREConversionUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6551518C785003D539E /* FREConversionUtil.h */; };
+		D2EAD66E1518C785003D539E /* FREConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6561518C785003D539E /* FREConversionUtil.m */; };
+		D2EAD66F1518C785003D539E /* Anonimize.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6581518C785003D539E /* Anonimize.h */; };
+		D2EAD6701518C785003D539E /* Anonimize.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6591518C785003D539E /* Anonimize.m */; };
+		D2EAD6711518C785003D539E /* CustomVar.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD65A1518C785003D539E /* CustomVar.h */; };
+		D2EAD6721518C785003D539E /* CustomVar.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD65B1518C785003D539E /* CustomVar.m */; };
+		D2EAD6731518C785003D539E /* Debug.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD65C1518C785003D539E /* Debug.h */; };
+		D2EAD6741518C785003D539E /* Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD65D1518C785003D539E /* Debug.m */; };
+		D2EAD6751518C785003D539E /* DryRun.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD65E1518C785003D539E /* DryRun.h */; };
+		D2EAD6761518C785003D539E /* DryRun.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD65F1518C785003D539E /* DryRun.m */; };
+		D2EAD6771518C785003D539E /* IsSupported.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6601518C785003D539E /* IsSupported.h */; };
+		D2EAD6781518C785003D539E /* IsSupported.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6611518C785003D539E /* IsSupported.m */; };
+		D2EAD6791518C785003D539E /* SampleRate.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6621518C785003D539E /* SampleRate.h */; };
+		D2EAD67A1518C785003D539E /* SampleRate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6631518C785003D539E /* SampleRate.m */; };
+		D2EAD67B1518C785003D539E /* Session.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6641518C785003D539E /* Session.h */; };
+		D2EAD67C1518C785003D539E /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6651518C785003D539E /* Session.m */; };
+		D2EAD67D1518C785003D539E /* Track.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6661518C785003D539E /* Track.h */; };
+		D2EAD67E1518C785003D539E /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6671518C785003D539E /* Track.m */; };
+		D2EAD67F1518C785003D539E /* GAExtension-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6681518C785003D539E /* GAExtension-Prefix.pch */; };
+		D2EAD6801518C785003D539E /* GAExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6691518C785003D539E /* GAExtension.h */; };
+		D2EAD6811518C785003D539E /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66A1518C785003D539E /* GAExtension.m */; };
+		D2EAD6821518C785003D539E /* LoggerUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD66B1518C785003D539E /* LoggerUtil.h */; };
+		D2EAD6831518C785003D539E /* LoggerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66C1518C785003D539E /* LoggerUtil.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D26BBCBE1507931400D3EEBB /* libNativeGATracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D26BBCC11507931400D3EEBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		D26BBCD61507935700D3EEBB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D2EAD63F1518C56C003D539E /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlashRuntimeExtensions.h; path = Libraries/FlashRuntimeExtensions.h; sourceTree = "<group>"; };
+		D2EAD6401518C56C003D539E /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = Libraries/GANTracker.h; sourceTree = "<group>"; };
+		D2EAD6411518C56C003D539E /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Libraries/libGoogleAnalytics.a; sourceTree = "<group>"; };
+		D2EAD6551518C785003D539E /* FREConversionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FREConversionUtil.h; sourceTree = "<group>"; };
+		D2EAD6561518C785003D539E /* FREConversionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FREConversionUtil.m; sourceTree = "<group>"; };
+		D2EAD6581518C785003D539E /* Anonimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anonimize.h; sourceTree = "<group>"; };
+		D2EAD6591518C785003D539E /* Anonimize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anonimize.m; sourceTree = "<group>"; };
+		D2EAD65A1518C785003D539E /* CustomVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVar.h; sourceTree = "<group>"; };
+		D2EAD65B1518C785003D539E /* CustomVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVar.m; sourceTree = "<group>"; };
+		D2EAD65C1518C785003D539E /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		D2EAD65D1518C785003D539E /* Debug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Debug.m; sourceTree = "<group>"; };
+		D2EAD65E1518C785003D539E /* DryRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryRun.h; sourceTree = "<group>"; };
+		D2EAD65F1518C785003D539E /* DryRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryRun.m; sourceTree = "<group>"; };
+		D2EAD6601518C785003D539E /* IsSupported.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsSupported.h; sourceTree = "<group>"; };
+		D2EAD6611518C785003D539E /* IsSupported.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsSupported.m; sourceTree = "<group>"; };
+		D2EAD6621518C785003D539E /* SampleRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleRate.h; sourceTree = "<group>"; };
+		D2EAD6631518C785003D539E /* SampleRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleRate.m; sourceTree = "<group>"; };
+		D2EAD6641518C785003D539E /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		D2EAD6651518C785003D539E /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		D2EAD6661518C785003D539E /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		D2EAD6671518C785003D539E /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		D2EAD6681518C785003D539E /* GAExtension-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GAExtension-Prefix.pch"; sourceTree = "<group>"; };
+		D2EAD6691518C785003D539E /* GAExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
+		D2EAD66A1518C785003D539E /* GAExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
+		D2EAD66B1518C785003D539E /* LoggerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerUtil.h; sourceTree = "<group>"; };
+		D2EAD66C1518C785003D539E /* LoggerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerUtil.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D26BBCBB1507931400D3EEBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D26BBCD71507935700D3EEBB /* CFNetwork.framework in Frameworks */,
+				D26BBCC21507931400D3EEBB /* Foundation.framework in Frameworks */,
+				D26BBCD51507934B00D3EEBB /* libsqlite3.0.dylib in Frameworks */,
+				D2EAD6441518C56C003D539E /* libGoogleAnalytics.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D24B0F84150CBD2F003CB17D /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				D2EAD63F1518C56C003D539E /* FlashRuntimeExtensions.h */,
+				D2EAD6401518C56C003D539E /* GANTracker.h */,
+				D2EAD6411518C56C003D539E /* libGoogleAnalytics.a */,
+				D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		D26BBCB31507931400D3EEBB = {
+			isa = PBXGroup;
+			children = (
+				D2EAD6541518C785003D539E /* NativeGATracker */,
+				D24B0F84150CBD2F003CB17D /* Libraries */,
+				D26BBCC01507931400D3EEBB /* Frameworks */,
+				D26BBCBF1507931400D3EEBB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D26BBCBF1507931400D3EEBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D26BBCBE1507931400D3EEBB /* libNativeGATracker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D26BBCC01507931400D3EEBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D26BBCD61507935700D3EEBB /* CFNetwork.framework */,
+				D26BBCC11507931400D3EEBB /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2EAD6541518C785003D539E /* NativeGATracker */ = {
+			isa = PBXGroup;
+			children = (
+				D2EAD68B1518C809003D539E /* Supporting Files */,
+				D2EAD6571518C785003D539E /* Functions */,
+				D2EAD6691518C785003D539E /* GAExtension.h */,
+				D2EAD66A1518C785003D539E /* GAExtension.m */,
+				D2EAD6551518C785003D539E /* FREConversionUtil.h */,
+				D2EAD6561518C785003D539E /* FREConversionUtil.m */,
+				D2EAD66B1518C785003D539E /* LoggerUtil.h */,
+				D2EAD66C1518C785003D539E /* LoggerUtil.m */,
+			);
+			path = NativeGATracker;
+			sourceTree = "<group>";
+		};
+		D2EAD6571518C785003D539E /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				D2EAD6581518C785003D539E /* Anonimize.h */,
+				D2EAD6591518C785003D539E /* Anonimize.m */,
+				D2EAD65A1518C785003D539E /* CustomVar.h */,
+				D2EAD65B1518C785003D539E /* CustomVar.m */,
+				D2EAD65C1518C785003D539E /* Debug.h */,
+				D2EAD65D1518C785003D539E /* Debug.m */,
+				D2EAD65E1518C785003D539E /* DryRun.h */,
+				D2EAD65F1518C785003D539E /* DryRun.m */,
+				D2EAD6601518C785003D539E /* IsSupported.h */,
+				D2EAD6611518C785003D539E /* IsSupported.m */,
+				D2EAD6621518C785003D539E /* SampleRate.h */,
+				D2EAD6631518C785003D539E /* SampleRate.m */,
+				D2EAD6641518C785003D539E /* Session.h */,
+				D2EAD6651518C785003D539E /* Session.m */,
+				D2EAD6661518C785003D539E /* Track.h */,
+				D2EAD6671518C785003D539E /* Track.m */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		D2EAD68B1518C809003D539E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2EAD6681518C785003D539E /* GAExtension-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D26BBCBC1507931400D3EEBB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2EAD6421518C56C003D539E /* FlashRuntimeExtensions.h in Headers */,
+				D2EAD6431518C56C003D539E /* GANTracker.h in Headers */,
+				D2EAD66D1518C785003D539E /* FREConversionUtil.h in Headers */,
+				D2EAD66F1518C785003D539E /* Anonimize.h in Headers */,
+				D2EAD6711518C785003D539E /* CustomVar.h in Headers */,
+				D2EAD6731518C785003D539E /* Debug.h in Headers */,
+				D2EAD6751518C785003D539E /* DryRun.h in Headers */,
+				D2EAD6771518C785003D539E /* IsSupported.h in Headers */,
+				D2EAD6791518C785003D539E /* SampleRate.h in Headers */,
+				D2EAD67B1518C785003D539E /* Session.h in Headers */,
+				D2EAD67D1518C785003D539E /* Track.h in Headers */,
+				D2EAD67F1518C785003D539E /* GAExtension-Prefix.pch in Headers */,
+				D2EAD6801518C785003D539E /* GAExtension.h in Headers */,
+				D2EAD6821518C785003D539E /* LoggerUtil.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D26BBCBD1507931400D3EEBB /* NativeGATracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D26BBCCB1507931400D3EEBB /* Build configuration list for PBXNativeTarget "NativeGATracker" */;
+			buildPhases = (
+				D26BBCBA1507931400D3EEBB /* Sources */,
+				D26BBCBB1507931400D3EEBB /* Frameworks */,
+				D26BBCBC1507931400D3EEBB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NativeGATracker;
+			productName = GAExtension;
+			productReference = D26BBCBE1507931400D3EEBB /* libNativeGATracker.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D26BBCB51507931400D3EEBB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = D26BBCB81507931400D3EEBB /* Build configuration list for PBXProject "NativeGATracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D26BBCB31507931400D3EEBB;
+			productRefGroup = D26BBCBF1507931400D3EEBB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D26BBCBD1507931400D3EEBB /* NativeGATracker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D26BBCBA1507931400D3EEBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2EAD66E1518C785003D539E /* FREConversionUtil.m in Sources */,
+				D2EAD6701518C785003D539E /* Anonimize.m in Sources */,
+				D2EAD6721518C785003D539E /* CustomVar.m in Sources */,
+				D2EAD6741518C785003D539E /* Debug.m in Sources */,
+				D2EAD6761518C785003D539E /* DryRun.m in Sources */,
+				D2EAD6781518C785003D539E /* IsSupported.m in Sources */,
+				D2EAD67A1518C785003D539E /* SampleRate.m in Sources */,
+				D2EAD67C1518C785003D539E /* Session.m in Sources */,
+				D2EAD67E1518C785003D539E /* Track.m in Sources */,
+				D2EAD6811518C785003D539E /* GAExtension.m in Sources */,
+				D2EAD6831518C785003D539E /* LoggerUtil.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D26BBCC91507931400D3EEBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D26BBCCA1507931400D3EEBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D26BBCCC1507931400D3EEBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALTERNATE_PERMISSIONS_FILES = armv7;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/NativeGATracker.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NativeGATracker/GAExtension-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../SDKS/Google Analytics/Library\"",
+					"\"$(SRCROOT)/../../SDKS/Analytics/Library\"",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CODE_SIGN_FLAGS = armv7;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRIPFLAGS = armv7;
+			};
+			name = Debug;
+		};
+		D26BBCCD1507931400D3EEBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALTERNATE_PERMISSIONS_FILES = armv7;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/NativeGATracker.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NativeGATracker/GAExtension-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../SDKS/Google Analytics/Library\"",
+					"\"$(SRCROOT)/../../SDKS/Analytics/Library\"",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CODE_SIGN_FLAGS = armv7;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRIPFLAGS = armv7;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D26BBCB81507931400D3EEBB /* Build configuration list for PBXProject "NativeGATracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D26BBCC91507931400D3EEBB /* Debug */,
+				D26BBCCA1507931400D3EEBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D26BBCCB1507931400D3EEBB /* Build configuration list for PBXNativeTarget "NativeGATracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D26BBCCC1507931400D3EEBB /* Debug */,
+				D26BBCCD1507931400D3EEBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D26BBCB51507931400D3EEBB /* Project object */;
+}
