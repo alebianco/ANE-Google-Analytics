@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<platform xmlns="http://ns.adobe.com/air/extension/3.1">
+	<sdkVersion>5.1</sdkVersion>
+	<linkerOptions>
+		<option>-ios_version_min 4.2</option>
+		<option>-lsqlite3</option>
+	</linkerOptions>
+</platform>

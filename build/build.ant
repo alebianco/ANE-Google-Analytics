@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<project name="Air Native Extension Build Scripts" default="all" basedir="../">
+	
+	<property file="build/build.properties" />
+	
+	<target name="all" depends="init,and,ios,default,agnostic,package,clean" description="Full build of the extension"/>
+	
+	<target name="init">
+		<mkdir dir="${BIN_DEF_DIR}"/>
+		<mkdir dir="${BIN_AND_DIR}"/>
+		<mkdir dir="${BIN_IOS_DIR}"/>
+	</target>
+	
+	<target name="and" description="Build Android native library">
+		<mkdir dir="${TMP_DIR}"/>
+		<ant antfile="${ANDROID_SDK}/tools/ant/build.xml" target="-compile" dir="${SRC_AND_DIR}" inheritall="false">
+			<property name="sdk.dir" value="${ANDROID_SDK}"/>
+			<property name="target" value="${AND_TARGET}"/>
+		</ant>
+		<jar destfile="${TMP_DIR}/lib${LIB_NAME}.jar">
+			<fileset dir="${SRC_AND_DIR}/bin/classes"/>
+		    <restrict>
+		     <name name="**/*.class"/>
+		     <archives>
+		       <zips>
+		         <fileset dir="${SRC_AND_DIR}/libs" includes="**/*.jar" excludes="**/FlashRuntimeExtensions.jar"/>
+		       </zips>
+		     </archives>
+		    </restrict>
+		</jar>
+		<copy file="${TMP_DIR}/lib${LIB_NAME}.jar" todir="${BIN_AND_DIR}" overwrite="true"/>
+		<delete dir="${TMP_DIR}"/>
+	</target>
+	
+	<target name="ios" description="Build iOS native library">
+		<mkdir dir="${TMP_DIR}"/>
+		<exec executable="xcodebuild" failonerror="true" dir="${SRC_IOS_DIR}">
+			<arg line="-project ${LIB_NAME}.xcodeproj"/>
+			<arg line="-target ${LIB_NAME}"/>
+			<arg line="-configuration Release"/>
+			<arg line="SYMROOT=../../${TMP_DIR}"/>
+		</exec>
+		<copy file="${TMP_DIR}/Release-iphoneos/lib${LIB_NAME}.a" todir="${BIN_IOS_DIR}" overwrite="true"/>
+		<delete dir="${TMP_DIR}"/>
+	</target>
+	
+	<target name="default" description="Build default extension implementation">
+		<mkdir dir="${TMP_DIR}"/>
+		<fileset dir="${SRC_DEF_DIR}/src" casesensitive="yes" id="default_files">
+			<include name="**/*.as"/>
+		</fileset>
+		<pathconvert property="default_classes" refid="default_files" pathsep=" " dirsep=".">
+			<regexpmapper from=".*src.(.*)\.as" to="\1"/>
+		</pathconvert>
+		<exec executable="${COMPC}" failonerror="true">
+			<arg line="-source-path ${SRC_DEF_DIR}/src"/>
+			<arg line="-output ${TMP_DIR}/default.swc"/>
+			<arg line="-swf-version=14"/>
+			<arg line="-external-library-path+='${FLEX_HOME}/frameworks/libs/air/airglobal.swc'"/>
+ 			<!--
+ 				<arg line="-library-path+='${SRC_DEF_DIR}/libs/'"/>
+ 			-->
+			<arg line="-include-classes ${default_classes}"/>
+		</exec>
+		<mkdir dir="${TMP_DIR}/content"/>
+		<copy file="${TMP_DIR}/default.swc" tofile="${BIN_DIR}/${LIB_NAME}.swc"/>
+		<unzip src="${TMP_DIR}/default.swc" dest="${TMP_DIR}/content" overwrite="true"/>
+		<copy file="${TMP_DIR}/content/library.swf" todir="${BIN_DEF_DIR}"/>
+		<delete dir="${TMP_DIR}"/>
+	</target>
+		
+	<target name="agnostic" description="Build generic extension implementation for all platforms">
+		<mkdir dir="${TMP_DIR}"/>
+		<fileset dir="${SRC_AS3_DIR}/src" casesensitive="yes" id="agnostic_files">
+			<include name="**/*.as"/>
+		</fileset>
+		<pathconvert property="agnostic_classes" refid="agnostic_files" pathsep=" " dirsep=".">
+			<regexpmapper from=".*src.(.*)\.as" to="\1"/>
+		</pathconvert>
+		<exec executable="${COMPC}" failonerror="true">
+			<arg line="-source-path ${SRC_AS3_DIR}/src"/>
+			<arg line="-output ${TMP_DIR}/agnostic.swc"/>
+			<arg line="-swf-version=14"/>
+			<arg line="-external-library-path+='${FLEX_HOME}/frameworks/libs/air/airglobal.swc'"/>
+ 			<arg line="-library-path+='${SRC_AS3_DIR}/libs/'"/>
+			<arg line="-include-classes ${agnostic_classes}"/>
+		</exec>
+		<mkdir dir="${TMP_DIR}/content"/>
+		<unzip src="${TMP_DIR}/agnostic.swc" dest="${TMP_DIR}/content" overwrite="true"/>
+		<copy file="${TMP_DIR}/content/library.swf" todir="${BIN_AND_DIR}"/>
+		<copy file="${TMP_DIR}/content/library.swf" todir="${BIN_IOS_DIR}"/>
+		<delete dir="${TMP_DIR}"/>
+	</target>
+	
+	<target name="package" description="Package the final extension">
+		<java jar="${ADT}" fork="true" failonerror="true">
+		 	<arg line="-package"/>
+		 	<arg line="-storetype pkcs12"/>
+		 	<arg line="-keystore ${KEYSTORE}"/>
+		 	<arg line="-storepass ${STOREPASS}"/>
+		 	<arg line="-tsa none"/>
+		 	<arg line="-target ane ${BIN_DIR}/${LIB_NAME}.ane ${ANE_DESCRIPTOR}"/>
+		 	<arg line="-swc bin/NativeGATracker.swc"/>
+			<arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
+			<arg line="-platform iPhone-ARM -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_IOS_DIR} ."/>
+			<!--
+				<arg line="-platform QNX-x86 -C bin/native/qnx-x86 ."/>
+				<arg line="-platform QNX-ARM -C bin/native/qnx-arm ."/>
+			-->
+		 	<arg line="-platform default -C ${BIN_DEF_DIR} ."/>
+		 </java>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${BIN_NATIVE}"/>
+		<delete dir="${TMP_DIR}"/>
+	</target>
+	
+</project>
