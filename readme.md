@@ -45,4 +45,4 @@ Use Adobe Air SDK 3.1 or later.
 
 # Projects using this extension
 
-* none yet, yet
+* none, yet
