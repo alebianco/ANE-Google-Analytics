@@ -1,0 +1,14 @@
+FlashRuntimeExtensions.h
+GANTracker.h
+libGoogleAnalytics.a
+FlashRuntimeExtensions.jar
+libGoogleAnalytics.jar
+
+source/ios/DerivedData/
+
+source/actionscript/bin
+
+source/android/bin
+source/android/gen
+source/android/assets
+source/android/res
