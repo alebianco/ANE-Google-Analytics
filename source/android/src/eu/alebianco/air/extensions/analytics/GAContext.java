@@ -28,8 +28,6 @@
 
 import java.util.Map;
 
-import android.util.Log;
-
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
@@ -39,6 +37,8 @@ import eu.alebianco.air.extensions.analytics.functions.GetCustomVar;
 import eu.alebianco.air.extensions.analytics.functions.GetDebug;
 import eu.alebianco.air.extensions.analytics.functions.GetDryRun;
 import eu.alebianco.air.extensions.analytics.functions.GetSampleRate;
+import eu.alebianco.air.extensions.analytics.functions.GetVersion;
+import eu.alebianco.air.extensions.analytics.functions.IsSupported;
 import eu.alebianco.air.extensions.analytics.functions.SetAnonymizeIp;
 import eu.alebianco.air.extensions.analytics.functions.SetCustomVar;
 import eu.alebianco.air.extensions.analytics.functions.SetDebug;
@@ -56,8 +56,6 @@ public class GAContext extends FREContext {
 	public void initialize() {
 		
 		tracker = GoogleAnalyticsTracker.getInstance(); 
-		
-		Log.d(GAExtension.TAG, "Context initialized hello");
 	}
 	
 	@Override
@@ -65,14 +63,15 @@ public class GAContext extends FREContext {
 		
 		tracker.stopSession();
 		tracker = null;
-		
-		Log.d(GAExtension.TAG, "Context disposed.");
 	}
 	
 	@Override
 	public Map<String, FREFunction> getFunctions() {
 		
 		Map<String, FREFunction> functions = new java.util.HashMap<String, FREFunction>();
+		
+		functions.put("isSupported", new IsSupported());
+		functions.put("getVersion", new GetVersion());
 		
 		functions.put("startNewSession", new StartNewSession());
 		functions.put("stopSession", new StopSession());

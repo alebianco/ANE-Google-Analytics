@@ -24,32 +24,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- package eu.alebianco.air.extensions.analytics.utils;
-
-import android.util.Log;
-
-import com.adobe.fre.FREContext;
-
-import eu.alebianco.air.extensions.analytics.GAExtension;
-import eu.alebianco.air.extensions.analytics.model.LogLevel;
-
-public class GAEUtils {
+package eu.alebianco.air.extensions.analytics.enum
+{
+	import eu.alebianco.core.Enum;
 	
-	public static void logEvent(FREContext context, LogLevel level, String format, Object... args) {
-		
-		String message = String.format(format, args);
-		
-		Log.println(level.getPriority(), GAExtension.TAG, message);
-		context.dispatchStatusEventAsync("INTERNAL_" + level.getName(), message);
-	}
-	
-	public static String getMethodName()
+	public class VariableScope extends Enum
 	{
-		return new Exception().getStackTrace()[0].getMethodName();
-	}
-	
-	public static String getClassName()
-	{
-		return new Exception().getStackTrace()[0].getClassName();
+		{ initEnum(VariableScope); }
+		
+		// Constants.
+		
+		public static const VISITOR:VariableScope = new VariableScope(1);
+		public static const SESSION:VariableScope = new VariableScope(2);
+		public static const PAGE:VariableScope = new VariableScope(3);
+		
+		// Constant query.
+		
+		public static function getConstants():Vector.<VariableScope>
+		{
+			return Vector.<VariableScope>(Enum.getConstants(VariableScope));
+		}
+		public static function parseConstant(constantName:String, caseSensitive:Boolean = false):VariableScope
+		{
+			return VariableScope(Enum.parseConstant(VariableScope, constantName, caseSensitive));
+		}
+		
+		// Properties.
+		private var _value:uint;
+		
+		// Constructor.
+		
+		public function VariableScope(value:uint)
+		{
+			super();
+			
+			_value = value;
+		}
+		
+		// Accessors.
+		
+		public function get value():uint {
+			
+			return _value;
+		}
+		
+		override public function toString():String
+		{
+			return "[Custom Variable Scope (value: " + value + ")]";
+		}
 	}
 }

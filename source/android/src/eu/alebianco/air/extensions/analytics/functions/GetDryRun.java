@@ -32,8 +32,8 @@ import com.adobe.fre.FREObject;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 import eu.alebianco.air.extensions.analytics.GAContext;
-import eu.alebianco.air.extensions.analytics.model.LogLevel;
-import eu.alebianco.air.extensions.analytics.utils.GAEUtils;
+import eu.alebianco.air.extensions.utils.FREUtils;
+import eu.alebianco.air.extensions.utils.LogLevel;
 
 public class GetDryRun implements FREFunction {
 
@@ -51,7 +51,7 @@ public class GetDryRun implements FREFunction {
 		}
 		catch(Exception e) {
 			
-			GAEUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", GAEUtils.getClassName(), e.getMessage());
+			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
 		}
 		
 		return result;

@@ -24,53 +24,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.alebianco.air.extensions.analytics.model
-{
-	import eu.alebianco.core.Enum;
+ package eu.alebianco.air.extensions.utils;
+
+import android.util.Log;
+
+public enum LogLevel {
 	
-	public class VariableScope extends Enum
+	INFO("INFO", Log.INFO),
+	DEBUG("DEBUG", Log.DEBUG),
+	WARN("WARN", Log.WARN),
+	ERROR("ERROR", Log.ERROR),
+	FATAL("FATAL", Log.ERROR);
+	
+	private String name;
+	private int priority;
+	
+	private LogLevel(String n, int p)
 	{
-		{ initEnum(VariableScope); }
-		
-		// Constants.
-		
-		public static const VISITOR:VariableScope = new VariableScope(1);
-		public static const SESSION:VariableScope = new VariableScope(2);
-		public static const PAGE:VariableScope = new VariableScope(3);
-		
-		// Constant query.
-		
-		public static function getConstants():Vector.<VariableScope>
-		{
-			return Vector.<VariableScope>(Enum.getConstants(VariableScope));
-		}
-		public static function parseConstant(constantName:String, caseSensitive:Boolean = false):VariableScope
-		{
-			return VariableScope(Enum.parseConstant(VariableScope, constantName, caseSensitive));
-		}
-		
-		// Properties.
-		private var _value:uint;
-		
-		// Constructor.
-		
-		public function VariableScope(value:uint)
-		{
-			super();
-			
-			_value = value;
-		}
-		
-		// Accessors.
-		
-		public function get value():uint {
-			
-			return _value;
-		}
-		
-		override public function toString():String
-		{
-			return "[Custom Variable Scope (value: " + value + ")]";
-		}
+		name = n;
+		priority = p;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public int getPriority()
+	{
+		return priority;
 	}
 }

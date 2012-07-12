@@ -26,8 +26,6 @@
  */
  package eu.alebianco.air.extensions.analytics;
 
-import android.util.Log;
-
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREExtension;
 
@@ -38,8 +36,6 @@ public class GAExtension implements FREExtension {
 	
 	@Override
 	public FREContext createContext(String id) {
-		
-		Log.d(TAG, "Extension (id:" + id + ") created.");
 		
 		context = new GAContext();
 		context.initialize();
@@ -52,14 +48,11 @@ public class GAExtension implements FREExtension {
 		
 		context.dispose();
 		context = null;
-		
-		Log.d(TAG, "Extension disposed.");
 	}
 
 	@Override
 	public void initialize() {
 		
-		Log.d(TAG, "Extension initialized.");
 	}
 
 }

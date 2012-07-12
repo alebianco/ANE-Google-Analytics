@@ -3,8 +3,11 @@
 	
 	<property file="build/build.properties" />
 	
-	<target name="all" depends="init,and,ios,default,agnostic,package,clean" description="Full build of the extension"/>
+	<target name="all" depends="init,and,default,agnostic,package,clean,deploy" description="Full build of the extension"/>
 	
+	<target name="deploy">
+		<copy file="${BIN_DIR}/${LIB_NAME}.ane" todir="demo/ane/" overwrite="true"/>
+	</target>
 	<target name="init">
 		<mkdir dir="${BIN_DEF_DIR}"/>
 		<mkdir dir="${BIN_AND_DIR}"/>
@@ -13,9 +16,9 @@
 	
 	<target name="and" description="Build Android native library">
 		<mkdir dir="${TMP_DIR}"/>
-		<ant antfile="${ANDROID_SDK}/tools/ant/build.xml" target="-compile" dir="${SRC_AND_DIR}" inheritall="false">
-			<property name="sdk.dir" value="${ANDROID_SDK}"/>
-			<property name="target" value="${AND_TARGET}"/>
+		<ant antfile="build.xml" target="-compile" dir="${SRC_AND_DIR}" inheritall="false">
+			<property name="build.target" value="-compile"/>
+			<property name="verbose" value="false"/>
 		</ant>
 		<jar destfile="${TMP_DIR}/lib${LIB_NAME}.jar">
 			<fileset dir="${SRC_AND_DIR}/bin/classes"/>
@@ -28,6 +31,9 @@
 		     </archives>
 		    </restrict>
 		</jar>
+		<copy todir="${BIN_AND_DIR}/res" overwrite="true">
+			<fileset dir="${SRC_AND_DIR}/res"/>
+		</copy>
 		<copy file="${TMP_DIR}/lib${LIB_NAME}.jar" todir="${BIN_AND_DIR}" overwrite="true"/>
 		<delete dir="${TMP_DIR}"/>
 	</target>
@@ -100,10 +106,10 @@
 		 	<arg line="-storepass ${STOREPASS}"/>
 		 	<arg line="-tsa none"/>
 		 	<arg line="-target ane ${BIN_DIR}/${LIB_NAME}.ane ${ANE_DESCRIPTOR}"/>
-		 	<arg line="-swc bin/NativeGATracker.swc"/>
+		 	<arg line="-swc bin/${LIB_NAME}.swc"/>
 			<arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
-			<arg line="-platform iPhone-ARM -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_IOS_DIR} ."/>
 			<!--
+				<arg line="-platform iPhone-ARM -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_IOS_DIR} ."/>
 				<arg line="-platform QNX-x86 -C bin/native/qnx-x86 ."/>
 				<arg line="-platform QNX-ARM -C bin/native/qnx-arm ."/>
 			-->

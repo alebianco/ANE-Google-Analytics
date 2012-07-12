@@ -26,20 +26,30 @@
  */
 package eu.alebianco.air.extensions.analytics
 {
+	import eu.alebianco.air.extensions.analytics.enum.StatusLevel;
+	import eu.alebianco.air.extensions.analytics.enum.VariableScope;
+	import eu.alebianco.air.extensions.analytics.enum.VariableSlot;
+	import eu.alebianco.air.extensions.analytics.ns.logStatusLevel;
 	import eu.alebianco.core.IDisposable;
-	import eu.alebianco.air.extensions.analytics.model.VariableScope;
-	import eu.alebianco.air.extensions.analytics.model.VariableSlot;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
+	import flash.utils.getQualifiedClassName;
+	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
 	
 	public final class GATracker implements IDisposable
 	{
+		private static const VERSION:String = "1.1";
+		
 		private static const EXTENSION_ID:String = "eu.alebianco.air.extensions.analytics.NativeGATracker";
 		
 		private static var instance:GATracker;
 		private static var canBuild:Boolean;
+		
+		private var logger:ILogger;
 		
 		private var context:ExtensionContext;
 		
@@ -83,6 +93,9 @@ package eu.alebianco.air.extensions.analytics
 				context = ExtensionContext.createExtensionContext(EXTENSION_ID, null);
 				context.addEventListener(StatusEvent.STATUS, statusHandler);
 			}
+			
+			var className:String = getQualifiedClassName(this).replace("::", ".");
+			logger = Log.getLogger(className);
 		}
 		
 		public function dispose():void {
@@ -96,10 +109,44 @@ package eu.alebianco.air.extensions.analytics
 		
 		private function statusHandler(event:StatusEvent):void {
 			
-			if (event.code.indexOf("INTERNAL") != -1) {
-				
-				trace(event.code.split("_")[1], ":", event.level);
+			var level:StatusLevel = StatusLevel.parseConstant(event.level);
+			if (level)
+			{
+				var ns:Namespace = level.ns;
+				ns::processStatusEvent(level.name, event.code);
 			}
+		}
+		
+		logStatusLevel function processStatusEvent(level:String, code:String):void
+		{
+			switch(level.toUpperCase())
+			{
+				case "INFO":
+					logger.info(code);
+					break;
+				case "DEBUG":
+					logger.debug(code);
+					break;
+				case "WARN":
+					logger.warn(code);
+					break;
+				case "ERROR":
+					logger.error(code);
+					break;
+				case "FATAL":
+					logger.fatal(code);
+					break;
+				default:
+					logger.debug("Level ("+level+") not found.");
+					break;
+			}
+		}
+		
+		public function get version():String {
+			
+			var native:String = context.call("getVersion") as String;
+			
+			return "GATracker v" + VERSION + "\n using '" + native + "'";
 		}
 		
 		public function startNewSession(accountID:String, interval:int = 20):void 

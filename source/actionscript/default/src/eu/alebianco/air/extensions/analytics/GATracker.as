@@ -26,8 +26,8 @@
  */
 package eu.alebianco.air.extensions.analytics
 {
-	import eu.alebianco.air.extensions.analytics.model.VariableScope;
-	import eu.alebianco.air.extensions.analytics.model.VariableSlot;
+	import eu.alebianco.air.extensions.analytics.enum.VariableScope;
+	import eu.alebianco.air.extensions.analytics.enum.VariableSlot;
 	import eu.alebianco.core.IDisposable;
 	
 	/**
@@ -52,6 +52,9 @@ package eu.alebianco.air.extensions.analytics
 	 */
 	public final class GATracker implements IDisposable
 	{
+		
+		private static const VERSION:String = "1.1";
+		
 		private static var instance:GATracker;
 		private static var canBuild:Boolean;
 		
@@ -113,6 +116,18 @@ package eu.alebianco.air.extensions.analytics
 			{
 				throw new Error("Can't instantiate a Singleton class, use getInstance() to get a reference.");
 			}
+		}
+		
+		/**
+		 * Returns the extension version and the Google Analytics SDK versions if available.
+		 * 
+		 * @langversion 	ActionScript 3.0
+		 * @playerversion 	AIR 3.1
+		 * @tiptext
+		 */
+		public function get version():String {
+			
+			return "GATracker v" + VERSION + "";
 		}
 		
 		/**

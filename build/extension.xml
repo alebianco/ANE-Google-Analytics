@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension xmlns="http://ns.adobe.com/air/extension/3.1">
 	<id>eu.alebianco.air.extensions.analytics.NativeGATracker</id>
-	<versionNumber>0.1.0</versionNumber>
+	<versionNumber>0.1.1</versionNumber>
 	<platforms>
 		<platform name="Android-ARM">
 			<applicationDeployment>
@@ -10,6 +10,7 @@
 				<finalizer>eu.alebianco.air.extensions.analytics.GAExtension</finalizer>
 			</applicationDeployment>
 		</platform>
+		<!--
 		<platform name="iPhone-ARM">
 			<applicationDeployment>
 				<nativeLibrary>libNativeGATracker.a</nativeLibrary>
@@ -17,6 +18,7 @@
 				<finalizer>GAExtensionFinalizer</finalizer>
 			</applicationDeployment>
 		</platform>
+		-->
 		<platform name="default">
 			<applicationDeployment/>
 		</platform>

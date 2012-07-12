@@ -24,46 +24,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- package eu.alebianco.air.extensions.analytics.functions;
-
-import com.adobe.fre.FREContext;
-import com.adobe.fre.FREFunction;
-import com.adobe.fre.FREObject;
-import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-
-import eu.alebianco.air.extensions.analytics.GAContext;
-import eu.alebianco.air.extensions.utils.FREUtils;
-import eu.alebianco.air.extensions.utils.LogLevel;
-
-public class GetCustomVar implements FREFunction {
-
-	@Override
-	public FREObject call(FREContext context, FREObject[] args) {
+package eu.alebianco.air.extensions.analytics.enum
+{
+	import eu.alebianco.core.Enum;
+	
+	public class VariableSlot extends Enum
+	{
+		{ initEnum(VariableSlot); }
 		
-		if (args == null || args.length < 1) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'", FREUtils.getClassName());
-			return null;
+		// Constants.
+		
+		public static const FIRST:VariableSlot = new VariableSlot(1);
+		public static const SECOND:VariableSlot = new VariableSlot(2);
+		public static const THIRD:VariableSlot = new VariableSlot(3);
+		public static const FOURTH:VariableSlot = new VariableSlot(4);
+		public static const FIFTH:VariableSlot = new VariableSlot(5);
+		
+		// Constant query.
+		
+		public static function getConstants():Vector.<VariableSlot>
+		{
+			return Vector.<VariableSlot>(Enum.getConstants(VariableSlot));
+		}
+		public static function parseConstant(constantName:String, caseSensitive:Boolean = false):VariableSlot
+		{
+			return VariableSlot(Enum.parseConstant(VariableSlot, constantName, caseSensitive));
 		}
 		
-		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
+		// Properties.
+		private var _value:uint;
 		
-		FREObject result = null;
+		// Constructor.
 		
-		try {
+		public function VariableSlot(value:uint)
+		{
+			super();
 			
-			int index = Math.max(1, Math.min(5, args[0].getAsInt()));
-			
-			String name = tracker.getVisitorCustomVar(index);
-			
-			result = FREObject.newObject(name);
-		}
-		catch(Exception e) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+			_value = value;
 		}
 		
-		return result;
+		// Accessors.
+		
+		public function get value():uint {
+			
+			return _value;
+		}
+		
+		override public function toString():String
+		{
+			return "[Custom Variable Slot (value: " + value + ")]";
+		}
 	}
-
 }

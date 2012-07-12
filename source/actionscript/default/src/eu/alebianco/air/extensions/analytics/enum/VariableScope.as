@@ -24,7 +24,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.alebianco.air.extensions.analytics.model
+package eu.alebianco.air.extensions.analytics.enum
 {
 	import eu.alebianco.core.Enum;
 	

@@ -24,34 +24,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- package eu.alebianco.air.extensions.analytics.model;
-
-import android.util.Log;
-
-public enum LogLevel {
+package eu.alebianco.air.extensions.analytics.enum
+{
+	import eu.alebianco.core.Enum;
 	
-	INFO("INFO", Log.INFO),
-	DEBUG("DEBUG", Log.DEBUG),
-	WARN("WARN", Log.WARN),
-	ERROR("ERROR", Log.ERROR),
-	FATAL("FATAL", Log.ERROR);
-	
-	private String name;
-	private int priority;
-	
-	private LogLevel(String n, int p)
+	public class VariableSlot extends Enum
 	{
-		name = n;
-		priority = p;
-	}
-	
-	public String getName()
-	{
-		return name;
-	}
-	
-	public int getPriority()
-	{
-		return priority;
+		{ initEnum(VariableSlot); }
+		
+		// Constants.
+		
+		public static const FIRST:VariableSlot = new VariableSlot(1);
+		public static const SECOND:VariableSlot = new VariableSlot(2);
+		public static const THIRD:VariableSlot = new VariableSlot(3);
+		public static const FOURTH:VariableSlot = new VariableSlot(4);
+		public static const FIFTH:VariableSlot = new VariableSlot(5);
+		
+		// Constant query.
+		
+		public static function getConstants():Vector.<VariableSlot>
+		{
+			return Vector.<VariableSlot>(Enum.getConstants(VariableSlot));
+		}
+		public static function parseConstant(constantName:String, caseSensitive:Boolean = false):VariableSlot
+		{
+			return VariableSlot(Enum.parseConstant(VariableSlot, constantName, caseSensitive));
+		}
+		
+		// Properties.
+		private var _value:uint;
+		
+		// Constructor.
+		
+		public function VariableSlot(value:uint)
+		{
+			super();
+			
+			_value = value;
+		}
+		
+		// Accessors.
+		
+		public function get value():uint {
+			
+			return _value;
+		}
+		
+		override public function toString():String
+		{
+			return "[Custom Variable Slot (value: " + value + ")]";
+		}
 	}
 }
