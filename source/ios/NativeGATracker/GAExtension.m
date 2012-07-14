@@ -33,6 +33,7 @@ void GAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     
     static FRENamedFunction functionMap[] = {
         MAP_FUNCTION( isSupported, NULL ),
+        MAP_FUNCTION( getVersion, NULL ),
         MAP_FUNCTION( startNewSession, NULL ),
         MAP_FUNCTION( stopSession, NULL ),
         MAP_FUNCTION( dispatch, NULL ),

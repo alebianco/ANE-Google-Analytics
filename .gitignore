@@ -4,6 +4,8 @@ libGoogleAnalytics.a
 FlashRuntimeExtensions.jar
 libGoogleAnalytics.jar
 
+._*
+
 source/ios/DerivedData/
 
 source/actionscript/bin

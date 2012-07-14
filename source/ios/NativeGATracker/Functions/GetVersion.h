@@ -25,14 +25,10 @@
  * THE SOFTWARE.
  */
 
-#import "FlashRuntimeExtensions.h"
+#import "FREConversionUtil.h"
 
-#import "IsSupported.h"
-#import "GetVersion.h"
-#import "Session.h"
-#import "SampleRate.h"
-#import "CustomVar.h"
-#import "Debug.h"
-#import "DryRun.h"
-#import "Anonimize.h"
-#import "Track.h"
+@interface GetVersion : NSObject
+
+DEFINE_ANE_FUNCTION(getVersion);
+
+@end

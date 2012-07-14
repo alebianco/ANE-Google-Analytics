@@ -10,7 +10,6 @@
 				<finalizer>eu.alebianco.air.extensions.analytics.GAExtension</finalizer>
 			</applicationDeployment>
 		</platform>
-		<!--
 		<platform name="iPhone-ARM">
 			<applicationDeployment>
 				<nativeLibrary>libNativeGATracker.a</nativeLibrary>
@@ -18,7 +17,6 @@
 				<finalizer>GAExtensionFinalizer</finalizer>
 			</applicationDeployment>
 		</platform>
-		-->
 		<platform name="default">
 			<applicationDeployment/>
 		</platform>

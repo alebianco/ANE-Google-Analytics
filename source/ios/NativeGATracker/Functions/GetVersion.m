@@ -25,14 +25,14 @@
  * THE SOFTWARE.
  */
 
-#import "FlashRuntimeExtensions.h"
-
-#import "IsSupported.h"
 #import "GetVersion.h"
-#import "Session.h"
-#import "SampleRate.h"
-#import "CustomVar.h"
-#import "Debug.h"
-#import "DryRun.h"
-#import "Anonimize.h"
-#import "Track.h"
+
+@implementation GetVersion
+
+DEFINE_ANE_FUNCTION(getVersion)
+{
+    FREObject version = [FREConversionUtil convertString:@"GoogleAnalytics v1.4"];
+    return version;
+}
+
+@end

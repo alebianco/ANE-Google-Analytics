@@ -36,6 +36,7 @@
 		D2EAD6811518C785003D539E /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66A1518C785003D539E /* GAExtension.m */; };
 		D2EAD6821518C785003D539E /* LoggerUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD66B1518C785003D539E /* LoggerUtil.h */; };
 		D2EAD6831518C785003D539E /* LoggerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66C1518C785003D539E /* LoggerUtil.m */; };
+		D2FCFB8915B174CB00170EEA /* GetVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FCFB8815B174CB00170EEA /* GetVersion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,8 @@
 		D2EAD66A1518C785003D539E /* GAExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
 		D2EAD66B1518C785003D539E /* LoggerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerUtil.h; sourceTree = "<group>"; };
 		D2EAD66C1518C785003D539E /* LoggerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerUtil.m; sourceTree = "<group>"; };
+		D2FCFB8515B1742C00170EEA /* GetVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetVersion.h; sourceTree = "<group>"; };
+		D2FCFB8815B174CB00170EEA /* GetVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVersion.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 				D2EAD6651518C785003D539E /* Session.m */,
 				D2EAD6661518C785003D539E /* Track.h */,
 				D2EAD6671518C785003D539E /* Track.m */,
+				D2FCFB8515B1742C00170EEA /* GetVersion.h */,
+				D2FCFB8815B174CB00170EEA /* GetVersion.m */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 				D2EAD67E1518C785003D539E /* Track.m in Sources */,
 				D2EAD6811518C785003D539E /* GAExtension.m in Sources */,
 				D2EAD6831518C785003D539E /* LoggerUtil.m in Sources */,
+				D2FCFB8915B174CB00170EEA /* GetVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

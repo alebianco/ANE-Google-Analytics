@@ -3,7 +3,7 @@
 	
 	<property file="build/build.properties" />
 	
-	<target name="all" depends="init,and,default,agnostic,package,clean,deploy" description="Full build of the extension"/>
+	<target name="all" depends="init,and,ios,default,agnostic,package,clean,deploy" description="Full build of the extension"/>
 	
 	<target name="deploy">
 		<copy file="${BIN_DIR}/${LIB_NAME}.ane" todir="demo/ane/" overwrite="true"/>
@@ -108,8 +108,8 @@
 		 	<arg line="-target ane ${BIN_DIR}/${LIB_NAME}.ane ${ANE_DESCRIPTOR}"/>
 		 	<arg line="-swc bin/${LIB_NAME}.swc"/>
 			<arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
+			<arg line="-platform iPhone-ARM -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_IOS_DIR} ."/>
 			<!--
-				<arg line="-platform iPhone-ARM -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_IOS_DIR} ."/>
 				<arg line="-platform QNX-x86 -C bin/native/qnx-x86 ."/>
 				<arg line="-platform QNX-ARM -C bin/native/qnx-arm ."/>
 			-->

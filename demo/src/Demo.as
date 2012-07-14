@@ -21,7 +21,7 @@ package
 	
 	public class Demo extends Sprite
 	{
-		private const ANALYTICS_ID:String = "UA-29711569-1";
+		private const ANALYTICS_ID:String = "<YOUR_ID>";
 		
 		private var tracker:GATracker;
 		private var logger:ILogger;
