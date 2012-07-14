@@ -7,11 +7,14 @@
 		</HBox>
 		<VBox spacing="12">
 			<CheckBox id="mode_manual" label="Dispatch Manually?" event="click:onManualDispatchChange"/>
+			<HBox>
+				<Label text="dispatch interval" width="100" autoSize="false"/>
 			<NumericStepper id="dispatch_interval" minimun="1" maximun="60" step="1" value="20"/>
+			</HBox>
 		</VBox>
 		<VBox spacing="12">
-			<CheckBox id="mode_debug" label="Debug Mode" event="click:onDebugModeChange"/>
-			<CheckBox id="mode_dry" label="Dry Mode" event="click:onDebugModeChange"/>
+			<CheckBox id="mode_debug" label="Debug Mode" selected="true" event="click:onDebugModeChange"/>
+			<CheckBox id="mode_dry" label="Dry Mode" selected="true" event="click:onDebugModeChange"/>
 			<CheckBox id="mode_anonymous" label="Anonymous Mode" event="click:onAnonymousModeChange"/>
 		</VBox>
 		<VBox alignment="right">
@@ -36,7 +39,7 @@
 			</HBox>
 			<HBox>
 				<Label text="event value:" width="100" autoSize="false"/>
-				<NumericStepper id="event_value" minimun="0" maximun="100" step="1" value="0" width="100"/>		
+				<NumericStepper id="event_value" minimun="-1" maximun="100" step="1" value="-1" width="100"/>		
 			</HBox>
 			<PushButton id="track_event" label="Track Page View" event="click:onTrackEvent"/>
 		</VBox>

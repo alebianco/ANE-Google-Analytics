@@ -9,8 +9,8 @@ package
 		
 		function get ready():Signal;
 		function get start():Signal;
-		function get stop():Signal;
 		function get sync():Signal;
+		function get stop():Signal;
 		function get pageView():Signal;
 		function get event():Signal;
 		

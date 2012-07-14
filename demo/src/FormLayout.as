@@ -19,9 +19,9 @@ package
 		private var _state:SessionStatus = SessionStatus.IDLE;
 		
 		private var _ready:Signal = new Signal(TextArea);
-		private var _start:Signal = new Signal(int);
-		private var _stop:Signal = new Signal();
+		private var _start:Signal = new Signal(int, Boolean, Boolean, Boolean);
 		private var _sync:Signal = new Signal();
+		private var _stop:Signal = new Signal();
 		private var _pageView:Signal = new Signal(String);
 		private var _event:Signal = new Signal(String, String, String, int);
 		private var _error:Signal = new Signal(String);
@@ -48,11 +48,6 @@ package
 			return _pageView;
 		}
 
-		public function get sync():Signal
-		{
-			return _sync;
-		}
-
 		public function set status(value:SessionStatus):void
 		{
 			if (_state != value) {
@@ -60,9 +55,15 @@ package
 				update();
 			}
 		}
+		
 		public function get status():SessionStatus
 		{
 			return _state;
+		}
+		
+		public function get sync():Signal
+		{
+			return _sync;
 		}
 		
 		public function get stop():Signal
@@ -99,7 +100,7 @@ package
 			
 			config.getCompById("session_start").enabled 	= !active;
 			config.getCompById("session_stop").enabled 		= active;
-			config.getCompById("dispatch").enabled 			= active;
+			config.getCompById("dispatch").enabled 			= active && CheckBox(config.getCompById("mode_manual")).selected;;
 			
 			config.getCompById("mode_manual").enabled 		= !active;
 			config.getCompById("dispatch_interval").enabled = !active && !CheckBox(config.getCompById("mode_manual")).selected;
@@ -128,9 +129,19 @@ package
 		
 		public function onSessionStart(evt:Event):void
 		{
+			var debug:Boolean = CheckBox(config.getCompById("mode_debug")).selected;
+			var dry:Boolean = CheckBox(config.getCompById("mode_dry")).selected;
+			var anonymous:Boolean = CheckBox(config.getCompById("mode_anonymous")).selected;
+
 			var manual:Boolean = CheckBox(config.getCompById("mode_manual")).selected;
 			var interval:int = NumericStepper(config.getCompById("dispatch_interval")).value;
-			start.dispatch((manual) ? 0 : interval);
+			
+			start.dispatch((manual) ? 0 : interval, debug, dry, anonymous);
+		}
+		
+		public function onDispatch(evt:Event):void
+		{
+			sync.dispatch();
 		}
 		
 		public function onSessionStop(evt:Event):void
@@ -140,7 +151,7 @@ package
 		
 		public function onManualDispatchChange(evt:Event):void
 		{
-			sync.dispatch();
+			update();
 		}
 		
 		public function onDebugModeChange(evt:Event):void
@@ -173,8 +184,8 @@ package
 		{
 			var category:String = InputText(config.getCompById("event_category")).text;
 			var action:String = InputText(config.getCompById("event_action")).text;
-			var label:String = InputText(config.getCompById("event_label")).text;
-			var value:int = NumericStepper(config.getCompById("event_value")).value;
+			var label:String = InputText(config.getCompById("event_label")).text || "";
+			var value:int = NumericStepper(config.getCompById("event_value")).value || -1;
 			
 			if (category == "") {
 				error.dispatch("Missing mandatory field 'category'.");

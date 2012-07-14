@@ -51,8 +51,12 @@ package
 			
 			form = new FormLayout();
 			form.ready.addOnce(registerLogger);
+			form.error.add(error);
 			form.start.add(startSession);
+			form.sync.add(syncQueue);
 			form.stop.add(stopSession);
+			form.pageView.add(trackPageView);
+			form.event.add(trackEvent);
 				
 			addChild(form as DisplayObject);
 		}
@@ -69,16 +73,26 @@ package
 			Log.addTarget(logTarget);
 		}
 		
-		protected function startSession(interval:int):void
+		protected function startSession(interval:int = 20, debug:Boolean = false, dry:Boolean = false, anonymous:Boolean = false):void
 		{
 			if (GATracker.isSupported()) {
+				
 				tracker = GATracker.getInstance();
 				tracker.startNewSession(ANALYTICS_ID, interval);
+				tracker.debug = debug;
+				tracker.dryRun = dry;
+				tracker.anonymizeIp = anonymous;
+				
 				form.status = SessionStatus.ACTIVE;
-				log("GATracker is ready. version: ", tracker.version);
+				logger.debug("GATracker is ready. version: {0}", tracker.version);
 			} else {
-				log("GATracker extension not supported.");
+				logger.debug("GATracker extension not supported.");
 			}
+		}
+		
+		protected function syncQueue():void
+		{
+			tracker.dispatch();
 		}
 		
 		protected function stopSession():void
@@ -89,7 +103,7 @@ package
 			}
 			catch (e:Error)
 			{
-				log(e);
+				logger.error("{0}", e);
 			}
 			finally {
 				tracker = null;
@@ -97,10 +111,19 @@ package
 			}
 		}
 		
-		private function log(...params):void
+		protected function trackPageView(url:String):void
 		{
-			logger.debug(params.join(" "));
+			tracker.trackPageView(url);
 		}
 		
+		protected function trackEvent(category:String, action:String, label:String = "", value:int = -1):void
+		{
+			tracker.trackEvent(category, action, label, value);
+		}
+		
+		private function error(...params):void
+		{
+			logger.error(params.join(" "));
+		}
 	}
 }
