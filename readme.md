@@ -2,15 +2,53 @@
 
 This is an Air native extension for Google Analytics on the iOS and Android platforms.
 
-# Version
-
-This is version 0.1 of this extension.
-The compiled extension contains version 1.4 of the Google Analytics mobile SDK.
+> **WARNING**  
+The iOS version of the library has not been tested on an actual device.  
+It does compile whitout any problem, but my cause crashes or any kind of apocalypse when used.  
+As soon as I can put my hands on an iPhone I'll test it and verify that everything's working as it should. In the meantime, you've been warned.
 
 # Binary files
 
 The _bin_ folder contains the compiled extension and the default swc, which can be used for local testing if required by your development environment (Flash Builder shouldn’t need it, but other IDEs may).
 
+# Changelog
+
+**v0.1.1**
+
+* updated Google Analytics libraries (Android 1.4.2 and iOS 1.4)
+* added demo project to showcase usage and capabilities
+* added some documentation on usage
+
+**v0.1.1**
+
+* initial release
+
+# Compiling your project
+
+The extension requires that your project is built against version 5 of the iOS SDK.  
+It doesn’t require version 5 at run-time (version 4 is sufficient), but it is required at compile-time.  
+Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter **-platformsdk** when building with adt from the command line or a build script.  
+Use Adobe Air SDK 3.1 or later.
+
+# Using the extension
+
+First of all, add the *NativeGATracker.ane* to your project.  
+Then you should check if the library is supported, get an instance of the tracker, start a tracking session using your Analytics ID and actually track something.
+
+The code below shows the most basic example:
+
+	import eu.alebianco.air.extensions.analytics.GATracker;
+	
+	if (GATracker.isSupported()) {
+		var tracker:GATracker = GATracker.getInstance();
+		tracker.startNewSession("UA-00000000-0", interval);
+		tracker.trackPageView("/custom/view/url");
+	}
+
+For any additional information you can reference the [Google Analytics Developer Guides & Reference](https://developers.google.com/analytics/devguides/) pages or the *ASDocs* on the code.  
+The extension follow closely the original SDK methods and functionalities, so it shouldn't be a problem to understand how it works.  
+In any case, if you have any problem or questions, just drop me a line.
+	
 # Building
 
 ## Requirements
@@ -31,15 +69,10 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 * Edit the _build.config_ file in the _build_ folder and change the properties in this file to match your system.
 * Run the ant build script _build.ant_ from the _build_ folder. This creates the native extension, and the default swc file, inside the _bin_ folder.
 
-# Compiling your project
-
-The extension requires that your project is built against version 5 of the iOS SDK. It doesn’t require version 5 at run-time (version 4 is sufficient), but it is required at compile-time. Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project,  if the functionality is built in to your IDE (like in Flash Builder) or using parameter **platformsdk** when building with adt from the command line or a build script.
-Use Adobe Air SDK 3.1 or later.
 
 # Coming up
 
-* Documentation
-* Usage examples
+* Better documentation
 * ECommerce support
 * Better error logging
 
