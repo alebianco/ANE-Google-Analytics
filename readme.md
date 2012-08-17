@@ -9,9 +9,16 @@ As soon as I can put my hands on an iPhone I'll test it and verify that everythi
 
 # Binary files
 
-The _bin_ folder contains the compiled extension and the default swc, which can be used for local testing if required by your development environment (Flash Builder shouldn’t need it, but other IDEs may).
+The _bin_ folder contains the compiled extension and the default swc, which can be used for local testing if required by your development environment (Flash Builder shouldn't need it, but other IDEs may).
 
 # Changelog
+
+**v0.1.2**
+
+* updated ant build file
+* upgraded to AIR 3.3
+* added target to run demo on iOS simulator to the ant build file
+* fixed issues with the iOS version of the extension
 
 **v0.1.1**
 
@@ -26,9 +33,9 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 # Compiling your project
 
 The extension requires that your project is built against version 5 of the iOS SDK.  
-It doesn’t require version 5 at run-time (version 4 is sufficient), but it is required at compile-time.  
+It doesn't require version 5 at run-time (version 4 is sufficient), but it is required at compile-time.
 Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter **-platformsdk** when building with adt from the command line or a build script.  
-Use Adobe Air SDK 3.1 or later.
+Use Adobe Air SDK 3.3 or later.
 
 # Using the extension
 
@@ -75,7 +82,3 @@ In any case, if you have any problem or questions, just drop me a line.
 * Better documentation
 * ECommerce support
 * Better error logging
-
-# Projects using this extension
-
-* none, yet
