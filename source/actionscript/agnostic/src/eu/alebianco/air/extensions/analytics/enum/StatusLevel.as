@@ -45,7 +45,7 @@ package eu.alebianco.air.extensions.analytics.enum
 		// Utilities.
 		override public function toString():String
 		{
-			return "[Expansion Type (name: " + name + ")]";
+			return "[Status level (name: " + name + ")]";
 		}
 	}
 }
