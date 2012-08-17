@@ -5,6 +5,7 @@ FlashRuntimeExtensions.jar
 libGoogleAnalytics.jar
 
 ._*
+*.mobileprovision
 
 source/ios/DerivedData/
 
