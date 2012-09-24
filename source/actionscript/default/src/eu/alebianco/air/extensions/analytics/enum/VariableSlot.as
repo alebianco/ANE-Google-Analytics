@@ -50,6 +50,18 @@ package eu.alebianco.air.extensions.analytics.enum
 		{
 			return VariableSlot(Enum.parseConstant(VariableSlot, constantName, caseSensitive));
 		}
+        public static function parseValue(value:int):VariableSlot
+        {
+            var list:Vector.<VariableSlot> = getConstants();
+            for each (var constant:VariableSlot in list)
+            {
+                if (constant.value == value)
+                {
+                    return constant;
+                }
+            }
+            return null;
+        }
 		
 		// Properties.
 		private var _value:uint;

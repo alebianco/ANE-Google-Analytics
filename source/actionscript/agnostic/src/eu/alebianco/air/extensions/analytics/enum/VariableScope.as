@@ -48,7 +48,19 @@ package eu.alebianco.air.extensions.analytics.enum
 		{
 			return VariableScope(Enum.parseConstant(VariableScope, constantName, caseSensitive));
 		}
-		
+        public static function parseValue(value:int):VariableScope
+        {
+            var list:Vector.<VariableScope> = getConstants();
+            for each (var constant:VariableScope in list)
+            {
+                if (constant.value == value)
+                {
+                    return constant;
+                }
+            }
+            return null;
+        }
+
 		// Properties.
 		private var _value:uint;
 		
