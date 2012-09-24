@@ -1,10 +1,6 @@
 package
 {
-	import com.bit101.components.CheckBox;
-	import com.bit101.components.Component;
-	import com.bit101.components.NumericStepper;
 	import com.bit101.components.TextArea;
-	import com.bit101.utils.MinimalConfigurator;
 	
 	import eu.alebianco.air.extensions.analytics.GATracker;
 	
@@ -18,7 +14,7 @@ package
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.logging.LogEventLevel;
-	
+
 	public class Demo extends Sprite
 	{
 		private const ANALYTICS_ID:String = "<YOUR_ID>";

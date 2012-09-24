@@ -3,7 +3,6 @@ package
 	import flash.text.TextField;
 	
 	import mx.core.mx_internal;
-	import mx.logging.LogEvent;
 	import mx.logging.targets.LineFormattedTarget;
 	
 	use namespace mx_internal;
