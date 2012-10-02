@@ -2,10 +2,6 @@
 
 This is an Air native extension for Google Analytics on the iOS and Android platforms.
 
-> **WARNING**  
-The iOS version of the library has not been tested on an actual device.  
-It does compile whitout any problem, but my cause crashes or any kind of apocalypse when used.  
-As soon as I can put my hands on an iPhone I'll test it and verify that everything's working as it should. In the meantime, you've been warned.
 
 # Binary files
 
@@ -13,11 +9,17 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 
 # Changelog
 
+**v0.1.21**
+
+* finally tested on real iOS devices, thanks to [@digitaljohn](http://github.com/digitaljohn)
+* fixed incompatibility issues with earlier versions of iOS
+* added some utility methods to the Enums related to custom variables
+
 **v0.1.2**
 
-* updated ant build file
 * upgraded to AIR 3.3
-* added target to run demo on iOS simulator to the ant build file
+* added target in the ANT script to run the demo project on the iOS simulator
+* cleaned and updated the ANT build file
 * fixed issues with the iOS version of the extension
 
 **v0.1.1**
@@ -32,8 +34,8 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 
 # Compiling your project
 
-The extension requires that your project is built against version 5 of the iOS SDK.  
-It doesn't require version 5 at run-time (version 4 is sufficient), but it is required at compile-time.
+The extension requires that your project is built against version 5.1 of the iOS SDK.  
+It doesn't require version 5.1 at run-time, version 4.0 should be sufficient, but it is required at compile-time.
 Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter **-platformsdk** when building with adt from the command line or a build script.  
 Use Adobe Air SDK 3.3 or later.
 
@@ -60,8 +62,8 @@ In any case, if you have any problem or questions, just drop me a line.
 
 ## Requirements
 
-* Adobe Air SDK 3.1 or later
-* XCode IDE, iOS SDK 5.0 or later
+* Adobe Air SDK 3.3 or later
+* XCode IDE, iOS SDK 5.1 or later
 * Google Android SDK 2.2
 * Google Analytics mobile SDKs for iOS and Android
 
