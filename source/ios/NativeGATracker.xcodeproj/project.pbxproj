@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6FB3A4DC161C750100E7F3B9 /* libarclite_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB3A4DB161C750100E7F3B9 /* libarclite_iphoneos.a */; };
 		D26BBCC21507931400D3EEBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCC11507931400D3EEBB /* Foundation.framework */; };
 		D26BBCD51507934B00D3EEBB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */; };
 		D26BBCD71507935700D3EEBB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCD61507935700D3EEBB /* CFNetwork.framework */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6FB3A4DB161C750100E7F3B9 /* libarclite_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libarclite_iphoneos.a; path = Libraries/libarclite_iphoneos.a; sourceTree = "<group>"; };
 		D26BBCBE1507931400D3EEBB /* libNativeGATracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D26BBCC11507931400D3EEBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -83,6 +85,7 @@
 				D26BBCC21507931400D3EEBB /* Foundation.framework in Frameworks */,
 				D26BBCD51507934B00D3EEBB /* libsqlite3.0.dylib in Frameworks */,
 				D2EAD6441518C56C003D539E /* libGoogleAnalytics.a in Frameworks */,
+				6FB3A4DC161C750100E7F3B9 /* libarclite_iphoneos.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +98,7 @@
 				D2EAD63F1518C56C003D539E /* FlashRuntimeExtensions.h */,
 				D2EAD6401518C56C003D539E /* GANTracker.h */,
 				D2EAD6411518C56C003D539E /* libGoogleAnalytics.a */,
+				6FB3A4DB161C750100E7F3B9 /* libarclite_iphoneos.a */,
 				D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */,
 			);
 			name = Libraries;
@@ -312,8 +316,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../SDKS/Google Analytics/Library\"",
-					"\"$(SRCROOT)/../../SDKS/Analytics/Library\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				OTHER_CODE_SIGN_FLAGS = armv7;
@@ -335,8 +337,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../SDKS/Google Analytics/Library\"",
-					"\"$(SRCROOT)/../../SDKS/Analytics/Library\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				OTHER_CODE_SIGN_FLAGS = armv7;

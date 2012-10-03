@@ -4,7 +4,5 @@
 	<linkerOptions>
 		<option>-ios_version_min 4.0</option>
 		<option>-lsqlite3</option>
-		<option>-L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc</option>
-		<option>-larclite_iphoneos</option>
 	</linkerOptions>
 </platform>
