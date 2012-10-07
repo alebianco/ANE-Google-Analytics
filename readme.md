@@ -9,6 +9,11 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 
 # Changelog
 
+**v0.1.22**
+
+* upgraded to AIR 3.4
+* fixed more compatibility issues for cross-system compilation
+
 **v0.1.21**
 
 * finally tested on real iOS devices, thanks to [@digitaljohn](http://github.com/digitaljohn)
@@ -37,7 +42,7 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 The extension requires that your project is built against version 5.1 of the iOS SDK.  
 It doesn't require version 5.1 at run-time, version 4.0 should be sufficient, but it is required at compile-time.
 Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter **-platformsdk** when building with adt from the command line or a build script.  
-Use Adobe Air SDK 3.3 or later.
+Use Adobe Air SDK 3.4 or later.
 
 # Using the extension
 
@@ -60,9 +65,10 @@ In any case, if you have any problem or questions, just drop me a line.
 	
 # Building
 
+
 ## Requirements
 
-* Adobe Air SDK 3.3 or later
+* Adobe Air SDK 3.4 or later
 * XCode IDE, iOS SDK 5.1 or later
 * Google Android SDK 2.2
 * Google Analytics mobile SDKs for iOS and Android
