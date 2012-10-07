@@ -177,7 +177,6 @@
 
     <target name="demo_compile">
         <exec executable="${MXMLC}" failonerror="true">
-            <arg line="-swf-version=14"/>
             <arg line="-debug=true"/>
             <arg line="-source-path=${DEMO_DIR}/src"/>
             <arg line="-library-path+=${DEMO_DIR}/libs"/>
