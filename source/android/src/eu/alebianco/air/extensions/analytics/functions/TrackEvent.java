@@ -64,7 +64,7 @@ public class TrackEvent implements FREFunction {
             action = args[1].getAsString();
         } catch (Exception e) {
             FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'action' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
-            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'action' parameter on method '%s'.", FREUtils.getClassName());
         }
 
@@ -73,7 +73,7 @@ public class TrackEvent implements FREFunction {
                 label = args[2].getAsString();
             } catch (Exception e) {
                 FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'label' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
-                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
             }
         }
 
@@ -82,7 +82,7 @@ public class TrackEvent implements FREFunction {
                 value = args[3].getAsInt();
             } catch (Exception e) {
                 FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'value' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
-                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
             }
         }
         

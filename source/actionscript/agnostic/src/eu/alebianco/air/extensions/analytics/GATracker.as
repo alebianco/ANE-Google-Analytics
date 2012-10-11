@@ -71,7 +71,7 @@ package eu.alebianco.air.extensions.analytics
 			try
 			{
 				getInstance();
-				supported = instance.context.call("isSupported") == false;
+				supported = instance.context.call("isSupported") == true;
 			}
 			catch(error:Error)
 			{
@@ -165,7 +165,7 @@ package eu.alebianco.air.extensions.analytics
 			{
 				native = handleResult(context.call("getVersion"), String) as String;
 			}
-			finally 
+			catch(error:Error)
 			{
 				native = "<unknown>";
 			}

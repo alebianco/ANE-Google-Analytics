@@ -62,7 +62,7 @@ public class StartNewSession implements FREFunction {
         	interval = args[1].getAsInt();
         } catch (Exception e) {
             FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'interval' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
-            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'interval' parameter on method '%s'.", FREUtils.getClassName());
         }
 

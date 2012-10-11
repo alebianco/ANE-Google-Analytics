@@ -32,13 +32,9 @@ public class FREUtils {
     	return className.substring(className.lastIndexOf(".") + 1);
     }
     
-    private static StackTraceElement getStackInfo(int i)
-    {
-    	return new Exception().getStackTrace()[i];
-    }
     private static StackTraceElement getStackInfo()
     {
-    	return getStackInfo(1);
+    	return new Exception().getStackTrace()[2];
     }
 
 	public static FREObject createRuntimeException(String className, int id, String message, Object... data) {
@@ -46,11 +42,15 @@ public class FREUtils {
 		FREObject error = null;
         FREObject[] args = new FREObject[2] ;
         try {
-        	args[2] = FREObject.newObject(id);
-        	args[1] = FREObject.newObject(String.format(message, data));
+        	args[0] = FREObject.newObject(String.format(message, data));
+            args[1] = FREObject.newObject(id);
             error = FREObject.newObject(className, args);
-		} catch (Exception e1) {
-			Log.println(LogLevel.ERROR.getPriority(), LOGTAG, String.format("Inception Error: Unable to create the runtime exception to notify the application about the previous error.\n[Error:(type:%s, message:%s]", stripPackageFromClassName(className), String.format(message, data)));
+		} catch (Exception e) {
+			Log.println(LogLevel.ERROR.getPriority(), LOGTAG, String.format("Inception Error: Unable to create the runtime exception to notify the application about the previous error.\n" +
+                    "[Error:(type:%s, message:%s]\n" +
+                    "[Error:(type:%s, message:%s]",
+                    stripPackageFromClassName(e.toString()), e.getMessage(),
+                    stripPackageFromClassName(className), String.format(message, data)));
 		}
         return error;
 	}

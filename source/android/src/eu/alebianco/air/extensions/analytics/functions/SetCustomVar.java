@@ -64,7 +64,7 @@ public class SetCustomVar implements FREFunction {
         	name = args[1].getAsString();
         } catch (Exception e) {
             FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'name' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
-            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'name' parameter on method '%s'.", FREUtils.getClassName());
         }
         
@@ -72,7 +72,7 @@ public class SetCustomVar implements FREFunction {
         	value = args[2].getAsString();
         } catch (Exception e) {
         	FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'value' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
-        			FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+        			FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
         	return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'value' parameter on method '%s'.", FREUtils.getClassName());
         }
         
@@ -81,7 +81,7 @@ public class SetCustomVar implements FREFunction {
 	        	scope = (args.length >= 4) ? Math.max(1, Math.min(3, args[3].getAsInt())) : 3;
 	        } catch (Exception e) {
                 FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'scope' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
-                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
 	        }
         }
         
