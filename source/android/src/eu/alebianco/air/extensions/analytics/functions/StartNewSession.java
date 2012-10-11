@@ -43,29 +43,36 @@ public class StartNewSession implements FREFunction {
 	public FREObject call(FREContext context, FREObject[] args) {
 		
 		if (args == null || args.length < 2) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'", FREUtils.getClassName());
-			return null;
+			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'.", FREUtils.getClassName());
+			return FREUtils.createRuntimeException("ArgumentError", 0, "Invalid number of arguments sent to the method '%s'.", FREUtils.getClassName());
 		}
 		
+		String account;
+		int interval;
+		
+        try {
+        	account = args[0].getAsString();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'account' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'account' parameter on method '%s'.", FREUtils.getClassName());
+        }
+
+        try {
+        	interval = args[1].getAsInt();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'interval' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'interval' parameter on method '%s'.", FREUtils.getClassName());
+        }
+
 		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
 		Context appContext = context.getActivity().getApplicationContext();
 		
-		try {
-			
-			String account = args[0].getAsString();
-			int interval = args[1].getAsInt();
-			
-			if (interval > 0) {
-				tracker.startNewSession(account, interval, appContext);
-			} 
-			else {
-				tracker.startNewSession(account, appContext);
-			}
-		} 
-		catch(Exception e) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+		if (interval > 0) {
+			tracker.startNewSession(account, interval, appContext);
+		} else {
+			tracker.startNewSession(account, appContext);
 		}
 		
 		return null;

@@ -38,18 +38,18 @@ public class GetVersion implements FREFunction {
 
 	@Override
 	public FREObject call(FREContext context, FREObject[] args) {
-		
-		String version = GoogleAnalyticsTracker.PRODUCT + " v" + GoogleAnalyticsTracker.VERSION;
 
 		FREObject result = null;
 		
+		String version = GoogleAnalyticsTracker.PRODUCT + " v" + GoogleAnalyticsTracker.VERSION;
+
 		try {
-			
 			result = FREObject.newObject(version);
 		}
 		catch(Exception e) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+			FREUtils.logEvent(context, LogLevel.FATAL, "Unable to create the return value.\n(Exception:[name:%s,reason:%s,method:%s])", 
+					FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("Error", 0, "Unable to create the return value from method '%s'.", FREUtils.getClassName());
 		}
 		
 		return result;

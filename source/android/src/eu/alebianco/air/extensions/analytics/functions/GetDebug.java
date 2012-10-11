@@ -39,19 +39,19 @@ public class GetDebug implements FREFunction {
 
 	@Override
 	public FREObject call(FREContext context, FREObject[] args) {
-		
-		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
 
 		FREObject result = null;
 		
+		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
+		Boolean flag = tracker.getDebug();
+		
 		try {
-			
-			Boolean flag = tracker.getDebug();
 			result = FREObject.newObject(flag);
 		}
 		catch(Exception e) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+			FREUtils.logEvent(context, LogLevel.FATAL, "Unable to create the return value.\n(Exception:[name:%s,reason:%s,method:%s])", 
+					FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("Error", 0, "Unable to create the return value from method '%s'.", FREUtils.getClassName());
 		}
 		
 		return result;

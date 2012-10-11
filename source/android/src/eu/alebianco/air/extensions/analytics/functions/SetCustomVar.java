@@ -41,29 +41,58 @@ public class SetCustomVar implements FREFunction {
 	public FREObject call(FREContext context, FREObject[] args) {
 		
 		if (args == null || args.length < 3) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'", FREUtils.getClassName());
-			return null;
+			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'.", FREUtils.getClassName());
+			return FREUtils.createRuntimeException("ArgumentError", 0, "Invalid number of arguments sent to the method '%s'.", FREUtils.getClassName());
 		}
-		
-		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
 		
 		FREObject result = null;
 		
+		int index;
+		String name;
+		String value;
+		int scope = 3;
+
+        try {
+        	index = Math.max(1, Math.min(5, args[0].getAsInt()));
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'index' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'index' parameter on method '%s'.", FREUtils.getClassName());
+        }
+
+        try {
+        	name = args[1].getAsString();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'name' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'name' parameter on method '%s'.", FREUtils.getClassName());
+        }
+        
+        try {
+        	value = args[2].getAsString();
+        } catch (Exception e) {
+        	FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'value' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+        			FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+        	return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'value' parameter on method '%s'.", FREUtils.getClassName());
+        }
+        
+        if (args.length >= 4 && args[3] != null) {
+	        try {
+	        	scope = (args.length >= 4) ? Math.max(1, Math.min(3, args[3].getAsInt())) : 3;
+	        } catch (Exception e) {
+                FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'scope' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+	        }
+        }
+        
+		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
+		Boolean success = tracker.setCustomVar(index, name, value, scope);
+			
 		try {
-			
-			int index = Math.max(1, Math.min(5, args[0].getAsInt()));
-			String name = args[1].getAsString();
-			String value = args[2].getAsString();;
-			int scope = (args.length >= 4) ? Math.max(1, Math.min(3, args[3].getAsInt())) : 3;
-			
-			Boolean success = tracker.setCustomVar(index, name, value, scope);
-			
 			result = FREObject.newObject(success);
-		}
-		catch(Exception e) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+		} catch(Exception e) {
+			FREUtils.logEvent(context, LogLevel.ERROR, "Unable to create the return value.\n(Exception:[name:%s,reason:%s,method:%s])", 
+					FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
 		}
 		
 		return result;

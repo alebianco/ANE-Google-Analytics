@@ -41,24 +41,34 @@ public class TrackPageView implements FREFunction {
 	public FREObject call(FREContext context, FREObject[] args) {
 		
 		if (args == null || args.length < 1) {
-
 			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'", FREUtils.getClassName());
 			return null;
 		}
+
+		FREObject result = null;
+		
+		String page;
+				
+		 try {
+			 page = args[0].getAsString();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'page' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'page' parameter.");
+        }
 		
 		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
+		tracker.trackPageView(page);
 		
 		try {
-			
-			String page = args[0].getAsString();
-			tracker.trackPageView(page);
+			result = FREObject.newObject(true);
 		}
 		catch(Exception e) {
-
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+			FREUtils.logEvent(context, LogLevel.ERROR, "Unable to create the return value.\n(Exception:[name:%s,reason:%s,method:%s])", 
+					FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
 		}
 		
-		return null;
+		return result;
 	}
 
 }

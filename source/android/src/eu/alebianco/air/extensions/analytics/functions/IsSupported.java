@@ -41,12 +41,11 @@ public class IsSupported implements FREFunction {
 		FREObject result = null;
 		
 		try {
-			
 			result = FREObject.newObject(true);
 		}
 		catch(Exception e) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+			FREUtils.logEvent(context, LogLevel.ERROR, "Unable to create the return value.\n(Exception:[name:%s,reason:%s,method:%s])", 
+					FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
 		}
 		
 		return result;

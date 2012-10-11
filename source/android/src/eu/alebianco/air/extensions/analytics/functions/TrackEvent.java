@@ -41,11 +41,12 @@ public class TrackEvent implements FREFunction {
 	public FREObject call(FREContext context, FREObject[] args) {
 		
 		if (args == null || args.length < 2) {
-
-			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'", FREUtils.getClassName());
-			return null;
+			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'.", FREUtils.getClassName());
+			return FREUtils.createRuntimeException("ArgumentError", 0, "Invalid number of arguments sent to the method '%s'.", FREUtils.getClassName());
 		}
-
+		
+		FREObject result = null;
+		
         String category;
         String action;
         String label = "";
@@ -54,22 +55,25 @@ public class TrackEvent implements FREFunction {
         try {
             category = args[0].getAsString();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'category' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", e.toString().substring(e.toString().lastIndexOf('.') + 1), e.getMessage(), FREUtils.getClassName());
-            return null;
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'category' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'category' parameter on method '%s'.", FREUtils.getClassName());
         }
 
         try {
             action = args[1].getAsString();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'action' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", e.toString().substring(e.toString().lastIndexOf('.') + 1), e.getMessage(), FREUtils.getClassName());
-            return null;
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'action' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'action' parameter on method '%s'.", FREUtils.getClassName());
         }
 
         if (args.length >= 3 && args[2] != null) {
             try {
                 label = args[2].getAsString();
             } catch (Exception e) {
-                FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'label' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", e.toString().substring(e.toString().lastIndexOf('.') + 1), e.getMessage(), FREUtils.getClassName());
+                FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'label' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
             }
         }
 
@@ -77,21 +81,23 @@ public class TrackEvent implements FREFunction {
             try {
                 value = args[3].getAsInt();
             } catch (Exception e) {
-                FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'value' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", e.toString().substring(e.toString().lastIndexOf('.') + 1), e.getMessage(), FREUtils.getClassName());
+                FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'value' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+                		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), e.getMessage(), FREUtils.getClassName());
             }
         }
-
+        
+        GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
+		tracker.trackEvent(category, action, label, value);
+		
 		try {
-
-            GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
-			tracker.trackEvent(category, action, label, value);
+			result = FREObject.newObject(true);
 		}
 		catch(Exception e) {
-
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+			FREUtils.logEvent(context, LogLevel.ERROR, "Unable to create the return value.\n(Exception:[name:%s,reason:%s,method:%s])", 
+					FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
 		}
 		
-		return null;
+		return result;
 	}
 
 }

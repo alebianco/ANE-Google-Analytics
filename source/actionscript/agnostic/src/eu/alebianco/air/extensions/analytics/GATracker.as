@@ -71,7 +71,7 @@ package eu.alebianco.air.extensions.analytics
 			try
 			{
 				getInstance();
-				supported = instance.context.call("isSupported");
+				supported = instance.context.call("isSupported") == false;
 			}
 			catch(error:Error)
 			{
@@ -142,82 +142,107 @@ package eu.alebianco.air.extensions.analytics
 			}
 		}
 		
+		private function handleResult(result:Object, expected:Class = null):*
+		{
+			if (result is Error)
+			{
+				throw result as Error;
+			}
+			
+			if (result && expected && !(result is expected)) 
+			{
+				throw new ArgumentError("Method call returned an unexpected value type.");
+			}
+			
+			return expected ? expected(result) : result;	
+		}
+		
 		public function get version():String {
 			
-			var native:String = context.call("getVersion") as String;
+			var native:String;
+			
+			try 
+			{
+				native = handleResult(context.call("getVersion"), String) as String;
+			}
+			finally 
+			{
+				native = "<unknown>";
+			}
 			
 			return "GATracker v" + VERSION + "\n using '" + native + "'";
 		}
 		
 		public function startNewSession(accountID:String, interval:int = 20):void 
 		{
-			context.call("startNewSession", accountID, interval);
+			handleResult(context.call("startNewSession", accountID, interval));
 		}
 		
 		public function stopSession():void
 		{
-			context.call("stopSession");
+			handleResult(context.call("stopSession"));
 		}
 		
 		public function dispatch():Boolean
 		{
-			return context.call("dispatch");
+			return handleResult(context.call("dispatch"), Boolean) as Boolean;
 		}
 		
 		public function get sampleRate():Number
 		{
-			var value:Number = context.call("getSampleRate") as int; 
+			var value:int = handleResult(context.call("getSampleRate"), int) as int;
 			return  value / 100;
 		}
 
 		public function set sampleRate(value:Number):void
 		{
-			context.call("setSampleRate", int(Math.max(1, Math.max(0, value)) * 100));
+			var normalized:int = int(Math.max(1, Math.max(0, value)) * 100);
+			handleResult(context.call("setSampleRate", normalized));
 		}
 		
 		public function setCustomVar(slot:VariableSlot, name:String, value:String, scope:VariableScope = null):void
 		{
-			context.call("setCustomVar", slot.value, name, value, (scope) ? scope.value : VariableScope.PAGE.value);
+			handleResult(context.call("setCustomVar", slot.value, name, value, (scope) ? scope.value : VariableScope.PAGE.value));
 		}
 		
 		public function getCustomVar(index:int):String
 		{
-			return context.call("getCustomVar", index) as String;
+			return handleResult(context.call("getCustomVar", index), String) as String;
 		}
 		
 		public function set debug(value:Boolean):void
 		{
-			context.call("setDebug", value);
+			handleResult(context.call("setDebug", value));
 		}
 		
 		public function get debug():Boolean
 		{
-			return context.call("getDebug") as Boolean;
+			return handleResult(context.call("getDebug"), Boolean) as Boolean;
 		}
 		
 		public function set dryRun(value:Boolean):void
 		{
-			context.call("setDryRun", value);
+			handleResult(context.call("setDryRun", value));
 		}
 		
 		public function get dryRun():Boolean
 		{
-			return context.call("getDryRun") as Boolean;
+			return handleResult(context.call("getDryRun"), Boolean) as Boolean;
 		}
 		
 		public function set anonymizeIp(value:Boolean):void
 		{
-			context.call("setAnonymizeIp", value);
+			handleResult(context.call("setAnonymizeIp", value));
 		}
 		
 		public function trackPageView(uri:String):void
 		{
-			context.call("trackPageView", uri);
+			var success:Boolean = handleResult(context.call("trackPageView", uri), Boolean) as Boolean;
 		}
 		
 		public function trackEvent(category:String, action:String, label:String = "", value:int = -1):void
 		{
-			context.call("trackEvent", category, action, label, value);
+			var success:Boolean = handleResult(context.call("trackEvent", category, action, label, value), Boolean) as Boolean;
 		}
 	}
 }

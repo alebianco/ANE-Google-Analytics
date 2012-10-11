@@ -40,18 +40,17 @@ public class Dispatch implements FREFunction {
 	@Override
 	public FREObject call(FREContext context, FREObject[] args) {
 		
-		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
-		
 		FREObject result = null;
 		
+		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
+		Boolean success = tracker.dispatch();
+		
 		try {
-			
-			Boolean success = tracker.dispatch();
 			result = FREObject.newObject(success);
-		} 
-		catch (Exception e) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+		}
+		catch(Exception e) {
+			FREUtils.logEvent(context, LogLevel.ERROR, "Unable to create the return value.\n(Exception:[name:%s,reason:%s,method:%s])", 
+					FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
 		}
 		
 		return result;

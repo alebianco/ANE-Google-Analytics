@@ -41,26 +41,32 @@ public class GetCustomVar implements FREFunction {
 	public FREObject call(FREContext context, FREObject[] args) {
 		
 		if (args == null || args.length < 1) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'", FREUtils.getClassName());
-			return null;
+			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'.", FREUtils.getClassName());
+			return FREUtils.createRuntimeException("ArgumentError", 0, "Invalid number of arguments sent to the method '%s'.", FREUtils.getClassName());
 		}
-		
-		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
-		
+
 		FREObject result = null;
 		
+		int index;
+        
 		try {
+            index = Math.max(1, Math.min(5, args[0].getAsInt()));
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'index' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", 
+            		FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'index' parameter on method '%s'.", FREUtils.getClassName());
+        }
+
+		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
+		String name = tracker.getVisitorCustomVar(index);
 			
-			int index = Math.max(1, Math.min(5, args[0].getAsInt()));
-			
-			String name = tracker.getVisitorCustomVar(index);
-			
+		try {
 			result = FREObject.newObject(name);
 		}
 		catch(Exception e) {
-			
-			FREUtils.logEvent(context, LogLevel.FATAL, "%s method failed because: %s", FREUtils.getClassName(), e.getMessage());
+			FREUtils.logEvent(context, LogLevel.FATAL, "Unable to create the return value.\n(Exception:[name:%s,reason:%s,method:%s])", 
+					FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.getClassName());
+            return FREUtils.createRuntimeException("Error", 0, "Unable to create the return value from method '%s'.", FREUtils.getClassName());
 		}
 		
 		return result;
