@@ -45,16 +45,45 @@ public class TrackEvent implements FREFunction {
 			FREUtils.logEvent(context, LogLevel.FATAL, "Invalid arguments number for method '%s'", FREUtils.getClassName());
 			return null;
 		}
-		
-		GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
-		
+
+        String category;
+        String action;
+        String label = "";
+        int value = -1;
+
+        try {
+            category = args[0].getAsString();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'category' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", e.toString().substring(e.toString().lastIndexOf('.') + 1), e.getMessage(), FREUtils.getClassName());
+            return null;
+        }
+
+        try {
+            action = args[1].getAsString();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL, "Unable to read the 'action' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", e.toString().substring(e.toString().lastIndexOf('.') + 1), e.getMessage(), FREUtils.getClassName());
+            return null;
+        }
+
+        if (args.length >= 3 && args[2] != null) {
+            try {
+                label = args[2].getAsString();
+            } catch (Exception e) {
+                FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'label' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", e.toString().substring(e.toString().lastIndexOf('.') + 1), e.getMessage(), FREUtils.getClassName());
+            }
+        }
+
+        if (args.length >= 4 && args[3] != null) {
+            try {
+                value = args[3].getAsInt();
+            } catch (Exception e) {
+                FREUtils.logEvent(context, LogLevel.WARN, "Unable to read the 'value' parameter.\n(Exception:[name:%s,reason:%s,method:%s])", e.toString().substring(e.toString().lastIndexOf('.') + 1), e.getMessage(), FREUtils.getClassName());
+            }
+        }
+
 		try {
-			
-			String category = args[0].getAsString();
-			String action = args[1].getAsString();
-			String label = (args.length >= 3) ? args[2].getAsString() : null;
-			int value = (args.length >= 4) ? args[3].getAsInt() : null;
-			
+
+            GoogleAnalyticsTracker tracker = ((GAContext) context).tracker;
 			tracker.trackEvent(category, action, label, value);
 		}
 		catch(Exception e) {

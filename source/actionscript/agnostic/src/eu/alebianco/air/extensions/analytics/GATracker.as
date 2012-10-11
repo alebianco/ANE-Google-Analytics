@@ -215,7 +215,7 @@ package eu.alebianco.air.extensions.analytics
 			context.call("trackPageView", uri);
 		}
 		
-		public function trackEvent(category:String, action:String, label:String = null, value:int = -1):void
+		public function trackEvent(category:String, action:String, label:String = "", value:int = -1):void
 		{
 			context.call("trackEvent", category, action, label, value);
 		}
