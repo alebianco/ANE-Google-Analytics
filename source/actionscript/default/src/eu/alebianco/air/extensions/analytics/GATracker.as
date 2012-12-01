@@ -29,8 +29,10 @@ package eu.alebianco.air.extensions.analytics
 	import eu.alebianco.air.extensions.analytics.enum.VariableScope;
 	import eu.alebianco.air.extensions.analytics.enum.VariableSlot;
 	import eu.alebianco.core.IDisposable;
-	
-	/**
+
+import flash.external.ExtensionContext;
+
+/**
 	 * Provide means to build typesafe enumerations in <code>ActionScript</code>.
 	 * 
 	 * <p>
@@ -57,6 +59,8 @@ package eu.alebianco.air.extensions.analytics
 		
 		private static var instance:GATracker;
 		private static var canBuild:Boolean;
+
+        private var context:ExtensionContext;
 		
 		/**
 		 * Get a reference to the current instance of the tracker, or creates

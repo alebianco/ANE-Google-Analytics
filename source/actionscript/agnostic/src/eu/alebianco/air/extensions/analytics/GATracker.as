@@ -148,29 +148,29 @@ package eu.alebianco.air.extensions.analytics
 			{
 				throw result as Error;
 			}
-			
-			if (result && expected && !(result is expected)) 
+
+			if (result && expected && !(result is expected))
 			{
 				throw new ArgumentError("Method call returned an unexpected value type.");
 			}
-			
-			return expected ? expected(result) : result;	
+
+			return expected ? expected(result) : result;
 		}
 		
 		public function get version():String {
 			
-			var native:String;
+			var nativeVersion:String;
 			
 			try 
 			{
-				native = handleResult(context.call("getVersion"), String) as String;
+				nativeVersion = handleResult(context.call("getVersion"), String) as String;
 			}
 			catch(error:Error)
 			{
-				native = "<unknown>";
+				nativeVersion = "<unknown>";
 			}
 			
-			return "GATracker v" + VERSION + "\n using '" + native + "'";
+			return "GATracker v" + VERSION + "\n using '" + nativeVersion + "'";
 		}
 		
 		public function startNewSession(accountID:String, interval:int = 20):void 
@@ -237,12 +237,12 @@ package eu.alebianco.air.extensions.analytics
 		
 		public function trackPageView(uri:String):void
 		{
-			var success:Boolean = handleResult(context.call("trackPageView", uri), Boolean) as Boolean;
+			handleResult(context.call("trackPageView", uri), Boolean);
 		}
 		
 		public function trackEvent(category:String, action:String, label:String = "", value:int = -1):void
 		{
-			var success:Boolean = handleResult(context.call("trackEvent", category, action, label, value), Boolean) as Boolean;
+			handleResult(context.call("trackEvent", category, action, label, value), Boolean);
 		}
 	}
 }
