@@ -26,7 +26,7 @@
  */
 
 #import "FREConversionUtil.h"
-#import "LoggerUtil.h"
+#import "FREUtils.h"
 #import "GANTracker.h"
 
 @interface Anonimize : NSObject

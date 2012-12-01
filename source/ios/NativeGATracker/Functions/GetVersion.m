@@ -31,7 +31,7 @@
 
 DEFINE_ANE_FUNCTION(getVersion)
 {
-    FREObject version = [FREConversionUtil convertString:@"GoogleAnalytics v1.4"];
+    FREObject version = [FREConversionUtil convertString:@"GoogleAnalytics v1.5"];
     return version;
 }
 

@@ -25,9 +25,9 @@
  * THE SOFTWARE.
  */
 
-#import "LoggerUtil.h"
+#import "FREUtils.h"
 
-@implementation LoggerUtil
+@implementation FREUtils
 
 void logEvent( FREContext ctx, enum LogLevel lvl, NSString *format, ... )
 {
@@ -40,7 +40,7 @@ void logEvent( FREContext ctx, enum LogLevel lvl, NSString *format, ... )
     switch (lvl) {
         case kInfo:
             level = @"INFO";
-            break;
+            break;				
         case kDebug:
             level = @"DEBUG";
             break;
