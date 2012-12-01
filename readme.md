@@ -9,6 +9,12 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 
 # Changelog
 
+**v0.1.23**
+
+* upgraded to AIR 3.5
+* updated Google Analytics libraries (Android 1.5.1 and iOS 1.5)
+* improved error handling
+
 **v0.1.22**
 
 * upgraded to AIR 3.4
