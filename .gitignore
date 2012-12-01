@@ -1,8 +1,5 @@
 FlashRuntimeExtensions.h
-GANTracker.h
-libGoogleAnalytics.a
 FlashRuntimeExtensions.jar
-libGoogleAnalytics.jar
 
 ._*
 *.mobileprovision
