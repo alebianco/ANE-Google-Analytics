@@ -43,7 +43,8 @@ package eu.alebianco.air.extensions.analytics
 	public final class GATracker implements IDisposable
 	{
 		private static const VERSION:String = "1.1";
-		
+
+        private static const GA_ID_VALIDATOR:RegExp = /^UA-\d{4,10}-\d{1,4}$/i
 		private static const EXTENSION_ID:String = "eu.alebianco.air.extensions.analytics.NativeGATracker";
 		
 		private static var instance:GATracker;
@@ -175,7 +176,11 @@ package eu.alebianco.air.extensions.analytics
 		
 		public function startNewSession(accountID:String, interval:int = 20):void 
 		{
-			handleResult(context.call("startNewSession", accountID, interval));
+            if (GA_ID_VALIDATOR.test(accountID)) {
+			    handleResult(context.call("startNewSession", accountID.toUpperCase(), interval));
+            } else {
+                throw new ArgumentError("The provided account ID is invalid, it should follow the format UA-00000-0.")
+            }
 		}
 		
 		public function stopSession():void
