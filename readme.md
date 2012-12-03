@@ -2,6 +2,9 @@
 
 This is an Air native extension for Google Analytics on the iOS and Android platforms.
 
+# Warning
+The new "app" profile on the Google Analytics dashboard won't accept any data from the trackers (1.5 and 1.5.1) currently used.
+I should complete the port to the new tracker shortly, so you can all benefit of the newest profiles.
 
 # Binary files
 
