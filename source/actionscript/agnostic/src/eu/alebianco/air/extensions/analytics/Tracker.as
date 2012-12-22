@@ -118,7 +118,7 @@ internal class Tracker implements ITracker {
 	}
 
 	public function send(type:HitType, data:Hit):void {
-	    handleResultFromExtension(context.call("trackData", type, data));
+	    handleResultFromExtension(context.call("trackData", id, type.value, data.arguments));
 	}
 
 	public function buildViewHit(screenName:String):IViewBuilder {

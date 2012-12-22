@@ -8,7 +8,7 @@ public class HitType extends Enum {
 	}
 
 	public static const EVENT:HitType = new HitType("event");
-	public static const VIEW:HitType = new HitType("appView");
+	public static const VIEW:HitType = new HitType("appview");
 	public static const TRANSACTION:HitType = new HitType("tran");
 	public static const EXCEPTION:HitType = new HitType("exception");
 	public static const SOCIAL:HitType = new HitType("social");
