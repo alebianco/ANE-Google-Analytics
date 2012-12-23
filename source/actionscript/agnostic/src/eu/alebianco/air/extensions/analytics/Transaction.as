@@ -25,7 +25,7 @@ internal class Transaction implements Hit {
 
 	public function Transaction(builder:TransactionBuilder) {
 
-		if (!(builder.id && ID_VALIDATOR.text(builder.id)))
+		if (!(builder.id && ID_VALIDATOR.test(builder.id)))
 			throw new ArgumentError("Transaction ID is invalid: must be not null or a empty string.");
 
 		_id = builder.id;

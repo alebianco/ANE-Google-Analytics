@@ -104,8 +104,8 @@ public class TrackData implements FREFunction {
         try {
             label = data.getProperty("label").getAsString();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             label = null;
         }
@@ -113,8 +113,8 @@ public class TrackData implements FREFunction {
         try {
             value = (long) data.getProperty("value").getAsInt();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             value = null;
         }
@@ -142,8 +142,8 @@ public class TrackData implements FREFunction {
         try {
             description = data.getProperty("description").getAsString();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             description = null;
         }
@@ -174,8 +174,8 @@ public class TrackData implements FREFunction {
         try {
             name = data.getProperty("name").getAsString();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             name = null;
         }
@@ -183,8 +183,8 @@ public class TrackData implements FREFunction {
         try {
             label = data.getProperty("label").getAsString();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             label = null;
         }
@@ -214,8 +214,8 @@ public class TrackData implements FREFunction {
         try {
             content = data.getProperty("content").getAsString();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             content = null;
         }
@@ -252,8 +252,8 @@ public class TrackData implements FREFunction {
         try {
             affiliation = data.getProperty("affiliation").getAsString();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             affiliation = null;
         }
@@ -261,8 +261,8 @@ public class TrackData implements FREFunction {
         try {
             shipping = data.getProperty("shipping").getAsDouble();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             shipping = null;
         }
@@ -270,8 +270,8 @@ public class TrackData implements FREFunction {
         try {
             tax = data.getProperty("tax").getAsDouble();
         } catch (Exception e) {
-            FREUtils.logEvent(context, LogLevel.WARN,
-                    "Unable to read a property. (Exception:[name:%s, reason:%s, method:%s:%s])",
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
                     FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
             tax = null;
         }

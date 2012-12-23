@@ -4,7 +4,7 @@
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
  * Twitter: @alebianco
- * Created: 21/12/12 15.41
+ * Created: 23/12/12 10.42
  *
  * Copyright © 2013 Alessandro Bianco
  */
@@ -19,7 +19,7 @@ import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
 import eu.alebianco.air.extensions.utils.LogLevel;
 
-public class CloseTracker implements FREFunction {
+public class StartNewSession implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
@@ -36,8 +36,7 @@ public class CloseTracker implements FREFunction {
         }
 
         Tracker tracker = GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
-        tracker.close();
-        GoogleAnalytics.getInstance(context.getActivity()).closeTracker(tracker);
+        tracker.setStartSession(true);
 
         return result;
     }

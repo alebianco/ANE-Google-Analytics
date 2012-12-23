@@ -33,6 +33,5 @@ public class GAExtension implements FREExtension {
 
     @Override
     public void initialize() {
-        // TODO auto generated stub method	
     }
 }

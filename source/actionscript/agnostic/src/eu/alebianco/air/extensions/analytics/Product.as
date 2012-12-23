@@ -25,10 +25,10 @@ internal class Product implements IProduct {
 
 	public function Product(builder:ProductBuilder) {
 
-		if (!(builder.sku && SKU_VALIDATOR.text(builder.sku)))
+		if (!(builder.sku && SKU_VALIDATOR.test(builder.sku)))
 			throw new ArgumentError("Product sku is invalid: must be not null or a empty string.")
 
-		if (!(builder.name && NAME_VALIDATOR.text(builder.name)))
+		if (!(builder.name && NAME_VALIDATOR.test(builder.name)))
 			throw new ArgumentError("Product name is invalid: must be not null or a empty string.")
 
 		_sku = builder.sku;

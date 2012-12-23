@@ -28,29 +28,37 @@ import flash.utils.Timer;
 
 internal class Tracker implements ITracker {
 
+	private var context:ExtensionContext;
+
+	private var id:String;
+
+	private var timeout:uint = 30;
+	private var timer:Timer;
+
+	private var _appName:String;
+	private var _appVersion:String;
+	private var _lockAppData:Boolean = false;
+
 	public function Tracker(id:String, context:ExtensionContext) {
 		this.id = id;
 		this.context = context;
 		parseAppDescriptor();
 		createTimer();
 	}
-	private var context:ExtensionContext;
-	private var id:String;
-	private var timeout:uint = 30;
-	private var timer:Timer;
-	private var _appName:String;
+
 	public function get appName():String {
 		return _appName;
 	}
 	public function set appName(value:String):void {
+		if (_lockAppData) return;
 		_appName = value;
 		handleResultFromExtension(context.call("setAppName", id, _appName));
 	}
-	private var _appVersion:String;
 	public function get appVersion():String {
 		return _appVersion;
 	}
 	public function set appVersion(value:String):void {
+		if (_lockAppData) return;
 		_appVersion = value;
 		handleResultFromExtension(context.call("setAppVersion", id, _appVersion));
 	}
@@ -84,7 +92,7 @@ internal class Tracker implements ITracker {
 		handleResultFromExtension(context.call("setAnonymous", id, value));
 	}
 	public function get secure():Boolean {
-		return handleResultFromExtension(context.call("getSecure", id), String) as String;
+		return handleResultFromExtension(context.call("getSecure", id), Boolean) as Boolean;
 	}
 	public function set secure(value:Boolean):void {
 		handleResultFromExtension(context.call("setSecure", id, value));
@@ -108,6 +116,7 @@ internal class Tracker implements ITracker {
 		handleResultFromExtension(context.call("startSession", id));
 	}
 	public function send(type:HitType, data:Hit):void {
+		_lockAppData = true;
 		handleResultFromExtension(context.call("trackData", id, type.name, data));
 	}
 	public function buildView(screenName:String):IViewBuilder {
@@ -136,8 +145,8 @@ internal class Tracker implements ITracker {
 		const descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
 		const ns:Namespace = descriptor.namespace();
 		if (appID == null) appID = descriptor.ns::id[0];
-		appName = descriptor.ns::filename[0];
-		appVersion = descriptor.ns::version[0];
+		appName = descriptor.ns::filename[0] || "";
+		appVersion = descriptor.ns::versionNumber[0] || "";
 	}
 	private function createTimer():void {
 		if (timeout == 0) return;

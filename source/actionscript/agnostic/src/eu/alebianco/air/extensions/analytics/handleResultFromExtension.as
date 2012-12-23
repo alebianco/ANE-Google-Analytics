@@ -7,6 +7,6 @@ internal function handleResultFromExtension(result:Object, expected:Class = null
 	if (result && expected && !(result is expected))
 		throw new ArgumentError("Method call returned an unexpected value type.");
 
-	return expected ? expected(result) : result;
+	return result && expected ? expected(result) : result;
 }
 }

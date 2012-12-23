@@ -4,7 +4,7 @@
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
  * Twitter: @alebianco
- * Created: 21/12/12 15.41
+ * Created: 23/12/12 10.42
  *
  * Copyright © 2013 Alessandro Bianco
  */
@@ -19,7 +19,7 @@ import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
 import eu.alebianco.air.extensions.utils.LogLevel;
 
-public class CloseTracker implements FREFunction {
+public class SetAnonymous implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
@@ -36,8 +36,18 @@ public class CloseTracker implements FREFunction {
         }
 
         Tracker tracker = GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
-        tracker.close();
-        GoogleAnalytics.getInstance(context.getActivity()).closeTracker(tracker);
+
+        Boolean flag;
+        try {
+            flag = args[1].getAsBool();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL,
+                    "Unable to read the 'flag' parameter. (Exception:[name:%s, reason:%s, method:%s])",
+                    FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'flag' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+        }
+
+        tracker.setAnonymizeIp(flag);
 
         return result;
     }

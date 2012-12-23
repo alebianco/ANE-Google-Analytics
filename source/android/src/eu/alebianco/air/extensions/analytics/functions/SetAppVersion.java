@@ -4,12 +4,13 @@
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
  * Twitter: @alebianco
- * Created: 21/12/12 15.41
+ * Created: 23/12/12 10.42
  *
  * Copyright © 2013 Alessandro Bianco
  */
 package eu.alebianco.air.extensions.analytics.functions;
 
+import android.util.Log;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
@@ -19,7 +20,7 @@ import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
 import eu.alebianco.air.extensions.utils.LogLevel;
 
-public class CloseTracker implements FREFunction {
+public class SetAppVersion implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
@@ -36,8 +37,19 @@ public class CloseTracker implements FREFunction {
         }
 
         Tracker tracker = GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
-        tracker.close();
-        GoogleAnalytics.getInstance(context.getActivity()).closeTracker(tracker);
+
+        String version;
+        try {
+            version = args[1].getAsString();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.FATAL,
+                    "Unable to read the 'version' parameter. (Exception:[name:%s, reason:%s, method:%s])",
+                    FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+            Log.e("ANE", "got an error", e);
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'version' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+        }
+
+        tracker.setAppVersion(version);
 
         return result;
     }
