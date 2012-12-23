@@ -10,18 +10,20 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
-internal class TransactionHit extends Hit {
+import eu.alebianco.air.extensions.analytics.api.Hit;
+
+internal class Transaction implements Hit {
 
 	private static const ID_VALIDATOR:RegExp = /.+/i;
 
 	private var _id:String;
 	private var _cost:Number;
 	private var _affiliation:String;
-	private var _shipping:Number;
-	private var _tax:Number;
+	private var _shipping:Object;
+	private var _tax:Object;
 	private var _products:Array;
 
-	public function TransactionHit(builder:TransactionBuilder) {
+	public function Transaction(builder:TransactionBuilder) {
 
 		if (!(builder.id && ID_VALIDATOR.text(builder.id)))
 			throw new ArgumentError("Transaction ID is invalid: must be not null or a empty string.");
@@ -34,10 +36,6 @@ internal class TransactionHit extends Hit {
 		_products = builder.products;
 	}
 
-	override internal function get arguments():Array {
-		return [_id, _cost, _affiliation, _shipping, _tax, _products];
-	}
-
 	public function get id():String {
 		return _id;
 	}
@@ -48,10 +46,10 @@ internal class TransactionHit extends Hit {
 		return _affiliation;
 	}
 	public function get shipping():Number {
-		return _shipping;
+		return Number(_shipping);
 	}
 	public function get tax():Number {
-		return _tax;
+		return Number(_tax);
 	}
 	public function get products():Array {
 		return _products;

@@ -10,14 +10,16 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
+import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.IExceptionBuilder;
+import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 internal class ExceptionBuilder implements IExceptionBuilder {
 
 	private var tracker:Tracker;
 
 	internal var fatal:Boolean;
-	internal var description:String;
+	internal var description:String = null;
 
 	public function ExceptionBuilder(tracker:Tracker, fatal:Boolean) {
 		this.tracker = tracker;
@@ -30,7 +32,7 @@ internal class ExceptionBuilder implements IExceptionBuilder {
 		return this;
 	}
 	public function create():Hit {
-		return new ExceptionHit(this);
+		return new Exception(this);
 	}
 
 	public function track():void {

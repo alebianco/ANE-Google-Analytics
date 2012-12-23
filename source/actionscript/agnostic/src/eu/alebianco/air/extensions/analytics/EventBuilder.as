@@ -10,7 +10,9 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
+import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.IEventBuilder;
+import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 internal class EventBuilder implements IEventBuilder {
 
@@ -18,7 +20,7 @@ internal class EventBuilder implements IEventBuilder {
 
 	internal var category:String;
 	internal var action:String;
-	internal var label:String;
+	internal var label:String = null;
 	internal var value:Object = null;
 
 	public function EventBuilder(tracker:Tracker, category:String, action:String) {
@@ -26,7 +28,6 @@ internal class EventBuilder implements IEventBuilder {
 
 		this.category = category;
 		this.action = action;
-		this.label = label;
 	}
 
 	public function withLabel(label:String):IEventBuilder {
@@ -40,7 +41,7 @@ internal class EventBuilder implements IEventBuilder {
 	}
 
 	public function create():Hit {
-		return new EventHit(this);
+		return new Event(this);
 	}
 
 	public function track():void {

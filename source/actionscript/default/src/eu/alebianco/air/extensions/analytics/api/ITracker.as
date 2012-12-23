@@ -46,11 +46,11 @@ public interface ITracker extends IDisposable {
 	function closeSession():void;
 	function startSession():void;
 
-	function buildEventHit(category:String, action:String):IEventBuilder;
-	function buildViewHit(screenName:String):IViewBuilder;
-	function buildExceptionHit(fatal:Boolean):IExceptionBuilder;
-	function buildTimingHit(category:String, interval:uint):ITimingBuilder;
-	function buildSocialHit(network:String, action:String):ISocialBuilder;
-	function buildTransactionHit(id:String, cost:Number):ITransactionBuilder;
+	function buildEvent(category:String, action:String):IEventBuilder;
+	function buildView(screenName:String):IViewBuilder;
+	function buildException(fatal:Boolean):IExceptionBuilder;
+	function buildTiming(category:String, interval:uint):ITimingBuilder;
+	function buildSocial(network:String, action:String):ISocialBuilder;
+	function buildTransaction(id:String, cost:Number):ITransactionBuilder;
 }
 }

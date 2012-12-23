@@ -10,18 +10,16 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
-internal class ExceptionHit extends Hit {
+import eu.alebianco.air.extensions.analytics.api.Hit;
+
+internal class Exception implements Hit {
 
 	private var _fatal:Boolean;
 	private var _description:String;
 
-	public function ExceptionHit(builder:ExceptionBuilder) {
+	public function Exception(builder:ExceptionBuilder) {
 		_fatal = builder.fatal;
 		_description = builder.description;
-	}
-
-	override internal function get arguments():Array {
-		return [_fatal, _description];
 	}
 
 	public function get fatal():Boolean {

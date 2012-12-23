@@ -10,6 +10,7 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
+import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.IEventBuilder;
 import eu.alebianco.air.extensions.analytics.api.IExceptionBuilder;
 import eu.alebianco.air.extensions.analytics.api.ISocialBuilder;
@@ -17,24 +18,15 @@ import eu.alebianco.air.extensions.analytics.api.ITimingBuilder;
 import eu.alebianco.air.extensions.analytics.api.ITracker;
 import eu.alebianco.air.extensions.analytics.api.ITransactionBuilder;
 import eu.alebianco.air.extensions.analytics.api.IViewBuilder;
+import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 import flash.desktop.NativeApplication;
 import flash.errors.IllegalOperationError;
-import flash.events.Event;
 import flash.events.TimerEvent;
 import flash.external.ExtensionContext;
 import flash.utils.Timer;
 
 internal class Tracker implements ITracker {
-
-	private var context:ExtensionContext;
-	private var id:String;
-	private var timeout:uint = 30;
-
-	private var timer:Timer;
-
-	private var _appName:String;
-	private var _appVersion:String;
 
 	public function Tracker(id:String, context:ExtensionContext) {
 		this.id = id;
@@ -42,11 +34,29 @@ internal class Tracker implements ITracker {
 		parseAppDescriptor();
 		createTimer();
 	}
-
+	private var context:ExtensionContext;
+	private var id:String;
+	private var timeout:uint = 30;
+	private var timer:Timer;
+	private var _appName:String;
+	public function get appName():String {
+		return _appName;
+	}
+	public function set appName(value:String):void {
+		_appName = value;
+		handleResultFromExtension(context.call("setAppName", id, _appName));
+	}
+	private var _appVersion:String;
+	public function get appVersion():String {
+		return _appVersion;
+	}
+	public function set appVersion(value:String):void {
+		_appVersion = value;
+		handleResultFromExtension(context.call("setAppVersion", id, _appVersion));
+	}
 	public function get trackingID():String {
 		return id;
 	}
-
 	public function get sessionTimeout():uint {
 		return timeout;
 	}
@@ -55,7 +65,6 @@ internal class Tracker implements ITracker {
 		disposeTimer();
 		createTimer();
 	}
-
 	public function get appID():String {
 		return handleResultFromExtension(context.call("getAppID", id), String) as String;
 	}
@@ -68,21 +77,6 @@ internal class Tracker implements ITracker {
 	public function set appInstallerID(value:String):void {
 		handleResultFromExtension(context.call("setAppInstallerID", id, value));
 	}
-	public function get appName():String {
-		return _appName;
-	}
-	public function set appName(value:String):void {
-		_appName = value;
-		handleResultFromExtension(context.call("setAppName", id, _appName));
-	}
-	public function get appVersion():String {
-		return _appVersion;
-	}
-	public function set appVersion(value:String):void {
-		_appVersion = value;
-		handleResultFromExtension(context.call("setAppVersion", id, _appVersion));
-	}
-
 	public function get anonymous():Boolean {
 		return handleResultFromExtension(context.call("getAnonymous", id), Boolean) as Boolean;
 	}
@@ -95,61 +89,49 @@ internal class Tracker implements ITracker {
 	public function set secure(value:Boolean):void {
 		handleResultFromExtension(context.call("setSecure", id, value));
 	}
-
 	public function get sampleRate():Number {
 		return handleResultFromExtension(context.call("getSampleRate", id), Number) as Number;
 	}
 	public function set sampleRate(value:Number):void {
 		handleResultFromExtension(context.call("setSampleRate", id, value));
 	}
-
 	public function set campaign(value:String):void {
 		throw new IllegalOperationError("Method not implemented yet.")
 	}
 	public function set referrer(value:String):void {
 		throw new IllegalOperationError("Method not implemented yet.")
 	}
-
 	public function closeSession():void {
 		handleResultFromExtension(context.call("closeSession", id));
 	}
 	public function startSession():void {
 		handleResultFromExtension(context.call("startSession", id));
 	}
-
 	public function send(type:HitType, data:Hit):void {
-	    handleResultFromExtension(context.call("trackData", id, type.value, data.arguments));
+		handleResultFromExtension(context.call("trackData", id, type.name, data));
 	}
-
-	public function buildViewHit(screenName:String):IViewBuilder {
+	public function buildView(screenName:String):IViewBuilder {
 		return new ViewBuilder(this, screenName);
 	}
-
-	public function buildEventHit(category:String, action:String):IEventBuilder {
+	public function buildEvent(category:String, action:String):IEventBuilder {
 		return new EventBuilder(this, category, action);
 	}
-
-	public function buildExceptionHit(fatal:Boolean):IExceptionBuilder {
+	public function buildException(fatal:Boolean):IExceptionBuilder {
 		return new ExceptionBuilder(this, fatal);
 	}
-
-	public function buildTimingHit(category:String, interval:uint):ITimingBuilder {
+	public function buildTiming(category:String, interval:uint):ITimingBuilder {
 		return new TimingBuilder(this, category, interval);
 	}
-
-	public function buildSocialHit(network:String, action:String):ISocialBuilder {
+	public function buildSocial(network:String, action:String):ISocialBuilder {
 		return new SocialBuilder(this, network, action);
 	}
-
-	public function buildTransactionHit(id:String, cost:Number):ITransactionBuilder {
+	public function buildTransaction(id:String, cost:Number):ITransactionBuilder {
 		return new TransactionBuilder(this, id, cost);
 	}
-
 	public function dispose():void {
 		disposeTimer();
 		context = null;
 	}
-
 	private function parseAppDescriptor():void {
 		const descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
 		const ns:Namespace = descriptor.namespace();
@@ -159,28 +141,27 @@ internal class Tracker implements ITracker {
 	}
 	private function createTimer():void {
 		if (timeout == 0) return;
-		timer = new Timer(timeout*1000, 1);
+		timer = new Timer(timeout * 1000, 1);
 		timer.addEventListener(TimerEvent.TIMER, sessionTimerHandler);
-		NativeApplication.nativeApplication.addEventListener(Event.ACTIVATE, appResumedHandler);
-		NativeApplication.nativeApplication.addEventListener(Event.DEACTIVATE, appSuspendedHandler);
+		NativeApplication.nativeApplication.addEventListener(flash.events.Event.ACTIVATE, appResumedHandler);
+		NativeApplication.nativeApplication.addEventListener(flash.events.Event.DEACTIVATE, appSuspendedHandler);
 	}
 	private function disposeTimer():void {
 		if (!timer) return;
-		NativeApplication.nativeApplication.removeEventListener(Event.ACTIVATE, appResumedHandler);
-		NativeApplication.nativeApplication.removeEventListener(Event.DEACTIVATE, appSuspendedHandler);
+		NativeApplication.nativeApplication.removeEventListener(flash.events.Event.ACTIVATE, appResumedHandler);
+		NativeApplication.nativeApplication.removeEventListener(flash.events.Event.DEACTIVATE, appSuspendedHandler);
 		timer.removeEventListener(TimerEvent.TIMER, sessionTimerHandler);
 		timer.stop();
 		timer = null;
 	}
-
 	private function sessionTimerHandler(event:TimerEvent):void {
 		startSession();
 	}
-	private function appResumedHandler(event:Event):void {
+	private function appResumedHandler(event:flash.events.Event):void {
 		if (timer)
 			timer.stop();
 	}
-	private function appSuspendedHandler(event:Event):void {
+	private function appSuspendedHandler(event:flash.events.Event):void {
 		if (timer)
 			timer.start();
 	}

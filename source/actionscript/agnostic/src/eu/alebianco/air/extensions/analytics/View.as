@@ -10,16 +10,14 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
-internal class ViewHit extends Hit {
+import eu.alebianco.air.extensions.analytics.api.Hit;
+
+internal class View implements Hit {
 
 	private var _screen:String;
 
-	public function ViewHit(builder:ViewBuilder) {
+	public function View(builder:ViewBuilder) {
 		_screen = builder.screen;
-	}
-
-	override internal function get arguments():Array {
-		return [_screen];
 	}
 
 	public function get screen():String {

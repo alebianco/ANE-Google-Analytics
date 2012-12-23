@@ -10,21 +10,19 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
-internal class SocialHit extends Hit {
+import eu.alebianco.air.extensions.analytics.api.Hit;
+
+internal class Social implements Hit {
 
 	private var _network:String;
 	private var _action:String;
 	private var _content:String;
 
-	public function SocialHit(builder:SocialBuilder) {
+	public function Social(builder:SocialBuilder) {
 
 		_network = builder.network;
 		_action = builder.action;
 		_content = builder.content;
-	}
-
-	override internal function get arguments():Array {
-		return [_network, _action, _content];
 	}
 
 	public function get network():String {

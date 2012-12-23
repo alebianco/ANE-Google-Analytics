@@ -4,41 +4,40 @@
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
  * Twitter: @alebianco
- * Created: 22/12/12 0.22
+ * Created: 22/12/12 12.04
  *
  * Copyright © 2013 Alessandro Bianco
  */
 package eu.alebianco.air.extensions.analytics {
 
-internal class EventHit extends Hit {
+import eu.alebianco.air.extensions.analytics.api.Hit;
+
+internal class Timing implements Hit {
 
 	private var _category:String;
-	private var _action:String;
+	private var _interval:uint;
+	private var _name:String;
 	private var _label:String;
-	private var _value:Object;
 
-	public function EventHit(builder:EventBuilder) {
+	public function Timing(builder:TimingBuilder) {
+
 		_category = builder.category;
-		_action = builder.action;
+		_interval = builder.interval;
+		_name = builder.name;
 		_label = builder.label;
-		_value = builder.value;
-	}
-
-	override internal function get arguments():Array {
-		return [_category, _action, _label, _value];
 	}
 
 	public function get category():String {
 		return _category;
 	}
-	public function get action():String {
-		return _action;
+	public function get interval():uint {
+		return _interval;
+	}
+	public function get name():String {
+		return _name;
 	}
 	public function get label():String {
 		return _label;
-	}
-	public function get value():Object {
-		return _value;
 	}
 }
 }

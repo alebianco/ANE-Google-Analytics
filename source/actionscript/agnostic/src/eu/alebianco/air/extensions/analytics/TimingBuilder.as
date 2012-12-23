@@ -10,7 +10,9 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
+import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.ITimingBuilder;
+import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 internal class TimingBuilder implements ITimingBuilder {
 
@@ -18,8 +20,8 @@ internal class TimingBuilder implements ITimingBuilder {
 
 	internal var category:String;
 	internal var interval:uint;
-	internal var name:String;
-	internal var label:String;
+	internal var name:String = null;
+	internal var label:String = null;
 
 	public function TimingBuilder(tracker:Tracker, category:String, interval:uint) {
 		this.tracker = tracker;
@@ -39,7 +41,7 @@ internal class TimingBuilder implements ITimingBuilder {
 	}
 
 	public function create():Hit {
-		return new TimingHit(this);
+		return new Timing(this);
 	}
 
 	public function track():void {

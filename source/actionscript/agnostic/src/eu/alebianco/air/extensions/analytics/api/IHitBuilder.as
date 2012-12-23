@@ -10,8 +10,6 @@
  */
 package eu.alebianco.air.extensions.analytics.api {
 
-import eu.alebianco.air.extensions.analytics.Hit;
-
 public interface IHitBuilder {
 	function create():Hit;
 	function track():void;

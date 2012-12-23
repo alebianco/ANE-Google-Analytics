@@ -15,6 +15,6 @@ public interface ITransactionBuilder extends IHitBuilder {
 	function withShippingCost(cost:Number):ITransactionBuilder;
 	function withTaxCost(cost:Number):ITransactionBuilder;
 
-	function addProduct(product:IProduct):ITransactionBuilder;
+	function createProduct(sku:String, name:String, price:Number, quantity:uint):IProductBuilder;
 }
 }

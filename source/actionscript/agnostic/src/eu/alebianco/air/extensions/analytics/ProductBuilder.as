@@ -12,20 +12,21 @@ package eu.alebianco.air.extensions.analytics {
 
 import eu.alebianco.air.extensions.analytics.api.IProduct;
 import eu.alebianco.air.extensions.analytics.api.IProductBuilder;
+import eu.alebianco.air.extensions.analytics.api.ITransactionBuilder;
 
-public class ProductBuilder implements IProductBuilder {
+internal class ProductBuilder implements IProductBuilder {
+
+	private var transaction:TransactionBuilder;
 
 	internal var sku:String;
 	internal var name:String;
 	internal var price:Number;
 	internal var quantity:uint;
-	internal var category:String;
+	internal var category:String = null;
 
-	public static function build(sku:String, name:String, price:Number, quantity:uint):IProductBuilder {
-		return new ProductBuilder(sku, name, price, quantity);
-	}
+	public function ProductBuilder(transaction:TransactionBuilder, sku:String, name:String, price:Number, quantity:uint) {
+		this.transaction = transaction;
 
-	public function ProductBuilder(sku:String, name:String, price:Number, quantity:uint) {
 		this.sku = sku;
 		this.name = name;
 		this.price = price;
@@ -39,6 +40,11 @@ public class ProductBuilder implements IProductBuilder {
 
 	public function create():IProduct {
 		return new Product(this);
+	}
+
+	public function add():ITransactionBuilder {
+		transaction.products.push(create());
+		return transaction;
 	}
 }
 }

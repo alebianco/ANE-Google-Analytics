@@ -10,7 +10,9 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
+import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.IViewBuilder;
+import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 internal class ViewBuilder implements IViewBuilder {
 
@@ -25,7 +27,7 @@ internal class ViewBuilder implements IViewBuilder {
 	}
 
 	public function create():Hit {
-		return new ViewHit(this);
+		return new View(this);
 	}
 
 	public function track():void {

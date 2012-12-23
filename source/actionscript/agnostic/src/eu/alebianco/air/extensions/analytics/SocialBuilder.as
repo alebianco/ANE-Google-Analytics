@@ -10,7 +10,9 @@
  */
 package eu.alebianco.air.extensions.analytics {
 
+import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.ISocialBuilder;
+import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 internal class SocialBuilder implements ISocialBuilder {
 
@@ -18,7 +20,7 @@ internal class SocialBuilder implements ISocialBuilder {
 
 	internal var network:String;
 	internal var action:String;
-	internal var content:String;
+	internal var content:String = null;
 
 	public function SocialBuilder(tracker:Tracker, network:String, action:String) {
 		this.tracker = tracker;
@@ -33,7 +35,7 @@ internal class SocialBuilder implements ISocialBuilder {
 	}
 
 	public function create():Hit {
-		return new SocialHit(this);
+		return new Social(this);
 	}
 
 	public function track():void {

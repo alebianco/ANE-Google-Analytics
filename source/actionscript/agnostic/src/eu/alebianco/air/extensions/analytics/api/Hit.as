@@ -8,11 +8,9 @@
  *
  * Copyright © 2013 Alessandro Bianco
  */
-package eu.alebianco.air.extensions.analytics {
+package eu.alebianco.air.extensions.analytics.api {
 
-public class Hit {
-	internal function get arguments():Array {
-		return [];
-	}
+public interface Hit {
+
 }
 }
