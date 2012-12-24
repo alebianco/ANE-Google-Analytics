@@ -7,48 +7,89 @@
         </classpath>
     </taskdef>
 
-	<property file="build/build.properties" />
-	
-	<target name="build" depends="ext_init,ext_and,ext_ios-device,ext_ios-simulator,
-	                              ext_as3-default,ext_as3-android,ext_as3-iosdevice,ext_as3-iossimulator,
-	                              ext_package,ext_clean,ext_deploy"
-            description="Build the extension"/>
-	
-	<target name="simulate" depends="demo_compile,demo_package,demo_uninstall,demo_install,demo_launch"
-			description="Run demo project on the iOS simulator"/>
-	
-	<target name="ext_init">
-		<!-- create necessary folders to compile the extension -->
-		<mkdir dir="${BIN_DEF_DIR}"/>
-		<mkdir dir="${BIN_AND_DIR}"/>
+    <target name="build" depends="-resolveplatform" description="Build the extension">
+        <echo>Your OS is: ${platform}</echo>
+        <if>
+            <equals arg1="${platform}" arg2="win"/>
+            <then>
+                <antcall target="build-win"/>
+            </then>
+        </if>
+        <if>
+            <equals arg1="${platform}" arg2="mac"/>
+            <then>
+                <antcall target="build-mac"/>
+            </then>
+        </if>
+    </target>
+
+    <target name="-resolveplatform" depends="-if_windows, -if_mac"/>
+    <target name="-checkos">
+        <condition property="isWindows">
+            <os family="windows"/>
+        </condition>
+        <condition property="isMac">
+            <os family="mac"/>
+        </condition>
+        <condition property="isLinux">
+            <os family="unix"/>
+        </condition>
+    </target>
+    <target name="-if_windows" depends="-checkos" if="isWindows">
+        <property name="platform" value="win"/>
+        <property file="build/build.win.properties"/>
+    </target>
+    <target name="-if_mac" depends="-checkos" if="isMac">
+        <property name="platform" value="mac"/>
+        <property file="build/build.mac.properties"/>
+    </target>
+
+    <target name="build-mac" depends="ext_init,ext_and,ext_ios-device,ext_ios-simulator,
+                                  ext_as3-default,ext_as3-android,ext_as3-iosdevice,ext_as3-iossimulator,
+                                  ext_package-mac,ext_clean,ext_deploy"/>
+
+    <target name="build-win" depends="ext_init,ext_and,
+	                              ext_as3-default,ext_as3-android,
+	                              ext_package-win,ext_clean,ext_deploy"/>
+
+    <target name="simulate" depends="demo_compile,demo_package,demo_uninstall,demo_install,demo_launch"
+            description="Run demo project on the iOS simulator"/>
+
+    <target name="ext_init">
+        <!-- create necessary folders to compile the extension -->
+        <mkdir dir="${BIN_DEF_DIR}"/>
+        <mkdir dir="${BIN_AND_DIR}"/>
         <mkdir dir="${BIN_IOS_DIR}"/>
         <mkdir dir="${BIN_SIM_DIR}"/>
-	</target>
+    </target>
 
-	<target name="ext_and">
-		<!-- Build Android native library -->
-		<mkdir dir="${TMP_DIR}"/>
-		<ant antfile="build.xml" target="-compile" dir="${SRC_AND_DIR}" inheritall="false">
-			<property name="build.target" value="-compile"/>
-			<property name="verbose" value="false"/>
-		</ant>
-		<jar destfile="${TMP_DIR}/lib${LIB_NAME}.jar">
-			<fileset dir="${SRC_AND_DIR}/bin/classes"/>
-		    <restrict>
-		     <name name="**/*.class"/>
-		     <archives>
-		       <zips>
-		         <fileset dir="${SRC_AND_DIR}/libs" includes="**/*.jar" excludes="**/FlashRuntimeExtensions.jar"/>
-		       </zips>
-		     </archives>
-		    </restrict>
-		</jar>
-		<copy todir="${BIN_AND_DIR}/res" overwrite="true">
-			<fileset dir="${SRC_AND_DIR}/res"/>
-		</copy>
-		<copy file="${TMP_DIR}/lib${LIB_NAME}.jar" todir="${BIN_AND_DIR}" overwrite="true"/>
-		<delete dir="${TMP_DIR}"/>
-	</target>
+    <target name="ext_and">
+        <!-- Build Android native library -->
+        <mkdir dir="${TMP_DIR}"/>
+        <ant antfile="build.xml" target="-compile" dir="${SRC_AND_DIR}" inheritall="false">
+            <property name="build.target" value="-compile"/>
+            <property name="verbose" value="false"/>
+            <property name="renderscript.opt.level" value="O0"/>
+            <property name="env.ANDROID_HOME" value="${ANDROID_HOME}"/>
+        </ant>
+        <jar destfile="${TMP_DIR}/lib${LIB_NAME}.jar">
+            <fileset dir="${SRC_AND_DIR}/bin/classes"/>
+            <restrict>
+                <name name="**/*.class"/>
+                <archives>
+                    <zips>
+                        <fileset dir="${SRC_AND_DIR}/libs" includes="**/*.jar"
+                                 excludes="**/FlashRuntimeExtensions.jar"/>
+                    </zips>
+                </archives>
+            </restrict>
+        </jar>
+        <copy todir="${BIN_AND_DIR}/res" overwrite="true">
+            <fileset dir="${SRC_AND_DIR}/res"/>
+        </copy>
+        <copy file="${TMP_DIR}/lib${LIB_NAME}.jar" todir="${BIN_AND_DIR}" overwrite="true"/>
+        <delete dir="${TMP_DIR}"/>
+    </target>
 
     <target name="ext_ios-device">
         <antcall target="ext_ios">
@@ -66,20 +107,20 @@
         </antcall>
     </target>
 
-	<target name="ext_ios">
-		<!-- Build iOS native library -->
-		<mkdir dir="${TMP_DIR}"/>
-		<exec executable="xcodebuild" failonerror="true" dir="${SRC_IOS_DIR}">
-			<arg line="-project ${LIB_NAME}.xcodeproj"/>
-			<arg line="-target ${LIB_NAME}"/>
+    <target name="ext_ios">
+        <!-- Build iOS native library -->
+        <mkdir dir="${TMP_DIR}"/>
+        <exec executable="xcodebuild" failonerror="true" dir="${SRC_IOS_DIR}">
+            <arg line="-project ${LIB_NAME}.xcodeproj"/>
+            <arg line="-target ${LIB_NAME}"/>
             <arg line="-configuration Release"/>
             <arg line="-arch ${arch}"/>
             <arg line="-sdk ${sdk}"/>
-			<arg line="SYMROOT=../../${TMP_DIR}"/>
-		</exec>
-		<copy file="${TMP_DIR}/Release-${sdk}/lib${LIB_NAME}.a" todir="${dir}" overwrite="true"/>
-		<delete dir="${TMP_DIR}"/>
-	</target>
+            <arg line="SYMROOT=../../${TMP_DIR}"/>
+        </exec>
+        <copy file="${TMP_DIR}/Release-${sdk}/lib${LIB_NAME}.a" todir="${dir}" overwrite="true"/>
+        <delete dir="${TMP_DIR}"/>
+    </target>
 
     <target name="ext_as3-default">
         <antcall target="ext_as3">
@@ -130,7 +171,7 @@
         <mkdir dir="${TMP_DIR}/content"/>
         <if>
             <and>
-                <isset property="default" />
+                <isset property="default"/>
                 <equals arg1="${default}" arg2="true"/>
             </and>
             <then>
@@ -142,38 +183,48 @@
         <delete dir="${TMP_DIR}"/>
     </target>
 
-	<target name="ext_package">
-		<!-- Package the final extension -->
-		<java jar="${ADT}" fork="true" failonerror="true">
-		 	<arg line="-package"/>
-		 	<arg line="-storetype pkcs12"/>
-		 	<arg line="-keystore ${KEYSTORE}"/>
-		 	<arg line="-storepass ${STOREPASS}"/>
-		 	<arg line="-tsa none"/>
-		 	<arg line="-target ane ${BIN_DIR}/${LIB_NAME}.ane ${ANE_DESCRIPTOR}"/>
-		 	<arg line="-swc bin/${LIB_NAME}.swc"/>
-			<arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
+    <target name="ext_package-mac">
+        <!-- Package the final extension -->
+        <java jar="${ADT}" fork="true" failonerror="true">
+            <arg line="-package"/>
+            <arg line="-storetype pkcs12"/>
+            <arg line="-keystore ${KEYSTORE}"/>
+            <arg line="-storepass ${STOREPASS}"/>
+            <arg line="-tsa none"/>
+            <arg line="-target ane ${BIN_DIR}/${LIB_NAME}.ane ${ANE_DESCRIPTOR}"/>
+            <arg line="-swc bin/${LIB_NAME}.swc"/>
+            <arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
             <arg line="-platform iPhone-ARM -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_IOS_DIR} ."/>
             <arg line="-platform iPhone-x86 -C ${BIN_SIM_DIR} ."/>
+            <arg line="-platform default -C ${BIN_DEF_DIR} ."/>
+        </java>
+    </target>
 
-               <!--
-                   <arg line="-platform QNX-x86 -C bin/native/qnx-x86 ."/>
-                   <arg line="-platform QNX-ARM -C bin/native/qnx-arm ."/>
-               -->
-		 	<arg line="-platform default -C ${BIN_DEF_DIR} ."/>
-		 </java>
-	</target>
-	
-	<target name="ext_clean">
-		<!-- remove temporary folders needed to build the extension -->
-		<delete dir="${BIN_NATIVE}"/>
-		<delete dir="${TMP_DIR}"/>
-	</target>
-	
-	<target name="ext_deploy">
-		<!-- deploys the compiled extension to the demo project -->
-		<copy file="${BIN_DIR}/${LIB_NAME}.ane" todir="${DEMO_DIR}/ane/" overwrite="true"/>
-	</target>
+    <target name="ext_package-win">
+        <!-- Package the final extension -->
+        <java jar="${ADT}" fork="true" failonerror="true">
+            <arg line="-package"/>
+            <arg line="-storetype pkcs12"/>
+            <arg line="-keystore ${KEYSTORE}"/>
+            <arg line="-storepass ${STOREPASS}"/>
+            <arg line="-tsa none"/>
+            <arg line="-target ane ${BIN_DIR}/${LIB_NAME}.ane ${ANE_DESCRIPTOR}"/>
+            <arg line="-swc bin/${LIB_NAME}.swc"/>
+            <arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
+            <arg line="-platform default -C ${BIN_DEF_DIR} ."/>
+        </java>
+    </target>
+
+    <target name="ext_clean">
+        <!-- remove temporary folders needed to build the extension -->
+        <delete dir="${BIN_NATIVE}"/>
+        <delete dir="${TMP_DIR}"/>
+    </target>
+
+    <target name="ext_deploy">
+        <!-- deploys the compiled extension to the demo project -->
+        <copy file="${BIN_DIR}/${LIB_NAME}.ane" todir="${DEMO_DIR}/ane/" overwrite="true"/>
+    </target>
 
     <target name="demo_compile">
         <exec executable="${MXMLC}" failonerror="true">
@@ -188,53 +239,53 @@
         </exec>
     </target>
 
-	<target name="demo_package">
-		<!-- compile the demo project to be run on the iOS simulator -->
-		<java jar="${ADT}" fork="true" failonerror="true">
-		 	<arg line="-package"/>
+    <target name="demo_package">
+        <!-- compile the demo project to be run on the iOS simulator -->
+        <java jar="${ADT}" fork="true" failonerror="true">
+            <arg line="-package"/>
             <arg line="-target ipa-debug-interpreter-simulator"/>
             <arg line="-storetype pkcs12"/>
             <arg line="-keystore ${KEYSTORE}"/>
             <arg line="-storepass ${STOREPASS}"/>
             <arg line="${DEMO_IPA} ${DEMO_DESCRIPTOR}"/>
             <arg line="-extdir ${DEMO_DIR}/ane/"/>
-            <arg line="-platformsdk ${IOS_SIM_SDK}"/>
+            <arg line="-platformsdk ${IOS_SIM_HOME}"/>
             <arg line="-C ${BIN_DEMO_DIR} ${DEMO_SWF}"/>
             <arg line="-C ${DEMO_EMBEDS_DIR} ."/>
-		 </java>
-	</target>
+        </java>
+    </target>
 
-	<target name="demo_uninstall">
-		<!-- uninstall previous version of the demo from the simulator -->
-		<java jar="${ADT}" fork="true" failonerror="false">
-		 	<arg line="-uninstallApp"/>
-			<arg line="-platform ios"/>
-			<arg line="-platformsdk ${IOS_SIM_SDK}"/>
-		 	<arg line="-device ios-simulator"/>
-		 	<arg line="-appid ${DEMO_APP_ID}"/>
-		 </java>
-	</target>
+    <target name="demo_uninstall">
+        <!-- uninstall previous version of the demo from the simulator -->
+        <java jar="${ADT}" fork="true" failonerror="false">
+            <arg line="-uninstallApp"/>
+            <arg line="-platform ios"/>
+            <arg line="-platformsdk ${IOS_SIM_HOME}"/>
+            <arg line="-device ios-simulator"/>
+            <arg line="-appid ${DEMO_APP_ID}"/>
+        </java>
+    </target>
 
-	<target name="demo_install">
-		<!-- install current version of the demo in the simulator -->
-		<java jar="${ADT}" fork="true" failonerror="true">
-		 	<arg line="-installApp"/>
-			<arg line="-platform ios"/>
-			<arg line="-platformsdk ${IOS_SIM_SDK}"/>
-		 	<arg line="-device ios-simulator"/>
-		 	<arg line="-package ${DEMO_IPA}"/>
-		 </java>
-	</target>
+    <target name="demo_install">
+        <!-- install current version of the demo in the simulator -->
+        <java jar="${ADT}" fork="true" failonerror="true">
+            <arg line="-installApp"/>
+            <arg line="-platform ios"/>
+            <arg line="-platformsdk ${IOS_SIM_HOME}"/>
+            <arg line="-device ios-simulator"/>
+            <arg line="-package ${DEMO_IPA}"/>
+        </java>
+    </target>
 
-	<target name="demo_launch">
-		<!-- launch demo on the iOS simulator -->
-		<java jar="${ADT}" fork="true" failonerror="true">
-		 	<arg line="-launchApp"/>
-			<arg line="-platform ios"/>
-			<arg line="-platformsdk ${IOS_SIM_SDK}"/>
-		 	<arg line="-device ios-simulator"/>
-		 	<arg line="-appid ${DEMO_APP_ID}"/>
-		 </java>
-	</target>
-	
+    <target name="demo_launch">
+        <!-- launch demo on the iOS simulator -->
+        <java jar="${ADT}" fork="true" failonerror="true">
+            <arg line="-launchApp"/>
+            <arg line="-platform ios"/>
+            <arg line="-platformsdk ${IOS_SIM_HOME}"/>
+            <arg line="-device ios-simulator"/>
+            <arg line="-appid ${DEMO_APP_ID}"/>
+        </java>
+    </target>
+
 </project>
