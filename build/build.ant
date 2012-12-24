@@ -264,12 +264,14 @@
             <arg line="-storetype pkcs12"/>
             <arg line="-keystore ${KEYSTORE}"/>
             <arg line="-storepass ${STOREPASS}"/>
-            <arg line="${DEMO_IPA} ${DEMO_DESCRIPTOR}"/>
+            <arg line="${DEMO_APP} ${DEMO_DESCRIPTOR}"/>
             <arg line="-extdir ${DEMO_DIR}/ane/"/>
             <arg line="-platformsdk ${IOS_SIM_HOME}"/>
             <arg line="-C ${BIN_DIR} ${DEMO_SWF}"/>
             <arg line="-C ${DEMO_DIR} ${DEMO_EMBEDS_DIR}"/>
         </java>
+        <delete file="${BIN_DIR}/${DEMO_SWF}"/>
+        <delete file="${BIN_DIR}/${DEMO_NAME}-app.xml"/>
     </target>
 
     <target name="demo_uninstall-ipa">
@@ -290,7 +292,7 @@
             <arg line="-platform ios"/>
             <arg line="-platformsdk ${IOS_SIM_HOME}"/>
             <arg line="-device ios-simulator"/>
-            <arg line="-package ${DEMO_IPA}"/>
+            <arg line="-package ${DEMO_APP}"/>
         </java>
     </target>
 
@@ -312,16 +314,18 @@
             <arg line="-storetype pkcs12"/>
             <arg line="-keystore ${KEYSTORE}"/>
             <arg line="-storepass ${STOREPASS}"/>
-            <arg line="${DEMO_IPA} ${DEMO_DESCRIPTOR}"/>
+            <arg line="${DEMO_APP} ${DEMO_DESCRIPTOR}"/>
             <arg line="-extdir ${DEMO_DIR}/ane/"/>
             <arg line="-C ${BIN_DIR} ${DEMO_SWF}"/>
             <arg line="-C ${DEMO_DIR} ${DEMO_EMBEDS_DIR}"/>
         </java>
+        <delete file="${BIN_DIR}/${DEMO_SWF}"/>
+        <delete file="${BIN_DIR}/${DEMO_NAME}-app.xml"/>
     </target>
     <target name="demo_install-apk">
         <exec executable="${ADB}">
             <arg line="-d install"/>
-            <arg line="-r ${DEMO_IPA}"/>
+            <arg line="-r ${DEMO_APP}"/>
         </exec>
     </target>
     <target name="demo_uninstall-apk">
