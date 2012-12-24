@@ -1,8 +1,5 @@
 FlashRuntimeExtensions.h
-GANTracker.h
-libGoogleAnalytics.a
 FlashRuntimeExtensions.jar
-libGoogleAnalytics.jar
 
 ._*
 *.mobileprovision
@@ -15,3 +12,6 @@ source/android/bin
 source/android/gen
 source/android/assets
 source/android/res
+
+source/android/javadocs
+source/ios/Documentation
