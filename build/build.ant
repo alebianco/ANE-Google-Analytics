@@ -164,6 +164,9 @@
             <arg line="-source-path ${source}/src"/>
             <arg line="-output ${TMP_DIR}/library.swc"/>
             <arg line="-swf-version 14"/>
+            <arg line="-accessible false"/>
+            <arg line="-optimize true"/>
+            <arg line="-debug false"/>
             <arg line="-external-library-path+='${FLEX_HOME}/frameworks/libs/air/airglobal.swc'"/>
             <arg line="-library-path+='${source}/libs/'"/>
             <arg line="-include-classes ${classes}"/>
