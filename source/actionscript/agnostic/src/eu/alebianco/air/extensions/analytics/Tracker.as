@@ -146,7 +146,7 @@ internal class Tracker implements ITracker {
 		const ns:Namespace = descriptor.namespace();
 		if (appID == null) appID = descriptor.ns::id[0];
 		appName = descriptor.ns::filename[0] || "";
-		appVersion = descriptor.ns::versionNumber[0] || "";
+		appVersion = descriptor.ns::versionLabel[0] || "";
 	}
 	private function createTimer():void {
 		if (timeout == 0) return;
