@@ -30,8 +30,8 @@ public class GetDebug implements FREFunction {
             result = FREObject.newObject(flag);
         } catch(Exception e) {
             FREUtils.logEvent(context, LogLevel.ERROR,
-                    "Unable to create the return value. (Exception:[name:%s, reason:%s, method:%s])",
-                    FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+                    "Unable to create the return value. [Exception:(type:%s, method:%s)].",
+                    FREUtils.stripPackageFromClassName(e.toString()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to create the return value on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }
 

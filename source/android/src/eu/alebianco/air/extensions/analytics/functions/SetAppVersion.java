@@ -31,8 +31,8 @@ public class SetAppVersion implements FREFunction {
             trackingId = args[0].getAsString();
         } catch (Exception e) {
             FREUtils.logEvent(context, LogLevel.FATAL,
-                    "Unable to read the 'trackingId' parameter. (Exception:[name:%s, reason:%s, method:%s])",
-                    FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+                    "Unable to read the 'trackingId' parameter. [Exception:(type:%s, method:%s)].",
+                    FREUtils.stripPackageFromClassName(e.toString()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'trackingId' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }
 
@@ -43,8 +43,8 @@ public class SetAppVersion implements FREFunction {
             version = args[1].getAsString();
         } catch (Exception e) {
             FREUtils.logEvent(context, LogLevel.FATAL,
-                    "Unable to read the 'version' parameter. (Exception:[name:%s, reason:%s, method:%s])",
-                    FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+                    "Unable to read the 'version' parameter. [Exception:(type:%s, method:%s)].",
+                    FREUtils.stripPackageFromClassName(e.toString()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
             Log.e("ANE", "got an error", e);
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'version' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }

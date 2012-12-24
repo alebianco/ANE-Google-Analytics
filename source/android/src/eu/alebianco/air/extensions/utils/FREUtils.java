@@ -4,6 +4,9 @@ import android.util.Log;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREObject;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 public class FREUtils {
 
     public static final String TAG = "ANE";
@@ -26,12 +29,16 @@ public class FREUtils {
             args[1] = FREObject.newObject(id);
             error = FREObject.newObject(className, args);
 		} catch (Exception e) {
-			Log.println(Log.ERROR, TAG, String.format("Inception Error: Unable to create the runtime exception to notify the application about the previous error.\n" +
-                    "[Error:(type:%s, message:%s]\n" +
-                    "[Error:(type:%s, message:%s]",
-                    stripPackageFromClassName(e.toString()), e.getMessage(),
-                    stripPackageFromClassName(className), String.format(message, data)));
+			Log.e(TAG, "Inception Error: Unable to create the runtime exception to notify the application about the previous error.");
 		}
         return error;
 	}
+
+    public static String getStackTrace(Throwable exception) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        exception.printStackTrace(pw);
+        return sw.toString();
+
+    }
 }

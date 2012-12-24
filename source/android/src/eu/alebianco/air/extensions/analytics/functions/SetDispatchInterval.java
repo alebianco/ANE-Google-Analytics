@@ -29,8 +29,8 @@ public class SetDispatchInterval implements FREFunction {
             interval = args[0].getAsInt();
         } catch (Exception e) {
             FREUtils.logEvent(context, LogLevel.FATAL,
-                    "Unable to read the 'interval' parameter. (Exception:[name:%s, reason:%s, method:%s])",
-                    FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+                    "Unable to read the 'interval' parameter. [Exception:(type:%s, method:%s)].",
+                    FREUtils.stripPackageFromClassName(e.toString()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'interval' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }
 
