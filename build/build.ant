@@ -8,7 +8,6 @@
     </taskdef>
 
     <target name="build" depends="-resolveplatform" description="Build the extension">
-        <echo>Your OS is: ${platform}</echo>
         <if>
             <equals arg1="${platform}" arg2="win"/>
             <then>
@@ -19,6 +18,20 @@
             <equals arg1="${platform}" arg2="mac"/>
             <then>
                 <antcall target="build-mac"/>
+            </then>
+        </if>
+    </target>
+    <target name="run" depends="-resolveplatform" description="Run demo project on Android device or the iOS simulator">
+        <if>
+            <equals arg1="${platform}" arg2="win"/>
+            <then>
+                <antcall target="run-win"/>
+            </then>
+        </if>
+        <if>
+            <equals arg1="${platform}" arg2="mac"/>
+            <then>
+                <antcall target="run-mac"/>
             </then>
         </if>
     </target>
@@ -52,8 +65,10 @@
 	                              ext_as3-default,ext_as3-android,
 	                              ext_package-win,ext_clean,ext_deploy"/>
 
-    <target name="simulate" depends="demo_compile,demo_package,demo_uninstall,demo_install,demo_launch"
-            description="Run demo project on the iOS simulator"/>
+    <target name="run-win" depends="-resolveplatform,demo_compile,demo_package-apk,
+                                demo_uninstall-apk,demo_install-apk,demo_launch-apk"/>
+    <target name="run-mac" depends="-resolveplatform,demo_compile,demo_package-ipa,
+                                demo_uninstall-ipa,demo_install-ipa,demo_launch-ipa"/>
 
     <target name="ext_init">
         <!-- create necessary folders to compile the extension -->
@@ -236,12 +251,12 @@
             <arg line="-external-library-path+='${FLEX_HOME}/frameworks/libs/air/airglobal.swc'"/>
             <arg line="-external-library-path+=${DEMO_DIR}/ane/${LIB_NAME}.ane"/>
             <arg line="-static-link-runtime-shared-libraries=true"/>
-            <arg line="-o=${BIN_DEMO_DIR}/${DEMO_SWF}"/>
+            <arg line="-o=${BIN_DIR}/${DEMO_SWF}"/>
             <arg line="${DEMO_DIR}/src/Demo.as"/>
         </exec>
     </target>
 
-    <target name="demo_package">
+    <target name="demo_package-ipa">
         <!-- compile the demo project to be run on the iOS simulator -->
         <java jar="${ADT}" fork="true" failonerror="true">
             <arg line="-package"/>
@@ -252,12 +267,12 @@
             <arg line="${DEMO_IPA} ${DEMO_DESCRIPTOR}"/>
             <arg line="-extdir ${DEMO_DIR}/ane/"/>
             <arg line="-platformsdk ${IOS_SIM_HOME}"/>
-            <arg line="-C ${BIN_DEMO_DIR} ${DEMO_SWF}"/>
-            <arg line="-C ${DEMO_EMBEDS_DIR} ."/>
+            <arg line="-C ${BIN_DIR} ${DEMO_SWF}"/>
+            <arg line="-C ${DEMO_DIR} ${DEMO_EMBEDS_DIR}"/>
         </java>
     </target>
 
-    <target name="demo_uninstall">
+    <target name="demo_uninstall-ipa">
         <!-- uninstall previous version of the demo from the simulator -->
         <java jar="${ADT}" fork="true" failonerror="false">
             <arg line="-uninstallApp"/>
@@ -268,7 +283,7 @@
         </java>
     </target>
 
-    <target name="demo_install">
+    <target name="demo_install-ipa">
         <!-- install current version of the demo in the simulator -->
         <java jar="${ADT}" fork="true" failonerror="true">
             <arg line="-installApp"/>
@@ -279,13 +294,47 @@
         </java>
     </target>
 
-    <target name="demo_launch">
+    <target name="demo_launch-ipa">
         <!-- launch demo on the iOS simulator -->
         <java jar="${ADT}" fork="true" failonerror="true">
             <arg line="-launchApp"/>
             <arg line="-platform ios"/>
             <arg line="-platformsdk ${IOS_SIM_HOME}"/>
             <arg line="-device ios-simulator"/>
+            <arg line="-appid ${DEMO_APP_ID}"/>
+        </java>
+    </target>
+
+    <target name="demo_package-apk">
+        <java jar="${ADT}" fork="true" failonerror="true">
+            <arg line="-package"/>
+            <arg line="-target apk-debug"/>
+            <arg line="-storetype pkcs12"/>
+            <arg line="-keystore ${KEYSTORE}"/>
+            <arg line="-storepass ${STOREPASS}"/>
+            <arg line="${DEMO_IPA} ${DEMO_DESCRIPTOR}"/>
+            <arg line="-extdir ${DEMO_DIR}/ane/"/>
+            <arg line="-C ${BIN_DIR} ${DEMO_SWF}"/>
+            <arg line="-C ${DEMO_DIR} ${DEMO_EMBEDS_DIR}"/>
+        </java>
+    </target>
+    <target name="demo_install-apk">
+        <exec executable="${ADB}">
+            <arg line="-d install"/>
+            <arg line="-r ${DEMO_IPA}"/>
+        </exec>
+    </target>
+    <target name="demo_uninstall-apk">
+        <java jar="${ADT}" fork="true">
+            <arg line="-uninstallApp"/>
+            <arg line="-platform android"/>
+            <arg line="-appid ${DEMO_APP_ID}"/>
+        </java>
+    </target>
+    <target name="demo_launch-apk">
+        <java jar="${ADT}" fork="true">
+            <arg line="-launchApp"/>
+            <arg line="-platform android"/>
             <arg line="-appid ${DEMO_APP_ID}"/>
         </java>
     </target>
