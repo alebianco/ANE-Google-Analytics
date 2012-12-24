@@ -2,12 +2,41 @@
 
 This is an Air native extension for Google Analytics on the iOS and Android platforms.
 
+# Notice
+
+The v0.2 version of the extension supports the new "Application" profile for Google Analytics.
+
+# Warning: dragons ahead
+
+This release is being actively developed and it's still incomplete.
+Not all the native code has been written, the flash API may change before the final release and it may crash unexpectedly.
+Use it at your own risk (and if you do, please don't open issues about it).
 
 # Binary files
 
 The _bin_ folder contains the compiled extension and the default swc, which can be used for local testing if required by your development environment (Flash Builder shouldn't need it, but other IDEs may).
 
 # Changelog
+
+**v0.2.03-dev**
+
+* totally rewritten Flash API
+* totally rewritten native code for Android
+* upgraded to the new Google tracker (v2.0 beta 3) to support the new "Application" analytics' profile
+* full support to the new Google tracker, including e-commerce, multiple tracker support
+* brand new demo project built specifically for mobile devices
+* still in progress:
+    * support for custom metrics and dimensions
+    * iOS support
+    * brand new demo application
+    * documentation
+
+**v0.1.23**
+
+* upgraded to AIR 3.5
+* updated Google Analytics libraries (Android 1.5.1 and iOS 1.5)
+* improved error handling
+* added account ID validation
 
 **v0.1.22**
 
@@ -37,31 +66,32 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 
 * initial release
 
-# Compiling your project
-
-The extension requires that your project is built against version 5.1 of the iOS SDK.  
-It doesn't require version 5.1 at run-time, version 4.0 should be sufficient, but it is required at compile-time.
-Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter **-platformsdk** when building with adt from the command line or a build script.  
-Use Adobe Air SDK 3.4 or later.
-
 # Using the extension
 
-First of all, add the *NativeGATracker.ane* to your project.  
+First of all, add the *NativeGATracker.ane* to your project.
 Then you should check if the library is supported, get an instance of the tracker, start a tracking session using your Analytics ID and actually track something.
 
 The code below shows the most basic example:
 
 	import eu.alebianco.air.extensions.analytics.GATracker;
-	
+
 	if (GATracker.isSupported()) {
 		var tracker:GATracker = GATracker.getInstance();
 		tracker.startNewSession("UA-00000000-0", interval);
 		tracker.trackPageView("/custom/view/url");
 	}
 
-For any additional information you can reference the [Google Analytics Developer Guides & Reference](https://developers.google.com/analytics/devguides/) pages or the *ASDocs* on the code.  
-The extension follow closely the original SDK methods and functionalities, so it shouldn't be a problem to understand how it works.  
-In any case, if you have any problem or questions, just drop me a line.
+For any additional information you can reference the [Google Analytics Developer Guides & Reference](https://developers.google.com/analytics/devguides/) pages or the *ASDocs* on the code.
+The extension follow closely the original SDK methods and functionalities, so it shouldn't be a problem to understand how it works.
+
+If you have any problem or questions, hit me on Twitter [@alebianco](http://twitter.com/alebianco).
+
+# Compiling your project
+
+The extension requires that your project is built against version 5.1 of the iOS SDK.  
+It doesn't require version 5.1 at run-time, version 4.0 should be sufficient, but it is required at compile-time.
+Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter **-platformsdk** when building with adt from the command line or a build script.  
+Use Adobe Air SDK 3.5 or later.
 	
 # Building
 
@@ -83,10 +113,3 @@ In any case, if you have any problem or questions, just drop me a line.
 * Substitute the file _certificate.p12_ in the _build_ folder with your own. This may be a self-signed certificate created by Adobe Air.
 * Edit the _build.config_ file in the _build_ folder and change the properties in this file to match your system.
 * Run the ant build script _build.ant_ from the _build_ folder. This creates the native extension, and the default swc file, inside the _bin_ folder.
-
-
-# Coming up
-
-* Better documentation
-* ECommerce support
-* Better error logging
