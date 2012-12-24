@@ -140,6 +140,7 @@ public final class Analytics implements IAnalytics {
 		context = null;
 		logger = null;
 		trackers = null;
+		instance = null;
 	}
 
 	private function disposeAllTrackers():void {
