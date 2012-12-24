@@ -29,8 +29,6 @@
 
 void GAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToSet, const FRENamedFunction** functionsToSet)
 {
-    NSLog(@"Entering %s", __func__);
-    
     static FRENamedFunction functionMap[] = {
         MAP_FUNCTION( isSupported, NULL ),
         MAP_FUNCTION( getVersion, NULL ),
@@ -52,38 +50,24 @@ void GAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     
 	*numFunctionsToSet = sizeof(functionMap) / sizeof(FRENamedFunction);
 	*functionsToSet = functionMap;
-    
-    NSLog(@"Exiting %s", __func__);
 }
 
 void GAContextFinalizer(FREContext ctx)
 {
-    NSLog(@"Entering %s", __func__);
-    
     [[GANTracker sharedTracker] stopTracker];
-    
-    NSLog(@"Exiting %s", __func__);
     
 	return;
 }
 
 void GAExtensionInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet, FREContextFinalizer* ctxFinalizerToSet) 
-{ 
-    NSLog(@"Entering %s", __func__);
-    
+{
     extDataToSet = NULL;
     *ctxInitializerToSet = &GAContextInitializer;
     *ctxFinalizerToSet = &GAContextFinalizer;
-    
-    NSLog(@"Exiting %s", __func__);
 }
 
 void GAExtensionFinalizer()
 {
-    NSLog(@"Entering %s", __func__);
-    
     // Nothing to clean up.
-    
-    NSLog(@"Exiting %s", __func__);
     return;
 }

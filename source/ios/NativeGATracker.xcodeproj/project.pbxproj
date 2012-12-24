@@ -35,8 +35,8 @@
 		D2EAD67F1518C785003D539E /* GAExtension-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6681518C785003D539E /* GAExtension-Prefix.pch */; };
 		D2EAD6801518C785003D539E /* GAExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6691518C785003D539E /* GAExtension.h */; };
 		D2EAD6811518C785003D539E /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66A1518C785003D539E /* GAExtension.m */; };
-		D2EAD6821518C785003D539E /* LoggerUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD66B1518C785003D539E /* LoggerUtil.h */; };
-		D2EAD6831518C785003D539E /* LoggerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66C1518C785003D539E /* LoggerUtil.m */; };
+		D2EAD6821518C785003D539E /* FREUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD66B1518C785003D539E /* FREUtils.h */; };
+		D2EAD6831518C785003D539E /* FREUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66C1518C785003D539E /* FREUtils.m */; };
 		D2FCFB8915B174CB00170EEA /* GetVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FCFB8815B174CB00170EEA /* GetVersion.m */; };
 /* End PBXBuildFile section */
 
@@ -70,8 +70,8 @@
 		D2EAD6681518C785003D539E /* GAExtension-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GAExtension-Prefix.pch"; sourceTree = "<group>"; };
 		D2EAD6691518C785003D539E /* GAExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
 		D2EAD66A1518C785003D539E /* GAExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
-		D2EAD66B1518C785003D539E /* LoggerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerUtil.h; sourceTree = "<group>"; };
-		D2EAD66C1518C785003D539E /* LoggerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerUtil.m; sourceTree = "<group>"; };
+		D2EAD66B1518C785003D539E /* FREUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FREUtils.h; sourceTree = "<group>"; };
+		D2EAD66C1518C785003D539E /* FREUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FREUtils.m; sourceTree = "<group>"; };
 		D2FCFB8515B1742C00170EEA /* GetVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetVersion.h; sourceTree = "<group>"; };
 		D2FCFB8815B174CB00170EEA /* GetVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVersion.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,8 +140,8 @@
 				D2EAD66A1518C785003D539E /* GAExtension.m */,
 				D2EAD6551518C785003D539E /* FREConversionUtil.h */,
 				D2EAD6561518C785003D539E /* FREConversionUtil.m */,
-				D2EAD66B1518C785003D539E /* LoggerUtil.h */,
-				D2EAD66C1518C785003D539E /* LoggerUtil.m */,
+				D2EAD66B1518C785003D539E /* FREUtils.h */,
+				D2EAD66C1518C785003D539E /* FREUtils.m */,
 			);
 			path = NativeGATracker;
 			sourceTree = "<group>";
@@ -199,7 +199,7 @@
 				D2EAD67D1518C785003D539E /* Track.h in Headers */,
 				D2EAD67F1518C785003D539E /* GAExtension-Prefix.pch in Headers */,
 				D2EAD6801518C785003D539E /* GAExtension.h in Headers */,
-				D2EAD6821518C785003D539E /* LoggerUtil.h in Headers */,
+				D2EAD6821518C785003D539E /* FREUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +263,7 @@
 				D2EAD67C1518C785003D539E /* Session.m in Sources */,
 				D2EAD67E1518C785003D539E /* Track.m in Sources */,
 				D2EAD6811518C785003D539E /* GAExtension.m in Sources */,
-				D2EAD6831518C785003D539E /* LoggerUtil.m in Sources */,
+				D2EAD6831518C785003D539E /* FREUtils.m in Sources */,
 				D2FCFB8915B174CB00170EEA /* GetVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

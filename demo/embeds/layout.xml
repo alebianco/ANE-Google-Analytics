@@ -41,7 +41,7 @@
 				<Label text="event value:" width="100" autoSize="false"/>
 				<NumericStepper id="event_value" minimun="-1" maximun="100" step="1" value="-1" width="100"/>		
 			</HBox>
-			<PushButton id="track_event" label="Track Page View" event="click:onTrackEvent"/>
+			<PushButton id="track_event" label="Track Event" event="click:onTrackEvent"/>
 		</VBox>
 		<TextArea id="logger" width="440" height="180" />
 	</VBox>

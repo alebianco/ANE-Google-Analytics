@@ -29,7 +29,7 @@
 
 #define DISPATCH_EVENT(extensionContext, type, message) FREDispatchStatusEventAsync((extensionContext), (uint8_t*)(type), (uint8_t*)(message))
 
-@interface LoggerUtil : NSObject
+@interface FREUtils : NSObject
 
 enum LogLevel {
     kInfo = 0,
