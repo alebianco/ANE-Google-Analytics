@@ -24,14 +24,14 @@ public class TrackData implements FREFunction {
     public FREObject call(FREContext context, FREObject[] args) {
         FREObject result = null;
 
-        String accountID;
+        String trackingId;
         try {
-            accountID = args[0].getAsString();
+            trackingId = args[0].getAsString();
         } catch (Exception e) {
             FREUtils.logEvent(context, LogLevel.FATAL,
-                    "Unable to read the 'accountID' parameter. [Exception:(type:%s, method:%s)].",
+                    "Unable to read the 'trackingId' parameter. [Exception:(type:%s, method:%s)].",
                     FREUtils.stripPackageFromClassName(e.toString()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
-            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'accountID' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
+            return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'trackingId' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }
 
         String type;
@@ -44,7 +44,7 @@ public class TrackData implements FREFunction {
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'type' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }
 
-        GoogleTracker tracker = (GoogleTracker) GoogleAnalytics.getInstance(context.getActivity()).getTracker(accountID);
+        GoogleTracker tracker = (GoogleTracker) GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
 
         FREObject data = args[2];
 

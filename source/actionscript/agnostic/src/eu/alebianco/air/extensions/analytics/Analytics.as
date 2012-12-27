@@ -34,7 +34,7 @@ public final class Analytics implements IAnalytics {
 	private var context:ExtensionContext;
 	private var trackers:Dictionary;
 
-	private var _dispatchInterval:uint = 180;
+	private var _dispatchInterval:uint = 20;
 	private var _dispatchManually:Boolean = false;
 
 	public static function getInstance():Analytics {
@@ -111,7 +111,7 @@ public final class Analytics implements IAnalytics {
 		if (!ID_VALIDATOR.test(accountId))
 			throw new ArgumentError("The provided account ID (" + accountId + ") is invalid, it should follow the format UA-00000-0.");
 
-		return handleResultFromExtension(context.call("hasTracker", accountId), Boolean) as Boolean;
+		return accountId in trackers;
 	}
 
 	public function getTracker(accountId:String):ITracker {
@@ -127,6 +127,18 @@ public final class Analytics implements IAnalytics {
 			trackers[accountId] = tracker;
 		}
 		return tracker;
+	}
+
+	public function closeTracker(accountId:String):void {
+		if (!ID_VALIDATOR.test(accountId))
+			throw new ArgumentError("The provided account ID (" + accountId + ") is invalid, it should follow the format UA-00000-0.");
+
+		if (accountId in trackers) {
+			var tracker:ITracker = trackers[accountId];
+			tracker.dispose();
+			trackers[accountId] = null;
+			delete trackers[accountId];
+		}
 	}
 
 	public function dispatch():void {

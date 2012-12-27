@@ -39,8 +39,7 @@ public class GAContext extends FREContext {
 
         // Analytics
 
-        functions.put("getTracker", new GetTracker());
-        functions.put("hasTracker", new HasTracker());
+        functions.put("createTracker", new CreateTracker());
         functions.put("closeTracker", new CloseTracker());
         functions.put("getDebug", new GetDebug());
         functions.put("setDebug", new SetDebug());
@@ -55,17 +54,16 @@ public class GAContext extends FREContext {
         functions.put("setAppVersion", new SetAppVersion());
         functions.put("getAppID", new GetAppID());
         functions.put("setAppID", new SetAppID());
-        functions.put("getAppInstallerID", new GetInstallerID());
-        functions.put("setAppInstallerID", new SetInstallerID());
         functions.put("getAnonymous", new GetAnonymous());
         functions.put("setAnonymous", new SetAnonymous());
         functions.put("getSecure", new GetSecure());
         functions.put("setSecure", new SetSecure());
         functions.put("getSampleRate", new GetSampleRate());
         functions.put("setSampleRate", new SetSampleRate());
-        functions.put("startSession", new StartNewSession());
-        functions.put("closeSession", new CloseSession());
+        functions.put("startNewSession", new StartNewSession());
         functions.put("trackData", new TrackData());
+        functions.put("setCustomDimension", new SetCustomDimension());
+        functions.put("setCustomMetric", new SetCustomMetric());
 
         return functions;
     }

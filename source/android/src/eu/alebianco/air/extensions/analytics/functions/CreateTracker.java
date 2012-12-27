@@ -18,7 +18,7 @@ import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
 import eu.alebianco.air.extensions.utils.LogLevel;
 
-public class GetTracker implements FREFunction {
+public class CreateTracker implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {

@@ -22,17 +22,11 @@ public interface ITracker extends IDisposable {
 	function get appID():String;
 	function set appID(value:String):void;
 
-	function get appInstallerID():String;
-	function set appInstallerID(value:String):void;
-
 	function set appName(value:String):void;
 	function get appName():String;
 
 	function set appVersion(value:String):void;
 	function get appVersion():String;
-
-	function set campaign(value:String):void;
-	function set referrer(value:String):void;
 
 	function get sampleRate():Number;
 	function set sampleRate(value:Number):void;
@@ -43,8 +37,10 @@ public interface ITracker extends IDisposable {
 	function get anonymous():Boolean;
 	function set anonymous(value:Boolean):void;
 
-	function closeSession():void;
-	function startSession():void;
+	function startNewSession():void;
+
+	function setCustomMetric(index:uint, value:int):void;
+	function setCustomDimension(index:uint, value:String):void;
 
 	function buildEvent(category:String, action:String):IEventBuilder;
 	function buildView(screenName:String):IViewBuilder;

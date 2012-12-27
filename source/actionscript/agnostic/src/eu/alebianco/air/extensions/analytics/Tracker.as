@@ -21,7 +21,6 @@ import eu.alebianco.air.extensions.analytics.api.IViewBuilder;
 import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 import flash.desktop.NativeApplication;
-import flash.errors.IllegalOperationError;
 import flash.events.TimerEvent;
 import flash.external.ExtensionContext;
 import flash.utils.Timer;
@@ -79,12 +78,6 @@ internal class Tracker implements ITracker {
 	public function set appID(value:String):void {
 		handleResultFromExtension(context.call("setAppID", id, value));
 	}
-	public function get appInstallerID():String {
-		return handleResultFromExtension(context.call("getAppInstallerID", id), String) as String;
-	}
-	public function set appInstallerID(value:String):void {
-		handleResultFromExtension(context.call("setAppInstallerID", id, value));
-	}
 	public function get anonymous():Boolean {
 		return handleResultFromExtension(context.call("getAnonymous", id), Boolean) as Boolean;
 	}
@@ -101,19 +94,22 @@ internal class Tracker implements ITracker {
 		return handleResultFromExtension(context.call("getSampleRate", id), Number) as Number;
 	}
 	public function set sampleRate(value:Number):void {
-		handleResultFromExtension(context.call("setSampleRate", id, value));
+		handleResultFromExtension(context.call("setSampleRate", id, Math.max(0, Math.min(100, value))));
 	}
-	public function set campaign(value:String):void {
-		throw new IllegalOperationError("Method not implemented yet.")
+	public function startNewSession():void {
+		handleResultFromExtension(context.call("startNewSession", id));
 	}
-	public function set referrer(value:String):void {
-		throw new IllegalOperationError("Method not implemented yet.")
+	public function setCustomMetric(index:uint, value:int):void {
+		if (index == 0)
+			throw new ArgumentError("Metrics and Dimensions indexes are 1-based.");
+
+		handleResultFromExtension(context.call("setCustomMetric", id, index, value));
 	}
-	public function closeSession():void {
-		handleResultFromExtension(context.call("closeSession", id));
-	}
-	public function startSession():void {
-		handleResultFromExtension(context.call("startSession", id));
+	public function setCustomDimension(index:uint, value:String):void {
+		if (index == 0)
+			throw new ArgumentError("Metrics and Dimensions indexes are 1-based.");
+
+		handleResultFromExtension(context.call("setCustomDimension", id, index, value));
 	}
 	public function send(type:HitType, data:Hit):void {
 		_lockAppData = true;
@@ -138,6 +134,7 @@ internal class Tracker implements ITracker {
 		return new TransactionBuilder(this, id, cost);
 	}
 	public function dispose():void {
+		handleResultFromExtension(context.call("closeTracker", id));
 		disposeTimer();
 		context = null;
 	}
@@ -164,7 +161,7 @@ internal class Tracker implements ITracker {
 		timer = null;
 	}
 	private function sessionTimerHandler(event:TimerEvent):void {
-		startSession();
+		startNewSession();
 	}
 	private function appResumedHandler(event:flash.events.Event):void {
 		if (timer)

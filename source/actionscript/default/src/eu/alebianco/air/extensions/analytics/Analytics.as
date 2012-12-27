@@ -56,11 +56,13 @@ public final class Analytics implements IAnalytics {
 	}
 	public function dispose():void {
 	}
+	public function getTracker(accountId:String):ITracker {
+		return null;
+	}
 	public function hasTracker(accountId:String):Boolean {
 		return false;
 	}
-	public function getTracker(accountId:String):ITracker {
-		return null;
+	public function closeTracker(accountId:String):void {
 	}
 	public function dispatch():void {
 	}
