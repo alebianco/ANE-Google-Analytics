@@ -7,368 +7,354 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6FB3A4DC161C750100E7F3B9 /* libarclite_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB3A4DB161C750100E7F3B9 /* libarclite_iphoneos.a */; };
-		D26BBCC21507931400D3EEBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCC11507931400D3EEBB /* Foundation.framework */; };
-		D26BBCD51507934B00D3EEBB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */; };
-		D26BBCD71507935700D3EEBB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BBCD61507935700D3EEBB /* CFNetwork.framework */; };
-		D2EAD6421518C56C003D539E /* FlashRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD63F1518C56C003D539E /* FlashRuntimeExtensions.h */; };
-		D2EAD6431518C56C003D539E /* GANTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6401518C56C003D539E /* GANTracker.h */; };
-		D2EAD6441518C56C003D539E /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2EAD6411518C56C003D539E /* libGoogleAnalytics.a */; };
-		D2EAD66D1518C785003D539E /* FREConversionUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6551518C785003D539E /* FREConversionUtil.h */; };
-		D2EAD66E1518C785003D539E /* FREConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6561518C785003D539E /* FREConversionUtil.m */; };
-		D2EAD66F1518C785003D539E /* Anonimize.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6581518C785003D539E /* Anonimize.h */; };
-		D2EAD6701518C785003D539E /* Anonimize.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6591518C785003D539E /* Anonimize.m */; };
-		D2EAD6711518C785003D539E /* CustomVar.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD65A1518C785003D539E /* CustomVar.h */; };
-		D2EAD6721518C785003D539E /* CustomVar.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD65B1518C785003D539E /* CustomVar.m */; };
-		D2EAD6731518C785003D539E /* Debug.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD65C1518C785003D539E /* Debug.h */; };
-		D2EAD6741518C785003D539E /* Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD65D1518C785003D539E /* Debug.m */; };
-		D2EAD6751518C785003D539E /* DryRun.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD65E1518C785003D539E /* DryRun.h */; };
-		D2EAD6761518C785003D539E /* DryRun.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD65F1518C785003D539E /* DryRun.m */; };
-		D2EAD6771518C785003D539E /* IsSupported.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6601518C785003D539E /* IsSupported.h */; };
-		D2EAD6781518C785003D539E /* IsSupported.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6611518C785003D539E /* IsSupported.m */; };
-		D2EAD6791518C785003D539E /* SampleRate.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6621518C785003D539E /* SampleRate.h */; };
-		D2EAD67A1518C785003D539E /* SampleRate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6631518C785003D539E /* SampleRate.m */; };
-		D2EAD67B1518C785003D539E /* Session.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6641518C785003D539E /* Session.h */; };
-		D2EAD67C1518C785003D539E /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6651518C785003D539E /* Session.m */; };
-		D2EAD67D1518C785003D539E /* Track.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6661518C785003D539E /* Track.h */; };
-		D2EAD67E1518C785003D539E /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD6671518C785003D539E /* Track.m */; };
-		D2EAD67F1518C785003D539E /* GAExtension-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6681518C785003D539E /* GAExtension-Prefix.pch */; };
-		D2EAD6801518C785003D539E /* GAExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD6691518C785003D539E /* GAExtension.h */; };
-		D2EAD6811518C785003D539E /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66A1518C785003D539E /* GAExtension.m */; };
-		D2EAD6821518C785003D539E /* FREUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D2EAD66B1518C785003D539E /* FREUtils.h */; };
-		D2EAD6831518C785003D539E /* FREUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EAD66C1518C785003D539E /* FREUtils.m */; };
-		D2FCFB8915B174CB00170EEA /* GetVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FCFB8815B174CB00170EEA /* GetVersion.m */; };
+		6F808E0F168CBA3400CEDFF5 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808E00168CB8A300CEDFF5 /* Analytics.m */; };
+		6F808E11168CBA3400CEDFF5 /* AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808E02168CB8A300CEDFF5 /* AppInfo.m */; };
+		6F808E13168CBA3400CEDFF5 /* GetVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808E04168CB8A300CEDFF5 /* GetVersion.m */; };
+		6F808E15168CBA3400CEDFF5 /* IsSupported.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808E06168CB8A300CEDFF5 /* IsSupported.m */; };
+		6F808E17168CBA3400CEDFF5 /* Tracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808E08168CB8A300CEDFF5 /* Tracker.m */; };
+		6F808E18168CBA4300CEDFF5 /* FREConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808DFB168CB8A300CEDFF5 /* FREConversionUtil.m */; };
+		6F808E19168CBA4300CEDFF5 /* FREUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808DFD168CB8A300CEDFF5 /* FREUtils.m */; };
+		6F808E1A168CBA4300CEDFF5 /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808E0A168CB8A300CEDFF5 /* GAExtension.m */; };
+		6F808E28168CBA6300CEDFF5 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F808E21168CBA6300CEDFF5 /* libGoogleAnalytics.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		6F808E2B168CBAF000CEDFF5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F808E2A168CBAF000CEDFF5 /* CoreData.framework */; };
+		6F808E2D168CBAFD00CEDFF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F808E2C168CBAFD00CEDFF5 /* SystemConfiguration.framework */; };
+		6F808E3C168DA4D300CEDFF5 /* FlashRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1B168CBA6300CEDFF5 /* FlashRuntimeExtensions.h */; };
+		6F808E3D168DA4D300CEDFF5 /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1C168CBA6300CEDFF5 /* GAI.h */; };
+		6F808E3E168DA4D300CEDFF5 /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1D168CBA6300CEDFF5 /* GAITrackedViewController.h */; };
+		6F808E3F168DA4D300CEDFF5 /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1E168CBA6300CEDFF5 /* GAITracker.h */; };
+		6F808E40168DA4D300CEDFF5 /* GAITransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1F168CBA6300CEDFF5 /* GAITransaction.h */; };
+		6F808E41168DA4D300CEDFF5 /* GAITransactionItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E20168CBA6300CEDFF5 /* GAITransactionItem.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6FB3A4DB161C750100E7F3B9 /* libarclite_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libarclite_iphoneos.a; path = Libraries/libarclite_iphoneos.a; sourceTree = "<group>"; };
-		D26BBCBE1507931400D3EEBB /* libNativeGATracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D26BBCC11507931400D3EEBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		D26BBCD61507935700D3EEBB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		D2EAD63F1518C56C003D539E /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlashRuntimeExtensions.h; path = Libraries/FlashRuntimeExtensions.h; sourceTree = "<group>"; };
-		D2EAD6401518C56C003D539E /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = Libraries/GANTracker.h; sourceTree = "<group>"; };
-		D2EAD6411518C56C003D539E /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Libraries/libGoogleAnalytics.a; sourceTree = "<group>"; };
-		D2EAD6551518C785003D539E /* FREConversionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FREConversionUtil.h; sourceTree = "<group>"; };
-		D2EAD6561518C785003D539E /* FREConversionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FREConversionUtil.m; sourceTree = "<group>"; };
-		D2EAD6581518C785003D539E /* Anonimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anonimize.h; sourceTree = "<group>"; };
-		D2EAD6591518C785003D539E /* Anonimize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anonimize.m; sourceTree = "<group>"; };
-		D2EAD65A1518C785003D539E /* CustomVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVar.h; sourceTree = "<group>"; };
-		D2EAD65B1518C785003D539E /* CustomVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVar.m; sourceTree = "<group>"; };
-		D2EAD65C1518C785003D539E /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
-		D2EAD65D1518C785003D539E /* Debug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Debug.m; sourceTree = "<group>"; };
-		D2EAD65E1518C785003D539E /* DryRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryRun.h; sourceTree = "<group>"; };
-		D2EAD65F1518C785003D539E /* DryRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryRun.m; sourceTree = "<group>"; };
-		D2EAD6601518C785003D539E /* IsSupported.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsSupported.h; sourceTree = "<group>"; };
-		D2EAD6611518C785003D539E /* IsSupported.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsSupported.m; sourceTree = "<group>"; };
-		D2EAD6621518C785003D539E /* SampleRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleRate.h; sourceTree = "<group>"; };
-		D2EAD6631518C785003D539E /* SampleRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleRate.m; sourceTree = "<group>"; };
-		D2EAD6641518C785003D539E /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
-		D2EAD6651518C785003D539E /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
-		D2EAD6661518C785003D539E /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
-		D2EAD6671518C785003D539E /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
-		D2EAD6681518C785003D539E /* GAExtension-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GAExtension-Prefix.pch"; sourceTree = "<group>"; };
-		D2EAD6691518C785003D539E /* GAExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
-		D2EAD66A1518C785003D539E /* GAExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
-		D2EAD66B1518C785003D539E /* FREUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FREUtils.h; sourceTree = "<group>"; };
-		D2EAD66C1518C785003D539E /* FREUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FREUtils.m; sourceTree = "<group>"; };
-		D2FCFB8515B1742C00170EEA /* GetVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetVersion.h; sourceTree = "<group>"; };
-		D2FCFB8815B174CB00170EEA /* GetVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVersion.m; sourceTree = "<group>"; };
+		6F808DBA168CB84900CEDFF5 /* libGAExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libGAExtension.a; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F808DFA168CB8A300CEDFF5 /* FREConversionUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FREConversionUtil.h; sourceTree = "<group>"; };
+		6F808DFB168CB8A300CEDFF5 /* FREConversionUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FREConversionUtil.m; sourceTree = "<group>"; };
+		6F808DFC168CB8A300CEDFF5 /* FREUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FREUtils.h; sourceTree = "<group>"; };
+		6F808DFD168CB8A300CEDFF5 /* FREUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FREUtils.m; sourceTree = "<group>"; };
+		6F808DFF168CB8A300CEDFF5 /* Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
+		6F808E00168CB8A300CEDFF5 /* Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
+		6F808E01168CB8A300CEDFF5 /* AppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfo.h; sourceTree = "<group>"; };
+		6F808E02168CB8A300CEDFF5 /* AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfo.m; sourceTree = "<group>"; };
+		6F808E03168CB8A300CEDFF5 /* GetVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetVersion.h; sourceTree = "<group>"; };
+		6F808E04168CB8A300CEDFF5 /* GetVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetVersion.m; sourceTree = "<group>"; };
+		6F808E05168CB8A300CEDFF5 /* IsSupported.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsSupported.h; sourceTree = "<group>"; };
+		6F808E06168CB8A300CEDFF5 /* IsSupported.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IsSupported.m; sourceTree = "<group>"; };
+		6F808E07168CB8A300CEDFF5 /* Tracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tracker.h; sourceTree = "<group>"; };
+		6F808E08168CB8A300CEDFF5 /* Tracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tracker.m; sourceTree = "<group>"; };
+		6F808E09168CB8A300CEDFF5 /* GAExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
+		6F808E0A168CB8A300CEDFF5 /* GAExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
+		6F808E0B168CB8A300CEDFF5 /* GAExtension-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GAExtension-Prefix.pch"; sourceTree = "<group>"; };
+		6F808E1B168CBA6300CEDFF5 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FlashRuntimeExtensions.h; path = Libraries/FlashRuntimeExtensions.h; sourceTree = "<group>"; };
+		6F808E1C168CBA6300CEDFF5 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = Libraries/GAI.h; sourceTree = "<group>"; };
+		6F808E1D168CBA6300CEDFF5 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = Libraries/GAITrackedViewController.h; sourceTree = "<group>"; };
+		6F808E1E168CBA6300CEDFF5 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = Libraries/GAITracker.h; sourceTree = "<group>"; };
+		6F808E1F168CBA6300CEDFF5 /* GAITransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransaction.h; path = Libraries/GAITransaction.h; sourceTree = "<group>"; };
+		6F808E20168CBA6300CEDFF5 /* GAITransactionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransactionItem.h; path = Libraries/GAITransactionItem.h; sourceTree = "<group>"; };
+		6F808E21168CBA6300CEDFF5 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Libraries/libGoogleAnalytics.a; sourceTree = "<group>"; };
+		6F808E2A168CBAF000CEDFF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		6F808E2C168CBAFD00CEDFF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D26BBCBB1507931400D3EEBB /* Frameworks */ = {
+		6F808DB7168CB84900CEDFF5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D26BBCD71507935700D3EEBB /* CFNetwork.framework in Frameworks */,
-				D26BBCC21507931400D3EEBB /* Foundation.framework in Frameworks */,
-				D26BBCD51507934B00D3EEBB /* libsqlite3.0.dylib in Frameworks */,
-				D2EAD6441518C56C003D539E /* libGoogleAnalytics.a in Frameworks */,
-				6FB3A4DC161C750100E7F3B9 /* libarclite_iphoneos.a in Frameworks */,
+				6F808E2D168CBAFD00CEDFF5 /* SystemConfiguration.framework in Frameworks */,
+				6F808E2B168CBAF000CEDFF5 /* CoreData.framework in Frameworks */,
+				6F808E28168CBA6300CEDFF5 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D24B0F84150CBD2F003CB17D /* Libraries */ = {
+		6F808DAA168CB81400CEDFF5 = {
 			isa = PBXGroup;
 			children = (
-				D2EAD63F1518C56C003D539E /* FlashRuntimeExtensions.h */,
-				D2EAD6401518C56C003D539E /* GANTracker.h */,
-				D2EAD6411518C56C003D539E /* libGoogleAnalytics.a */,
-				6FB3A4DB161C750100E7F3B9 /* libarclite_iphoneos.a */,
-				D26BBCD41507934B00D3EEBB /* libsqlite3.0.dylib */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
-		D26BBCB31507931400D3EEBB = {
-			isa = PBXGroup;
-			children = (
-				D2EAD6541518C785003D539E /* NativeGATracker */,
-				D24B0F84150CBD2F003CB17D /* Libraries */,
-				D26BBCC01507931400D3EEBB /* Frameworks */,
-				D26BBCBF1507931400D3EEBB /* Products */,
+				6F808DE6168CB84900CEDFF5 /* NativeGATracker */,
+				6F808E29168CBA6F00CEDFF5 /* Libraries */,
+				6F808DBC168CB84900CEDFF5 /* Frameworks */,
+				6F808DBB168CB84900CEDFF5 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D26BBCBF1507931400D3EEBB /* Products */ = {
+		6F808DBB168CB84900CEDFF5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D26BBCBE1507931400D3EEBB /* libNativeGATracker.a */,
+				6F808DBA168CB84900CEDFF5 /* libGAExtension.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D26BBCC01507931400D3EEBB /* Frameworks */ = {
+		6F808DBC168CB84900CEDFF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D26BBCD61507935700D3EEBB /* CFNetwork.framework */,
-				D26BBCC11507931400D3EEBB /* Foundation.framework */,
+				6F808E2C168CBAFD00CEDFF5 /* SystemConfiguration.framework */,
+				6F808E2A168CBAF000CEDFF5 /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D2EAD6541518C785003D539E /* NativeGATracker */ = {
+		6F808DE6168CB84900CEDFF5 /* NativeGATracker */ = {
 			isa = PBXGroup;
 			children = (
-				D2EAD68B1518C809003D539E /* Supporting Files */,
-				D2EAD6571518C785003D539E /* Functions */,
-				D2EAD6691518C785003D539E /* GAExtension.h */,
-				D2EAD66A1518C785003D539E /* GAExtension.m */,
-				D2EAD6551518C785003D539E /* FREConversionUtil.h */,
-				D2EAD6561518C785003D539E /* FREConversionUtil.m */,
-				D2EAD66B1518C785003D539E /* FREUtils.h */,
-				D2EAD66C1518C785003D539E /* FREUtils.m */,
+				6F808DFE168CB8A300CEDFF5 /* Functions */,
+				6F808DFA168CB8A300CEDFF5 /* FREConversionUtil.h */,
+				6F808DFB168CB8A300CEDFF5 /* FREConversionUtil.m */,
+				6F808DFC168CB8A300CEDFF5 /* FREUtils.h */,
+				6F808DFD168CB8A300CEDFF5 /* FREUtils.m */,
+				6F808E09168CB8A300CEDFF5 /* GAExtension.h */,
+				6F808E0A168CB8A300CEDFF5 /* GAExtension.m */,
+				6F808DE7168CB84900CEDFF5 /* Supporting Files */,
 			);
 			path = NativeGATracker;
 			sourceTree = "<group>";
 		};
-		D2EAD6571518C785003D539E /* Functions */ = {
+		6F808DE7168CB84900CEDFF5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D2EAD6581518C785003D539E /* Anonimize.h */,
-				D2EAD6591518C785003D539E /* Anonimize.m */,
-				D2EAD65A1518C785003D539E /* CustomVar.h */,
-				D2EAD65B1518C785003D539E /* CustomVar.m */,
-				D2EAD65C1518C785003D539E /* Debug.h */,
-				D2EAD65D1518C785003D539E /* Debug.m */,
-				D2EAD65E1518C785003D539E /* DryRun.h */,
-				D2EAD65F1518C785003D539E /* DryRun.m */,
-				D2EAD6601518C785003D539E /* IsSupported.h */,
-				D2EAD6611518C785003D539E /* IsSupported.m */,
-				D2EAD6621518C785003D539E /* SampleRate.h */,
-				D2EAD6631518C785003D539E /* SampleRate.m */,
-				D2EAD6641518C785003D539E /* Session.h */,
-				D2EAD6651518C785003D539E /* Session.m */,
-				D2EAD6661518C785003D539E /* Track.h */,
-				D2EAD6671518C785003D539E /* Track.m */,
-				D2FCFB8515B1742C00170EEA /* GetVersion.h */,
-				D2FCFB8815B174CB00170EEA /* GetVersion.m */,
+				6F808E0B168CB8A300CEDFF5 /* GAExtension-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6F808DFE168CB8A300CEDFF5 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				6F808DFF168CB8A300CEDFF5 /* Analytics.h */,
+				6F808E00168CB8A300CEDFF5 /* Analytics.m */,
+				6F808E01168CB8A300CEDFF5 /* AppInfo.h */,
+				6F808E02168CB8A300CEDFF5 /* AppInfo.m */,
+				6F808E03168CB8A300CEDFF5 /* GetVersion.h */,
+				6F808E04168CB8A300CEDFF5 /* GetVersion.m */,
+				6F808E05168CB8A300CEDFF5 /* IsSupported.h */,
+				6F808E06168CB8A300CEDFF5 /* IsSupported.m */,
+				6F808E07168CB8A300CEDFF5 /* Tracker.h */,
+				6F808E08168CB8A300CEDFF5 /* Tracker.m */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
 		};
-		D2EAD68B1518C809003D539E /* Supporting Files */ = {
+		6F808E29168CBA6F00CEDFF5 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				D2EAD6681518C785003D539E /* GAExtension-Prefix.pch */,
+				6F808E1B168CBA6300CEDFF5 /* FlashRuntimeExtensions.h */,
+				6F808E1C168CBA6300CEDFF5 /* GAI.h */,
+				6F808E1D168CBA6300CEDFF5 /* GAITrackedViewController.h */,
+				6F808E1E168CBA6300CEDFF5 /* GAITracker.h */,
+				6F808E1F168CBA6300CEDFF5 /* GAITransaction.h */,
+				6F808E20168CBA6300CEDFF5 /* GAITransactionItem.h */,
+				6F808E21168CBA6300CEDFF5 /* libGoogleAnalytics.a */,
 			);
-			name = "Supporting Files";
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		D26BBCBC1507931400D3EEBB /* Headers */ = {
+		6F808DB8168CB84900CEDFF5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2EAD6421518C56C003D539E /* FlashRuntimeExtensions.h in Headers */,
-				D2EAD6431518C56C003D539E /* GANTracker.h in Headers */,
-				D2EAD66D1518C785003D539E /* FREConversionUtil.h in Headers */,
-				D2EAD66F1518C785003D539E /* Anonimize.h in Headers */,
-				D2EAD6711518C785003D539E /* CustomVar.h in Headers */,
-				D2EAD6731518C785003D539E /* Debug.h in Headers */,
-				D2EAD6751518C785003D539E /* DryRun.h in Headers */,
-				D2EAD6771518C785003D539E /* IsSupported.h in Headers */,
-				D2EAD6791518C785003D539E /* SampleRate.h in Headers */,
-				D2EAD67B1518C785003D539E /* Session.h in Headers */,
-				D2EAD67D1518C785003D539E /* Track.h in Headers */,
-				D2EAD67F1518C785003D539E /* GAExtension-Prefix.pch in Headers */,
-				D2EAD6801518C785003D539E /* GAExtension.h in Headers */,
-				D2EAD6821518C785003D539E /* FREUtils.h in Headers */,
+				6F808E3C168DA4D300CEDFF5 /* FlashRuntimeExtensions.h in Headers */,
+				6F808E3D168DA4D300CEDFF5 /* GAI.h in Headers */,
+				6F808E3E168DA4D300CEDFF5 /* GAITrackedViewController.h in Headers */,
+				6F808E3F168DA4D300CEDFF5 /* GAITracker.h in Headers */,
+				6F808E40168DA4D300CEDFF5 /* GAITransaction.h in Headers */,
+				6F808E41168DA4D300CEDFF5 /* GAITransactionItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D26BBCBD1507931400D3EEBB /* NativeGATracker */ = {
+		6F808DB9168CB84900CEDFF5 /* NativeGATracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D26BBCCB1507931400D3EEBB /* Build configuration list for PBXNativeTarget "NativeGATracker" */;
+			buildConfigurationList = 6F808DF6168CB84900CEDFF5 /* Build configuration list for PBXNativeTarget "NativeGATracker" */;
 			buildPhases = (
-				D26BBCBA1507931400D3EEBB /* Sources */,
-				D26BBCBB1507931400D3EEBB /* Frameworks */,
-				D26BBCBC1507931400D3EEBB /* Headers */,
+				6F808DB6168CB84900CEDFF5 /* Sources */,
+				6F808DB7168CB84900CEDFF5 /* Frameworks */,
+				6F808DB8168CB84900CEDFF5 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = NativeGATracker;
-			productName = GAExtension;
-			productReference = D26BBCBE1507931400D3EEBB /* libNativeGATracker.a */;
+			productName = NativeGATracker;
+			productReference = 6F808DBA168CB84900CEDFF5 /* libGAExtension.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D26BBCB51507931400D3EEBB /* Project object */ = {
+		6F808DAC168CB81400CEDFF5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0440;
 			};
-			buildConfigurationList = D26BBCB81507931400D3EEBB /* Build configuration list for PBXProject "NativeGATracker" */;
+			buildConfigurationList = 6F808DAF168CB81400CEDFF5 /* Build configuration list for PBXProject "NativeGATracker" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = D26BBCB31507931400D3EEBB;
-			productRefGroup = D26BBCBF1507931400D3EEBB /* Products */;
+			mainGroup = 6F808DAA168CB81400CEDFF5;
+			productRefGroup = 6F808DBB168CB84900CEDFF5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D26BBCBD1507931400D3EEBB /* NativeGATracker */,
+				6F808DB9168CB84900CEDFF5 /* NativeGATracker */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D26BBCBA1507931400D3EEBB /* Sources */ = {
+		6F808DB6168CB84900CEDFF5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2EAD66E1518C785003D539E /* FREConversionUtil.m in Sources */,
-				D2EAD6701518C785003D539E /* Anonimize.m in Sources */,
-				D2EAD6721518C785003D539E /* CustomVar.m in Sources */,
-				D2EAD6741518C785003D539E /* Debug.m in Sources */,
-				D2EAD6761518C785003D539E /* DryRun.m in Sources */,
-				D2EAD6781518C785003D539E /* IsSupported.m in Sources */,
-				D2EAD67A1518C785003D539E /* SampleRate.m in Sources */,
-				D2EAD67C1518C785003D539E /* Session.m in Sources */,
-				D2EAD67E1518C785003D539E /* Track.m in Sources */,
-				D2EAD6811518C785003D539E /* GAExtension.m in Sources */,
-				D2EAD6831518C785003D539E /* FREUtils.m in Sources */,
-				D2FCFB8915B174CB00170EEA /* GetVersion.m in Sources */,
+				6F808E18168CBA4300CEDFF5 /* FREConversionUtil.m in Sources */,
+				6F808E19168CBA4300CEDFF5 /* FREUtils.m in Sources */,
+				6F808E1A168CBA4300CEDFF5 /* GAExtension.m in Sources */,
+				6F808E0F168CBA3400CEDFF5 /* Analytics.m in Sources */,
+				6F808E11168CBA3400CEDFF5 /* AppInfo.m in Sources */,
+				6F808E13168CBA3400CEDFF5 /* GetVersion.m in Sources */,
+				6F808E15168CBA3400CEDFF5 /* IsSupported.m in Sources */,
+				6F808E17168CBA3400CEDFF5 /* Tracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		D26BBCC91507931400D3EEBB /* Debug */ = {
+		6F808DB1168CB81400CEDFF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		D26BBCCA1507931400D3EEBB /* Release */ = {
+		6F808DB2168CB81400CEDFF5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		D26BBCCC1507931400D3EEBB /* Debug */ = {
+		6F808DF0168CB84900CEDFF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALTERNATE_PERMISSIONS_FILES = armv7;
-				CURRENT_PROJECT_VERSION = 1.21;
-				DSTROOT = /tmp/NativeGATracker.dst;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/GAExtension.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeGATracker/GAExtension-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);
-				OTHER_CODE_SIGN_FLAGS = armv7;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIPFLAGS = armv7;
-				VERSION_INFO_BUILDER = alebianco;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "/Users/cyberpunk/SDKs/flex-sdk/4.6.0/include/";
 			};
 			name = Debug;
 		};
-		D26BBCCD1507931400D3EEBB /* Release */ = {
+		6F808DF1168CB84900CEDFF5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALTERNATE_PERMISSIONS_FILES = armv7;
-				CURRENT_PROJECT_VERSION = 1.21;
-				DSTROOT = /tmp/NativeGATracker.dst;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/GAExtension.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeGATracker/GAExtension-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Libraries\"",
 				);
-				OTHER_CODE_SIGN_FLAGS = armv7;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIPFLAGS = armv7;
-				VERSION_INFO_BUILDER = alebianco;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "/Users/cyberpunk/SDKs/flex-sdk/4.6.0/include/";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D26BBCB81507931400D3EEBB /* Build configuration list for PBXProject "NativeGATracker" */ = {
+		6F808DAF168CB81400CEDFF5 /* Build configuration list for PBXProject "NativeGATracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D26BBCC91507931400D3EEBB /* Debug */,
-				D26BBCCA1507931400D3EEBB /* Release */,
+				6F808DB1168CB81400CEDFF5 /* Debug */,
+				6F808DB2168CB81400CEDFF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D26BBCCB1507931400D3EEBB /* Build configuration list for PBXNativeTarget "NativeGATracker" */ = {
+		6F808DF6168CB84900CEDFF5 /* Build configuration list for PBXNativeTarget "NativeGATracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D26BBCCC1507931400D3EEBB /* Debug */,
-				D26BBCCD1507931400D3EEBB /* Release */,
+				6F808DF0168CB84900CEDFF5 /* Debug */,
+				6F808DF1168CB84900CEDFF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D26BBCB51507931400D3EEBB /* Project object */;
+	rootObject = 6F808DAC168CB81400CEDFF5 /* Project object */;
 }
