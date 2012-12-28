@@ -122,7 +122,7 @@ public final class Analytics implements IAnalytics {
 		if (accountId in trackers) {
 			tracker = trackers[accountId];
 		} else {
-			handleResultFromExtension(context.call("getTracker", accountId));
+			handleResultFromExtension(context.call("createTracker", accountId));
 			tracker = new Tracker(accountId, context);
 			trackers[accountId] = tracker;
 		}
