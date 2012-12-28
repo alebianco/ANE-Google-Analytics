@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<platform xmlns="http://ns.adobe.com/air/extension/3.1">
+<platform xmlns="http://ns.adobe.com/air/extension/3.5">
 	<description>iOS native library to allow AIR application to leverage the Google Analytics tracking library</description>
 	<copyright>Copyright (c) 2012 Alessandro Bianco</copyright>
 	<sdkVersion>5.1</sdkVersion>
 	<linkerOptions>
-		<option>-ios_version_min 4.0</option>
-		<option>-lsqlite3</option>
+		<option>-ios_version_min 4.3</option>
+		<option>-framework CoreData</option>
+		<option>-framework SystemConfiguration</option>
 	</linkerOptions>
 </platform>

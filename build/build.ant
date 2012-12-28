@@ -212,7 +212,7 @@
             <arg line="-swc bin/${LIB_NAME}.swc"/>
             <arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
             <arg line="-platform iPhone-ARM -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_IOS_DIR} ."/>
-            <arg line="-platform iPhone-x86 -C ${BIN_SIM_DIR} ."/>
+            <arg line="-platform iPhone-x86 -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_SIM_DIR} ."/>
             <arg line="-platform default -C ${BIN_DEF_DIR} ."/>
         </java>
     </target>
