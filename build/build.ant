@@ -36,6 +36,19 @@
         </if>
     </target>
 
+    <target name="docs" description="Generate ASDocs" depends="-resolveplatform">
+        <delete dir="${DOC_DIR}"/>
+        <exec executable="${ASDOC}" failonerror="true">
+            <arg line="-source-path ${SRC_DEF_DIR}/src"/>
+            <arg line="-doc-sources ${SRC_DEF_DIR}/src"/>
+            <arg line="-library-path ${SRC_DEF_DIR}/libs"/>
+            <arg line="-window-title ${LIB_NAME}"/>
+            <arg line="-main-title ${LIB_NAME}"/>
+            <arg line="-footer 'Copyright © 2013 Alessandro Bianco'"/>
+            <arg line="-output ${DOC_DIR}"/>
+        </exec>
+    </target>
+
     <target name="-resolveplatform" depends="-if_windows, -if_mac"/>
     <target name="-checkos">
         <condition property="isWindows">
@@ -59,11 +72,11 @@
 
     <target name="build-mac" depends="ext_init,ext_and,ext_ios-device,ext_ios-simulator,
                                   ext_as3-default,ext_as3-android,ext_as3-iosdevice,ext_as3-iossimulator,
-                                  ext_package-mac,ext_clean,ext_deploy"/>
+                                  ext_package-mac,ext_doc,ext_clean,ext_deploy"/>
 
     <target name="build-win" depends="ext_init,ext_and,
 	                              ext_as3-default,ext_as3-android,
-	                              ext_package-win,ext_clean,ext_deploy"/>
+	                              ext_package-win,ext_doc,ext_clean,ext_deploy"/>
 
     <target name="run-win" depends="-resolveplatform,demo_compile,demo_package-apk,
                                 demo_uninstall-apk,demo_install-apk,demo_launch-apk"/>
@@ -76,6 +89,7 @@
         <mkdir dir="${BIN_AND_DIR}"/>
         <mkdir dir="${BIN_IOS_DIR}"/>
         <mkdir dir="${BIN_SIM_DIR}"/>
+        <mkdir dir="${BIN_DOC_DIR}"/>
     </target>
 
     <target name="ext_and">
@@ -165,7 +179,6 @@
         </antcall>
     </target>
 
-
     <target name="ext_as3">
         <!-- Build Actionscript extension bridge -->
         <mkdir dir="${TMP_DIR}"/>
@@ -179,8 +192,6 @@
             <arg line="-source-path ${source}/src"/>
             <arg line="-output ${TMP_DIR}/library.swc"/>
             <arg line="-swf-version 14"/>
-            <arg line="-optimize=true"/>
-            <arg line="-debug=false"/>
             <arg line="-external-library-path+='${FLEX_HOME}/frameworks/libs/air/airglobal.swc'"/>
             <arg line="-library-path+='${source}/libs/'"/>
             <arg line="-include-classes ${classes}"/>
@@ -230,6 +241,34 @@
             <arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
             <arg line="-platform default -C ${BIN_DEF_DIR} ."/>
         </java>
+    </target>
+
+    <target name="ext_doc">
+        <!-- add asdocs to packaged extension -->
+        <exec executable="${ASDOC}" failonerror="false">
+            <arg line="-keep-xml=true -skip-xsl=true"/>
+            <arg line="-source-path ${SRC_DEF_DIR}/src"/>
+            <arg line="-doc-sources ${SRC_DEF_DIR}/src"/>
+            <arg line="-library-path ${SRC_DEF_DIR}/libs"/>
+            <arg line="-window-title ${LIB_NAME}"/>
+            <arg line="-main-title ${LIB_NAME}"/>
+            <arg line="-footer 'Copyright © 2013 Alessandro Bianco'"/>
+            <arg line="-output ${BIN_DOC_DIR}"/>
+        </exec>
+        <zip destfile="${BIN_DIR}/${LIB_NAME}.ane" update="true">
+            <zipfileset dir="${BIN_DOC_DIR}/tempdita" prefix="docs">
+                <include name="*.*"/>
+                <exclude name="ASDoc_Config.xml"/>
+                <exclude name="overviews.xml"/>
+            </zipfileset>
+        </zip>
+        <zip destfile="${BIN_DIR}/${LIB_NAME}.swc" update="true">
+            <zipfileset dir="${BIN_DOC_DIR}/tempdita" prefix="docs">
+                <include name="*.*"/>
+                <exclude name="ASDoc_Config.xml"/>
+                <exclude name="overviews.xml"/>
+            </zipfileset>
+        </zip>
     </target>
 
     <target name="ext_clean">
