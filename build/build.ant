@@ -70,13 +70,13 @@
         <property file="build/build.mac.properties"/>
     </target>
 
-    <target name="build-mac" depends="ext_init,ext_and,ext_ios-device,ext_ios-simulator,
+    <target name="build-mac" depends="ext_init,ext_doc,ext_and,ext_ios-device,ext_ios-simulator,
                                   ext_as3-default,ext_as3-android,ext_as3-iosdevice,ext_as3-iossimulator,
-                                  ext_package-mac,ext_doc,ext_clean,ext_deploy"/>
+                                  ext_package-mac,ext_clean,ext_deploy"/>
 
-    <target name="build-win" depends="ext_init,ext_and,
+    <target name="build-win" depends="ext_init,ext_doc,ext_and,
 	                              ext_as3-default,ext_as3-android,
-	                              ext_package-win,ext_doc,ext_clean,ext_deploy"/>
+	                              ext_package-win,ext_clean,ext_deploy"/>
 
     <target name="run-win" depends="-resolveplatform,demo_compile,demo_package-apk,
                                 demo_uninstall-apk,demo_install-apk,demo_launch-apk"/>
@@ -255,6 +255,7 @@
             <arg line="-footer 'Copyright © 2013 Alessandro Bianco'"/>
             <arg line="-output ${BIN_DOC_DIR}"/>
         </exec>
+        <!--
         <zip destfile="${BIN_DIR}/${LIB_NAME}.ane" update="true">
             <zipfileset dir="${BIN_DOC_DIR}/tempdita" prefix="docs">
                 <include name="*.*"/>
@@ -269,6 +270,7 @@
                 <exclude name="overviews.xml"/>
             </zipfileset>
         </zip>
+        -->
     </target>
 
     <target name="ext_clean">
