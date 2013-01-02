@@ -10,7 +10,8 @@ The v0.2 version of the extension supports the new "Application" profile for Goo
 
 The release is almost complete. Both native implementations for Android and iOS are complete and i don't expect to change the Flash API anymore. The extension will be moved to the _master_ branch for a proper release once I've completed a couple of additional tasks and performed some more tests.
 
-I still need to write a proper documentation for the API and build a new demo project to showcase the functionalities. Both tasks will be done next couple of weeks.
+The documentation is ready, but apparently there's no way to add it to the .ane file without breaking iOS apps (Android apps seems to compile and run just fine).
+ I'm looking into the issue, hoping in some help directly from Adobe.
 
 The extension so far has been tested on Android (2.3 and 4.0) and on the iPhone simulator. I think I've covered all the major bugs, but some error could still come up. It's your turn now to test it on as many devices as possible and let me know if there's still any problem to fix.
 
@@ -26,7 +27,6 @@ The _bin_ folder contains the compiled extension and the default swc, which can 
 * totally rewritten native code for Android and iOS
 * upgraded to the new Google tracker (v2.0 beta 3) to support the new "Application" analytics' profile
 * full support to the new Google tracker, including e-commerce, multiple trackers support, custom metrics and dimensions
-* brand new demo project built specifically for mobile devices (in progress)
 
 **v0.1.23**
 
