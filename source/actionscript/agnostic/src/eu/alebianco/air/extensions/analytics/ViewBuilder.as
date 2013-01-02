@@ -4,7 +4,7 @@
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
  * Twitter: @alebianco
- * Created: 22/12/12 1.05
+ * Created: 22/12/12 01.05
  *
  * Copyright © 2013 Alessandro Bianco
  */
@@ -12,7 +12,6 @@ package eu.alebianco.air.extensions.analytics {
 
 import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.IViewBuilder;
-import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 internal class ViewBuilder implements IViewBuilder {
 

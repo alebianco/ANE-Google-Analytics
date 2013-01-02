@@ -1,3 +1,13 @@
+/**
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 21/12/12 14.08
+ *
+ * Copyright © 2013 Alessandro Bianco
+ */
 package eu.alebianco.air.extensions.utils;
 
 import android.util.Log;

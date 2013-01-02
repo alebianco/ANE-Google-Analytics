@@ -30,8 +30,8 @@ public interface IAnalytics extends IDisposable {
 
 	function dispatch():void;
 
-	function getTracker(accountId:String):ITracker;
-	function hasTracker(accountId:String):Boolean;
-	function closeTracker(accountId:String):void;
+	function getTracker(trackingId:String):ITracker;
+	function hasTracker(trackingId:String):Boolean;
+	function closeTracker(trackingId:String):void;
 }
 }

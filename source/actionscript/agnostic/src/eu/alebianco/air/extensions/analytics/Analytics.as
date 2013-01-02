@@ -107,37 +107,37 @@ public final class Analytics implements IAnalytics {
 		handleResultFromExtension(context.call("setDispatchInterval", _dispatchManually ? -1 : _dispatchInterval));
 	}
 
-	public function hasTracker(accountId:String):Boolean {
-		if (!ID_VALIDATOR.test(accountId))
-			throw new ArgumentError("The provided account ID (" + accountId + ") is invalid, it should follow the format UA-00000-0.");
+	public function hasTracker(trackingId:String):Boolean {
+		if (!ID_VALIDATOR.test(trackingId))
+			throw new ArgumentError("The provided tracking ID (" + trackingId + ") is invalid, it should follow the format UA-00000-0.");
 
-		return accountId in trackers;
+		return trackingId in trackers;
 	}
 
-	public function getTracker(accountId:String):ITracker {
-		if (!ID_VALIDATOR.test(accountId))
-			throw new ArgumentError("The provided account ID (" + accountId + ") is invalid, it should follow the format UA-00000-0.");
+	public function getTracker(trackingId:String):ITracker {
+		if (!ID_VALIDATOR.test(trackingId))
+			throw new ArgumentError("The provided tracking ID (" + trackingId + ") is invalid, it should follow the format UA-00000-0.");
 
 		var tracker:ITracker;
-		if (accountId in trackers) {
-			tracker = trackers[accountId];
+		if (trackingId in trackers) {
+			tracker = trackers[trackingId];
 		} else {
-			handleResultFromExtension(context.call("createTracker", accountId));
-			tracker = new Tracker(accountId, context);
-			trackers[accountId] = tracker;
+			handleResultFromExtension(context.call("createTracker", trackingId));
+			tracker = new Tracker(trackingId, context);
+			trackers[trackingId] = tracker;
 		}
 		return tracker;
 	}
 
-	public function closeTracker(accountId:String):void {
-		if (!ID_VALIDATOR.test(accountId))
-			throw new ArgumentError("The provided account ID (" + accountId + ") is invalid, it should follow the format UA-00000-0.");
+	public function closeTracker(trackingId:String):void {
+		if (!ID_VALIDATOR.test(trackingId))
+			throw new ArgumentError("The provided tracking ID (" + trackingId + ") is invalid, it should follow the format UA-00000-0.");
 
-		if (accountId in trackers) {
-			var tracker:ITracker = trackers[accountId];
+		if (trackingId in trackers) {
+			var tracker:ITracker = trackers[trackingId];
 			tracker.dispose();
-			trackers[accountId] = null;
-			delete trackers[accountId];
+			trackers[trackingId] = null;
+			delete trackers[trackingId];
 		}
 	}
 

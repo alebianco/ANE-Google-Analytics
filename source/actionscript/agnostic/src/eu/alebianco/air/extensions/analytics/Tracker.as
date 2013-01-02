@@ -18,7 +18,6 @@ import eu.alebianco.air.extensions.analytics.api.ITimingBuilder;
 import eu.alebianco.air.extensions.analytics.api.ITracker;
 import eu.alebianco.air.extensions.analytics.api.ITransactionBuilder;
 import eu.alebianco.air.extensions.analytics.api.IViewBuilder;
-import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 import flash.desktop.NativeApplication;
 import flash.events.TimerEvent;
@@ -111,19 +110,19 @@ internal class Tracker implements ITracker {
 
 		handleResultFromExtension(context.call("setCustomDimension", id, index, value));
 	}
-    public function clearCustomDimension(index:uint):void {
-        if (index == 0)
-            throw new ArgumentError("Metrics and Dimensions indexes are 1-based.");
+	public function clearCustomDimension(index:uint):void {
+		if (index == 0)
+			throw new ArgumentError("Metrics and Dimensions indexes are 1-based.");
 
-        handleResultFromExtension(context.call("clearCustomDimension", id, index));
-    }
-    public function clearCustomMetric(index:uint):void {
-        if (index == 0)
-            throw new ArgumentError("Metrics and Dimensions indexes are 1-based.");
+		handleResultFromExtension(context.call("clearCustomDimension", id, index));
+	}
+	public function clearCustomMetric(index:uint):void {
+		if (index == 0)
+			throw new ArgumentError("Metrics and Dimensions indexes are 1-based.");
 
-        handleResultFromExtension(context.call("clearCustomDimension", id, index));
-    }
-    public function send(type:HitType, data:Hit):void {
+		handleResultFromExtension(context.call("clearCustomDimension", id, index));
+	}
+	public function send(type:HitType, data:Hit):void {
 		_lockAppData = true;
 		handleResultFromExtension(context.call("trackData", id, type.name, data));
 	}

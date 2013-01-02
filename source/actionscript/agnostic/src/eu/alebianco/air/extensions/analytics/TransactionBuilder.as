@@ -1,5 +1,5 @@
 /**
- * Project: ${PROJECT_NAME}
+ * Project: ANE-Google-Analytics
  *
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
@@ -13,7 +13,6 @@ package eu.alebianco.air.extensions.analytics {
 import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.IProductBuilder;
 import eu.alebianco.air.extensions.analytics.api.ITransactionBuilder;
-import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 internal class TransactionBuilder implements ITransactionBuilder {
 

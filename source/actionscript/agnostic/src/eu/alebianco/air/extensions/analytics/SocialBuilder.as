@@ -12,7 +12,6 @@ package eu.alebianco.air.extensions.analytics {
 
 import eu.alebianco.air.extensions.analytics.api.Hit;
 import eu.alebianco.air.extensions.analytics.api.ISocialBuilder;
-import eu.alebianco.air.extensions.analytics.enums.HitType;
 
 internal class SocialBuilder implements ISocialBuilder {
 
