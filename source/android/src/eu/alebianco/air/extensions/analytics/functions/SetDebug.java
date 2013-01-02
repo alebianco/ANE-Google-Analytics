@@ -34,7 +34,7 @@ public class SetDebug implements FREFunction {
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'value' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }
 
-        GoogleAnalytics.getInstance(context.getActivity()).setDebug(false);
+        GoogleAnalytics.getInstance(context.getActivity()).setDebug(value);
 
         return result;
     }
