@@ -27,7 +27,7 @@ internal class ExceptionBuilder implements IExceptionBuilder {
 	}
 
 	public function withDescription(description:String):IExceptionBuilder {
-		this.description = description;
+		this.description = description.substr(0, 100);
 		return this;
 	}
 	public function create():Hit {

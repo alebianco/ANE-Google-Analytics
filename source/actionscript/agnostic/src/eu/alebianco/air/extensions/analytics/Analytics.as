@@ -34,7 +34,7 @@ public final class Analytics implements IAnalytics {
 	private var context:ExtensionContext;
 	private var trackers:Dictionary;
 
-	private var _dispatchInterval:uint = 20;
+	private var _dispatchInterval:uint = 120;
 	private var _dispatchManually:Boolean = false;
 
 	public static function getInstance():Analytics {

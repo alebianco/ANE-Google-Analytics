@@ -10,6 +10,9 @@
  */
 package eu.alebianco.air.extensions.analytics.api {
 
+/**
+ * Common interface to identify products.
+ */
 public interface IProduct {
 
 }

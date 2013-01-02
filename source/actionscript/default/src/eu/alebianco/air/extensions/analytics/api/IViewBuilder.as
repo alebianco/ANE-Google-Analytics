@@ -10,6 +10,9 @@
  */
 package eu.alebianco.air.extensions.analytics.api {
 
+/**
+ * Concrete builder to create and track screen views.
+ */
 public interface IViewBuilder extends IHitBuilder {
 
 }
