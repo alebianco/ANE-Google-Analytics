@@ -24,7 +24,7 @@ public class GetDebug implements FREFunction {
     public FREObject call(FREContext context, FREObject[] args) {
         FREObject result = null;
 
-        Boolean flag = GoogleAnalytics.getInstance(context.getActivity()).debugEnabled();
+        Boolean flag = GoogleAnalytics.getInstance(context.getActivity()).isDebugEnabled();
 
         try {
             result = FREObject.newObject(flag);

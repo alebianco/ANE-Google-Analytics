@@ -381,7 +381,7 @@ FREObject trackView(FREContext context, id tracker, FREObject *data) {
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read a property on method '%s'.", __FUNCTION__);
     }
 
-    [tracker trackView:screen];
+    [tracker sendView:screen];
     return NULL;
 }
 FREObject trackEvent(FREContext context, id tracker, FREObject *data) {

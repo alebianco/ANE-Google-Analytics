@@ -5,6 +5,7 @@
  @copyright Copyright 2011 Google Inc. All rights reserved.
  */
 
+#import <Foundation/Foundation.h>
 #import "GAITracker.h"
 #import "GAITrackedViewController.h"
 

@@ -11,7 +11,10 @@
 package eu.alebianco.air.extensions.analytics.functions;
 
 import com.adobe.fre.*;
-import com.google.analytics.tracking.android.*;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.ModelFields;
+import com.google.analytics.tracking.android.Tracker;
+import com.google.analytics.tracking.android.Transaction;
 import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
 import eu.alebianco.air.extensions.utils.LogLevel;
@@ -44,7 +47,7 @@ public class TrackData implements FREFunction {
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'type' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }
 
-        GoogleTracker tracker = (GoogleTracker) GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
+        Tracker tracker = (Tracker) GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
 
         FREObject data = args[2];
 
@@ -68,7 +71,7 @@ public class TrackData implements FREFunction {
         return result;
     }
 
-    private FREObject trackView(FREContext context, GoogleTracker tracker, FREObject data) {
+    private FREObject trackView(FREContext context, Tracker tracker, FREObject data) {
 
         String screen;
         try {
@@ -80,11 +83,11 @@ public class TrackData implements FREFunction {
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read a property on method '%s:%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
         }
 
-        tracker.trackView(screen);
+        tracker.sendView(screen);
         return null;
     }
 
-    private FREObject trackEvent(FREContext context, GoogleTracker tracker, FREObject data) {
+    private FREObject trackEvent(FREContext context, Tracker tracker, FREObject data) {
 
         String category;
         String action;
@@ -125,7 +128,7 @@ public class TrackData implements FREFunction {
         return null;
     }
 
-    private FREObject trackException(FREContext context, GoogleTracker tracker, FREObject data) {
+    private FREObject trackException(FREContext context, Tracker tracker, FREObject data) {
 
         Boolean fatal;
         String description;
@@ -154,7 +157,7 @@ public class TrackData implements FREFunction {
         return null;
     }
 
-    private FREObject trackTiming(FREContext context, GoogleTracker tracker, FREObject data) {
+    private FREObject trackTiming(FREContext context, Tracker tracker, FREObject data) {
 
         String category;
         Long interval;
@@ -195,7 +198,7 @@ public class TrackData implements FREFunction {
         return null;
     }
 
-    private FREObject trackSocial(FREContext context, GoogleTracker tracker, FREObject data) {
+    private FREObject trackSocial(FREContext context, Tracker tracker, FREObject data) {
 
         String network;
         String action;
@@ -226,7 +229,7 @@ public class TrackData implements FREFunction {
         return null;
     }
 
-    private FREObject trackTransaction(FREContext context, GoogleTracker tracker, FREObject data) {
+    private FREObject trackTransaction(FREContext context, Tracker tracker, FREObject data) {
 
         String id;
         Double cost;
@@ -289,7 +292,7 @@ public class TrackData implements FREFunction {
 
         try {
             for (long i = 0; i < numProducts; i++) {
-                Item item = getProductAt(i, products);
+                Transaction.Item item = getProductAt(i, products);
                 transaction.addItem(item);
             }
         } catch (Exception e) {
@@ -304,7 +307,7 @@ public class TrackData implements FREFunction {
         return null;
     }
 
-    private Item getProductAt(long i, FREArray products) throws FREWrongThreadException, FREInvalidObjectException, FRETypeMismatchException, FREASErrorException, FRENoSuchNameException {
+    private Transaction.Item getProductAt(long i, FREArray products) throws FREWrongThreadException, FREInvalidObjectException, FRETypeMismatchException, FREASErrorException, FRENoSuchNameException {
 
         FREObject product = products.getObjectAt(i);
 
@@ -320,7 +323,7 @@ public class TrackData implements FREFunction {
             category = null;
         }
 
-        Item.Builder builder = new Item.Builder(sku, name, (long) (price * 1000000), quantity);
+        Transaction.Item.Builder builder = new Transaction.Item.Builder(sku, name, (long) (price * 1000000), quantity);
         if (category != null)
             builder.setProductCategory(category);
 
