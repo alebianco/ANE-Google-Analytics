@@ -38,7 +38,7 @@ public class GetSecure implements FREFunction {
         Tracker tracker = GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
 
         try {
-            result = FREObject.newObject(tracker.getUseSecure());
+            result = FREObject.newObject(tracker.isUseSecure());
         } catch(Exception e) {
             FREUtils.logEvent(context, LogLevel.ERROR,
                     "Unable to create the return value. [Exception:(type:%s, method:%s)].",

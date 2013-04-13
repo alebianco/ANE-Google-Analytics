@@ -13,7 +13,6 @@ package eu.alebianco.air.extensions.analytics.functions;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
-import com.google.analytics.tracking.android.Analytics;
 import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
@@ -29,7 +28,7 @@ public class GetOptOut implements FREFunction {
     public FREObject call(FREContext context, FREObject[] args) {
         FREObject result = null;
 
-        GoogleAnalytics.getInstance(context.getActivity()).requestAppOptOut(new Analytics.AppOptOutCallback() {
+        GoogleAnalytics.getInstance(context.getActivity()).requestAppOptOut(new GoogleAnalytics.AppOptOutCallback() {
             @Override
             public void reportAppOptOut(boolean value) {
                 synchronized (mutex) {
@@ -41,7 +40,7 @@ public class GetOptOut implements FREFunction {
         });
 
         synchronized (mutex) {
-             while (!mutex.containsKey("done") || mutex.get("done") != true) {
+             while (!mutex.containsKey("done") || !mutex.get("done")) {
                 try {
                     mutex.wait();
                 } catch (InterruptedException e) {

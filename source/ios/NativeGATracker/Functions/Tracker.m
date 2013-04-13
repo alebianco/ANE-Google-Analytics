@@ -416,7 +416,7 @@ FREObject trackEvent(FREContext context, id tracker, FREObject *data) {
         value = nil;
     }
 
-    [tracker trackEventWithCategory:category withAction:action withLabel:label withValue:value];
+    [tracker sendEventWithCategory:category withAction:action withLabel:label withValue:value];
 
     return NULL;
 }
@@ -441,7 +441,7 @@ FREObject trackException(FREContext context, id tracker, FREObject *data) {
         description = @"";
     }
 
-    [tracker trackException:fatal withDescription:description];
+    [tracker sendException:fatal withDescription:description];
 
     return NULL;
 }
@@ -477,7 +477,7 @@ FREObject trackTiming(FREContext context, id tracker, FREObject *data) {
         label = nil;
     }
 
-    [tracker trackTimingWithCategory:category withValue:interval withName:name withLabel:label];
+    [tracker sendTimingWithCategory:category withValue:interval withName:name withLabel:label];
 
     return NULL;
 }
@@ -504,7 +504,7 @@ FREObject trackSocial(FREContext context, id tracker, FREObject *data) {
         content = nil;
     }
 
-    [tracker trackSocial:network withAction:action withTarget:content];
+    [tracker sendSocial:network withAction:action withTarget:content];
 
     return NULL;
 }
@@ -572,7 +572,7 @@ FREObject trackTransaction(FREContext context, id tracker, FREObject *data) {
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read a property on method '%s'.", __FUNCTION__);
     }
 
-    [tracker trackTransaction:transaction];
+    [tracker sendTransaction:transaction];
 
     return NULL;
 }

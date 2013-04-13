@@ -38,7 +38,7 @@ public class GetAnonymous implements FREFunction {
         Tracker tracker = GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
 
         try {
-            result = FREObject.newObject(tracker.anonymizeIpEnabled());
+            result = FREObject.newObject(tracker.isAnonymizeIpEnabled());
         } catch(Exception e) {
             FREUtils.logEvent(context, LogLevel.ERROR,
                     "Unable to create the return value. [Exception:(type:%s, method:%s)].",
