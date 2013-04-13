@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="Air Native Extension Build Scripts" default="compile" basedir="../">
+<project name="ANE-Google-Analytics" default="compile" basedir="../">
 
     <!-- Utilities -->
 
@@ -71,8 +71,9 @@
         <echo>[asdoc] Generating ASDOC documentation</echo>
         <java jar="${FLEX_HOME}/lib/asdoc.jar" dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
             <arg line="-external-library-path+=${lib.dir}"/>
-            <arg line="-doc-sources+=${src.as3.dir}"/>
-            <arg line="-source-path+=${src.as3.dir}"/>
+            <arg line="-doc-sources+=${src.def.dir}/src"/>
+            <arg line="-source-path+=${src.def.dir}/src"/>
+            <arg line="-library-path+=libs\air"/>
             <arg line="-output ${doc.dir}"/>
             <arg value="-keep-xml=true"/>
             <arg value="-lenient=true"/>
@@ -104,6 +105,7 @@
         </zip>
         <copy file="LICENSE.md" tofile="${dist.dir}/license.txt" overwrite="true"/>
         <copy file="CHANGELOG.md" tofile="${dist.dir}/changelog.txt" overwrite="true"/>
+        <copy file="README.md" tofile="${dist.dir}/readme.txt" overwrite="true"/>
         <zip destfile="${dist.dir}/${project.name.versioned}_${touch.time}.zip">
             <fileset dir="${dist.dir}"/>
         </zip>
@@ -111,7 +113,9 @@
         <delete file="${dist.dir}/${project.name.versioned}.ane"/>
         <delete file="${dist.dir}/license.txt"/>
         <delete file="${dist.dir}/changelog.txt"/>
+        <delete file="${dist.dir}/readme.txt"/>
         <delete dir="${dist.dir}/docs"/>
+        <delete dir="${lib.dir}"/>
         <echo>[package] Release packaged successfully</echo>
     </target>
 
@@ -228,7 +232,7 @@
             <arg line="-output ${tmp.dir}/library.swc"/>
             <arg line="-swf-version 14"/>
             <arg line="-include-sources+=${source}/src"/>
-            <arg line="-library-path+='${bin.dir}/libs/'"/>
+            <arg line="-library-path+='${lib.dir}'"/>
             <arg line="-source-path+='./','${source}/src'"/>
             <arg line="-load-config=air-config.xml" />
             <arg line="-static-link-runtime-shared-libraries=true"/>
@@ -284,7 +288,6 @@
 
     <target name="ext_clean">
         <!-- Remove temporary files and folders needed to build the extension -->
-        <delete dir="${lib.dir}"/>
         <delete dir="${bin.dir}/native"/>
         <delete file="${crt.file}"/>
     </target>
