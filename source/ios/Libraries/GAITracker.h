@@ -5,6 +5,7 @@
  @copyright Copyright 2011 Google Inc. All rights reserved.
 */
 
+#import <Foundation/Foundation.h>
 #import "GAITransaction.h"
 
 /*!
@@ -70,7 +71,7 @@
  there may be additional overhead when sending data using HTTPS in terms of
  processing costs and/or battery consumption.
 
- By default, this flag is false.
+ By default, this flag is true.
  */
 @property(nonatomic, assign) BOOL useHttps;
 
@@ -169,6 +170,11 @@
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed or appScreen is not set).
  */
+- (BOOL)sendView;
+
+/*!
+ This method is deprecated.  See sendView.
+ */
 - (BOOL)trackView;
 
 /*!
@@ -182,6 +188,11 @@
 
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed).
+ */
+- (BOOL)sendView:(NSString *)screen;
+
+/*!
+ This method is deprecated.  See sendView.
  */
 - (BOOL)trackView:(NSString *)screen;
 
@@ -202,6 +213,14 @@
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed).
  */
+- (BOOL)sendEventWithCategory:(NSString *)category
+                   withAction:(NSString *)action
+                    withLabel:(NSString *)label
+                    withValue:(NSNumber *)value;
+
+/*!
+ This method is deprecated. See sendEventWithCategory.
+ */
 - (BOOL)trackEventWithCategory:(NSString *)category
                     withAction:(NSString *)action
                      withLabel:(NSString *)label
@@ -216,6 +235,11 @@
 
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed).
+ */
+- (BOOL)sendTransaction:(GAITransaction *)transaction;
+
+/*!
+ This method is deprecated. see sendTransaction.
  */
 - (BOOL)trackTransaction:(GAITransaction *)transaction;
 
@@ -235,6 +259,12 @@
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed).
  */
+- (BOOL)sendException:(BOOL)isFatal
+      withDescription:(NSString *)format, ...;
+
+/*!
+ This method is deprecated. See sendException.
+ */
 - (BOOL)trackException:(BOOL)isFatal
        withDescription:(NSString *)format, ...;
 
@@ -250,6 +280,12 @@
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed).
  */
+- (BOOL)sendException:(BOOL)isFatal
+      withNSException:(NSException *)exception;
+
+/*!
+ This method is deprecated. See sendException.
+ */
 - (BOOL)trackException:(BOOL)isFatal
        withNSException:(NSException *)exception;
 
@@ -264,6 +300,12 @@
 
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed).
+ */
+- (BOOL)sendException:(BOOL)isFatal
+          withNSError:(NSError *)error;
+
+/*!
+ This method is deprecated. See sendException.
  */
 - (BOOL)trackException:(BOOL)isFatal
            withNSError:(NSError *)error;
@@ -284,6 +326,14 @@
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed).
  */
+- (BOOL)sendTimingWithCategory:(NSString *)category
+                     withValue:(NSTimeInterval)time
+                      withName:(NSString *)name
+                     withLabel:(NSString *)label;
+
+/*!
+ This method is deprecated. See sendTimingWithCategory.
+ */
 - (BOOL)trackTimingWithCategory:(NSString *)category
                       withValue:(NSTimeInterval)time
                        withName:(NSString *)name
@@ -302,6 +352,13 @@
 
  @return `YES` if the tracking information was queued for dispatch, or `NO` if
  there was an error (e.g. the tracker was closed).
+ */
+- (BOOL)sendSocial:(NSString *)network
+        withAction:(NSString *)action
+        withTarget:(NSString *)target;
+
+/*!
+ This method is deprecated. See sendSocial.
  */
 - (BOOL)trackSocial:(NSString *)network
          withAction:(NSString *)action

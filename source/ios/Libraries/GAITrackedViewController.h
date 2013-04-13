@@ -5,6 +5,7 @@
  @copyright Copyright 2012 Google Inc. All rights reserved.
  */
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @protocol GAITracker;
