@@ -1,55 +1,8 @@
 <?xml version="1.0" ?>
-<project name="Air Native Extension Build Scripts" default="build" basedir="../">
+<project name="Air Native Extension Build Scripts" default="compile" basedir="../">
 
-    <taskdef resource="net/sf/antcontrib/antcontrib.properties">
-        <classpath>
-            <pathelement location="./build/ant/lib/ant-contrib-1.0b3.jar"/>
-        </classpath>
-    </taskdef>
+    <!-- Utilities -->
 
-    <target name="build" depends="-resolveplatform" description="Build the extension">
-        <if>
-            <equals arg1="${platform}" arg2="win"/>
-            <then>
-                <antcall target="build-win"/>
-            </then>
-        </if>
-        <if>
-            <equals arg1="${platform}" arg2="mac"/>
-            <then>
-                <antcall target="build-mac"/>
-            </then>
-        </if>
-    </target>
-    <target name="run" depends="-resolveplatform" description="Run demo project on Android device or the iOS simulator">
-        <if>
-            <equals arg1="${platform}" arg2="win"/>
-            <then>
-                <antcall target="run-win"/>
-            </then>
-        </if>
-        <if>
-            <equals arg1="${platform}" arg2="mac"/>
-            <then>
-                <antcall target="run-mac"/>
-            </then>
-        </if>
-    </target>
-
-    <target name="docs" description="Generate ASDocs" depends="-resolveplatform">
-        <delete dir="${DOC_DIR}"/>
-        <exec executable="${ASDOC}" failonerror="true">
-            <arg line="-source-path ${SRC_DEF_DIR}/src"/>
-            <arg line="-doc-sources ${SRC_DEF_DIR}/src"/>
-            <arg line="-library-path ${SRC_DEF_DIR}/libs"/>
-            <arg line="-window-title ${LIB_NAME}"/>
-            <arg line="-main-title ${LIB_NAME}"/>
-            <arg line="-footer 'Copyright © 2013 Alessandro Bianco'"/>
-            <arg line="-output ${DOC_DIR}"/>
-        </exec>
-    </target>
-
-    <target name="-resolveplatform" depends="-if_windows, -if_mac"/>
     <target name="-checkos">
         <condition property="isWindows">
             <os family="windows"/>
@@ -63,323 +16,277 @@
     </target>
     <target name="-if_windows" depends="-checkos" if="isWindows">
         <property name="platform" value="win"/>
-        <property file="build/build.win.properties"/>
+        <property file="build/build.properties"/>
+        <property file="build/user.properties"/>
     </target>
     <target name="-if_mac" depends="-checkos" if="isMac">
         <property name="platform" value="mac"/>
-        <property file="build/build.mac.properties"/>
+        <property file="build/build.properties"/>
+        <property file="build/user.properties"/>
     </target>
 
-    <target name="build-mac" depends="ext_init,ext_and,ext_ios-device,ext_ios-simulator,
-                                  ext_as3-default,ext_as3-android,ext_as3-iosdevice,ext_as3-iossimulator,
-                                  ext_package-mac,ext_doc,ext_clean,ext_deploy"/>
+    <!-- Main targets -->
 
-    <target name="build-win" depends="ext_init,ext_and,
-	                              ext_as3-default,ext_as3-android,
-	                              ext_package-win,ext_doc,ext_clean,ext_deploy"/>
-
-    <target name="run-win" depends="-resolveplatform,demo_compile,demo_package-apk,
-                                demo_uninstall-apk,demo_install-apk,demo_launch-apk"/>
-    <target name="run-mac" depends="-resolveplatform,demo_compile,demo_package-ipa,
-                                demo_uninstall-ipa,demo_install-ipa,demo_launch-ipa"/>
-
-    <target name="ext_init">
-        <!-- create necessary folders to compile the extension -->
-        <mkdir dir="${BIN_DEF_DIR}"/>
-        <mkdir dir="${BIN_AND_DIR}"/>
-        <mkdir dir="${BIN_IOS_DIR}"/>
-        <mkdir dir="${BIN_SIM_DIR}"/>
-        <mkdir dir="${BIN_DOC_DIR}"/>
+    <target name="clean" description="Remove all directories created during the build process">
+        <echo>[clean] Removing Build directories</echo>
+        <delete includeemptydirs="true" failonerror="false">
+            <fileset dir="${dist.dir}" defaultexcludes="false">
+                <include name="**/*"/>
+            </fileset>
+        </delete>
+        <echo>[clean] Build directories removed</echo>
     </target>
+
+    <target name="init" depends="-if_windows, -if_mac, clean" description="Create directories needed for the build process">
+        <echo>[init] Creating Build directories</echo>
+        <mkdir dir="${bin.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+        <echo>[init] Build directories created</echo>
+        <echo>[init] Build external libraries</echo>
+        <ant antfile="build.xml" target="compile" dir="${ext.dir}/actionscript/abcore/build" inheritall="false" usenativebasedir="true"/>
+        <copy todir="${lib.dir}" overwrite="true">
+            <fileset dir="${ext.dir}/actionscript/abcore/bin">
+                <include name="*.swc"/>
+            </fileset>
+        </copy>
+        <echo>[init] External libraries created</echo>
+        <echo>[init] Generate temporary certificate</echo>
+        <java jar="${FLEX_HOME}/lib/adt.jar" fork="true" failonerror="true">
+            <arg line="-certificate"/>
+            <arg line="-cn alebianco"/>
+            <arg line="1024-RSA"/>
+            <arg line="${crt.file}"/>
+            <arg line="${crt.password}"/>
+        </java>
+        <echo>[init] Temporary certificate created</echo>
+    </target>
+
+    <target name="compile" depends="init,
+                                    ext_and,ext_ios-device,ext_ios-simulator,
+                                    ext_as3-default,ext_as3-android,ext_as3-iosdevice,ext_as3-iossimulator,
+                                    ext_doc,ext_package,ext_clean"
+            description="Build the extension"/>
+
+    <target name="asdoc" depends="compile" description="Build Documentation">
+        <echo>[asdoc] Generating ASDOC documentation</echo>
+        <java jar="${FLEX_HOME}/lib/asdoc.jar" dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
+            <arg line="-external-library-path+=${lib.dir}"/>
+            <arg line="-doc-sources+=${src.as3.dir}"/>
+            <arg line="-source-path+=${src.as3.dir}"/>
+            <arg line="-output ${doc.dir}"/>
+            <arg value="-keep-xml=true"/>
+            <arg value="-lenient=true"/>
+            <arg line="-window-title '${project.name} ${version.num}'"/>
+            <arg line="-main-title '${project.name} ${version.num}'"/>
+            <arg line="-footer '${project.name} - https://github.com/alebianco/ANE-Google-Analytics'"/>
+        </java>
+        <echo>[asdoc] ASDOC documentation generated successfully</echo>
+    </target>
+
+    <target name="package" depends="asdoc" description="Package the Build">
+        <tstamp>
+            <format property="touch.time" pattern="MMddyyyyhhmm" unit="hour"/>
+        </tstamp>
+
+        <echo>[package] Packaging Release</echo>
+        <mkdir dir="${dist.dir}"/>
+        <copy file="${bin.dir}/${project.name.versioned}.swc" todir="${dist.dir}"/>
+        <copy file="${bin.dir}/${project.name.versioned}.ane" todir="${dist.dir}"/>
+        <copy todir="${dist.dir}/docs">
+            <fileset dir="${doc.dir}"/>
+        </copy>
+        <delete dir="${dist.dir}/docs/tempdita"/>
+        <zip destfile="${dist.dir}/${project.name.versioned}.swc" update="true">
+            <zipfileset dir="${doc.dir}/tempdita" prefix="docs">
+                <include name="*packages.dita*"/>
+                <include name="*eu.alebianco.*"/>
+            </zipfileset>
+        </zip>
+        <copy file="LICENSE.md" tofile="${dist.dir}/license.txt" overwrite="true"/>
+        <copy file="CHANGELOG.md" tofile="${dist.dir}/changelog.txt" overwrite="true"/>
+        <zip destfile="${dist.dir}/${project.name.versioned}_${touch.time}.zip">
+            <fileset dir="${dist.dir}"/>
+        </zip>
+        <delete file="${dist.dir}/${project.name.versioned}.swc"/>
+        <delete file="${dist.dir}/${project.name.versioned}.ane"/>
+        <delete file="${dist.dir}/license.txt"/>
+        <delete file="${dist.dir}/changelog.txt"/>
+        <delete dir="${dist.dir}/docs"/>
+        <echo>[package] Release packaged successfully</echo>
+    </target>
+
+    <!-- Compilation steps -->
 
     <target name="ext_and">
         <!-- Build Android native library -->
-        <mkdir dir="${TMP_DIR}"/>
-        <ant antfile="build.xml" target="-compile" dir="${SRC_AND_DIR}" inheritall="false">
+        <mkdir dir="${bin.and.dir}"/>
+        <mkdir dir="${tmp.dir}"/>
+        <ant antfile="build.xml" target="-compile" dir="${src.and.dir}" inheritall="false">
             <property name="build.target" value="-compile"/>
             <property name="verbose" value="false"/>
             <property name="renderscript.opt.level" value="O0"/>
             <property name="env.ANDROID_HOME" value="${ANDROID_HOME}"/>
         </ant>
-        <jar destfile="${TMP_DIR}/lib${LIB_NAME}.jar">
-            <fileset dir="${SRC_AND_DIR}/bin/classes"/>
+        <jar destfile="${tmp.dir}/lib${project.name}.jar">
+            <fileset dir="${src.and.dir}/bin/classes"/>
             <restrict>
                 <name name="**/*.class"/>
                 <archives>
                     <zips>
-                        <fileset dir="${SRC_AND_DIR}/libs" includes="**/*.jar"
+                        <fileset dir="${src.and.dir}/libs" includes="**/*.jar"
                                  excludes="**/FlashRuntimeExtensions.jar"/>
                     </zips>
                 </archives>
             </restrict>
         </jar>
-        <copy todir="${BIN_AND_DIR}/res" overwrite="true">
-            <fileset dir="${SRC_AND_DIR}/res"/>
+        <copy todir="${bin.and.dir}/res" overwrite="true">
+            <fileset dir="${src.and.dir}/res"/>
         </copy>
-        <copy file="${TMP_DIR}/lib${LIB_NAME}.jar" todir="${BIN_AND_DIR}" overwrite="true"/>
-        <delete dir="${TMP_DIR}"/>
+        <copy file="${tmp.dir}/lib${project.name}.jar" todir="${bin.and.dir}" overwrite="true"/>
+        <delete dir="${tmp.dir}"/>
     </target>
 
-    <target name="ext_ios-device">
+    <target name="ext_ios-device" if="isMac">
+        <!-- Build iOS native library for devices -->
+        <mkdir dir="${bin.ios.dir}"/>
+        <mkdir dir="${tmp.dir}"/>
         <antcall target="ext_ios">
             <param name="arch" value="armv7"/>
             <param name="sdk" value="iphoneos"/>
-            <param name="dir" value="${BIN_IOS_DIR}"/>
+            <param name="dir" value="${bin.ios.dir}"/>
         </antcall>
+        <delete dir="${tmp.dir}"/>
     </target>
 
-    <target name="ext_ios-simulator">
+    <target name="ext_ios-simulator" if="isMac">
+        <!-- Build iOS native library for the simulator -->
+        <mkdir dir="${bin.iossim.dir}"/>
+        <mkdir dir="${tmp.dir}"/>
         <antcall target="ext_ios">
             <param name="arch" value="i386"/>
             <param name="sdk" value="iphonesimulator"/>
-            <param name="dir" value="${BIN_SIM_DIR}"/>
+            <param name="dir" value="${bin.iossim.dir}"/>
         </antcall>
     </target>
 
-    <target name="ext_ios">
+    <target name="ext_ios" if="isMac">
         <!-- Build iOS native library -->
-        <mkdir dir="${TMP_DIR}"/>
-        <exec executable="xcodebuild" failonerror="true" dir="${SRC_IOS_DIR}">
-            <arg line="-project ${LIB_NAME}.xcodeproj"/>
-            <arg line="-target ${LIB_NAME}"/>
+        <exec executable="xcodebuild" failonerror="true" dir="${src.ios.dir}">
+            <arg line="-project ${project.name}.xcodeproj"/>
+            <arg line="-target ${project.name}"/>
             <arg line="-configuration Release"/>
             <arg line="-arch ${arch}"/>
             <arg line="-sdk ${sdk}"/>
-            <arg line="SYMROOT=../../${TMP_DIR}"/>
+            <arg line="SYMROOT=../../${tmp.dir}"/>
         </exec>
-        <copy file="${TMP_DIR}/Release-${sdk}/lib${LIB_NAME}.a" todir="${dir}" overwrite="true"/>
-        <delete dir="${TMP_DIR}"/>
+        <copy file="${tmp.dir}/Release-${sdk}/lib${project.name}.a" todir="${dir}" overwrite="true"/>
     </target>
 
     <target name="ext_as3-default">
+        <!-- Build Actionscript extension bridge for default target -->
+        <mkdir dir="${tmp.dir}"/>
         <antcall target="ext_as3">
-            <param name="source" value="${SRC_DEF_DIR}"/>
-            <param name="destination" value="${BIN_DEF_DIR}"/>
-            <param name="default" value="true"/>
+            <param name="source" value="${src.def.dir}"/>
+            <param name="destination" value="${bin.def.dir}"/>
         </antcall>
+        <copy file="${tmp.dir}/library.swc" tofile="${bin.dir}/${project.name.versioned}.swc"/>
+        <delete dir="${tmp.dir}"/>
     </target>
     <target name="ext_as3-android">
+        <!-- Build Actionscript extension bridge for android target -->
+        <mkdir dir="${tmp.dir}"/>
         <antcall target="ext_as3">
-            <param name="source" value="${SRC_AS3_DIR}"/>
-            <param name="destination" value="${BIN_AND_DIR}"/>
+            <param name="source" value="${src.as3.dir}"/>
+            <param name="destination" value="${bin.and.dir}"/>
         </antcall>
+        <delete dir="${tmp.dir}"/>
     </target>
 
-    <target name="ext_as3-iosdevice">
+    <target name="ext_as3-iosdevice" if="isMac">
+        <!-- Build Actionscript extension bridge for iOS device target -->
+        <mkdir dir="${tmp.dir}"/>
         <antcall target="ext_as3">
-            <param name="source" value="${SRC_AS3_DIR}"/>
-            <param name="destination" value="${BIN_IOS_DIR}"/>
+            <param name="source" value="${src.as3.dir}"/>
+            <param name="destination" value="${bin.ios.dir}"/>
         </antcall>
+        <delete dir="${tmp.dir}"/>
     </target>
 
-    <target name="ext_as3-iossimulator">
+    <target name="ext_as3-iossimulator" if="isMac">
+        <!-- Build Actionscript extension bridge for iOS simulator target -->
+        <mkdir dir="${tmp.dir}"/>
         <antcall target="ext_as3">
-            <param name="source" value="${SRC_AS3_DIR}"/>
-            <param name="destination" value="${BIN_SIM_DIR}"/>
+            <param name="source" value="${src.as3.dir}"/>
+            <param name="destination" value="${bin.iossim.dir}"/>
         </antcall>
+        <delete dir="${tmp.dir}"/>
     </target>
 
     <target name="ext_as3">
         <!-- Build Actionscript extension bridge -->
-        <mkdir dir="${TMP_DIR}"/>
-        <fileset dir="${source}/src" casesensitive="yes" id="files">
-            <include name="**/*.as"/>
-        </fileset>
-        <pathconvert property="classes" refid="files" pathsep=" " dirsep=".">
-            <regexpmapper from=".*src.(.*)\.as" to="\1"/>
-        </pathconvert>
-        <exec executable="${COMPC}" failonerror="true">
-            <arg line="-source-path ${source}/src"/>
-            <arg line="-output ${TMP_DIR}/library.swc"/>
+        <java jar="${FLEX_HOME}/lib/compc.jar" dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
+            <arg line="-output ${tmp.dir}/library.swc"/>
             <arg line="-swf-version 14"/>
-            <arg line="-external-library-path+='${FLEX_HOME}/frameworks/libs/air/airglobal.swc'"/>
-            <arg line="-library-path+='${source}/libs/'"/>
-            <arg line="-include-classes ${classes}"/>
-        </exec>
-        <mkdir dir="${TMP_DIR}/content"/>
-        <if>
-            <and>
-                <isset property="default"/>
-                <equals arg1="${default}" arg2="true"/>
-            </and>
-            <then>
-                <copy file="${TMP_DIR}/library.swc" tofile="${BIN_DIR}/${LIB_NAME}.swc"/>
-            </then>
-        </if>
-        <unzip src="${TMP_DIR}/library.swc" dest="${TMP_DIR}/content" overwrite="true"/>
-        <copy file="${TMP_DIR}/content/library.swf" todir="${destination}"/>
-        <delete dir="${TMP_DIR}"/>
-    </target>
-
-    <target name="ext_package-mac">
-        <!-- Package the final extension -->
-        <java jar="${ADT}" fork="true" failonerror="true">
-            <arg line="-package"/>
-            <arg line="-storetype pkcs12"/>
-            <arg line="-keystore ${KEYSTORE}"/>
-            <arg line="-storepass ${STOREPASS}"/>
-            <arg line="-tsa none"/>
-            <arg line="-target ane ${BIN_DIR}/${LIB_NAME}.ane ${ANE_DESCRIPTOR}"/>
-            <arg line="-swc bin/${LIB_NAME}.swc"/>
-            <arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
-            <arg line="-platform iPhone-ARM -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_IOS_DIR} ."/>
-            <arg line="-platform iPhone-x86 -platformoptions ${IOS_PLATFORM_OPTIONS} -C ${BIN_SIM_DIR} ."/>
-            <arg line="-platform default -C ${BIN_DEF_DIR} ."/>
+            <arg line="-include-sources+=${source}/src"/>
+            <arg line="-library-path+='${bin.dir}/libs/'"/>
+            <arg line="-source-path+='./','${source}/src'"/>
+            <arg line="-load-config=air-config.xml" />
+            <arg line="-static-link-runtime-shared-libraries=true"/>
+            <arg line="-verbose-stacktraces=true"/>
+            <arg line="-headless-server=true"/>
         </java>
-    </target>
-
-    <target name="ext_package-win">
-        <!-- Package the final extension -->
-        <java jar="${ADT}" fork="true" failonerror="true">
-            <arg line="-package"/>
-            <arg line="-storetype pkcs12"/>
-            <arg line="-keystore ${KEYSTORE}"/>
-            <arg line="-storepass ${STOREPASS}"/>
-            <arg line="-tsa none"/>
-            <arg line="-target ane ${BIN_DIR}/${LIB_NAME}.ane ${ANE_DESCRIPTOR}"/>
-            <arg line="-swc bin/${LIB_NAME}.swc"/>
-            <arg line="-platform Android-ARM -C ${BIN_AND_DIR} ."/>
-            <arg line="-platform default -C ${BIN_DEF_DIR} ."/>
-        </java>
+        <mkdir dir="${tmp.dir}/content"/>
+        <unzip src="${tmp.dir}/library.swc" dest="${tmp.dir}/content" overwrite="true"/>
+        <copy file="${tmp.dir}/content/library.swf" todir="${destination}"/>
     </target>
 
     <target name="ext_doc">
         <!-- add asdocs to packaged extension -->
-        <exec executable="${ASDOC}" failonerror="false">
-            <arg line="-keep-xml=true -skip-xsl=true"/>
-            <arg line="-source-path ${SRC_DEF_DIR}/src"/>
-            <arg line="-doc-sources ${SRC_DEF_DIR}/src"/>
-            <arg line="-library-path ${SRC_DEF_DIR}/libs"/>
-            <arg line="-window-title ${LIB_NAME}"/>
-            <arg line="-main-title ${LIB_NAME}"/>
-            <arg line="-footer 'Copyright © 2013 Alessandro Bianco'"/>
-            <arg line="-output ${BIN_DOC_DIR}"/>
-        </exec>
-        <zip destfile="${BIN_DIR}/${LIB_NAME}.ane" update="true">
-            <zipfileset dir="${BIN_DOC_DIR}/tempdita" prefix="docs">
-                <include name="*.*"/>
-                <exclude name="ASDoc_Config.xml"/>
-                <exclude name="overviews.xml"/>
-            </zipfileset>
-        </zip>
-        <zip destfile="${BIN_DIR}/${LIB_NAME}.swc" update="true">
-            <zipfileset dir="${BIN_DOC_DIR}/tempdita" prefix="docs">
-                <include name="*.*"/>
-                <exclude name="ASDoc_Config.xml"/>
-                <exclude name="overviews.xml"/>
-            </zipfileset>
-        </zip>
+    </target>
+
+    <target name="ext_package">
+        <!-- Package the final extension -->
+        <antcall target="ext_package-win" />
+        <antcall target="ext_package-mac" />
+    </target>
+
+    <target name="ext_package-mac" if="isMac">
+        <!-- Package the final extension for mac platforms -->
+        <java jar="${FLEX_HOME}/lib/adt.jar" fork="true" failonerror="true">
+            <arg line="-package"/>
+            <arg line="-storetype pkcs12"/>
+            <arg line="-keystore ${crt.file}"/>
+            <arg line="-storepass ${crt.password}"/>
+            <arg line="-tsa none"/>
+            <arg line="-target ane ${bin.dir}/${project.name.versioned}.ane ${extension.descriptor}"/>
+            <arg line="-swc bin/${project.name.versioned}.swc"/>
+            <arg line="-platform Android-ARM -C ${bin.and.dir} ."/>
+            <arg line="-platform iPhone-ARM -platformoptions ${ios.platform.options} -C ${bin.ios.dir} ."/>
+            <arg line="-platform iPhone-x86 -platformoptions ${ios.platform.options} -C ${bin.iossim.dir} ."/>
+            <arg line="-platform default -C ${bin.def.dir} ."/>
+        </java>
+    </target>
+
+    <target name="ext_package-win" if="isWindows">
+        <!-- Package the final extension for windows platforms -->
+        <java jar="${FLEX_HOME}/lib/adt.jar" fork="true" failonerror="true">
+            <arg line="-package"/>
+            <arg line="-storetype pkcs12"/>
+            <arg line="-keystore ${crt.file}"/>
+            <arg line="-storepass ${crt.password}"/>
+            <arg line="-tsa none"/>
+            <arg line="-target ane ${bin.dir}/${project.name.versioned}.ane ${extension.descriptor}"/>
+            <arg line="-swc bin/${project.name.versioned}.swc"/>
+            <arg line="-platform Android-ARM -C ${bin.and.dir} ."/>
+            <arg line="-platform default -C ${bin.def.dir} ."/>
+        </java>
     </target>
 
     <target name="ext_clean">
-        <!-- remove temporary folders needed to build the extension -->
-        <delete dir="${BIN_NATIVE}"/>
-        <delete dir="${TMP_DIR}"/>
-    </target>
-
-    <target name="ext_deploy">
-        <!-- deploys the compiled extension to the demo project -->
-        <copy file="${BIN_DIR}/${LIB_NAME}.ane" todir="${DEMO_DIR}/ane/" overwrite="true"/>
-    </target>
-
-    <target name="demo_compile">
-        <exec executable="${MXMLC}" failonerror="true">
-            <arg line="-debug=true"/>
-            <arg line="-source-path=${DEMO_DIR}/src"/>
-            <arg line="-library-path+=${DEMO_DIR}/libs"/>
-            <arg line="-external-library-path+='${FLEX_HOME}/frameworks/libs/air/airglobal.swc'"/>
-            <arg line="-external-library-path+=${DEMO_DIR}/ane/${LIB_NAME}.ane"/>
-            <arg line="-static-link-runtime-shared-libraries=true"/>
-            <arg line="-o=${BIN_DIR}/${DEMO_SWF}"/>
-            <arg line="${DEMO_DIR}/src/Demo.as"/>
-        </exec>
-    </target>
-
-    <target name="demo_package-ipa">
-        <!-- compile the demo project to be run on the iOS simulator -->
-        <java jar="${ADT}" fork="true" failonerror="true">
-            <arg line="-package"/>
-            <arg line="-target ipa-debug-interpreter-simulator"/>
-            <arg line="-storetype pkcs12"/>
-            <arg line="-keystore ${KEYSTORE}"/>
-            <arg line="-storepass ${STOREPASS}"/>
-            <arg line="${DEMO_APP} ${DEMO_DESCRIPTOR}"/>
-            <arg line="-extdir ${DEMO_DIR}/ane/"/>
-            <arg line="-platformsdk ${IOS_SIM_HOME}"/>
-            <arg line="-C ${BIN_DIR} ${DEMO_SWF}"/>
-            <arg line="-C ${DEMO_DIR} ${DEMO_EMBEDS_DIR}"/>
-        </java>
-        <delete file="${BIN_DIR}/${DEMO_SWF}"/>
-        <delete file="${BIN_DIR}/${DEMO_NAME}-app.xml"/>
-    </target>
-
-    <target name="demo_uninstall-ipa">
-        <!-- uninstall previous version of the demo from the simulator -->
-        <java jar="${ADT}" fork="true" failonerror="false">
-            <arg line="-uninstallApp"/>
-            <arg line="-platform ios"/>
-            <arg line="-platformsdk ${IOS_SIM_HOME}"/>
-            <arg line="-device ios-simulator"/>
-            <arg line="-appid ${DEMO_APP_ID}"/>
-        </java>
-    </target>
-
-    <target name="demo_install-ipa">
-        <!-- install current version of the demo in the simulator -->
-        <java jar="${ADT}" fork="true" failonerror="true">
-            <arg line="-installApp"/>
-            <arg line="-platform ios"/>
-            <arg line="-platformsdk ${IOS_SIM_HOME}"/>
-            <arg line="-device ios-simulator"/>
-            <arg line="-package ${DEMO_APP}"/>
-        </java>
-    </target>
-
-    <target name="demo_launch-ipa">
-        <!-- launch demo on the iOS simulator -->
-        <java jar="${ADT}" fork="true" failonerror="true">
-            <arg line="-launchApp"/>
-            <arg line="-platform ios"/>
-            <arg line="-platformsdk ${IOS_SIM_HOME}"/>
-            <arg line="-device ios-simulator"/>
-            <arg line="-appid ${DEMO_APP_ID}"/>
-        </java>
-    </target>
-
-    <target name="demo_package-apk">
-        <java jar="${ADT}" fork="true" failonerror="true">
-            <arg line="-package"/>
-            <arg line="-target apk-debug"/>
-            <arg line="-storetype pkcs12"/>
-            <arg line="-keystore ${KEYSTORE}"/>
-            <arg line="-storepass ${STOREPASS}"/>
-            <arg line="${DEMO_APP} ${DEMO_DESCRIPTOR}"/>
-            <arg line="-extdir ${DEMO_DIR}/ane/"/>
-            <arg line="-C ${BIN_DIR} ${DEMO_SWF}"/>
-            <arg line="-C ${DEMO_DIR} ${DEMO_EMBEDS_DIR}"/>
-        </java>
-        <delete file="${BIN_DIR}/${DEMO_SWF}"/>
-        <delete file="${BIN_DIR}/${DEMO_NAME}-app.xml"/>
-    </target>
-    <target name="demo_install-apk">
-        <exec executable="${ADB}">
-            <arg line="-d install"/>
-            <arg line="-r ${DEMO_APP}"/>
-        </exec>
-    </target>
-    <target name="demo_uninstall-apk">
-        <java jar="${ADT}" fork="true">
-            <arg line="-uninstallApp"/>
-            <arg line="-platform android"/>
-            <arg line="-appid ${DEMO_APP_ID}"/>
-        </java>
-    </target>
-    <target name="demo_launch-apk">
-        <java jar="${ADT}" fork="true">
-            <arg line="-launchApp"/>
-            <arg line="-platform android"/>
-            <arg line="-appid ${DEMO_APP_ID}"/>
-        </java>
+        <!-- Remove temporary files and folders needed to build the extension -->
+        <delete dir="${lib.dir}"/>
+        <delete dir="${bin.dir}/native"/>
+        <delete file="${crt.file}"/>
     </target>
 
 </project>

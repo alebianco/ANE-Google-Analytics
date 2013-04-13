@@ -4,7 +4,7 @@
 	<name>Google Analytics AIR Extension</name>
 	<description>Allow mobile AIR applications to communicante tracking informations to the Google Analytics platform.</description>
 	<copyright>Copyright (c) 2012 Alessandro Bianco</copyright>
-	<versionNumber>0.2.03</versionNumber>
+	<versionNumber>0.2.04</versionNumber>
 	<platforms>
 		<platform name="Android-ARM">
 			<applicationDeployment>
