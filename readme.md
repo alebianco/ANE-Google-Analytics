@@ -1,75 +1,30 @@
-# Air Native Extension for Google Analytics on iOS and Android
+# ANE-Google-Analytics: AIR Native Extension for Google Analytics on iOS and Android
 
 This is an Air native extension for Google Analytics on the iOS and Android platforms.
 
-# Notice
+**NOTE** The current release of the extension supports the new [Application profile](https://support.google.com/analytics/answer/1009714) for Google Analytics.
 
-The v0.2 version of the extension supports the new "Application" profile for Google Analytics.
+## Introduction
 
-# Warning: (lesser) dragons ahead
+The Google Analytics Platform lets you measure user interactions with your business across various devices and environments.  
+This extension for AIR applications leverages the Android and iOS native SDKs provided by Google Analytics, exposing their features through a common API that can be used seamlessly on both platforms.
 
-The release is almost complete. Both native implementations for Android and iOS are complete and i don't expect to change the Flash API anymore. The extension will be moved to the _master_ branch for a proper release once I've completed a couple of additional tasks and performed some more tests.
+This extension makes it easy for developers to collect user engagement data from their apps.  
+Developers can then use Google Analytics reports to measure:
+* The number of active users are using their applications.
+* From where in the world the application is being used.
+* Adoption and usage of specific features.
+* In-app purchases and transactions.
+* The number and type of application crashes.
+* And many other useful metrics.
 
-I still need to write a proper documentation for the API and build a new demo project to showcase the functionalities. Both tasks will be done next couple of weeks.
+## Usage
 
-The extension so far has been tested on Android (2.3 and 4.0) and on the iPhone simulator. I think I've covered all the major bugs, but some error could still come up. It's your turn now to test it on as many devices as possible and let me know if there's still any problem to fix.
-
-# Binary files
-
-The _bin_ folder contains the compiled extension and the default swc, which can be used for local testing if required by your development environment (Flash Builder shouldn't need it, but other IDEs may).
-
-# Changelog
-
-**v0.2.03**
-
-* totally rewritten Flash API
-* totally rewritten native code for Android and iOS
-* upgraded to the new Google tracker (v2.0 beta 3) to support the new "Application" analytics' profile
-* full support to the new Google tracker, including e-commerce, multiple trackers support, custom metrics and dimensions
-* brand new demo project built specifically for mobile devices (in progress)
-
-**v0.1.23**
-
-* upgraded to AIR 3.5
-* updated Google Analytics libraries (Android 1.5.1 and iOS 1.5)
-* improved error handling
-* added account ID validation
-
-**v0.1.22**
-
-* upgraded to AIR 3.4
-* fixed more compatibility issues for cross-system compilation
-
-**v0.1.21**
-
-* finally tested on real iOS devices, thanks to [@digitaljohn](http://github.com/digitaljohn)
-* fixed incompatibility issues with earlier versions of iOS
-* added some utility methods to the Enums related to custom variables
-
-**v0.1.2**
-
-* upgraded to AIR 3.3
-* added target in the ANT script to run the demo project on the iOS simulator
-* cleaned and updated the ANT build file
-* fixed issues with the iOS version of the extension
-
-**v0.1.1**
-
-* updated Google Analytics libraries (Android 1.4.2 and iOS 1.4)
-* added demo project to showcase usage and capabilities
-* added some documentation on usage
-
-**v0.1.0**
-
-* initial release
-
-# Using the extension
-
-First of all, add the *NativeGATracker.ane* to your project.
+First of all, add the *NativeGATracker.ane* to your project.  
 Then you should check if the library is supported, get an instance of the tracker, start a tracking session using your Analytics ID and actually track something.
 
 The code below shows the most basic example:
-
+```ActionScript
 	import eu.alebianco.air.extensions.analytics.Analytics;
     import eu.alebianco.air.extensions.analytics.api.ITracker;
 
@@ -107,36 +62,27 @@ The code below shows the most basic example:
                 .createProduct("it-156", "extra life item", 1.5, 2).add()
                 .track();
 	}
+```
 
-For any additional information you can reference the [Google Analytics Developer Guides & Reference](https://developers.google.com/analytics/devguides/) pages or the *ASDocs* on the code.
-The extension follow closely the original SDK methods and functionalities, so it shouldn't be a problem to understand how it works.
+## Building
 
-If you have any problem or questions, hit me on Twitter [@alebianco](http://twitter.com/alebianco).
-
-# Compiling your project
-
-The extension requires that your project is built against version 5.1 of the iOS SDK.  
-It doesn't require version 5.1 at run-time, version 4.3 should be sufficient, but it is required at compile-time.
-Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5.1 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter **-platformsdk** when building with adt from the command line or a build script.
-Use Adobe Air SDK 3.5 or later.
-	
-# Building
-
-
-## Requirements
-
+Requirements:
 * Adobe Air SDK 3.5 or later
 * XCode IDE, iOS SDK 5.1 or later
 * Google Android SDK 2.2
-* Google Analytics v2 mobile SDKs for iOS and Android
 
-## Set up
+Add the _FlashRuntimeExtensions.h_ file from the Adobe Air SDK to the _source/ios/Libraries_ folder  
+Add the _FlashRuntimeExtensions.jar_ file from the Adobe Air SDK to the _source/android/libs_ folder  
+In the **build** folder, make a copy of the _user.properties.eg_ file and call it _user.properties_  
+Edit that file to provide values specific to your system  
+Use the `build.ant` ant script you'll find in the **build** folder, to build the project
 
-* Download the [Google Analytics mobile SDKs](http://code.google.com/apis/analytics/docs/mobile/download.html) for both iOS and Android platforms.
-    * From the iOS SDK, copy the files _GANTracker.h_ and _libGoogleAnalytics.a_ from the _Library_ folder within the .tar.gz archive, to the _source/ios/Libraries_ folder in the project.
-	* From the Android SDK, copy the file _libGoogleAnalytics.jar_ from inside the .zip archive, to the _source/android/libs_ folder in the project.
-* Add the _FlashRuntimeExtensions.h_ file from the Adobe Air SDK to the _source/ios/Libraries_ folder in the project.
-* Add the _FlashRuntimeExtensions.jar_ file from the Adobe Air SDK to the _source/android/libs_ folder in the project.
-* Substitute the file _certificate.p12_ in the _build_ folder with your own. This may be a self-signed certificate created by Adobe Air.
-* Edit the _build.config_ files in the _build_ folder and change the properties in this file to match your system.
-* Run the ant build script _build.ant_ from the _build_ folder. This creates the native extension, and the default swc file, inside the _bin_ folder.
+## Contributing
+
+If you want to contribute to the project refer to the [CONTRIBUTING.md](CONTRIBUTING.md) document for guidelines.
+
+## Roadmap
+
+* document the code
+* allow functions or instances to be added as sub commands
+* add test coverage
