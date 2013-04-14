@@ -1,17 +1,57 @@
 FlashRuntimeExtensions.h
 FlashRuntimeExtensions.jar
 
-._*
-*.mobileprovision
+user.properties
 
-source/ios/DerivedData/
+docs/
+reports/
 
-source/actionscript/bin
+*.swp
+*.lock
+profile
+*~.nib
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+xcuserdata
+xcuserdata/**/*
+DerivedData/
+build/
 
-source/android/bin
-source/android/gen
-source/android/assets
-source/android/res
+*.apk
+*.ap_
+*.dex
+*.class
+local.properties
+bin/
+gen/
 
-source/android/javadocs
-source/ios/Documentation
+html-template/
+bin-debug/
+bin-release/
+.actionScriptProperties
+.flexProperties
+.flexLibProperties
+.FlexUnitSettings
+.project
+.fxpProperties
+
+Icon
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+.settings/
+.project
+.metadata
+
+*.iml
+*.ipr
+*.iws
+.idea/
