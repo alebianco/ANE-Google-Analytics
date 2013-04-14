@@ -69,7 +69,7 @@ public final class Analytics implements IAnalytics {
 	 * @inheritDoc
 	 */
 	public function get version():String {
-		return "";
+		return "ANE-Google-Analytics v2.0.4";
 	}
 	/**
 	 * @inheritDoc
