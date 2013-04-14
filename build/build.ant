@@ -33,6 +33,9 @@
             <fileset dir="${dist.dir}" defaultexcludes="false">
                 <include name="**/*"/>
             </fileset>
+            <fileset dir="${doc.dir}" defaultexcludes="false">
+                <include name="**/*"/>
+            </fileset>
         </delete>
         <echo>[clean] Build directories removed</echo>
     </target>
@@ -64,7 +67,7 @@
     <target name="compile" depends="init,
                                     ext_and,ext_ios-device,ext_ios-simulator,
                                     ext_as3-default,ext_as3-android,ext_as3-iosdevice,ext_as3-iossimulator,
-                                    ext_package,ext_doc,ext_clean"
+                                    ext_package,ext_clean"
             description="Build the extension"/>
 
     <target name="asdoc" depends="compile" description="Build Documentation">
@@ -97,7 +100,13 @@
             <fileset dir="${doc.dir}"/>
         </copy>
         <delete dir="${dist.dir}/docs/tempdita"/>
-        <zip destfile="${dist.dir}/${project.name.versioned}.swc" update="true">
+        <zip destfile="${doc.dir}/${project.name.versioned}.swc" update="true">
+            <zipfileset dir="${doc.dir}/tempdita" prefix="docs">
+                <include name="*packages.dita*"/>
+                <include name="*eu.alebianco.*"/>
+            </zipfileset>
+        </zip>
+        <zip destfile="${dist.dir}/${project.name.versioned}.ane" update="true">
             <zipfileset dir="${doc.dir}/tempdita" prefix="docs">
                 <include name="*packages.dita*"/>
                 <include name="*eu.alebianco.*"/>
@@ -116,6 +125,7 @@
         <delete file="${dist.dir}/readme.txt"/>
         <delete dir="${dist.dir}/docs"/>
         <delete dir="${lib.dir}"/>
+        <delete dir="${doc.dir}/tempdita"/>
         <echo>[package] Release packaged successfully</echo>
     </target>
 
@@ -242,34 +252,6 @@
         <mkdir dir="${tmp.dir}/content"/>
         <unzip src="${tmp.dir}/library.swc" dest="${tmp.dir}/content" overwrite="true"/>
         <copy file="${tmp.dir}/content/library.swf" todir="${destination}"/>
-    </target>
-
-    <target name="ext_doc">
-        <!-- add asdocs to packaged extension -->
-        <mkdir dir="${tmp.dir}"/>
-        <java jar="${FLEX_HOME}/lib/asdoc.jar" dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
-            <arg line="-external-library-path+=${lib.dir}"/>
-            <arg line="-doc-sources+=${src.def.dir}/src"/>
-            <arg line="-source-path+=${src.def.dir}/src"/>
-            <arg line="-library-path+=libs\air"/>
-            <arg line="-output ${tmp.dir}"/>
-            <arg value="-keep-xml=true"/>
-            <arg value="-skip-xsl=true"/>
-            <arg value="-lenient=true"/>
-        </java>
-        <zip destfile="${bin.dir}/${project.name.versioned}.ane" update="true">
-            <zipfileset dir="${tmp.dir}/tempdita" prefix="docs">
-                <include name="*packages.dita*"/>
-                <include name="*eu.alebianco.*"/>
-            </zipfileset>
-        </zip>
-        <zip destfile="${bin.dir}/${project.name.versioned}.swc" update="true">
-            <zipfileset dir="${tmp.dir}/tempdita" prefix="docs">
-                <include name="*packages.dita*"/>
-                <include name="*eu.alebianco.*"/>
-            </zipfileset>
-        </zip>
-        <delete dir="${tmp.dir}"/>
     </target>
 
     <target name="ext_package">
