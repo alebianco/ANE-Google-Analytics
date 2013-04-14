@@ -119,7 +119,7 @@ public class TrackData implements FREFunction {
             value = null;
         }
 
-        Map hit = tracker.constructEvent(category, action, label, value);
+        Map<String, String> hit = tracker.constructEvent(category, action, label, value);
         tracker.send(ModelFields.EVENT, hit);
 
         return null;
@@ -148,7 +148,7 @@ public class TrackData implements FREFunction {
             description = null;
         }
 
-        Map hit = tracker.constructException(description, fatal);
+        Map<String, String> hit = tracker.constructException(description, fatal);
         tracker.send(ModelFields.EXCEPTION, hit);
 
         return null;
@@ -189,7 +189,7 @@ public class TrackData implements FREFunction {
             label = null;
         }
 
-        Map hit = tracker.constructTiming(category, interval, name, label);
+        Map<String, String> hit = tracker.constructTiming(category, interval, name, label);
         tracker.send(ModelFields.TIMING, hit);
 
         return null;
@@ -220,7 +220,7 @@ public class TrackData implements FREFunction {
             content = null;
         }
 
-        Map hit = tracker.constructSocial(network, action, content);
+        Map<String, String> hit = tracker.constructSocial(network, action, content);
         tracker.send(ModelFields.SOCIAL, hit);
 
         return null;

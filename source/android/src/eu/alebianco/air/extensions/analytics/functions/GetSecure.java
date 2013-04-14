@@ -23,7 +23,7 @@ public class GetSecure implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
-        FREObject result = null;
+        FREObject result;
 
         String trackingId;
         try {

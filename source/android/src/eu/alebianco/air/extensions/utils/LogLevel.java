@@ -20,8 +20,8 @@ public enum LogLevel {
 	ERROR("ERROR", Log.ERROR),
 	FATAL("FATAL", Log.ERROR);
 	
-	private String name;
-	private int priority;
+	private final String name;
+	private final int priority;
 	
 	private LogLevel(String n, int p)
 	{

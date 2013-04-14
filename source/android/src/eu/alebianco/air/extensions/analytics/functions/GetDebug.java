@@ -22,7 +22,7 @@ public class GetDebug implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
-        FREObject result = null;
+        FREObject result;
 
         Boolean flag = GoogleAnalytics.getInstance(context.getActivity()).isDebugEnabled();
 

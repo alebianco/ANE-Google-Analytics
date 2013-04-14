@@ -83,7 +83,7 @@ public interface ITracker extends IDisposable {
 	 */
 	function set secure(value:Boolean):void;
 	/**
-	 * Indicates if the anonymouse mode is enabled.
+	 * Indicates if the anonymous mode is enabled.
 	 * <p>When the anonymous mode is enabled, Google Analytics will anonymize the IP address information collected by
 	 * zeroing out some of the least significant bits of the address.</p>
 	 * @default false
@@ -211,7 +211,7 @@ public interface ITracker extends IDisposable {
 	/**
 	 * Creates a builder, with the mandatory parameters, to setup all the model fields for a Transaction hit and then sending it.
 	 * <p>Ecommerce tracking allows you to track in-app purchases and sales. Ecommerce data in Google Analytics is
-	 * generally comprised of transactions and items, related by a shared transacation ID, that relationship is
+	 * generally comprised of transactions and items, related by a shared transaction ID, that relationship is
 	 * established by creating a transaction object and adding items to it.</p>
 	 * @see ITransactionBuilder
 	 * @see https://developers.google.com/analytics/devguides/collection/ios/v2/ecommerce

@@ -15,7 +15,6 @@ import com.adobe.fre.FREExtension;
 
 public class GAExtension implements FREExtension {
 
-    public static final String TAG = "GAExtension";
     public static GAContext context;
 
     @Override

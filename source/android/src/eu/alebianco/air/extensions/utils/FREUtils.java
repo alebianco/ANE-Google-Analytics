@@ -19,7 +19,7 @@ import java.io.StringWriter;
 
 public class FREUtils {
 
-    public static final String TAG = "ANE";
+    private static final String TAG = "ANE";
 
     public static void logEvent(FREContext context, LogLevel level, String format, Object... args) {
         String message = String.format(format, args);

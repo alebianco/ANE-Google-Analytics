@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class GAContext extends FREContext {
 
-    public static final String VERSION = "0.2.03";
+    public static final String VERSION = "0.2.04";
     public static final String PRODUCT = "ANE-Google-Analytics";
 
     public void initialize() {

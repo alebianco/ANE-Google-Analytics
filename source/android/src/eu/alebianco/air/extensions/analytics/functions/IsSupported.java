@@ -21,7 +21,7 @@ public class IsSupported implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
-        FREObject result = null;
+        FREObject result;
 
         try {
             result = FREObject.newObject(true);

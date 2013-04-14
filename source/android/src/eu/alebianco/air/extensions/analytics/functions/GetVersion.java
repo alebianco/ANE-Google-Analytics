@@ -22,7 +22,7 @@ public class GetVersion implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
-        FREObject result = null;
+        FREObject result;
 
         try {
             result = FREObject.newObject(GAContext.PRODUCT + " v" + GAContext.VERSION);

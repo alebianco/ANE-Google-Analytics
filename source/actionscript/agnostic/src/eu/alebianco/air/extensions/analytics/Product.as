@@ -14,8 +14,8 @@ import eu.alebianco.air.extensions.analytics.api.IProduct;
 
 internal class Product implements IProduct {
 
-	private static const SKU_VALIDATOR:RegExp = /.+/i
-	private static const NAME_VALIDATOR:RegExp = /.+/i
+	private static const SKU_VALIDATOR:RegExp = /.+/i;
+	private static const NAME_VALIDATOR:RegExp = /.+/i;
 
 	private var _sku:String;
 	private var _name:String;
@@ -26,10 +26,10 @@ internal class Product implements IProduct {
 	public function Product(builder:ProductBuilder) {
 
 		if (!(builder.sku && SKU_VALIDATOR.test(builder.sku)))
-			throw new ArgumentError("Product sku is invalid: must be not null or a empty string.")
+			throw new ArgumentError("Product sku is invalid: must be not null or a empty string.");
 
 		if (!(builder.name && NAME_VALIDATOR.test(builder.name)))
-			throw new ArgumentError("Product name is invalid: must be not null or a empty string.")
+			throw new ArgumentError("Product name is invalid: must be not null or a empty string.");
 
 		_sku = builder.sku;
 		_name = builder.name;
