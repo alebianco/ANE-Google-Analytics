@@ -64,7 +64,7 @@
     <target name="compile" depends="init,
                                     ext_and,ext_ios-device,ext_ios-simulator,
                                     ext_as3-default,ext_as3-android,ext_as3-iosdevice,ext_as3-iossimulator,
-                                    ext_doc,ext_package,ext_clean"
+                                    ext_package,ext_doc,ext_clean"
             description="Build the extension"/>
 
     <target name="asdoc" depends="compile" description="Build Documentation">
@@ -246,6 +246,30 @@
 
     <target name="ext_doc">
         <!-- add asdocs to packaged extension -->
+        <mkdir dir="${tmp.dir}"/>
+        <java jar="${FLEX_HOME}/lib/asdoc.jar" dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
+            <arg line="-external-library-path+=${lib.dir}"/>
+            <arg line="-doc-sources+=${src.def.dir}/src"/>
+            <arg line="-source-path+=${src.def.dir}/src"/>
+            <arg line="-library-path+=libs\air"/>
+            <arg line="-output ${tmp.dir}"/>
+            <arg value="-keep-xml=true"/>
+            <arg value="-skip-xsl=true"/>
+            <arg value="-lenient=true"/>
+        </java>
+        <zip destfile="${bin.dir}/${project.name.versioned}.ane" update="true">
+            <zipfileset dir="${tmp.dir}/tempdita" prefix="docs">
+                <include name="*packages.dita*"/>
+                <include name="*eu.alebianco.*"/>
+            </zipfileset>
+        </zip>
+        <zip destfile="${bin.dir}/${project.name.versioned}.swc" update="true">
+            <zipfileset dir="${tmp.dir}/tempdita" prefix="docs">
+                <include name="*packages.dita*"/>
+                <include name="*eu.alebianco.*"/>
+            </zipfileset>
+        </zip>
+        <delete dir="${tmp.dir}"/>
     </target>
 
     <target name="ext_package">
