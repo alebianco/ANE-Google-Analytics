@@ -35,7 +35,7 @@ typedef enum {
 
 /*!
  Google Analytics iOS top-level class. Provides facilities to create trackers
- and set behaviorial flags.
+ and set behavioural flags.
  */
 @interface GAI : NSObject
 
