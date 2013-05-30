@@ -27,7 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6F808DBA168CB84900CEDFF5 /* libGAExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libGAExtension.a; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F808DBA168CB84900CEDFF5 /* libNativeGATracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F808DFA168CB8A300CEDFF5 /* FREConversionUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FREConversionUtil.h; sourceTree = "<group>"; };
 		6F808DFB168CB8A300CEDFF5 /* FREConversionUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FREConversionUtil.m; sourceTree = "<group>"; };
 		6F808DFC168CB8A300CEDFF5 /* FREUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FREUtils.h; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		6F808DBB168CB84900CEDFF5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6F808DBA168CB84900CEDFF5 /* libGAExtension.a */,
+				6F808DBA168CB84900CEDFF5 /* libNativeGATracker.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 			);
 			name = NativeGATracker;
 			productName = NativeGATracker;
-			productReference = 6F808DBA168CB84900CEDFF5 /* libGAExtension.a */;
+			productReference = 6F808DBA168CB84900CEDFF5 /* libNativeGATracker.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -193,7 +193,7 @@
 		6F808DAC168CB81400CEDFF5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = 6F808DAF168CB81400CEDFF5 /* Build configuration list for PBXProject "NativeGATracker" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -240,6 +240,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -252,6 +253,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -280,7 +282,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -315,7 +317,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeGATracker/GAExtension-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
