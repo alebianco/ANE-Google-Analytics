@@ -64,6 +64,8 @@ The code below shows the most basic example:
 	}
 ```
 
+A demo project aimed at showcasing all the features of the library will be committed soon.
+
 ## Building
 
 Requirements:
