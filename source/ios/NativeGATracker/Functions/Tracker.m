@@ -523,7 +523,7 @@ FREObject trackTransaction(FREContext context, id tracker, FREObject *data) {
         id = [FREConversionUtil toString:[FREConversionUtil getProperty:@"id" fromObject:data]];
         cost = [FREConversionUtil toNumber:[FREConversionUtil getProperty:@"cost" fromObject:data]];
         products = [FREConversionUtil getProperty:@"products" fromObject:data];
-        prodc = [FREConversionUtil getArrayLenght:products];
+        prodc = [FREConversionUtil getArrayLength:products];
     }
     @catch (NSException *exception) {
         logEvent(context, kFatal, @"Unable to read a property. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);

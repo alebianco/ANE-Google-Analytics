@@ -17,7 +17,7 @@ DEFINE_ANE_FUNCTION(getVersion) {
     FREObject result = NULL;
 
     @try {
-        result = [FREConversionUtil fromString:@"ANE-Google-Analytics v0.2.03"];
+        result = [FREConversionUtil fromString:@"ANE-Google-Analytics v0.2.04"];
     }
     @catch (NSException *exception) {
         logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);

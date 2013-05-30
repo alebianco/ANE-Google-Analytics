@@ -333,7 +333,7 @@
 
     return value;
 }
-+ (NSUInteger)getArrayLenght:(FREObject *)array {
++ (NSUInteger)getArrayLength:(FREObject *)array {
     uint32_t length;
     FREResult result = FREGetArrayLength(array, &length);
 

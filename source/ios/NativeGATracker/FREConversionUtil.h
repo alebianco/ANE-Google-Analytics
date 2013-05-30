@@ -30,7 +30,7 @@
 + (FREObject)fromBoolean:(BOOL)value;
 
 + (FREObject)getProperty:(NSString *)name fromObject:(FREObject)object;
-+ (NSUInteger)getArrayLenght:(FREObject *)array;
++ (NSUInteger)getArrayLength:(FREObject *)array;
 + (FREObject *)getArrayItemAt:(NSUInteger)index on:(FREObject)array;
 
 @end
