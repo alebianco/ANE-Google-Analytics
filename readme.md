@@ -83,6 +83,4 @@ If you want to contribute to the project refer to the [CONTRIBUTING.md](CONTRIBU
 
 ## Roadmap
 
-* document the code
-* allow functions or instances to be added as sub commands
-* add test coverage
+You can follow the project planning on [Trello](https://trello.com/b/wk7wHEhS), you can even vote for the tasks that are more important for you and you'll like to see implemented.
