@@ -3,7 +3,7 @@
 	<id>eu.alebianco.air.extensions.analytics.NativeGATracker</id>
 	<name>Google Analytics AIR Extension</name>
 	<description>Allow mobile AIR applications to communicante tracking informations to the Google Analytics platform.</description>
-	<copyright>Copyright (c) 2012 Alessandro Bianco</copyright>
+	<copyright>Copyright (c) 2011 - 2013 Alessandro Bianco</copyright>
 	<versionNumber>0.2.04</versionNumber>
 	<platforms>
 		<platform name="Android-ARM">
