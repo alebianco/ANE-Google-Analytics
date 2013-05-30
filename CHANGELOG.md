@@ -5,6 +5,9 @@
 * Updated native tracker to version 2.0b4
 * improved build scripts
 * fixed debug flag bug
+* asdoc update & integration
+* updated build script
+* moved demo project to a separate repository
 
 ### 0.2.03 (December 28, 2012)
 
