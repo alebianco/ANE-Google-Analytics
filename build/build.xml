@@ -40,10 +40,11 @@
         <echo>[clean] Build directories removed</echo>
     </target>
 
-    <target name="init" depends="-if_windows, -if_mac, clean" description="Create directories needed for the build process">
+    <target name="init" depends="-if_windows, -if_mac, clean" 
+        description="Create files and folders needed for the build process">
+
         <echo>[init] Creating Build directories</echo>
         <mkdir dir="${bin.dir}"/>
-        <mkdir dir="${dist.dir}"/>
         <echo>[init] Build directories created</echo>
         <echo>[init] Build external libraries</echo>
         <ant antfile="build.xml" target="compile" dir="${ext.dir}/actionscript/abcore/build" inheritall="false" usenativebasedir="true"/>
@@ -72,11 +73,16 @@
 
     <target name="asdoc" depends="compile" description="Build Documentation">
         <echo>[asdoc] Generating ASDOC documentation</echo>
+        <copy todir="${lib.dir}" overwrite="false">
+            <fileset dir="${ext.dir}/actionscript/abcore/bin">
+                <include name="*.swc"/>
+            </fileset>
+        </copy>
         <java jar="${FLEX_HOME}/lib/asdoc.jar" dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
             <arg line="-external-library-path+=${lib.dir}"/>
             <arg line="-doc-sources+=${src.def.dir}/src"/>
             <arg line="-source-path+=${src.def.dir}/src"/>
-            <arg line="-library-path+=libs\air"/>
+            <arg line="-library-path+=libs/air"/>
             <arg line="-output ${doc.dir}"/>
             <arg value="-keep-xml=true"/>
             <arg value="-lenient=true"/>
@@ -84,15 +90,18 @@
             <arg line="-main-title '${project.name} ${version.num}'"/>
             <arg line="-footer '${project.name} - https://github.com/alebianco/ANE-Google-Analytics'"/>
         </java>
+        <delete dir="${bin.dir}/libs"/>
         <echo>[asdoc] ASDOC documentation generated successfully</echo>
     </target>
 
-    <target name="package" depends="asdoc" description="Package the Build">
+    <target name="package" depends="asdoc" 
+        description="Package the Build">
+
         <tstamp>
-            <format property="touch.time" pattern="MMddyyyyhhmm" unit="hour"/>
+            <format property="touch.time" pattern="yyyyMMddhhmm" unit="hour"/>
         </tstamp>
 
-        <echo>[package] Packaging Release</echo>
+        <echo>[package] Generating release package</echo>
         <mkdir dir="${dist.dir}"/>
         <copy file="${bin.dir}/${project.name.versioned}.swc" todir="${dist.dir}"/>
         <copy file="${bin.dir}/${project.name.versioned}.ane" todir="${dist.dir}"/>
@@ -126,7 +135,7 @@
         <delete dir="${dist.dir}/docs"/>
         <delete dir="${lib.dir}"/>
         <delete dir="${doc.dir}/tempdita"/>
-        <echo>[package] Release packaged successfully</echo>
+        <echo>[package] Release package created successfully</echo>
     </target>
 
     <!-- Compilation steps -->
@@ -191,7 +200,7 @@
             <arg line="-configuration Release"/>
             <arg line="-arch ${arch}"/>
             <arg line="-sdk ${sdk}"/>
-            <arg line="SYMROOT=../../${tmp.dir}"/>
+            <arg line="SYMROOT=${tmp.dir}"/>
         </exec>
         <copy file="${tmp.dir}/Release-${sdk}/lib${project.name}.a" todir="${dir}" overwrite="true"/>
     </target>
@@ -215,7 +224,6 @@
         </antcall>
         <delete dir="${tmp.dir}"/>
     </target>
-
     <target name="ext_as3-iosdevice" if="isMac">
         <!-- Build Actionscript extension bridge for iOS device target -->
         <mkdir dir="${tmp.dir}"/>
@@ -225,7 +233,6 @@
         </antcall>
         <delete dir="${tmp.dir}"/>
     </target>
-
     <target name="ext_as3-iossimulator" if="isMac">
         <!-- Build Actionscript extension bridge for iOS simulator target -->
         <mkdir dir="${tmp.dir}"/>
@@ -235,7 +242,6 @@
         </antcall>
         <delete dir="${tmp.dir}"/>
     </target>
-
     <target name="ext_as3">
         <!-- Build Actionscript extension bridge -->
         <java jar="${FLEX_HOME}/lib/compc.jar" dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
@@ -276,7 +282,6 @@
             <arg line="-platform default -C ${bin.def.dir} ."/>
         </java>
     </target>
-
     <target name="ext_package-win" if="isWindows">
         <!-- Package the final extension for windows platforms -->
         <java jar="${FLEX_HOME}/lib/adt.jar" fork="true" failonerror="true">
@@ -293,8 +298,9 @@
     </target>
 
     <target name="ext_clean">
-        <!-- Remove temporary files and folders needed to build the extension -->
+        <!-- Remove temporary files and folders created to build the project -->
         <delete dir="${bin.dir}/native"/>
+        <delete dir="${bin.dir}/libs"/>
         <delete file="${crt.file}"/>
     </target>
 
