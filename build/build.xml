@@ -72,7 +72,7 @@
             description="Build the extension"/>
 
     <target name="asdoc" depends="compile" description="Build Documentation">
-        <echo>[asdoc] Generating ASDOC documentation</echo>
+        <!-- <echo>[asdoc] Generating ASDOC documentation</echo>
         <copy todir="${lib.dir}" overwrite="false">
             <fileset dir="${ext.dir}/actionscript/abcore/bin">
                 <include name="*.swc"/>
@@ -91,7 +91,7 @@
             <arg line="-footer '${project.name} - https://github.com/alebianco/ANE-Google-Analytics'"/>
         </java>
         <delete dir="${bin.dir}/libs"/>
-        <echo>[asdoc] ASDOC documentation generated successfully</echo>
+        <echo>[asdoc] ASDOC documentation generated successfully</echo> -->
     </target>
 
     <target name="package" depends="asdoc" 
@@ -105,7 +105,7 @@
         <mkdir dir="${dist.dir}"/>
         <copy file="${bin.dir}/${project.name.versioned}.swc" todir="${dist.dir}"/>
         <copy file="${bin.dir}/${project.name.versioned}.ane" todir="${dist.dir}"/>
-        <copy todir="${dist.dir}/docs">
+        <!--<copy todir="${dist.dir}/docs">
             <fileset dir="${doc.dir}"/>
         </copy>
         <delete dir="${dist.dir}/docs/tempdita"/>
@@ -120,7 +120,7 @@
                 <include name="*packages.dita*"/>
                 <include name="*eu.alebianco.*"/>
             </zipfileset>
-        </zip>
+        </zip>-->
         <copy file="LICENSE.md" tofile="${dist.dir}/license.txt" overwrite="true"/>
         <copy file="CHANGELOG.md" tofile="${dist.dir}/changelog.txt" overwrite="true"/>
         <copy file="README.md" tofile="${dist.dir}/readme.txt" overwrite="true"/>
