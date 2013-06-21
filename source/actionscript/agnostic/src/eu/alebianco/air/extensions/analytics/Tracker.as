@@ -122,9 +122,9 @@ internal class Tracker implements ITracker {
 
 		handleResultFromExtension(context.call("clearCustomDimension", id, index));
 	}
-	public function send(type:HitType, data:Hit):void {
+	public function send(data:Hit):void {
 		_lockAppData = true;
-		handleResultFromExtension(context.call("trackData", id, type.name, data));
+		handleResultFromExtension(context.call("trackData", id, data.type.name, data));
 	}
 	public function buildView(screenName:String):IViewBuilder {
 		return new ViewBuilder(this, screenName);

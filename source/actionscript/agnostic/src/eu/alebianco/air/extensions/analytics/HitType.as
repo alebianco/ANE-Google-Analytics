@@ -12,7 +12,7 @@ package eu.alebianco.air.extensions.analytics {
 
 import eu.alebianco.core.Enum;
 
-internal class HitType extends Enum {
+public class HitType extends Enum {
 	{
 		initEnum(HitType);
 	}

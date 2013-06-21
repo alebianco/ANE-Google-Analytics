@@ -13,11 +13,14 @@ package eu.alebianco.air.extensions.analytics {
 import eu.alebianco.air.extensions.analytics.api.Hit;
 
 internal class Event implements Hit {
-
 	private var _category:String;
 	private var _action:String;
 	private var _label:String;
 	private var _value:Object;
+
+    public function get type():HitType {
+        return HitType.EVENT;
+    }
 
 	public function Event(builder:EventBuilder) {
 		_category = builder.category;

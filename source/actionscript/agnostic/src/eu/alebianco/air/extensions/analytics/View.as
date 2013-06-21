@@ -16,7 +16,11 @@ internal class View implements Hit {
 
 	private var _screen:String;
 
-	public function View(builder:ViewBuilder) {
+    public function get type():HitType {
+        return HitType.VIEW;
+    }
+
+    public function View(builder:ViewBuilder) {
 		_screen = builder.screen;
 	}
 

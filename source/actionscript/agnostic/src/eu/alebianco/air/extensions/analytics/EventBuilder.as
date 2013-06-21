@@ -44,7 +44,7 @@ internal class EventBuilder implements IEventBuilder {
 	}
 
 	public function track():void {
-		tracker.send(HitType.EVENT, create());
+		tracker.send(create());
 	}
 }
 }

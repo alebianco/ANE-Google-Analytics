@@ -19,8 +19,11 @@ internal class Timing implements Hit {
 	private var _name:String;
 	private var _label:String;
 
-	public function Timing(builder:TimingBuilder) {
+    public function get type():HitType {
+        return HitType.TIMING;
+    }
 
+    public function Timing(builder:TimingBuilder) {
 		_category = builder.category;
 		_interval = builder.interval;
 		_name = builder.name;

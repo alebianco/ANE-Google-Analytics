@@ -44,7 +44,7 @@ internal class TimingBuilder implements ITimingBuilder {
 	}
 
 	public function track():void {
-		tracker.send(HitType.TIMING, create());
+        tracker.send(create());
 	}
 }
 }

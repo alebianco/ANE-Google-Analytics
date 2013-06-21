@@ -50,5 +50,7 @@ public interface ITracker extends IDisposable {
 	function buildTiming(category:String, interval:uint):ITimingBuilder;
 	function buildSocial(network:String, action:String):ISocialBuilder;
 	function buildTransaction(id:String, cost:Number):ITransactionBuilder;
+
+    function send(hit:Hit):void;
 }
 }

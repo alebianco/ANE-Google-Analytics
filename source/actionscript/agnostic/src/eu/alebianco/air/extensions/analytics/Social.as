@@ -18,8 +18,11 @@ internal class Social implements Hit {
 	private var _action:String;
 	private var _content:String;
 
-	public function Social(builder:SocialBuilder) {
+    public function get type():HitType {
+        return HitType.SOCIAL;
+    }
 
+    public function Social(builder:SocialBuilder) {
 		_network = builder.network;
 		_action = builder.action;
 		_content = builder.content;

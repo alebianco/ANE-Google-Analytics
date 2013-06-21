@@ -58,7 +58,7 @@ internal class TransactionBuilder implements ITransactionBuilder {
 	}
 
 	public function track():void {
-		tracker.send(HitType.TRANSACTION, create());
+        tracker.send(create());
 	}
 }
 }

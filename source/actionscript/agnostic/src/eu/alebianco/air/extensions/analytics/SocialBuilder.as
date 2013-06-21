@@ -38,7 +38,7 @@ internal class SocialBuilder implements ISocialBuilder {
 	}
 
 	public function track():void {
-		tracker.send(HitType.SOCIAL, create());
+        tracker.send(create());
 	}
 }
 }

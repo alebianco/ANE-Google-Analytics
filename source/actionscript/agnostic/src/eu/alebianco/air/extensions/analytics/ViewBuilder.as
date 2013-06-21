@@ -30,7 +30,7 @@ internal class ViewBuilder implements IViewBuilder {
 	}
 
 	public function track():void {
-		tracker.send(HitType.VIEW, create());
+        tracker.send(create());
 	}
 }
 }

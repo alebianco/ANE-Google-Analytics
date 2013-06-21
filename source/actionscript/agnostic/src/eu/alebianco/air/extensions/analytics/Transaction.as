@@ -23,7 +23,11 @@ internal class Transaction implements Hit {
 	private var _tax:Object;
 	private var _products:Array;
 
-	public function Transaction(builder:TransactionBuilder) {
+    public function get type():HitType {
+        return HitType.TRANSACTION;
+    }
+
+    public function Transaction(builder:TransactionBuilder) {
 
 		if (!(builder.id && ID_VALIDATOR.test(builder.id)))
 			throw new ArgumentError("Transaction ID is invalid: must be not null or a empty string.");

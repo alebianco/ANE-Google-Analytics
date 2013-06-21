@@ -35,7 +35,7 @@ internal class ExceptionBuilder implements IExceptionBuilder {
 	}
 
 	public function track():void {
-		tracker.send(HitType.EXCEPTION, create());
+        tracker.send(create());
 	}
 }
 }
