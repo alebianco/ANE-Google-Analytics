@@ -3,9 +3,11 @@
 ### 0.2.04 (February 02, 2013)
 
 * Updated native tracker to version 2.0b4
+* API refinement
 * improved build scripts
 * fixed debug flag bug
-* asdoc update & integration
+* fixed bug for reading optOut value not available in iOS
+* ASdoc update & integration (scratch that, still having problems with iOS)
 * updated build script
 * moved demo project to a separate repository
 
