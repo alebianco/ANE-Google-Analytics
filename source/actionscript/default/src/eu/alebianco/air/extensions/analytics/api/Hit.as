@@ -9,11 +9,12 @@
  * Copyright © 2013 Alessandro Bianco
  */
 package eu.alebianco.air.extensions.analytics.api {
+import eu.alebianco.air.extensions.analytics.HitType;
 
-/**
- * Common interface to identify hits.
- */
 public interface Hit {
-
+    /**
+     * Returns the type of data to be tracked.
+     */
+    function get type():HitType;
 }
 }
