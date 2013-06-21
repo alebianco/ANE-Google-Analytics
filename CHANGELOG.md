@@ -7,6 +7,7 @@
 * improved build scripts
 * fixed debug flag bug
 * fixed bug for reading optOut value not available in iOS
+* initializing dispatch period on first usage to fix inconsistent values
 * ASdoc update & integration (scratch that, still having problems with iOS)
 * updated build script
 * moved demo project to a separate repository
