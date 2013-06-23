@@ -64,7 +64,9 @@ The code below shows the most basic example:
 	}
 ```
 
-A demo project aimed at showcasing all the features of the library will be committed soon.
+The first iteration of the demo project [ANE-Google-Analytics-Demo](https://github.com/alebianco/ANE-Google-Analytics-Demo) is now complete.
+Its purpose is to showcase the basic project setup and the features of the extension.
+As a first iteration, only screens and events tracking are implemented and enabled. Over time I'll complete it by adding more tracking options to fully exploid the extension.
 
 ## Building
 
