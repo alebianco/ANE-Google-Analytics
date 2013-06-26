@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ane-google-analytics by alebianco</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ane-google-analytics</h1>
+        <p>Air Native Extension for Google Analytics on iOS and Android</p>
+        <p class="view"><a href="https://github.com/alebianco/ANE-Google-Analytics">View the Project on GitHub <small>alebianco/ANE-Google-Analytics</small></a></p>
+        <ul>
+          <li><a href="https://github.com/alebianco/ANE-Google-Analytics/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/alebianco/ANE-Google-Analytics/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/alebianco/ANE-Google-Analytics">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="air-native-extension-for-google-analytics-on-ios-and-android" class="anchor" href="#air-native-extension-for-google-analytics-on-ios-and-android"><span class="octicon octicon-link"></span></a>Air Native Extension for Google Analytics on iOS and Android</h1>
+
+<p>This is an Air native extension for Google Analytics on the iOS and Android platforms.</p>
+
+<h1>
+<a name="warning" class="anchor" href="#warning"><span class="octicon octicon-link"></span></a>Warning</h1>
+
+<p>The new "app" profile on the Google Analytics dashboard won't accept any data from the trackers (1.5 and 1.5.1) currently used.
+I should complete the port to the new tracker shortly, so you can all benefit of the newest profiles.</p>
+
+<h1>
+<a name="binary-files" class="anchor" href="#binary-files"><span class="octicon octicon-link"></span></a>Binary files</h1>
+
+<p>The <em>bin</em> folder contains the compiled extension and the default swc, which can be used for local testing if required by your development environment (Flash Builder shouldn't need it, but other IDEs may).</p>
+
+<h1>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h1>
+
+<p><strong>v0.1.23</strong></p>
+
+<ul>
+<li>upgraded to AIR 3.5</li>
+<li>updated Google Analytics libraries (Android 1.5.1 and iOS 1.5)</li>
+<li>improved error handling</li>
+<li>added account ID validation</li>
+</ul><p><strong>v0.1.22</strong></p>
+
+<ul>
+<li>upgraded to AIR 3.4</li>
+<li>fixed more compatibility issues for cross-system compilation</li>
+</ul><p><strong>v0.1.21</strong></p>
+
+<ul>
+<li>finally tested on real iOS devices, thanks to <a href="http://github.com/digitaljohn">@digitaljohn</a>
+</li>
+<li>fixed incompatibility issues with earlier versions of iOS</li>
+<li>added some utility methods to the Enums related to custom variables</li>
+</ul><p><strong>v0.1.2</strong></p>
+
+<ul>
+<li>upgraded to AIR 3.3</li>
+<li>added target in the ANT script to run the demo project on the iOS simulator</li>
+<li>cleaned and updated the ANT build file</li>
+<li>fixed issues with the iOS version of the extension</li>
+</ul><p><strong>v0.1.1</strong></p>
+
+<ul>
+<li>updated Google Analytics libraries (Android 1.4.2 and iOS 1.4)</li>
+<li>added demo project to showcase usage and capabilities</li>
+<li>added some documentation on usage</li>
+</ul><p><strong>v0.1.0</strong></p>
+
+<ul>
+<li>initial release</li>
+</ul><h1>
+<a name="compiling-your-project" class="anchor" href="#compiling-your-project"><span class="octicon octicon-link"></span></a>Compiling your project</h1>
+
+<p>The extension requires that your project is built against version 5.1 of the iOS SDK.<br>
+It doesn't require version 5.1 at run-time, version 4.0 should be sufficient, but it is required at compile-time.
+Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter <strong>-platformsdk</strong> when building with adt from the command line or a build script.<br>
+Use Adobe Air SDK 3.4 or later.</p>
+
+<h1>
+<a name="using-the-extension" class="anchor" href="#using-the-extension"><span class="octicon octicon-link"></span></a>Using the extension</h1>
+
+<p>First of all, add the <em>NativeGATracker.ane</em> to your project.<br>
+Then you should check if the library is supported, get an instance of the tracker, start a tracking session using your Analytics ID and actually track something.</p>
+
+<p>The code below shows the most basic example:</p>
+
+<pre><code>import eu.alebianco.air.extensions.analytics.GATracker;
+
+if (GATracker.isSupported()) {
+    var tracker:GATracker = GATracker.getInstance();
+    tracker.startNewSession("UA-00000000-0", interval);
+    tracker.trackPageView("/custom/view/url");
+}
+</code></pre>
+
+<p>For any additional information you can reference the <a href="https://developers.google.com/analytics/devguides/">Google Analytics Developer Guides &amp; Reference</a> pages or the <em>ASDocs</em> on the code.<br>
+The extension follow closely the original SDK methods and functionalities, so it shouldn't be a problem to understand how it works.<br>
+In any case, if you have any problem or questions, just drop me a line.</p>
+
+<h1>
+<a name="building" class="anchor" href="#building"><span class="octicon octicon-link"></span></a>Building</h1>
+
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Adobe Air SDK 3.4 or later</li>
+<li>XCode IDE, iOS SDK 5.1 or later</li>
+<li>Google Android SDK 2.2</li>
+<li>Google Analytics mobile SDKs for iOS and Android</li>
+</ul><h2>
+<a name="set-up" class="anchor" href="#set-up"><span class="octicon octicon-link"></span></a>Set up</h2>
+
+<ul>
+<li>Download the <a href="http://code.google.com/apis/analytics/docs/mobile/download.html">Google Analytics mobile SDKs</a> for both iOS and Android platforms.
+
+<ul>
+<li>From the iOS SDK, copy the files <em>GANTracker.h</em> and <em>libGoogleAnalytics.a</em> from the <em>Library</em> folder within the .tar.gz archive, to the <em>source/ios/Libraries</em> folder in the project.</li>
+<li>From the Android SDK, copy the file <em>libGoogleAnalytics.jar</em> from inside the .zip archive, to the <em>source/android/libs</em> folder in the project.</li>
+</ul>
+</li>
+<li>Add the <em>FlashRuntimeExtensions.h</em> file from the Adobe Air SDK to the <em>source/ios/Libraries</em> folder in the project.</li>
+<li>Add the <em>FlashRuntimeExtensions.jar</em> file from the Adobe Air SDK to the <em>source/android/libs</em> folder in the project.</li>
+<li>Substitute the file <em>certificate.p12</em> in the <em>build</em> folder with your own. This may be a self-signed certificate created by Adobe Air.</li>
+<li>Edit the <em>build.config</em> file in the <em>build</em> folder and change the properties in this file to match your system.</li>
+<li>Run the ant build script <em>build.ant</em> from the <em>build</em> folder. This creates the native extension, and the default swc file, inside the <em>bin</em> folder.</li>
+</ul><h1>
+<a name="coming-up" class="anchor" href="#coming-up"><span class="octicon octicon-link"></span></a>Coming up</h1>
+
+<ul>
+<li>Better documentation</li>
+<li>ECommerce support</li>
+<li>Better error logging</li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/alebianco">alebianco</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
