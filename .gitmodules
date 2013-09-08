@@ -1,0 +1,3 @@
+[submodule "source/actionscript/abcore"]
+	path = source/actionscript/abcore
+	url = https://github.com/alebianco/abcore.git
