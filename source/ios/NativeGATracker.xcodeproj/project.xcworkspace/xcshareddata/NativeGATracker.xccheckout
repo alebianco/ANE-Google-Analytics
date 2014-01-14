@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E2E6888F-3D9B-4193-A71B-CF293DDB7C69</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NativeGATracker</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D7609F6A-D5AE-45EB-BBD4-493EAADE8172</key>
+		<string>ssh://github.com/alebianco/ANE-Google-Analytics.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>source/ios/NativeGATracker.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D7609F6A-D5AE-45EB-BBD4-493EAADE8172</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/alebianco/ANE-Google-Analytics.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D7609F6A-D5AE-45EB-BBD4-493EAADE8172</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D7609F6A-D5AE-45EB-BBD4-493EAADE8172</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ANE-Google-Analytics</string>
+		</dict>
+	</array>
+</dict>
+</plist>
