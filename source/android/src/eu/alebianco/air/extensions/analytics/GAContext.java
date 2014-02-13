@@ -62,6 +62,8 @@ public class GAContext extends FREContext {
         functions.put("setCustomDimension", new SetCustomDimension());
         functions.put("setCustomMetric", new SetCustomMetric());
 
+        functions.put("getCampaignData", new GetCampaignData());
+
         return functions;
     }
 }
