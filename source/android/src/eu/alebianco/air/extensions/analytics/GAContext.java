@@ -63,6 +63,9 @@ public class GAContext extends FREContext {
         functions.put("setCustomMetric", new SetCustomMetric());
 
         functions.put("getCampaignData", new GetCampaignData());
+        functions.put("setCampaignData", new SetCampaignData());
+        functions.put("getReferrer", new GetReferrer());
+        functions.put("setReferrer", new SetReferrer());
 
         return functions;
     }

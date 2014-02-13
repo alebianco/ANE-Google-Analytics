@@ -4,7 +4,7 @@
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
  * Twitter: @alebianco
- * Created: 12/02/14 20.05
+ * Created: 13/02/14 16.25
  *
  * Copyright © 2013 Alessandro Bianco
  */
@@ -20,7 +20,7 @@ import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
 import eu.alebianco.air.extensions.utils.LogLevel;
 
-public class GetCampaignData implements FREFunction {
+public class GetReferrer implements FREFunction {
 
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
@@ -30,9 +30,9 @@ public class GetCampaignData implements FREFunction {
         Intent intent = activity.getIntent();
         Uri uri = intent.getData();
 
-        if (uri != null && uri.getQueryParameter("utm_source") != null) {
+        if (uri != null && uri.getQueryParameter("referrer") != null) {
             try {
-                result = FREObject.newObject(uri.getQuery());
+                result = FREObject.newObject(uri.getQueryParameter("referrer"));
             } catch(Exception e) {
                 FREUtils.logEvent(context, LogLevel.ERROR,
                         "Unable to create the return value. [Exception:(type:%s, method:%s)].",
