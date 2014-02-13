@@ -131,16 +131,16 @@ internal class Tracker implements ITracker {
 		return getReferrer() != null;
 	}
 	public function getCampaignData():String {
-		return handleResultFromExtension(context.call("getCampaignData"), String) as String;
+		return handleResultFromExtension(context.call("getCampaignData", id), String) as String;
 	}
 	public function getReferrer():String {
-		return handleResultFromExtension(context.call("getReferrer"), String) as String;
+		return handleResultFromExtension(context.call("getReferrer", id), String) as String;
 	}
 	public function setCampaignData(data:String):void {
-		handleResultFromExtension(context.call("setCampaignData"));
+		handleResultFromExtension(context.call("setCampaignData", id, data));
 	}
 	public function setReferrer(uri:String):void {
-		handleResultFromExtension(context.call("setReferrer"));
+		handleResultFromExtension(context.call("setReferrer", id, uri));
 	}
 
 	public function send(data:Hit):void {
