@@ -20,7 +20,6 @@ public class GAExtension implements FREExtension {
     @Override
     public FREContext createContext(String id) {
         context = new GAContext();
-        context.initialize();
         return context;
     }
 

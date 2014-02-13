@@ -21,9 +21,6 @@ public class GAContext extends FREContext {
     public static final String VERSION = "0.2.05";
     public static final String PRODUCT = "ANE-Google-Analytics";
 
-    public void initialize() {
-    }
-
     @Override
     public void dispose() {
     }
