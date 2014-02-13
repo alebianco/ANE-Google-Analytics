@@ -125,10 +125,10 @@ internal class Tracker implements ITracker {
 	}
 
 	public function hasCampaignData():Boolean {
-		return handleResultFromExtension(context.call("hasCampaignData"), Boolean) as Boolean;
+		return (handleResultFromExtension(context.call("getCampaignData"), String) as String) != null;
 	}
 	public function hasReferrer():Boolean {
-		return handleResultFromExtension(context.call("hasReferrer"), Boolean) as Boolean;
+		return (handleResultFromExtension(context.call("getReferrer"), String) as String) != null;
 	}
 	public function getCampaignData():String {
 		return handleResultFromExtension(context.call("getCampaignData"), String) as String;
