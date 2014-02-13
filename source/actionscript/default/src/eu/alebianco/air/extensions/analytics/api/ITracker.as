@@ -44,6 +44,8 @@ public interface ITracker extends IDisposable {
 	function clearCustomMetric(index:uint):void;
 	function clearCustomDimension(index:uint):void;
 
+	function getCampaignData():void
+
 	function buildEvent(category:String, action:String):IEventBuilder;
 	function buildView(screenName:String):IViewBuilder;
 	function buildException(fatal:Boolean):IExceptionBuilder;

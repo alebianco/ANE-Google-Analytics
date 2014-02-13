@@ -122,6 +122,11 @@ internal class Tracker implements ITracker {
 
 		handleResultFromExtension(context.call("clearCustomDimension", id, index));
 	}
+
+	public function getCampaignData():void {
+		handleResultFromExtension(context.call("getCampaignData"));
+	}
+
 	public function send(data:Hit):void {
 		_lockAppData = true;
 		handleResultFromExtension(context.call("trackData", id, data.type.name, data));
