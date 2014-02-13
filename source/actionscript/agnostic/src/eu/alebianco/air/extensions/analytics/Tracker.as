@@ -41,6 +41,7 @@ internal class Tracker implements ITracker {
 		this.id = id;
 		this.context = context;
 		parseAppDescriptor();
+		measureCampaign();
 		createTimer();
 	}
 
@@ -175,6 +176,13 @@ internal class Tracker implements ITracker {
 		if (appID == null) appID = descriptor.ns::id[0];
 		appName = descriptor.ns::filename[0] || "";
 		appVersion = descriptor.ns::versionLabel[0] || "";
+	}
+	private function measureCampaign():void {
+		if (hasCampaignData()) {
+			setCampaignData(getCampaignData());
+		} else if (hasReferrer()) {
+			setReferrer(getReferrer());
+		}
 	}
 	private function createTimer():void {
 		if (timeout == 0) return;
