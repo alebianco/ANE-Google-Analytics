@@ -44,7 +44,14 @@ public interface ITracker extends IDisposable {
 	function clearCustomMetric(index:uint):void;
 	function clearCustomDimension(index:uint):void;
 
-	function getCampaignData():void
+	function hasCampaignData():Boolean;
+	function hasReferrer():Boolean;
+
+	function getCampaignData():String;
+	function getReferrer():String;
+
+	function setCampaignData(data:String):void;
+	function setReferrer(uri:String):void;
 
 	function buildEvent(category:String, action:String):IEventBuilder;
 	function buildView(screenName:String):IViewBuilder;
