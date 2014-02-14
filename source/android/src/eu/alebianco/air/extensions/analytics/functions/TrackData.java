@@ -11,7 +11,10 @@
 package eu.alebianco.air.extensions.analytics.functions;
 
 import com.adobe.fre.*;
-import com.google.analytics.tracking.android.*;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.ModelFields;
+import com.google.analytics.tracking.android.Tracker;
+import com.google.analytics.tracking.android.Transaction;
 import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
 import eu.alebianco.air.extensions.utils.LogLevel;
@@ -233,6 +236,7 @@ public class TrackData implements FREFunction {
         String affiliation;
         Double shipping;
         Double tax;
+        String currency;
 
         Long numProducts;
         FREArray products;
@@ -276,6 +280,15 @@ public class TrackData implements FREFunction {
             tax = null;
         }
 
+        try {
+            currency = data.getProperty("currency").getAsString();
+        } catch (Exception e) {
+            FREUtils.logEvent(context, LogLevel.INFO,
+                    "Unable to read a property, falling back to default value. (Exception:[name:%s, reason:%s, method:%s:%s])",
+                    FREUtils.stripPackageFromClassName(e.toString()), e.getMessage(), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()), FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentMethodName()));
+            currency = null;
+        }
+
 
         Transaction.Builder builder = new Transaction.Builder(id, (long) (cost * 1000000));
         if (affiliation != null)
@@ -284,6 +297,9 @@ public class TrackData implements FREFunction {
             builder.setShippingCostInMicros((long) (shipping * 1000000));
         if (tax != null)
             builder.setTotalTaxInMicros((long) (tax * 1000000));
+
+        if (currency != null)
+            builder.setCurrencyCode(currency);
 
         Transaction transaction = builder.build();
 

@@ -23,6 +23,7 @@ internal class TransactionBuilder implements ITransactionBuilder {
 	internal var affiliation:String = null;
 	internal var shipping:Object = null;
 	internal var tax:Object = null;
+	internal var currency:String = null;
 
 	private var _products:Array;
 
@@ -46,6 +47,10 @@ internal class TransactionBuilder implements ITransactionBuilder {
 	}
 	public function withTaxCost(cost:Number):ITransactionBuilder {
 		this.tax = cost;
+		return this;
+	}
+	public function withCurrencyCode(currency:String):ITransactionBuilder {
+		this.currency = currency;
 		return this;
 	}
 
