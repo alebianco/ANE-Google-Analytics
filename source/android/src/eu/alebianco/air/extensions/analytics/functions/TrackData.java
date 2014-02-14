@@ -283,7 +283,7 @@ public class TrackData implements FREFunction {
         if (shipping != null)
             builder.setShippingCostInMicros((long) (shipping * 1000000));
         if (tax != null)
-            builder.setShippingCostInMicros((long) (tax * 1000000));
+            builder.setTotalTaxInMicros((long) (tax * 1000000));
 
         Transaction transaction = builder.build();
 
