@@ -29,124 +29,103 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a name="air-native-extension-for-google-analytics-on-ios-and-android" class="anchor" href="#air-native-extension-for-google-analytics-on-ios-and-android"><span class="octicon octicon-link"></span></a>Air Native Extension for Google Analytics on iOS and Android</h1>
+<a name="ane-google-analytics-air-native-extension-for-google-analytics-on-ios-and-android" class="anchor" href="#ane-google-analytics-air-native-extension-for-google-analytics-on-ios-and-android"><span class="octicon octicon-link"></span></a>ANE-Google-Analytics: AIR Native Extension for Google Analytics on iOS and Android</h1>
 
 <p>This is an Air native extension for Google Analytics on the iOS and Android platforms.</p>
 
-<h1>
-<a name="warning" class="anchor" href="#warning"><span class="octicon octicon-link"></span></a>Warning</h1>
+<p><strong>NOTE</strong> The current release of the extension supports the new <a href="https://support.google.com/analytics/answer/1009714">Application profile</a> for Google Analytics.</p>
 
-<p>The new "app" profile on the Google Analytics dashboard won't accept any data from the trackers (1.5 and 1.5.1) currently used.
-I should complete the port to the new tracker shortly, so you can all benefit of the newest profiles.</p>
+<h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<h1>
-<a name="binary-files" class="anchor" href="#binary-files"><span class="octicon octicon-link"></span></a>Binary files</h1>
+<p>The Google Analytics Platform lets you measure user interactions with your business across various devices and environments.<br>
+This extension for AIR applications leverages the Android and iOS native SDKs provided by Google Analytics, exposing their features through a common API that can be used seamlessly on both platforms.</p>
 
-<p>The <em>bin</em> folder contains the compiled extension and the default swc, which can be used for local testing if required by your development environment (Flash Builder shouldn't need it, but other IDEs may).</p>
-
-<h1>
-<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h1>
-
-<p><strong>v0.1.23</strong></p>
+<p>This extension makes it easy for developers to collect user engagement data from their apps.<br>
+Developers can then use Google Analytics reports to measure:</p>
 
 <ul>
-<li>upgraded to AIR 3.5</li>
-<li>updated Google Analytics libraries (Android 1.5.1 and iOS 1.5)</li>
-<li>improved error handling</li>
-<li>added account ID validation</li>
-</ul><p><strong>v0.1.22</strong></p>
-
-<ul>
-<li>upgraded to AIR 3.4</li>
-<li>fixed more compatibility issues for cross-system compilation</li>
-</ul><p><strong>v0.1.21</strong></p>
-
-<ul>
-<li>finally tested on real iOS devices, thanks to <a href="http://github.com/digitaljohn">@digitaljohn</a>
-</li>
-<li>fixed incompatibility issues with earlier versions of iOS</li>
-<li>added some utility methods to the Enums related to custom variables</li>
-</ul><p><strong>v0.1.2</strong></p>
-
-<ul>
-<li>upgraded to AIR 3.3</li>
-<li>added target in the ANT script to run the demo project on the iOS simulator</li>
-<li>cleaned and updated the ANT build file</li>
-<li>fixed issues with the iOS version of the extension</li>
-</ul><p><strong>v0.1.1</strong></p>
-
-<ul>
-<li>updated Google Analytics libraries (Android 1.4.2 and iOS 1.4)</li>
-<li>added demo project to showcase usage and capabilities</li>
-<li>added some documentation on usage</li>
-</ul><p><strong>v0.1.0</strong></p>
-
-<ul>
-<li>initial release</li>
-</ul><h1>
-<a name="compiling-your-project" class="anchor" href="#compiling-your-project"><span class="octicon octicon-link"></span></a>Compiling your project</h1>
-
-<p>The extension requires that your project is built against version 5.1 of the iOS SDK.<br>
-It doesn't require version 5.1 at run-time, version 4.0 should be sufficient, but it is required at compile-time.
-Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, if the functionality is built in to your IDE (like in Flash Builder) or using parameter <strong>-platformsdk</strong> when building with adt from the command line or a build script.<br>
-Use Adobe Air SDK 3.4 or later.</p>
-
-<h1>
-<a name="using-the-extension" class="anchor" href="#using-the-extension"><span class="octicon octicon-link"></span></a>Using the extension</h1>
+<li>The number of active users are using their applications.</li>
+<li>From where in the world the application is being used.</li>
+<li>Adoption and usage of specific features.</li>
+<li>In-app purchases and transactions.</li>
+<li>The number and type of application crashes.</li>
+<li>And many other useful metrics.</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>First of all, add the <em>NativeGATracker.ane</em> to your project.<br>
 Then you should check if the library is supported, get an instance of the tracker, start a tracking session using your Analytics ID and actually track something.</p>
 
 <p>The code below shows the most basic example:</p>
 
-<pre><code>import eu.alebianco.air.extensions.analytics.GATracker;
+<div class="highlight highlight-ActionScript"><pre>    <span class="kd">import</span> <span class="nx">eu</span><span class="p">.</span><span class="nx">alebianco</span><span class="p">.</span><span class="nx">air</span><span class="p">.</span><span class="nx">extensions</span><span class="p">.</span><span class="nx">analytics</span><span class="p">.</span><span class="nx">Analytics</span><span class="o">;</span>
+    <span class="kd">import</span> <span class="nx">eu</span><span class="p">.</span><span class="nx">alebianco</span><span class="p">.</span><span class="nx">air</span><span class="p">.</span><span class="nx">extensions</span><span class="p">.</span><span class="nx">analytics</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ITracker</span><span class="o">;</span>
 
-if (GATracker.isSupported()) {
-    var tracker:GATracker = GATracker.getInstance();
-    tracker.startNewSession("UA-00000000-0", interval);
-    tracker.trackPageView("/custom/view/url");
-}
-</code></pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Analytics</span><span class="p">.</span><span class="nx">isSupported</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nx">analytics</span><span class="o">:</span><span class="nx">Analytics</span> <span class="o">=</span> <span class="nx">Analytics</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+        <span class="k">var</span> <span class="nx">tracker</span><span class="o">:</span><span class="nx">ITracker</span> <span class="o">=</span> <span class="nx">analytics</span><span class="p">.</span><span class="nx">getTracker</span><span class="p">(</span><span class="nx">ANALYTICS_ID</span><span class="p">);</span>
 
-<p>For any additional information you can reference the <a href="https://developers.google.com/analytics/devguides/">Google Analytics Developer Guides &amp; Reference</a> pages or the <em>ASDocs</em> on the code.<br>
-The extension follow closely the original SDK methods and functionalities, so it shouldn't be a problem to understand how it works.<br>
-In any case, if you have any problem or questions, just drop me a line.</p>
+        <span class="c1">// Track a page view</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildView</span><span class="p">(</span><span class="s2">"Home"</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
 
-<h1>
-<a name="building" class="anchor" href="#building"><span class="octicon octicon-link"></span></a>Building</h1>
+        <span class="c1">// Track an event</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildEvent</span><span class="p">(</span><span class="s2">"click"</span><span class="o">,</span> <span class="s2">"button"</span><span class="p">).</span><span class="nx">withLabel</span><span class="p">(</span><span class="s2">"play"</span><span class="p">).</span><span class="nx">withValue</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildEvent</span><span class="p">(</span><span class="s2">"click"</span><span class="o">,</span> <span class="s2">"button"</span><span class="p">).</span><span class="nx">withLabel</span><span class="p">(</span><span class="s2">"stop"</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildEvent</span><span class="p">(</span><span class="s2">"swipe"</span><span class="o">,</span> <span class="s2">"screen"</span><span class="p">).</span><span class="nx">withValue</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildEvent</span><span class="p">(</span><span class="s2">"app"</span><span class="o">,</span> <span class="s2">"quit"</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+
+        <span class="c1">// Track an exception</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildException</span><span class="p">(</span><span class="kc">false</span><span class="p">).</span><span class="nx">withDescription</span><span class="p">(</span><span class="s2">"ok, an error occurred, but it wasn't that bad"</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildException</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">withDescription</span><span class="p">(</span><span class="s2">"panic! this shit is hitting the fan!"</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildException</span><span class="p">(</span><span class="kc">false</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+
+        <span class="c1">// Track a timer</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildTiming</span><span class="p">(</span><span class="s2">"loading"</span><span class="o">,</span> <span class="mi">5000</span><span class="p">).</span><span class="nx">withName</span><span class="p">(</span><span class="s2">"resources"</span><span class="p">).</span><span class="nx">withLabel</span><span class="p">(</span><span class="s2">"audio.mp3"</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildTiming</span><span class="p">(</span><span class="s2">"waiting"</span><span class="o">,</span> <span class="mi">1000</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+
+        <span class="c1">// Track a social interaction</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildSocial</span><span class="p">(</span><span class="s2">"GooglePlus"</span><span class="o">,</span> <span class="s2">"+1"</span><span class="p">).</span><span class="nx">forContent</span><span class="p">(</span><span class="s2">"http://alessandrobianco.eu"</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildSocial</span><span class="p">(</span><span class="s2">"Facebook"</span><span class="o">,</span> <span class="s2">"like"</span><span class="p">).</span><span class="nx">track</span><span class="p">();</span>
+
+        <span class="c1">// Track an ecommerce transaction</span>
+        <span class="nx">tracker</span><span class="p">.</span><span class="nx">buildTransaction</span><span class="p">(</span><span class="nx">UIDUtil</span><span class="p">.</span><span class="nx">createUID</span><span class="p">()</span><span class="o">,</span> <span class="mf">10.5</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">withAffiliation</span><span class="p">(</span><span class="s2">"In-App Purchase"</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">withTaxCost</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">createProduct</span><span class="p">(</span><span class="s2">"cr-300"</span><span class="o">,</span> <span class="s2">"300 credits pack"</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">1</span><span class="p">).</span><span class="nx">inCategory</span><span class="p">(</span><span class="s2">"credits"</span><span class="p">).</span><span class="nx">add</span><span class="p">()</span>
+                <span class="p">.</span><span class="nx">createProduct</span><span class="p">(</span><span class="s2">"it-156"</span><span class="o">,</span> <span class="s2">"extra life item"</span><span class="o">,</span> <span class="mf">1.5</span><span class="o">,</span> <span class="mi">2</span><span class="p">).</span><span class="nx">add</span><span class="p">()</span>
+                <span class="p">.</span><span class="nx">track</span><span class="p">();</span>
+    <span class="p">}</span>
+</pre></div>
+
+<p>The first iteration of the demo project <a href="https://github.com/alebianco/ANE-Google-Analytics-Demo">ANE-Google-Analytics-Demo</a> is now complete.
+Its purpose is to showcase the basic project setup and the features of the extension.<br>
+As a first iteration, only screens and events tracking are implemented and enabled. Over time I'll complete it by adding more tracking options to fully exploid the extension.</p>
 
 <h2>
-<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+<a name="building" class="anchor" href="#building"><span class="octicon octicon-link"></span></a>Building</h2>
+
+<p>Requirements:</p>
 
 <ul>
-<li>Adobe Air SDK 3.4 or later</li>
+<li>Adobe Air SDK 3.5 or later</li>
 <li>XCode IDE, iOS SDK 5.1 or later</li>
 <li>Google Android SDK 2.2</li>
-<li>Google Analytics mobile SDKs for iOS and Android</li>
-</ul><h2>
-<a name="set-up" class="anchor" href="#set-up"><span class="octicon octicon-link"></span></a>Set up</h2>
+</ul><p>Add the <em>FlashRuntimeExtensions.h</em> file from the Adobe Air SDK to the <em>source/ios/Libraries</em> folder<br>
+Add the <em>FlashRuntimeExtensions.jar</em> file from the Adobe Air SDK to the <em>source/android/libs</em> folder<br>
+In the <strong>build</strong> folder, make a copy of the <em>user.properties.eg</em> file and call it <em>user.properties</em><br>
+Edit that file to provide values specific to your system<br>
+Use the <code>build.ant</code> ant script you'll find in the <strong>build</strong> folder, to build the project</p>
 
-<ul>
-<li>Download the <a href="http://code.google.com/apis/analytics/docs/mobile/download.html">Google Analytics mobile SDKs</a> for both iOS and Android platforms.
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
-<ul>
-<li>From the iOS SDK, copy the files <em>GANTracker.h</em> and <em>libGoogleAnalytics.a</em> from the <em>Library</em> folder within the .tar.gz archive, to the <em>source/ios/Libraries</em> folder in the project.</li>
-<li>From the Android SDK, copy the file <em>libGoogleAnalytics.jar</em> from inside the .zip archive, to the <em>source/android/libs</em> folder in the project.</li>
-</ul>
-</li>
-<li>Add the <em>FlashRuntimeExtensions.h</em> file from the Adobe Air SDK to the <em>source/ios/Libraries</em> folder in the project.</li>
-<li>Add the <em>FlashRuntimeExtensions.jar</em> file from the Adobe Air SDK to the <em>source/android/libs</em> folder in the project.</li>
-<li>Substitute the file <em>certificate.p12</em> in the <em>build</em> folder with your own. This may be a self-signed certificate created by Adobe Air.</li>
-<li>Edit the <em>build.config</em> file in the <em>build</em> folder and change the properties in this file to match your system.</li>
-<li>Run the ant build script <em>build.ant</em> from the <em>build</em> folder. This creates the native extension, and the default swc file, inside the <em>bin</em> folder.</li>
-</ul><h1>
-<a name="coming-up" class="anchor" href="#coming-up"><span class="octicon octicon-link"></span></a>Coming up</h1>
+<p>If you want to contribute to the project refer to the <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> document for guidelines.</p>
 
-<ul>
-<li>Better documentation</li>
-<li>ECommerce support</li>
-<li>Better error logging</li>
-</ul>
+<h2>
+<a name="roadmap" class="anchor" href="#roadmap"><span class="octicon octicon-link"></span></a>Roadmap</h2>
+
+<p>You can follow the project planning on <a href="https://trello.com/b/wk7wHEhS">Trello</a>, you can even vote for the tasks that are more important for you and you'll like to see implemented.</p>
         </section>
 
         <aside id="sidebar">
