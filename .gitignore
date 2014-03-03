@@ -2,6 +2,7 @@ FlashRuntimeExtensions.h
 FlashRuntimeExtensions.jar
 
 user.properties
+*.zip
 
 docs/
 reports/
