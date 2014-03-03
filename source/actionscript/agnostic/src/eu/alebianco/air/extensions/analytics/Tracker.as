@@ -175,7 +175,7 @@ internal class Tracker implements ITracker {
 		const ns:Namespace = descriptor.namespace();
 		if (appID == null) appID = descriptor.ns::id[0];
 		appName = descriptor.ns::filename[0] || "";
-		appVersion = descriptor.ns::versionLabel[0] || "";
+		appVersion = descriptor.ns::versionLabel[0] || descriptor.ns::versionNumber[0] || "";
 	}
 	private function measureCampaign():void {
 		if (hasCampaignData()) {
