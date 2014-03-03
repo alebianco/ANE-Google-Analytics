@@ -80,7 +80,7 @@
             <arg value="-lenient=true"/>
             <arg line="-window-title '${project.name} ${version.num}'"/>
             <arg line="-main-title '${project.name} ${version.num}'"/>
-            <arg line="-footer '${project.name} - https://github.com/alebianco/ANE-Google-Analytics'"/>
+            <arg line="-footer '${project.name} - http://alebianco.github.io/ANE-Google-Analytics'"/>
         </java>
         <delete dir="${bin.dir}/libs"/>
         <echo>[asdoc] ASDOC documentation generated successfully</echo>
