@@ -515,6 +515,7 @@ FREObject trackTransaction(FREContext context, id tracker, FREObject *data) {
     NSString *affiliation;
     NSNumber *shipping;
     NSNumber *tax;
+    NSString *currency;
 
     NSUInteger prodc;
     FREObject *products;
@@ -552,6 +553,15 @@ FREObject trackTransaction(FREContext context, id tracker, FREObject *data) {
     @catch (NSException *exception) {
         logEvent(context, kInfo, @"Unable to read a property, falling back to default label. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         tax = nil;
+    }
+    
+    @try {
+        currency = [FREConversionUtil toString:[FREConversionUtil getProperty:@"currency" fromObject:data]];
+        logEvent(context, kWarn, @"Currency codes are not supported by the current iOS implementation, this parameter will be ignored.");
+    }
+    @catch (NSException *exception) {
+        logEvent(context, kInfo, @"Unable to read a property, falling back to default label. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        currency = nil;
     }
 
     GAITransaction *transaction = [GAITransaction transactionWithId:id withAffiliation:affiliation];
