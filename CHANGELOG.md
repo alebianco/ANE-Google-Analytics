@@ -1,56 +1,66 @@
 ## HEAD
 
-### 0.2.04 (February 02, 2013)
+### 2.0.7 RC 1 (March 26, 2014)
+
+* Upgraded to AIR 13
+* Upgrade Android native library to v2.0beta6
+* Added ASDocs back into packaged release
+* Implemented Google Play Campaign Attribution tracking (Android only)
+* Implemented General Campaign & Traffic Source Attribution (Android only)
+* Added transaction's currency code property (Android only)
+* [Android] Verify app has needed permissions when checking if extension is supported
+* Fixed issue #32 - transaction's shipping cost being replaced by tax cost
+* Fixed issue #34 - improved app version identification from descriptor
+
+### 2.0.6 (February 10, 2014)
+
+* Updated to AIR 4.0
+
+### 2.0.5 (January 14, 2014)
+
+* Update to AIR 3.9
+* Fixed issue #23 - sending hits without setting optional parameters
+
+### 2.0.4 (September 08, 2013)
 
 * Updated native tracker to version 2.0b4
 * API refinement
-* improved build scripts
-* fixed debug flag bug
-* fixed bug for reading optOut value not available in iOS
-* initializing dispatch period on first usage to fix inconsistent values
+* Fixed debug flag bug
+* Fixed bug for reading optOut value not available in iOS
+* Initializing dispatch period on first usage to fix inconsistent values
 * ASdoc update & integration (scratch that, still having problems with iOS)
-* updated build script
-* moved demo project to a separate repository
+* Updated and improved build scripts
+* Moved demo project to a separate repository
 
-### 0.2.03 (December 28, 2012)
+### 2.0.3 (December 28, 2012)
 
-* totally rewritten Flash API
-* totally rewritten native code for Android and iOS
-* upgraded to the new Google tracker (v2.0 beta 3) to support the new "Application" analytics' profile
-* full support to the new Google tracker, including e-commerce, multiple trackers support, custom metrics and dimensions
-* brand new demo project built specifically for mobile devices (in progress)
+* Totally rewritten Flash API
+* Totally rewritten native code for Android and iOS
+* Upgraded to the new Google tracker (v2.0 beta 3) to support the new "Application" analytics' profile
+* Full support to the new Google tracker, including e-commerce, multiple trackers support, custom metrics and dimensions
+* Brand new demo project built specifically for mobile devices (in progress)
 
-### 0.1.23 (December 2, 2012)
+### 1.2.3 (December 2, 2012)
 
-* upgraded to AIR 3.5
-* updated Google Analytics libraries (Android 1.5.1 and iOS 1.5)
-* improved error handling
-* added account ID validation
+* Upgraded to AIR 3.5
+* Updated Google Analytics libraries (Android 1.5.1 and iOS 1.5)
+* Improved error handling
+* Added account ID validation
 
-### 0.1.22 (October 7, 2012)
+### 1.2.2 (October 11, 2012)
 
-* upgraded to AIR 3.4
-* fixed more compatibility issues for cross-system compilation
+* Upgraded to AIR 3.4
+* Fixed more compatibility issues for cross-system compilation
 
-### 0.1.21 (October 2, 2012)
+### 1.2.1 (October 2, 2012)
 
-* finally tested on real iOS devices, thanks to [@digitaljohn](http://github.com/digitaljohn)
-* fixed incompatibility issues with earlier versions of iOS
-* added some utility methods to the Enums related to custom variables
+* Finally tested on real iOS devices, thanks to [@digitaljohn](http://github.com/digitaljohn)
+* Fixed incompatibility issues with earlier versions of iOS
+* Added some utility methods to the Enums related to custom variables
 
-### 0.1.2 (August 17, 2012)
+### 1.2.0 (August 17, 2012)
 
-* upgraded to AIR 3.3
-* added target in the ANT script to run the demo project on the iOS simulator
-* cleaned and updated the ANT build file
-* fixed issues with the iOS version of the extension
-
-### 0.1.1 (July 15, 2012)
-
-* updated Google Analytics libraries (Android 1.4.2 and iOS 1.4)
-* added demo project to showcase usage and capabilities
-* added some documentation on usage
-
-### 0.1.0 (July 11, 2012)
-
-* initial release
+* Upgraded to AIR 3.3
+* Added target in the ANT script to run the demo project on the iOS simulator
+* Cleaned and updated the ANT build file
+* Fixed issues with the iOS version of the extension
