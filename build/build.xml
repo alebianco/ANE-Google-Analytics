@@ -92,11 +92,11 @@
         <mkdir dir="${dist.dir}"/>
         <copy file="${bin.dir}/${project.name.versioned}.swc" todir="${dist.dir}"/>
         <copy file="${bin.dir}/${project.name.versioned}.ane" todir="${dist.dir}"/>
-        <!--<copy todir="${dist.dir}/docs">
+        <copy todir="${dist.dir}/docs">
             <fileset dir="${doc.dir}"/>
         </copy>
         <delete dir="${dist.dir}/docs/tempdita"/>
-        <zip destfile="${doc.dir}/${project.name.versioned}.swc" update="true">
+        <!--<zip destfile="${doc.dir}/${project.name.versioned}.swc" update="true">
             <zipfileset dir="${doc.dir}/tempdita" prefix="docs">
                 <include name="*packages.dita*"/>
                 <include name="*eu.alebianco.*"/>
