@@ -42,6 +42,11 @@ void GAContextInitializer(void *extData, const uint8_t *ctxType, FREContext ctx,
             MAP_FUNCTION( clearCustomDimension, NULL ),
             MAP_FUNCTION( setCustomMetric, NULL ),
             MAP_FUNCTION( clearCustomMetric, NULL ),
+        
+            MAP_FUNCTION( getCampaignData, NULL ),
+            MAP_FUNCTION( setCampaignData, NULL ),
+            MAP_FUNCTION( getReferrer, NULL ),
+            MAP_FUNCTION( setReferrer, NULL ),
     };
 
     *numFunctionsToSet = sizeof(functionMap) / sizeof(FRENamedFunction);

@@ -17,3 +17,4 @@
 #import "Analytics.h"
 #import "AppInfo.h"
 #import "Tracker.h"
+#import "Campaign.h"

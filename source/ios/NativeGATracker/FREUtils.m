@@ -15,7 +15,7 @@
 @implementation FREUtils
 
 void logEvent(FREContext ctx, enum LogLevel lvl, NSString *format, ...) {
-    va_list ap = NULL;
+    va_list ap;
     va_start(ap, format);
     NSString *message = [[[NSString alloc] initWithFormat:format arguments:ap] autorelease];
     va_end(ap);
@@ -49,7 +49,7 @@ void logEvent(FREContext ctx, enum LogLevel lvl, NSString *format, ...) {
 FREObject createRuntimeException(NSString *type, NSInteger id, NSString *format, ...) {
     FREObject object;
 
-    va_list ap = NULL;
+    va_list ap;
     va_start(ap, format);
     NSString *message = [[[NSString alloc] initWithFormat:format arguments:ap] autorelease];
     va_end(ap);
