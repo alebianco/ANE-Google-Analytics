@@ -12,6 +12,6 @@ package eu.alebianco.air.extensions.analytics.api {
 
 public interface IEventBuilder extends IHitBuilder {
 	function withLabel(label:String):IEventBuilder;
-	function withValue(value:int):IEventBuilder;
+	function withValue(value:Number):IEventBuilder;
 }
 }
