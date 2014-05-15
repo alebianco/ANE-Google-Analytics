@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<extension xmlns="http://ns.adobe.com/air/extension/4.0">
+<extension xmlns="http://ns.adobe.com/air/extension/13.0">
 	<id>eu.alebianco.air.extensions.analytics.NativeGATracker</id>
 	<name>Google Analytics AIR Extension</name>
 	<description>Allow mobile AIR applications to communicante tracking informations to the Google Analytics platform.</description>
 	<copyright>Copyright (c) 2011 - 2013 Alessandro Bianco</copyright>
-	<versionNumber>0.2.04</versionNumber>
+	<versionNumber>2.0.7</versionNumber>
 	<platforms>
 		<platform name="Android-ARM">
 			<applicationDeployment>

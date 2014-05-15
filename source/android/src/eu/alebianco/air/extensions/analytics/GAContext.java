@@ -18,11 +18,8 @@ import java.util.Map;
 
 public class GAContext extends FREContext {
 
-    public static final String VERSION = "0.2.04";
+    public static final String VERSION = "2.0.7rc1";
     public static final String PRODUCT = "ANE-Google-Analytics";
-
-    public void initialize() {
-    }
 
     @Override
     public void dispose() {
@@ -64,6 +61,11 @@ public class GAContext extends FREContext {
         functions.put("trackData", new TrackData());
         functions.put("setCustomDimension", new SetCustomDimension());
         functions.put("setCustomMetric", new SetCustomMetric());
+
+        functions.put("getCampaignData", new GetCampaignData());
+        functions.put("setCampaignData", new SetCampaignData());
+        functions.put("getReferrer", new GetReferrer());
+        functions.put("setReferrer", new SetReferrer());
 
         return functions;
     }

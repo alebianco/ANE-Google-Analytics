@@ -41,6 +41,7 @@ internal class Tracker implements ITracker {
 		this.id = id;
 		this.context = context;
 		parseAppDescriptor();
+		measureCampaign();
 		createTimer();
 	}
 
@@ -122,6 +123,26 @@ internal class Tracker implements ITracker {
 
 		handleResultFromExtension(context.call("clearCustomDimension", id, index));
 	}
+
+	public function hasCampaignData():Boolean {
+		return getCampaignData() != null;
+	}
+	public function hasReferrer():Boolean {
+		return getReferrer() != null;
+	}
+	public function getCampaignData():String {
+		return handleResultFromExtension(context.call("getCampaignData", id), String) as String;
+	}
+	public function getReferrer():String {
+		return handleResultFromExtension(context.call("getReferrer", id), String) as String;
+	}
+	public function setCampaignData(data:String):void {
+		handleResultFromExtension(context.call("setCampaignData", id, data));
+	}
+	public function setReferrer(uri:String):void {
+		handleResultFromExtension(context.call("setReferrer", id, uri));
+	}
+
 	public function send(data:Hit):void {
 		_lockAppData = true;
 		handleResultFromExtension(context.call("trackData", id, data.type.name, data));
@@ -154,7 +175,14 @@ internal class Tracker implements ITracker {
 		const ns:Namespace = descriptor.namespace();
 		if (appID == null) appID = descriptor.ns::id[0];
 		appName = descriptor.ns::filename[0] || "";
-		appVersion = descriptor.ns::versionLabel[0] || "";
+		appVersion = descriptor.ns::versionLabel[0] || descriptor.ns::versionNumber[0] || "";
+	}
+	private function measureCampaign():void {
+		if (hasCampaignData()) {
+			setCampaignData(getCampaignData());
+		} else if (hasReferrer()) {
+			setReferrer(getReferrer());
+		}
 	}
 	private function createTimer():void {
 		if (timeout == 0) return;

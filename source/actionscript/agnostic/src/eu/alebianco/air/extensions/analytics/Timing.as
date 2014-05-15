@@ -15,7 +15,7 @@ import eu.alebianco.air.extensions.analytics.api.Hit;
 internal class Timing implements Hit {
 
 	private var _category:String;
-	private var _interval:uint;
+	private var _interval:int;
 	private var _name:String;
 	private var _label:String;
 
@@ -33,7 +33,7 @@ internal class Timing implements Hit {
 	public function get category():String {
 		return _category;
 	}
-	public function get interval():uint {
+	public function get interval():int {
 		return _interval;
 	}
 	public function get name():String {

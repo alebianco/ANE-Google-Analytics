@@ -1,5 +1,4 @@
 // !$*UTF8*$!
-// !$*UTF8*$!
 {
 	archiveVersion = 1;
 	classes = {
@@ -25,6 +24,8 @@
 		6F808E3F168DA4D300CEDFF5 /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1E168CBA6300CEDFF5 /* GAITracker.h */; };
 		6F808E40168DA4D300CEDFF5 /* GAITransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1F168CBA6300CEDFF5 /* GAITransaction.h */; };
 		6F808E41168DA4D300CEDFF5 /* GAITransactionItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E20168CBA6300CEDFF5 /* GAITransactionItem.h */; };
+		F394778018EAC9650055B33D /* Campaign.h in Headers */ = {isa = PBXBuildFile; fileRef = F394777E18EAC9650055B33D /* Campaign.h */; };
+		F394778118EAC9650055B33D /* Campaign.m in Sources */ = {isa = PBXBuildFile; fileRef = F394777F18EAC9650055B33D /* Campaign.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,8 @@
 		6F808E21168CBA6300CEDFF5 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Libraries/libGoogleAnalytics.a; sourceTree = "<group>"; };
 		6F808E2A168CBAF000CEDFF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		6F808E2C168CBAFD00CEDFF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		F394777E18EAC9650055B33D /* Campaign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Campaign.h; sourceTree = "<group>"; };
+		F394777F18EAC9650055B33D /* Campaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campaign.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				6F808E06168CB8A300CEDFF5 /* IsSupported.m */,
 				6F808E07168CB8A300CEDFF5 /* Tracker.h */,
 				6F808E08168CB8A300CEDFF5 /* Tracker.m */,
+				F394777E18EAC9650055B33D /* Campaign.h */,
+				F394777F18EAC9650055B33D /* Campaign.m */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F808E3C168DA4D300CEDFF5 /* FlashRuntimeExtensions.h in Headers */,
+				F394778018EAC9650055B33D /* Campaign.h in Headers */,
 				6F808E3D168DA4D300CEDFF5 /* GAI.h in Headers */,
 				6F808E3E168DA4D300CEDFF5 /* GAITrackedViewController.h in Headers */,
 				6F808E3F168DA4D300CEDFF5 /* GAITracker.h in Headers */,
@@ -222,6 +228,7 @@
 				6F808E19168CBA4300CEDFF5 /* FREUtils.m in Sources */,
 				6F808E1A168CBA4300CEDFF5 /* GAExtension.m in Sources */,
 				6F808E0F168CBA3400CEDFF5 /* Analytics.m in Sources */,
+				F394778118EAC9650055B33D /* Campaign.m in Sources */,
 				6F808E11168CBA3400CEDFF5 /* AppInfo.m in Sources */,
 				6F808E13168CBA3400CEDFF5 /* GetVersion.m in Sources */,
 				6F808E15168CBA3400CEDFF5 /* IsSupported.m in Sources */,

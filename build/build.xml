@@ -46,14 +46,6 @@
         <echo>[init] Creating Build directories</echo>
         <mkdir dir="${bin.dir}"/>
         <echo>[init] Build directories created</echo>
-        <echo>[init] Build external libraries</echo>
-        <ant antfile="build.xml" target="compile" dir="${ext.dir}/actionscript/abcore/build" inheritall="false" usenativebasedir="true"/>
-        <copy todir="${lib.dir}" overwrite="true">
-            <fileset dir="${ext.dir}/actionscript/abcore/bin">
-                <include name="*.swc"/>
-            </fileset>
-        </copy>
-        <echo>[init] External libraries created</echo>
         <echo>[init] Generate temporary certificate</echo>
         <java jar="${FLEX_HOME}/lib/adt.jar" fork="true" failonerror="true">
             <arg line="-certificate"/>
@@ -72,14 +64,9 @@
             description="Build the extension"/>
 
     <target name="asdoc" depends="compile" description="Build Documentation">
-        <!-- <echo>[asdoc] Generating ASDOC documentation</echo>
-        <copy todir="${lib.dir}" overwrite="false">
-            <fileset dir="${ext.dir}/actionscript/abcore/bin">
-                <include name="*.swc"/>
-            </fileset>
-        </copy>
+        <echo>[asdoc] Generating ASDOC documentation</echo>
         <java jar="${FLEX_HOME}/lib/asdoc.jar" dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
-            <arg line="-external-library-path+=${lib.dir}"/>
+            <arg line="-external-library-path+=${src.def.dir}/libs"/>
             <arg line="-doc-sources+=${src.def.dir}/src"/>
             <arg line="-source-path+=${src.def.dir}/src"/>
             <arg line="-library-path+=libs/air"/>
@@ -88,10 +75,10 @@
             <arg value="-lenient=true"/>
             <arg line="-window-title '${project.name} ${version.num}'"/>
             <arg line="-main-title '${project.name} ${version.num}'"/>
-            <arg line="-footer '${project.name} - https://github.com/alebianco/ANE-Google-Analytics'"/>
+            <arg line="-footer '${project.name} - http://alebianco.github.io/ANE-Google-Analytics'"/>
         </java>
         <delete dir="${bin.dir}/libs"/>
-        <echo>[asdoc] ASDOC documentation generated successfully</echo> -->
+        <echo>[asdoc] ASDOC documentation generated successfully</echo>
     </target>
 
     <target name="package" depends="asdoc" 
@@ -105,11 +92,11 @@
         <mkdir dir="${dist.dir}"/>
         <copy file="${bin.dir}/${project.name.versioned}.swc" todir="${dist.dir}"/>
         <copy file="${bin.dir}/${project.name.versioned}.ane" todir="${dist.dir}"/>
-        <!--<copy todir="${dist.dir}/docs">
+        <copy todir="${dist.dir}/docs">
             <fileset dir="${doc.dir}"/>
         </copy>
         <delete dir="${dist.dir}/docs/tempdita"/>
-        <zip destfile="${doc.dir}/${project.name.versioned}.swc" update="true">
+        <!--<zip destfile="${doc.dir}/${project.name.versioned}.swc" update="true">
             <zipfileset dir="${doc.dir}/tempdita" prefix="docs">
                 <include name="*packages.dita*"/>
                 <include name="*eu.alebianco.*"/>
@@ -133,7 +120,6 @@
         <delete file="${dist.dir}/changelog.txt"/>
         <delete file="${dist.dir}/readme.txt"/>
         <delete dir="${dist.dir}/docs"/>
-        <delete dir="${lib.dir}"/>
         <delete dir="${doc.dir}/tempdita"/>
         <echo>[package] Release package created successfully</echo>
     </target>
@@ -248,7 +234,7 @@
             <arg line="-output ${tmp.dir}/library.swc"/>
             <arg line="-swf-version 14"/>
             <arg line="-include-sources+=${source}/src"/>
-            <arg line="-library-path+='${lib.dir}'"/>
+            <arg line="-library-path+='${source}/libs'"/>
             <arg line="-source-path+='./','${source}/src'"/>
             <arg line="-load-config=air-config.xml" />
             <arg line="-static-link-runtime-shared-libraries=true"/>

@@ -1,9 +1,23 @@
 ## HEAD
 
+### 2.0.7 RC 1 (March 26, 2014)
+
+* Upgraded to AIR 13
+* Upgrade Android native library to v2.0beta6
+* Added ASDocs back into packaged release
+* Implemented Google Play Campaign Attribution tracking (Android only)
+* Implemented General Campaign & Traffic Source Attribution (Android only)
+* Added transaction's currency code property (Android only)
+* [Android] Verify app has needed permissions when checking if extension is supported
+* Fixed issue #32 - transaction's shipping cost being replaced by tax cost
+* Fixed issue #34 - improved app version identification from descriptor
+
 ### 2.0.6 (February 10, 2014)
+
 * Updated to AIR 4.0
 
 ### 2.0.5 (January 14, 2014)
+
 * Update to AIR 3.9
 * Fixed issue #23 - sending hits without setting optional parameters
 
@@ -50,13 +64,3 @@
 * Added target in the ANT script to run the demo project on the iOS simulator
 * Cleaned and updated the ANT build file
 * Fixed issues with the iOS version of the extension
-
-### 1.1.0 (July 14, 2012)
-
-* Updated Google Analytics libraries (Android 1.4.2 and iOS 1.4)
-* Added demo project to showcase usage and capabilities
-* Added some documentation on usage
-
-### 1.0.0 (March 31, 2012)
-
-* Initial release

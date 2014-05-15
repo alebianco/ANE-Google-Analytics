@@ -21,6 +21,7 @@ internal class Transaction implements Hit {
 	private var _affiliation:String;
 	private var _shipping:Object;
 	private var _tax:Object;
+	private var _currency:String;
 	private var _products:Array;
 
     public function get type():HitType {
@@ -37,6 +38,7 @@ internal class Transaction implements Hit {
 		_affiliation = builder.affiliation;
 		_shipping = builder.shipping;
 		_tax = builder.tax;
+		_currency = builder.currency;
 		_products = builder.products;
 	}
 
@@ -54,6 +56,9 @@ internal class Transaction implements Hit {
 	}
 	public function get tax():Number {
 		return Number(_tax);
+	}
+	public function get currency():String {
+		return _currency;
 	}
 	public function get products():Array {
 		return _products;
