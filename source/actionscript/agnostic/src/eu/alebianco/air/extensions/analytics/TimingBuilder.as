@@ -18,11 +18,11 @@ internal class TimingBuilder implements ITimingBuilder {
 	private var tracker:Tracker;
 
 	internal var category:String;
-	internal var interval:uint;
+	internal var interval:int;
 	internal var name:String = null;
 	internal var label:String = null;
 
-	public function TimingBuilder(tracker:Tracker, category:String, interval:uint) {
+	public function TimingBuilder(tracker:Tracker, category:String, interval:int) {
 		this.tracker = tracker;
 
 		this.category = category;
