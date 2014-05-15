@@ -13,6 +13,11 @@
 
 @implementation Analytics
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    return YES;
+}
+
 DEFINE_ANE_FUNCTION(createTracker) {
     FREObject result = NULL;
 

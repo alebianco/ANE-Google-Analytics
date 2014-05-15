@@ -13,7 +13,10 @@ package eu.alebianco.air.extensions.analytics.functions;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import com.google.analytics.tracking.android.ExceptionReporter;
+import com.google.analytics.tracking.android.GAServiceManager;
 import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
 import com.stackoverflow.util.StackTraceInfo;
 import eu.alebianco.air.extensions.utils.FREUtils;
 import eu.alebianco.air.extensions.utils.LogLevel;
@@ -34,7 +37,12 @@ public class CreateTracker implements FREFunction {
             return FREUtils.createRuntimeException("ArgumentError", 0, "Unable to read the 'trackingId' parameter on method '%s'.", FREUtils.stripPackageFromClassName(StackTraceInfo.getCurrentClassName()));
         }
 
-        GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
+        Tracker tracker = GoogleAnalytics.getInstance(context.getActivity()).getTracker(trackingId);
+
+        if (tracker.equals(GoogleAnalytics.getInstance(context.getActivity()).getDefaultTracker())) {
+            Thread.UncaughtExceptionHandler handler = new ExceptionReporter(tracker, GAServiceManager.getInstance(), Thread.getDefaultUncaughtExceptionHandler(), context.getActivity());
+            Thread.setDefaultUncaughtExceptionHandler(handler);
+        }
 
         return result;
     }
