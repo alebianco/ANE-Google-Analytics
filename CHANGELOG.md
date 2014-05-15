@@ -1,5 +1,10 @@
 ## HEAD
 
+### 2.0.7 RC 2
+
+* (beta) Automatic uncaught error reporting
+* Fixed issue #42
+
 ### 2.0.7 RC 1 (March 26, 2014)
 
 * Upgraded to AIR 13
