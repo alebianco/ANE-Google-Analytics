@@ -1,9 +1,10 @@
 ## HEAD
 
-### 2.0.7 RC 2
+### 2.0.7 RC 2 (June 4, 2014)
 
 * (beta) Automatic uncaught error reporting
 * Fixed issue #42
+* Fixed issue #44
 
 ### 2.0.7 RC 1 (March 26, 2014)
 
