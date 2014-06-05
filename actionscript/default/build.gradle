@@ -1,0 +1,12 @@
+/*
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 04/06/14 17.43
+ */
+
+dependencies {
+	merged project(':actionscript:api')
+}
