@@ -15,6 +15,19 @@ if (setupScript && setupScript.exists()) {
 	throw new GradleException("Could not load setup script for system '${os}'.")
 }
 
+task build (dependsOn: 'expandTemplates') {
+
+}
+
+task expandTemplates(type: Copy) {
+    from('build/templates') {
+        include '**/*.tmpl'
+    }
+    into 'temp'
+	rename { file -> file[0..-6] }
+    expand(project.properties + [os: os])
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
 }
