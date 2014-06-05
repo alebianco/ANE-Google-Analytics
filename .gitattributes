@@ -1,0 +1,2 @@
+# handle swc's as binaries
+*.swc -crlf -diff -merge
