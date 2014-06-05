@@ -1,0 +1,12 @@
+/*
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 04/06/14 16.00
+ */
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
