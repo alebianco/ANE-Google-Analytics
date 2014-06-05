@@ -15,6 +15,19 @@ if (setupScript && setupScript.exists()) {
 	throw new GradleException("Could not load setup script for system '${os}'.")
 }
 
+allprojects {
+	project.version = productVersion
+	gradle.taskGraph.whenReady {taskGraph ->
+	    if (!taskGraph.hasTask(release)) {
+	        version += '-SNAPSHOT'
+	    }
+	}
+}
+
+task release (dependsOn: 'build') {
+
+}
+
 task build (dependsOn: 'expandTemplates') {
 
 }
