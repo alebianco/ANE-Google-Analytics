@@ -1,0 +1,18 @@
+# build directories
+bin/
+
+# gradle
+.gradle/
+
+# intellij
+*.iml
+.idea/
+
+# windows
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# mac
+Icon
+.DS_Store
