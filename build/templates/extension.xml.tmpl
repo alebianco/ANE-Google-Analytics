@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension xmlns="http://ns.adobe.com/air/extension/13.0">
+	<id>eu.alebianco.air.extensions.analytics.${productName}</id>
+	<name>${productTitle}</name>
+	<description>${productDescription}</description>
+	<copyright>${productCopyright}</copyright>
+	<versionNumber>${productVersion}</versionNumber>
+	<platforms>
+		<platform name="Android-ARM">
+			<applicationDeployment>
+				<nativeLibrary>libNativeGATracker.jar</nativeLibrary>
+				<initializer>eu.alebianco.air.extensions.analytics.GAExtension</initializer>
+				<finalizer>eu.alebianco.air.extensions.analytics.GAExtension</finalizer>
+			</applicationDeployment>
+		</platform>
+		<platform name="Android-x86">
+			<applicationDeployment>
+				<nativeLibrary>libNativeGATracker.jar</nativeLibrary>
+				<initializer>eu.alebianco.air.extensions.analytics.GAExtension</initializer>
+				<finalizer>eu.alebianco.air.extensions.analytics.GAExtension</finalizer>
+			</applicationDeployment>
+		</platform>
+		<% if (os == "mac") { %>
+		<platform name="iPhone-ARM">
+			<applicationDeployment>
+				<nativeLibrary>libNativeGATracker.a</nativeLibrary>
+				<initializer>GAExtensionInitializer</initializer>
+				<finalizer>GAExtensionFinalizer</finalizer>
+			</applicationDeployment>
+		</platform>
+		<platform name="iPhone-x86">
+			<applicationDeployment>
+				<nativeLibrary>libNativeGATracker.a</nativeLibrary>
+				<initializer>GAExtensionInitializer</initializer>
+				<finalizer>GAExtensionFinalizer</finalizer>
+			</applicationDeployment>
+		</platform>
+		<platform name="MacOS-x86">
+			<applicationDeployment/>
+		</platform>
+		<% } %>
+		<platform name="Windows-x86">
+			<applicationDeployment/>
+		</platform>
+		<platform name="default">
+			<applicationDeployment/>
+		</platform>
+	</platforms>
+</extension>
+
