@@ -1,0 +1,5 @@
+ext.paths = [
+	flexHome: "C:/Program Files (x86)/Apache Flex/sdks/4.12.1",
+	androidHome: "C:/Program Files (x86)/Android/sdk",
+	iosSimulatorHome: ""
+]
