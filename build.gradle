@@ -7,6 +7,14 @@
  * Created: 04/06/14 16.00
  */
 
+def os = System.getProperty("os.name").toLowerCase()[0..2]
+def setupScript = file("settings.${os}.gradle") 
+if (setupScript && setupScript.exists()) { 
+	apply from: setupScript 
+} else {
+	throw new GradleException("Could not load setup script for system '${os}'.")
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
 }
