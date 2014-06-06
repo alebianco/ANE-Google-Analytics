@@ -37,7 +37,7 @@ public final class Analytics implements IAnalytics {
 	}
 
 	public function get version():String {
-		return "ANE-Google-Analytics v3.0.0";
+		return PRODUCT::name + " v" + PRODUCT::version;
 	}
 }
 }
