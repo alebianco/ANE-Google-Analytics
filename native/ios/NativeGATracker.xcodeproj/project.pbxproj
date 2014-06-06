@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F34EC25F1941B401005DCB42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34EC25E1941B401005DCB42 /* Foundation.framework */; };
+		F34EC2641941B401005DCB42 /* NativeGATracker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F34EC2631941B401005DCB42 /* NativeGATracker.h */; };
+		F34EC2661941B401005DCB42 /* NativeGATracker.m in Sources */ = {isa = PBXBuildFile; fileRef = F34EC2651941B401005DCB42 /* NativeGATracker.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F34EC2591941B400005DCB42 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				F34EC2641941B401005DCB42 /* NativeGATracker.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F34EC25B1941B401005DCB42 /* libNativeGATracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F34EC25E1941B401005DCB42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F34EC2621941B401005DCB42 /* NativeGATracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NativeGATracker-Prefix.pch"; sourceTree = "<group>"; };
+		F34EC2631941B401005DCB42 /* NativeGATracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeGATracker.h; sourceTree = "<group>"; };
+		F34EC2651941B401005DCB42 /* NativeGATracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeGATracker.m; sourceTree = "<group>"; };
+		F34EC26C1941B401005DCB42 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F34EC26F1941B401005DCB42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F34EC2581941B400005DCB42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F34EC25F1941B401005DCB42 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F34EC2521941B400005DCB42 = {
+			isa = PBXGroup;
+			children = (
+				F34EC2601941B401005DCB42 /* NativeGATracker */,
+				F34EC25D1941B401005DCB42 /* Frameworks */,
+				F34EC25C1941B401005DCB42 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F34EC25C1941B401005DCB42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F34EC25B1941B401005DCB42 /* libNativeGATracker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F34EC25D1941B401005DCB42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F34EC25E1941B401005DCB42 /* Foundation.framework */,
+				F34EC26C1941B401005DCB42 /* XCTest.framework */,
+				F34EC26F1941B401005DCB42 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F34EC2601941B401005DCB42 /* NativeGATracker */ = {
+			isa = PBXGroup;
+			children = (
+				F34EC2631941B401005DCB42 /* NativeGATracker.h */,
+				F34EC2651941B401005DCB42 /* NativeGATracker.m */,
+				F34EC2611941B401005DCB42 /* Supporting Files */,
+			);
+			path = NativeGATracker;
+			sourceTree = "<group>";
+		};
+		F34EC2611941B401005DCB42 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F34EC2621941B401005DCB42 /* NativeGATracker-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F34EC25A1941B400005DCB42 /* NativeGATracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F34EC27E1941B401005DCB42 /* Build configuration list for PBXNativeTarget "NativeGATracker" */;
+			buildPhases = (
+				F34EC2571941B400005DCB42 /* Sources */,
+				F34EC2581941B400005DCB42 /* Frameworks */,
+				F34EC2591941B400005DCB42 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NativeGATracker;
+			productName = NativeGATracker;
+			productReference = F34EC25B1941B401005DCB42 /* libNativeGATracker.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F34EC2531941B400005DCB42 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Alessandro Bianco";
+			};
+			buildConfigurationList = F34EC2561941B400005DCB42 /* Build configuration list for PBXProject "NativeGATracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F34EC2521941B400005DCB42;
+			productRefGroup = F34EC25C1941B401005DCB42 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F34EC25A1941B400005DCB42 /* NativeGATracker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F34EC2571941B400005DCB42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F34EC2661941B401005DCB42 /* NativeGATracker.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F34EC27C1941B401005DCB42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F34EC27D1941B401005DCB42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F34EC27F1941B401005DCB42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/NativeGATracker.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NativeGATracker/NativeGATracker-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F34EC2801941B401005DCB42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/NativeGATracker.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NativeGATracker/NativeGATracker-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F34EC2561941B400005DCB42 /* Build configuration list for PBXProject "NativeGATracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F34EC27C1941B401005DCB42 /* Debug */,
+				F34EC27D1941B401005DCB42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F34EC27E1941B401005DCB42 /* Build configuration list for PBXNativeTarget "NativeGATracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F34EC27F1941B401005DCB42 /* Debug */,
+				F34EC2801941B401005DCB42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F34EC2531941B400005DCB42 /* Project object */;
+}
