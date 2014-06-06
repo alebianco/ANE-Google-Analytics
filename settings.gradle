@@ -7,4 +7,4 @@
  * Created: 04/06/14 17.04
  */
 
-include 'actionscript:api', 'actionscript:default', 'actionscript:crossplatform'
+include 'actionscript:api', 'actionscript:default', 'actionscript:crossplatform', 'native:ios'
