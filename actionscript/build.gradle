@@ -20,6 +20,8 @@ subprojects {
 
 	apply plugin: 'gradlefx'
 
+    flexHome = System.getenv('FLEX_HOME') ?: project.paths.flexHome
+
 	type = 'swc'
 
 	srcDirs = ['src']
