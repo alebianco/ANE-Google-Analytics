@@ -32,7 +32,9 @@ subprojects {
         '-target-player=13.0',
         '-verbose-stacktraces=true',
         '-load-config=air-config.xml',
-        '-static-link-runtime-shared-libraries=true'
+        '-static-link-runtime-shared-libraries=true',
+        "-define=PRODUCT::name,'${productName}'",
+        "-define=PRODUCT::version,'${productVersion}'",
 	]
 
     dependencies {
