@@ -1,0 +1,17 @@
+/*
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 06/06/14 09.21
+ */
+
+['device', 'simulator'].each { def targetName -> 
+    tasks.add(name: "compile-${targetName}", type: GradleBuild) { 
+        buildFile = "${targetName}.gradle"
+        tasks = ['xcodebuild']
+    } 
+} 
+
+task build(dependsOn: tasks.matching { Task task -> task.name.startsWith("compile-")}) 

@@ -1,0 +1,30 @@
+/*
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 06/06/14 11.02
+ */
+
+buildscript {
+  repositories {
+    maven {
+      url('http://openbakery.org/repository/')
+    }
+    mavenCentral()
+  }
+  dependencies {
+    classpath group: 'org.openbakery', name: 'xcodePlugin', version: '0.9.8'
+  }
+}
+
+apply plugin: 'xcode'
+
+project.buildDir = 'bin'
+
+xcodebuild {
+  target = 'NativeGATracker'
+  configuration = 'Release'
+  sdk = 'iphoneos'
+}
