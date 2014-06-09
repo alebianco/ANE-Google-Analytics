@@ -48,12 +48,12 @@ task clean << {
 }
 
 task expandTemplates(type: Copy) {
-    from('build/templates') {
+    from('gradle/templates') {
         include '**/*.tmpl'
     }
     into 'temp'
-	rename { file -> file[0..-6] }
-    expand(project.properties + [os: os])
+	rename { file -> file - '.tmpl' }
+    expand(this.properties)
 }
 
 task wrapper(type: Wrapper) {
