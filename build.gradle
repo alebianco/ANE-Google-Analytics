@@ -30,6 +30,10 @@ allprojects {
 	}
 }
 
+configure (subprojects.findAll { it.path.contains('ios') }) {
+    project.tasks.each { it.onlyIf { 'mac'.equals(project.properties.os) } }
+}
+
 task release (dependsOn: 'build') {
 
 }
