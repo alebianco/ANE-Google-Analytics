@@ -1,0 +1,40 @@
+/*
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 11/06/14 12.43
+ */
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.gradlefx', name: 'gradlefx', version: '0.8.2'
+    }
+}
+
+apply plugin: org.gradlefx.plugins.GradleFxPlugin
+
+evaluationDependsOnChildren()
+
+type = 'swc'
+srcDirs = ['src']
+
+flexHome = this.properties['sdk.flex.home']
+
+additionalCompilerOptions = [
+    '-swf-version=24',
+    '-target-player=13.0',
+    '-verbose-stacktraces=true',
+    '-load-config=air-config.xml',
+    '-static-link-runtime-shared-libraries=true',
+    "-define=PRODUCT::name,'${this.properties['product.name']}'",
+    "-define=PRODUCT::version,'${this.properties['product.version']}'",
+]
+
+dependencies {
+    merged fileTree(dir: '../libs', include: '*.swc')
+}
