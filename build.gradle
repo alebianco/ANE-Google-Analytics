@@ -38,8 +38,13 @@ task build (dependsOn: subprojects.findAll({ it.tasks.findByName("build") }).bui
 	println "TODO: build final ane file"
 }
 
-task build (dependsOn: 'expandTemplates') {
+task release (dependsOn: { build }) << {
+	println "TODO: tag and create release archive"
+	clean.execute()
+}
 
+task clean << {
+	delete file("temp")
 }
 
 task expandTemplates(type: Copy) {
