@@ -34,8 +34,8 @@ configure (subprojects.findAll { it.path.contains('ios') }) {
     project.tasks.each { it.onlyIf { 'mac'.equals(project.properties.os) } }
 }
 
-task release (dependsOn: 'build') {
-
+task build (dependsOn: subprojects.findAll({ it.tasks.findByName("build") }).build) << {
+	println "TODO: build final ane file"
 }
 
 task build (dependsOn: 'expandTemplates') {
