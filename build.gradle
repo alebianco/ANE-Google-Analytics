@@ -47,7 +47,7 @@ task clean << {
 	delete file("temp")
 }
 
-task expandTemplates(type: Copy) {
+task expandTemplates(type: Copy) << {
     from('gradle/templates') {
         include '**/*.tmpl'
     }
