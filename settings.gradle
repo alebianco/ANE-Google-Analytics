@@ -7,4 +7,18 @@
  * Created: 04/06/14 17.04
  */
 
-include 'actionscript:api', 'actionscript:default', 'actionscript:crossplatform', 'native:ios', 'native:android'
+include 'actionscript:api'
+include 'actionscript:default'
+include 'actionscript:crossplatform'
+include 'native:android'
+include 'native:ios:device'
+include 'native:ios:simulator'
+
+project(':actionscript:api'          ).projectDir = new File('sources/actionscript/api')
+project(':actionscript:default'      ).projectDir = new File('sources/actionscript/default')
+project(':actionscript:crossplatform').projectDir = new File('sources/actionscript/crossplatform')
+project(':native:android'            ).projectDir = new File('sources/native/android')
+project(':native:ios:device'         ).projectDir = new File('sources/native/ios')
+project(':native:ios:device'         ).buildFileName = 'device.gradle'
+project(':native:ios:simulator'      ).projectDir = new File('sources/native/ios')
+project(':native:ios:simulator'      ).buildFileName = 'simulator.gradle'
