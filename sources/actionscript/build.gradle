@@ -7,37 +7,4 @@
  * Created: 04/06/14 17.43
  */
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'org.gradlefx', name: 'gradlefx', version: '0.8.2'
-    }
-}
-
-subprojects {
-
-	apply plugin: 'gradlefx'
-
-    flexHome = System.getenv('FLEX_HOME') ?: project.paths.flexHome
-
-	type = 'swc'
-
-	srcDirs = ['src']
-    project.buildDir = 'bin'
-
-	additionalCompilerOptions = [
-        '-swf-version=24',
-        '-target-player=13.0',
-        '-verbose-stacktraces=true',
-        '-load-config=air-config.xml',
-        '-static-link-runtime-shared-libraries=true',
-        "-define=PRODUCT::name,'${productName}'",
-        "-define=PRODUCT::version,'${productVersion}'",
-	]
-
-    dependencies {
-        merged fileTree(dir: '../libs', include: '*.swc')
-    }
-}
+apply from: "$rootDir/gradle/actionscript.gradle"
