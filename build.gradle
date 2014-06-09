@@ -22,10 +22,10 @@ buildscript {
 }
 
 allprojects {
-	project.version = productVersion
-	gradle.taskGraph.whenReady {taskGraph ->
+    project.buildDir = 'bin'
+	gradle.taskGraph.whenReady { taskGraph ->
 	    if (!taskGraph.hasTask(release)) {
-	        version += '-SNAPSHOT'
+	        this.properties['product.version'] += '-SNAPSHOT'
 	    }
 	}
 }
