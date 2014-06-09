@@ -7,12 +7,18 @@
  * Created: 04/06/14 16.00
  */
 
-def os = System.getProperty("os.name").toLowerCase()[0..2]
-def setupScript = file("settings.${os}.gradle") 
-if (setupScript && setupScript.exists()) { 
-	apply from: setupScript 
-} else {
-	throw new GradleException("Could not load setup script for system '${os}'.")
+buildscript {
+
+	defaultTasks 'build'
+
+	files('gradle/user.properties', 'gradle/template.properties').each { 
+		File file -> file.withInputStream { stream -> 
+			Properties props = new Properties()
+			props.load(stream)
+		    props.each { key, value -> project.properties.ext.setProperty(key, value) }
+		}
+	}
+	project.properties.ext.setProperty('os', System.properties['os.name'].toLowerCase()[0..2])
 }
 
 allprojects {
