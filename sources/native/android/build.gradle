@@ -7,28 +7,11 @@
  * Created: 06/06/14 12.07
  */
 
- buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
-    }
-}
-
-apply plugin: 'android-library'
-
-project.buildDir = 'bin'
-
-repositories {
-    mavenCentral()
-}
+apply from: "$rootDir/gradle/android.gradle"
 
 android {
-
     compileSdkVersion 19
     buildToolsVersion "19.1.0"
-
     defaultConfig {
         minSdkVersion 7
         targetSdkVersion 19
@@ -41,9 +24,4 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:19.+'
 }
