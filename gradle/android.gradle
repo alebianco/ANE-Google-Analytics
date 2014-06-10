@@ -1,0 +1,34 @@
+/*
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 11/06/14 12.43
+ */
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.+'
+    }
+
+	Properties props = new Properties()
+	props.setProperty('sdk.dir', this.properties['sdk.android.home']) 
+	
+	file("$rootDir/local.properties").withWriterAppend( 'UTF-8' ) { writer ->
+	    props.each { key, value -> writer.writeLine "$key = $value" }
+	}
+}
+
+apply plugin: com.android.build.gradle.LibraryPlugin
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+build << {
+    delete file("$rootDir/local.properties")
+}
