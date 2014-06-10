@@ -7,21 +7,7 @@
  * Created: 06/06/14 11.02
  */
 
-buildscript {
-  repositories {
-    maven {
-      url('http://openbakery.org/repository/')
-    }
-    mavenCentral()
-  }
-  dependencies {
-    classpath group: 'org.openbakery', name: 'xcodePlugin', version: '0.9.8'
-  }
-}
-
-apply plugin: 'xcode'
-
-project.buildDir = 'bin'
+apply from: "$rootDir/gradle/ios.gradle"
 
 xcodebuild {
   target = 'NativeGATracker'
