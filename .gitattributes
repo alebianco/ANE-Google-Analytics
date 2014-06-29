@@ -1,2 +1,6 @@
 # handle swc's as binaries
 *.swc -crlf -diff -merge
+
+# disable eol normalistion for gradle wrappers
+/gradlew text eol=lf
+/gradlew.bat text eol=crlf
