@@ -12,3 +12,36 @@ apply from: "$rootDir/gradle/actionscript.gradle"
 dependencies {
 	merged project(':actionscript:api')
 }
+
+build {
+    doLast {
+        copy {
+            from "$buildDir"
+            include "*.swc"
+            into "$rootProject.buildDir"
+            rename ("$output.$type", "$productName-$productVersion.$type")
+        }
+        copy {
+            from zipTree("$buildDir/$output.$type")
+            include "library.swf"
+            into "$rootProject.buildDir/def"
+        }
+        copy {
+            from asdoc.outputDir
+            include '**/*'
+            exclude 'tempdita'
+            into "$rootProject.buildDir/doc"
+        }
+    }
+}
+
+asdoc {
+    additionalASDocOptions = [
+            '-strict=false',
+            '-lenient=false',
+            '-left-frameset-width=320',
+            "-window-title=$productTitle $productVersion",
+            "-main-title=$productTitle $productVersion",
+            "-footer=$productName - $productUrl"
+    ]
+}

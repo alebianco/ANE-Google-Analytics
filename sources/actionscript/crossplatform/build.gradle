@@ -12,3 +12,18 @@ apply from: "$rootDir/gradle/actionscript.gradle"
 dependencies {
 	merged project(':actionscript:api')
 }
+
+build {
+	doLast {
+		def files = copySpec {
+	        from zipTree("$buildDir/$output.$type")
+	        include "library.swf"
+		}
+		['and', 'ios', 'sim'].each { dest ->
+			copy {
+				with files
+		        into "$rootProject.buildDir/$dest"
+		    }
+		}
+	}
+}

@@ -13,29 +13,44 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath group: 'org.gradlefx', name: 'gradlefx', version: '0.8.3'
+        classpath group: 'org.gradlefx', name: 'gradlefx', version: '1.0'
     }
 }
 
 apply plugin: org.gradlefx.plugins.GradleFxPlugin
 
-evaluationDependsOnChildren()
-
 type = 'swc'
-srcDirs = ['src']
-
-flexHome = this.properties['sdk.flex.home']
+flexHome = System.getenv("FLEX_HOME") ?: flexHome
 
 additionalCompilerOptions = [
-    '-swf-version=24',
-    '-target-player=13.0',
+    '-swf-version=26',
+    '-target-player=15.0',
     '-verbose-stacktraces=true',
     '-load-config=air-config.xml',
     '-static-link-runtime-shared-libraries=true',
-    "-define=PRODUCT::name,'${this.properties['product.name']}'",
-    "-define=PRODUCT::version,'${this.properties['product.version']}'",
+    "-define=PRODUCT::name,'$productName'",
+    "-define=PRODUCT::version,'$productVersion'",
 ]
 
+repositories {
+    ivy {
+        name 'Apache'
+        artifactPattern 'http://apache.cu.be/flex/[revision]/binaries/[module]-[revision]-bin.[ext]'
+    }
+
+    ivy {
+        name 'Adobe Air SDK'
+        artifactPattern 'http://download.macromedia.com/air/win/download/[revision]/[module].[ext]'
+    }
+}
+
 dependencies {
-    merged fileTree(dir: '../libs', include: '*.swc')
+    flexSDK group: 'org.apache', name: 'apache-flex-sdk', version: '4.13.0', ext: 'tar.gz'
+    airSDK group: 'com.adobe', name: 'AdobeAIRSDK', version: '15.0', ext: 'zip'
+
+    merged files("../libs/abcore-v0.9.swc")
+}
+
+sdkAutoInstall {
+    showPrompts = false
 }
