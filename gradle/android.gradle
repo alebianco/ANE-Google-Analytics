@@ -7,16 +7,18 @@
  * Created: 11/06/14 12.43
  */
 
+import org.apache.tools.ant.filters.ReplaceTokens
+
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:0.11.1'
     }
 
 	Properties props = new Properties()
-	props.setProperty('sdk.dir', this.properties['sdk.android.home']) 
+	props.setProperty('sdk.dir', System.getenv("ANDROID_HOME") ?: "$androidHome") 
 	
 	file("$rootDir/local.properties").withWriter( 'UTF-8' ) { writer ->
 	    props.each { key, value -> writer.writeLine "$key = $value" }
@@ -25,10 +27,31 @@ buildscript {
 
 apply plugin: com.android.build.gradle.LibraryPlugin
 
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.0.2"
+    defaultConfig {
+        minSdkVersion 7
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+        resValue "string", "version", "$productVersion"
+        resValue "string", "name", "$productName"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-build << {
-    delete file("$rootDir/local.properties")
+build {
+    doLast {
+        delete file("$rootDir/local.properties")
+    }
 }

@@ -1,0 +1,23 @@
+/*
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 06/06/14 12.07
+ */
+
+apply from: "$rootDir/gradle/android.gradle"
+
+// NOTE: it used to compile the jar from the compiled classes and jar files
+build {
+	doLast {
+		copy {
+	        from zipTree("$buildDir/outputs/aar/${project.name}.aar")
+	        into "$rootProject.buildDir/and"
+	        include "classes.jar"
+	        include "res/**/*.*"
+	        rename ('classes.jar', "lib${productName}.jar")
+	    }
+	}
+}
