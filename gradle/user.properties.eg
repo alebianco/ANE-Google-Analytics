@@ -1,0 +1,9 @@
+crtPassword = secret
+
+# Mac
+# flexHome = /Applications/ApacheFlex/sdks/4.13.0
+# androidHome = /Applications/android/sdk
+
+# Windows
+# flexHome = C:/Program Files (x86)/Apache Flex/sdks/4.13.0
+# androidHome = C:/Program Files (x86)/Android/sdk
