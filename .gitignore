@@ -2,9 +2,11 @@
 build/
 release/
 sources/actionscript/**/doc/
+sources/android/gen/
 
 # personal files
 user.properties
+project.properties
 
 # gradle
 .gradle/
