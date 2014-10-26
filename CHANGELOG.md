@@ -1,5 +1,11 @@
 ## HEAD
 
+### 3.0.0 (TBD)
+
+* New build system powered by Gradle
+* Upgraded to build with Apache Flex 4.13 and AIR 15
+* Added support for Android-x86 platform
+
 ### 2.0.7 RC 2 (June 4, 2014)
 
 * (beta) Automatic uncaught error reporting
