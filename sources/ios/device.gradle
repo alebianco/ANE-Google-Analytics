@@ -1,0 +1,23 @@
+/*
+ * Project: ANE-Google-Analytics
+ *
+ * Author:  Alessandro Bianco
+ * Website: http://alessandrobianco.eu
+ * Twitter: @alebianco
+ * Created: 06/06/14 11.02
+ */
+
+apply from: "$rootDir/gradle/ios.gradle"
+
+xcodebuild.sdk = 'iphoneos'
+xcodebuild.arch = ['armv7', 'armv7s']
+
+build {
+	doLast {
+		copy {
+	        from "$xcodebuild.symRoot/${xcodebuild.configuration}-${xcodebuild.sdk}"
+	        into "$rootProject.buildDir/ios"
+	        include "*.a"
+	    }
+	}
+}

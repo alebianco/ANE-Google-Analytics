@@ -13,8 +13,17 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath group: 'org.openbakery', name: 'xcodePlugin', version: '0.9.+'
+    classpath group: 'org.openbakery', name: 'xcodePlugin', version: '0.9.13'
   }
 }
 
 apply plugin: org.openbakery.XcodePlugin
+
+xcodebuild {
+  target = 'NativeGATracker'
+  configuration = 'Release'
+  infoPlist = {
+  	bundleDisplayName = "$productName"
+  	version = "$productVersion"
+  }
+}
