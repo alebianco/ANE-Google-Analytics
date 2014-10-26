@@ -9,52 +9,141 @@
 
 buildscript {
 
-	defaultTasks 'build'
+    defaultTasks 'build', 'uploadArchives'
 
-	files('gradle/user.properties', 'gradle/template.properties').each { 
-		File file -> file.withInputStream { stream -> 
-			Properties props = new Properties()
-			props.load(stream)
-		    props.each { key, value -> project.properties.ext.setProperty(key, value) }
-		}
-	}
-	project.properties.ext.setProperty('os', System.properties['os.name'].toLowerCase()[0..2])
-}
-
-allprojects {
-    project.buildDir = 'bin'
-	gradle.taskGraph.whenReady { taskGraph ->
-	    if (!taskGraph.hasTask(release)) {
-	        this.properties['product.version'] += '-SNAPSHOT'
-	    }
-	}
-}
-
-configure (subprojects.findAll { it.path.contains('ios') }) {
-    project.tasks.each { it.onlyIf { 'mac'.equals(project.properties.os) } }
-}
-
-task build (dependsOn: subprojects.findAll({ it.tasks.findByName("build") }).build) << {
-	println "TODO: build final ane file"
-}
-
-task release (dependsOn: { build }) << {
-	println "TODO: tag and create release archive"
-	clean.execute()
-}
-
-task clean << {
-	delete file("temp")
-}
-
-task expandTemplates(type: Copy) << {
-    from('gradle/templates') {
-        include '**/*.tmpl'
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url 'http://dl.bintray.com/content/aalmiray/kordamp' }
     }
-    into 'temp'
+
+    dependencies {
+        classpath group: 'org.kordamp', name: 'markdown-gradle-plugin', version: '0.1.1'
+    }
+
+	fileTree(dir: 'gradle', include: '*.properties').each {
+        File file -> file.withInputStream { stream ->
+            Properties props = new Properties()
+            props.load(stream)
+            props.each { key, value -> project.properties.ext.setProperty(key, value) }
+        }
+    }
+
+    project.properties.ext.setProperty('os', System.properties['os.name'].toLowerCase()[0..2])
+
+    def flex = System.getenv('FLEX_HOME') ?: flexHome
+    project.properties.ext.setProperty('adt', "$flex/lib/adt.jar")
+
+    gradle.taskGraph.whenReady { taskGraph ->
+        if (!taskGraph.hasTask(release)) {
+            this.properties.ext.productVersion += '-SNAPSHOT'
+        }
+    }
+}
+
+apply plugin: 'markdown'
+apply plugin: 'maven'
+
+task build(dependsOn: { subprojects.findAll({ it.tasks.findByName('build') }).build }) {
+    doLast {
+        expandTemplates.execute()
+        generateCertificates.execute()
+        
+        javaexec {
+            main = '-jar'
+            args adt, '-package'
+            args '-storetype', 'pkcs12'
+            args '-keystore', "$buildDir/certificate.p12", '-storepass', crtPassword
+            args '-target', 'ane', "$buildDir/${productName}-${productVersion}.ane", "$buildDir/extension.xml"
+            args '-swc', "build/${productName}-${productVersion}.swc"
+            args '-platform', 'Android-ARM', '-C', "$buildDir/and", '.'
+            args '-platform', 'Android-x86', '-C', "$buildDir/and", '.'
+            if ('mac'.equals(project.properties.os)) {
+                args '-platform', 'iPhone-ARM', '-platformoptions', "$buildDir/platform-iphone.xml", '-C', "$buildDir/ios", '.'
+                args '-platform', 'iPhone-x86', '-platformoptions', "$buildDir/platform-iphone.xml", '-C', "$buildDir/ios", '.'
+            }
+            args '-platform', 'default', '-C', "$buildDir/def", '.'
+        }
+    }
+}
+
+clean {
+    dependsOn { subprojects.findAll({ it.tasks.findByName('clean') }).clean }
+    delete 'release'
+}
+
+task release(dependsOn: [build, uploadArchives, clean], type: Zip) {
+    def touch = new Date().format('yyyyMMddHHmm')
+    destinationDir new File(projectDir, 'release')
+    archiveName "${productName}-${productVersion}_${touch}.zip"
+    from(buildDir) {
+        include "${productName}-${productVersion}.ane"
+        include "${productName}-${productVersion}.swc"
+        into 'bin'
+    }
+    from("${buildDir}/gen-html") {
+        include "*.html"
+        rename { String fileName -> fileName.toLowerCase() }
+    }
+    from("$buildDir/doc") {
+        include '**/*'
+        into 'doc'
+    }
+    doFirst {
+        copy {
+            from projectDir
+            into "$buildDir/markdown"
+            include "*.md"
+        }
+        markdownToHtml.execute()
+    }
+}
+
+markdownToHtml {
+    sourceDir = new File("$buildDir/markdown")
+    configuration = [
+            fencedCodeBlocks: true,
+            smart : true,
+            definitionLists : true,
+            abbreviations: true,
+            autoLinks: true,
+            hardwraps: true,
+            tables: true
+    ]
+}
+
+uploadArchives {
+    doFirst {
+        project.group = this.properties.productGroup
+        project.version = this.properties.productVersion
+        project.artifacts {
+            archives file: file("$buildDir/${productName}-${productVersion}.ane"), name: productName, type:'ane'
+            archives file: file("$buildDir/${productName}-${productVersion}.swc"), name: productName, type:'swc'
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
+task generateCertificates(type: JavaExec) {
+    main = '-jar'
+    args adt, '-certificate'
+    args '-cn', 'alebianco'
+    args '-o', 'alessandrobianco.eu'
+    args '-c', 'IT'
+    args '1024-RSA', "$buildDir/certificate.p12", crtPassword
+}
+
+task expandTemplates(type: Copy) {
+    from('gradle/templates') { include '**/*.tmpl' }
+    into buildDir
 	rename { file -> file - '.tmpl' }
     expand(this.properties)
 }
+
+build.shouldRunAfter clean
+uploadArchives.shouldRunAfter build
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
