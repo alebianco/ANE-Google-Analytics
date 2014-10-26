@@ -29,6 +29,7 @@ Steps:
 * Install Apache Flex and AIR
 * Set the FLEX_HOME environment variable
 * Rename the _user.properties.eg_ file in the _gradle_ folder to _user.properties_ and fill the appropriate values
+* Execute the `gradlew` script
 
 ## Contributing
 
