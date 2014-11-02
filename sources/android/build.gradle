@@ -6,18 +6,80 @@
  * Twitter: @alebianco
  * Created: 06/06/14 12.07
  */
-
+ 
 apply from: "$rootDir/gradle/android.gradle"
 
-// NOTE: it used to compile the jar from the compiled classes and jar files
 build {
-	doLast {
-		copy {
-	        from zipTree("$buildDir/outputs/aar/${project.name}.aar")
-	        into "$rootProject.buildDir/and"
-	        include "classes.jar"
-	        include "res/**/*.*"
-	        rename ('classes.jar', "lib${productName}.jar")
-	    }
-	}
+    doLast {
+        copy {
+            from zipTree("$buildDir/outputs/aar/${project.name}.aar")
+            into "$rootProject.buildDir/and"
+            include 'classes.jar'
+            include 'res/**/*.*'
+            rename('classes.jar', "lib${productName}.jar")
+        }
+    }
+}
+
+def toCamelCase(String string) {
+    String result = ""
+    string.findAll("[^\\W]+") { String word ->
+        result += word.capitalize()
+    }
+    return result
+}
+
+afterEvaluate { project ->
+    Configuration runtimeConfiguration = project.configurations.getByName('compile')
+    ResolutionResult resolution = runtimeConfiguration.incoming.resolutionResult
+    // Forces resolve of configuration
+    ModuleVersionIdentifier module = resolution.getAllComponents().find { it.moduleVersion.name.equals("play-services") }.moduleVersion
+ 
+    String prepareTaskName = "prepare${toCamelCase("${module.group} ${module.name} ${module.version}")}Library"
+    File playServiceRootFolder = project.tasks.find { it.name.equals(prepareTaskName) }.explodedDir
+ 
+    Task stripPlayServices = project.tasks.create(name: 'stripPlayServices', group: "Strip") {
+        inputs.files new File(playServiceRootFolder, "classes.jar")
+        outputs.dir playServiceRootFolder
+        description 'Strip useless packages from Google Play Services library to avoid reaching dex limit'
+ 
+        doLast {
+            tasks.create(name: "stripPlayServices" + module.version, type: Jar) {
+                destinationDir = new File(rootProject.buildDir, "and")
+                archiveName = "play-services.jar"
+                from(zipTree(new File(playServiceRootFolder, "classes.jar"))) {
+                    include 'com/google/android/gms/analytics/**'
+                    include 'com/google/android/gms/ads/identifier/**'
+                    include 'com/google/android/gms/common/ErrorDialogFragment'
+                    include 'com/google/android/gms/common/GooglePlayServicesNotAvailableException'
+                    include 'com/google/android/gms/common/GooglePlayServicesRepairableException'
+                    include 'com/google/android/gms/common/GooglePlayServicesUtil'
+                    include 'com/google/android/gms/common/SupportErrorDialogFragment'
+                    include 'com/google/android/gms/common/UserRecoverableException'
+                    include 'com/google/android/gms/common/a'
+                    include 'com/google/android/gms/common/b'
+                    include 'com/google/android/gms/common/b$1'
+                    include 'com/google/android/gms/common/internal/b'
+                    include 'com/google/android/gms/common/internal/g'
+                    include 'com/google/android/gms/common/internal/n'
+                    include 'com/google/android/gms/internal/hb'
+                    include 'com/google/android/gms/internal/hb$1'
+                    include 'com/google/android/gms/internal/hc'
+                    include 'com/google/android/gms/internal/hc$a'
+                    include 'com/google/android/gms/internal/hc$a$a'
+                    include 'com/google/android/gms/internal/jt'
+                    include 'com/google/android/gms/internal/ju'
+                    include 'com/google/android/gms/internal/jw'
+                    include 'com/google/android/gms/internal/kc'
+                    include 'com/google/android/gms/internal/s'
+                    include 'com/google/android/gms/internal/s$a'
+                    include 'com/google/android/gms/internal/s$a$a'
+                }
+            }.execute()
+        }
+    }
+ 
+    project.tasks.findAll { it.name.startsWith('prepare') && it.name.endsWith('Dependencies') }.each { Task task ->
+        task.dependsOn stripPlayServices
+    }
 }
