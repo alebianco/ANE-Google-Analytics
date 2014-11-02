@@ -33,10 +33,10 @@ android {
     defaultConfig {
         minSdkVersion 7
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
-        resValue "string", "version", "$productVersion"
-        resValue "string", "name", "$productName"
+        versionCode = Integer.parseInt(productVersionCode)
+        versionName productVersion
+        resValue "string", "name", productName
+        resValue "string", "version", productVersion
     }
     buildTypes {
         release {
