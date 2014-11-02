@@ -136,9 +136,8 @@ task generateCertificates(type: JavaExec) {
 }
 
 task expandTemplates(type: Copy) {
-    from('gradle/templates') { include '**/*.tmpl' }
+    from('gradle/templates') { include '**/*' }
     into buildDir
-	rename { file -> file - '.tmpl' }
     expand(this.properties)
 }
 

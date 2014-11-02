@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<platform xmlns="http://ns.adobe.com/air/extension/15.0">
+    <description>${andLibDescription}</description>
+    <copyright>${productCopyright}</copyright>
+	<packagedDependencies>
+        <packagedDependency>play-services.jar</packagedDependency>
+    </packagedDependencies>
+    <packagedResources>
+      <packagedResource>
+            <packageName>${productGroup}</packageName>
+            <folderName>res</folderName>
+        </packagedResource>
+    </packagedResources>
+</platform>

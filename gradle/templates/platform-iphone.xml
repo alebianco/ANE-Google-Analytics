@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <platform xmlns="http://ns.adobe.com/air/extension/15.0">
-	<description>${iosDescription}</description>
+	<description>${iosLibDescription}</description>
 	<copyright>${productCopyright}</copyright>
 	<sdkVersion>5.1</sdkVersion>
 	<linkerOptions>
