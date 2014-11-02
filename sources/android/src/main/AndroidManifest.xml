@@ -1,6 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.alebianco.air.extensions.analytics">
 
-    <application />
+    <meta-data android:name="com.google.android.gms.version"
+               android:value="@integer/google_play_services_version" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application android:allowBackup="false"/>
 
 </manifest>
