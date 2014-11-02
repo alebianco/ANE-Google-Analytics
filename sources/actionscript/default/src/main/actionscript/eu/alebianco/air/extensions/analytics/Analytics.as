@@ -11,6 +11,7 @@ package eu.alebianco.air.extensions.analytics {
 import eu.alebianco.air.extensions.analytics.api.IAnalytics;
 
 public final class Analytics implements IAnalytics {
+
 	private static var instance:Analytics;
 	private static var canBuild:Boolean;
 
@@ -33,7 +34,7 @@ public final class Analytics implements IAnalytics {
 	}
 
 	public function dispose():void {
-
+        instance = null;
 	}
 
 	public function get version():String {

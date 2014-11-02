@@ -30,6 +30,7 @@ additionalCompilerOptions = [
     '-static-link-runtime-shared-libraries=true',
     "-define=PRODUCT::name,'$productName'",
     "-define=PRODUCT::version,'$productVersion'",
+    "-define=EXTENSION::id,'$productGroup.$productName'",
 ]
 
 repositories {
