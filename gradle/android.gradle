@@ -14,7 +14,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.11.1'
+        classpath 'com.android.tools.build:gradle:0.12.2'
     }
 
 	Properties props = new Properties()
@@ -47,6 +47,7 @@ android {
 }
 
 dependencies {
+    compile 'com.google.android.gms:play-services:6.1.+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
