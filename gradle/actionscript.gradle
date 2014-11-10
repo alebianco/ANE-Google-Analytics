@@ -22,6 +22,8 @@ apply plugin: org.gradlefx.plugins.GradleFxPlugin
 type = 'swc'
 flexHome = System.getenv("FLEX_HOME") ?: flexHome
 
+frameworkLinkage = 'merged'
+
 additionalCompilerOptions = [
     '-swf-version=26',
     '-target-player=15.0',
