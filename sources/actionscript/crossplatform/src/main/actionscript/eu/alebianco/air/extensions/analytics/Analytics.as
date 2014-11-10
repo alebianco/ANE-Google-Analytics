@@ -57,7 +57,7 @@ public final class Analytics implements IAnalytics {
             context.addEventListener(StatusEvent.STATUS, statusHandler);
         }
 
-        logger = Log.getLogger(getQualifiedClassName(this));
+        logger = Log.getLogger(getQualifiedClassName(this).replace("::", "."));
 	}
 
 	public function dispose():void {
