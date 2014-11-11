@@ -8,6 +8,9 @@
  */
 package eu.alebianco.air.extensions.analytics;
 
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import eu.alebianco.air.extensions.analytics.functions.GetVersion;
@@ -17,8 +20,25 @@ import java.util.Map;
 
 public class GAContext extends FREContext {
 
+    Activity activity;
+    Resources resources;
+    PackageManager packageManager;
+    String packageName;
+
+    public GAContext() {
+        super();
+        activity = getActivity();
+        resources = activity.getResources();
+        packageManager = activity.getPackageManager();
+        packageName = activity.getPackageName();
+    }
+
     @Override
     public void dispose() {
+        activity = null;
+        resources = null;
+        packageManager = null;
+        packageName = null;
     }
 
     @Override
@@ -31,5 +51,14 @@ public class GAContext extends FREContext {
         functions.put("getVersion", new GetVersion());
 
         return functions;
+    }
+
+    public Boolean hasPermission(String permission) {
+        final int state = packageManager.checkPermission(permission, packageName);
+        return state == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public String getString(int id) {
+        return resources.getString(id);
     }
 }
