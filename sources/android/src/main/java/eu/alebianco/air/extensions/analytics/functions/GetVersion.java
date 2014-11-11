@@ -11,19 +11,20 @@ package eu.alebianco.air.extensions.analytics.functions;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
-import com.google.android.gms.analytics.GoogleAnalytics;
+import eu.alebianco.air.extensions.analytics.GAContext;
 import eu.alebianco.air.extensions.analytics.R;
 
 public class GetVersion implements FREFunction {
 
     @Override
-    public FREObject call(FREContext context, FREObject[] args) {
+    public FREObject call(FREContext ctx, FREObject[] args) {
+        GAContext context = (GAContext) ctx;
         FREObject result = null;
 
-        GoogleAnalytics.getInstance(context.getActivity());
-
         try {
-            result = FREObject.newObject(R.string.name + " v" + R.string.version);
+            final String name = context.getString(R.string.name);
+            final String version = context.getString(R.string.version);
+            result = FREObject.newObject(String.format("%s v%s", name, version));
         } catch(Exception e) {
             //TODO handle exceptions
         }
