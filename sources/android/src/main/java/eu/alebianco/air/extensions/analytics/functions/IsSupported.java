@@ -9,29 +9,22 @@
 package eu.alebianco.air.extensions.analytics.functions;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.pm.PackageManager;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
+import eu.alebianco.air.extensions.analytics.GAContext;
 
 public class IsSupported implements FREFunction {
 
     @Override
-    public FREObject call(FREContext context, FREObject[] args) {
+    public FREObject call(FREContext ctx, FREObject[] args) {
+        GAContext context = (GAContext) ctx;
         FREObject result = null;
 
-        Activity activity = context.getActivity();
-        PackageManager pm = activity.getPackageManager();
-
-        int hasInternet = pm.checkPermission(Manifest.permission.INTERNET, activity.getPackageName());
-        int hasNetworkState = pm.checkPermission(Manifest.permission.ACCESS_NETWORK_STATE, activity.getPackageName());
-
-        Boolean hasPermissions = hasInternet == PackageManager.PERMISSION_GRANTED &&
-                hasNetworkState == PackageManager.PERMISSION_GRANTED;
-
         try {
-            result = FREObject.newObject(hasPermissions);
+            Boolean hasInternet = context.hasPermission(Manifest.permission.INTERNET);
+            Boolean hasNetworkState = context.hasPermission(Manifest.permission.ACCESS_NETWORK_STATE);
+            result = FREObject.newObject(hasInternet && hasNetworkState);
         } catch(Exception e) {
             // TODO handle exceptions
         }
