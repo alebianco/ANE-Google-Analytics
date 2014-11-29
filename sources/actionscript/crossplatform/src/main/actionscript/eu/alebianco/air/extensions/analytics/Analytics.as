@@ -63,6 +63,7 @@ public final class Analytics implements IAnalytics {
 	public function dispose():void {
         context.removeEventListener(StatusEvent.STATUS, statusHandler);
         context.dispose();
+        context = null;
         logger = null;
         instance = null;
 	}
