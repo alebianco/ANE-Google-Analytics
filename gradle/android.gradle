@@ -17,7 +17,7 @@ buildscript {
 	Properties props = new Properties()
 	props.setProperty('sdk.dir', System.getenv("ANDROID_HOME") ?: "$androidHome") 
 	
-	file("$rootDir/local.properties").withWriter( 'UTF-8' ) { writer ->
+	file("$rootDir/local.properties").withWriter('UTF-8') { writer ->
 	    props.each { key, value -> writer.writeLine "$key = $value" }
 	}
 }
