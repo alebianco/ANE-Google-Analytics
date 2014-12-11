@@ -12,7 +12,7 @@ apply from: "$rootDir/gradle/android.gradle"
 build {
     doLast {
         copy {
-            from zipTree("$buildDir/outputs/aar/${project.name}.aar")
+            from zipTree("$buildDir/outputs/aar/${project.name}-release.aar")
             into "$rootProject.buildDir/and"
             include 'classes.jar'
             include 'res/**/*.*'
@@ -33,7 +33,7 @@ afterEvaluate { project ->
     Configuration runtimeConfiguration = project.configurations.getByName('compile')
     ResolutionResult resolution = runtimeConfiguration.incoming.resolutionResult
     // Forces resolve of configuration
-    ModuleVersionIdentifier module = resolution.getAllComponents().find { it.moduleVersion.name.equals("play-services") }.moduleVersion
+    ModuleVersionIdentifier module = resolution.getAllComponents().find { it.moduleVersion.name.equals("play-services-base") }.moduleVersion
  
     String prepareTaskName = "prepare${toCamelCase("${module.group} ${module.name} ${module.version}")}Library"
     File playServiceRootFolder = project.tasks.find { it.name.equals(prepareTaskName) }.explodedDir
