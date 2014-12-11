@@ -38,7 +38,7 @@ additionalCompilerOptions = [
 repositories {
     ivy {
         name 'Apache'
-        artifactPattern 'http://apache.cu.be/flex/[revision]/binaries/[module]-[revision]-bin.[ext]'
+        artifactPattern 'http://archive.apache.org/dist/flex/[revision]/binaries/[module]-[revision]-bin.[ext]'
     }
 
     ivy {
