@@ -6,15 +6,12 @@
  * Twitter: @alebianco
  * Created: 11/06/14 12.43
  */
-
-import org.apache.tools.ant.filters.ReplaceTokens
-
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.2'
+        classpath 'com.android.tools.build:gradle:1.0.0'
     }
 
 	Properties props = new Properties()
@@ -29,7 +26,7 @@ apply plugin: com.android.build.gradle.LibraryPlugin
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.2"
+    buildToolsVersion "21.1.1"
     defaultConfig {
         minSdkVersion 7
         targetSdkVersion 21
@@ -40,7 +37,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
