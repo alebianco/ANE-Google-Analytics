@@ -18,6 +18,11 @@ build {
             include 'res/**/*.*'
             rename('classes.jar', "lib${productName}.jar")
         }
+        copy {
+            from fileTree("$buildDir/intermediates/exploded-aar/com.google.android.gms/play-services-base").files
+            into "$rootProject.buildDir/and/res/values"
+            include 'version.xml'
+        }
     }
 }
 
