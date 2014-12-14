@@ -9,24 +9,15 @@
 
 def os = System.properties['os.name'].toLowerCase()[0..2]
 
-include 'actionscript:api'
-project(':actionscript:api'          ).projectDir = new File('sources/actionscript/api')
-
-include 'actionscript:default'
-project(':actionscript:default'      ).projectDir = new File('sources/actionscript/default')
-
-include 'actionscript:crossplatform'
-project(':actionscript:crossplatform').projectDir = new File('sources/actionscript/crossplatform')
-
-include 'native:android'
-project(':native:android'            ).projectDir = new File('sources/android')
+include 'sources:actionscript:api'
+include 'sources:actionscript:default'
+include 'sources:actionscript:crossplatform'
+include 'sources:native:android'
 
 if ('mac'.equals(os)) {
-	include 'native:ios:device'
-	project(':native:ios:device'         ).projectDir = new File('sources/ios')
-	project(':native:ios:device'         ).buildFileName = 'device.gradle'
+	include 'sources:native:ios:device'
+	project(':sources:native:ios:device'         ).buildFileName = 'device.gradle'
 
-	include 'native:ios:simulator'
-	project(':native:ios:simulator'      ).projectDir = new File('sources/ios')
-	project(':native:ios:simulator'      ).buildFileName = 'simulator.gradle'
+	include 'sources:native:ios:simulator'
+	project(':sources:native:ios:simulator'      ).buildFileName = 'simulator.gradle'
 }

@@ -10,7 +10,7 @@
 apply from: "$rootDir/gradle/actionscript.gradle"
 
 dependencies {
-	merged project(':actionscript:api')
+	merged project(':sources:actionscript:api')
 }
 
 build {
