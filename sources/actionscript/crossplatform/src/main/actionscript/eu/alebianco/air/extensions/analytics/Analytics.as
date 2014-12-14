@@ -54,6 +54,7 @@ public final class Analytics implements IAnalytics {
 
         if (!context) {
             context = ExtensionContext.createExtensionContext(EXTENSION_ID, null);
+            context.call(NativeMethods.INITIALISE);
             context.addEventListener(StatusEvent.STATUS, statusHandler);
         }
 

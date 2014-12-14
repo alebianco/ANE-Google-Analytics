@@ -14,6 +14,7 @@ import android.content.res.Resources;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import eu.alebianco.air.extensions.analytics.functions.GetVersion;
+import eu.alebianco.air.extensions.analytics.functions.Initialise;
 import eu.alebianco.air.extensions.analytics.functions.IsSupported;
 
 import java.util.Map;
@@ -27,6 +28,9 @@ public class GAContext extends FREContext {
 
     public GAContext() {
         super();
+    }
+
+    public void initialise() {
         activity = getActivity();
         resources = activity.getResources();
         packageManager = activity.getPackageManager();
@@ -47,6 +51,7 @@ public class GAContext extends FREContext {
 
         // Extension
 
+        functions.put("initialise", new Initialise());
         functions.put("isSupported", new IsSupported());
         functions.put("getVersion", new GetVersion());
 
