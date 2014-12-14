@@ -42,7 +42,7 @@ public final class Analytics implements IAnalytics {
 
 	public static function isSupported():Boolean {
         const context:ExtensionContext = ExtensionContext.createExtensionContext(EXTENSION_ID, null);
-        const result:Boolean = context.call("isSupported") as Boolean;
+        const result:Boolean = context.call(NativeMethods.IS_SUPPORTED) as Boolean;
         context.dispose();
         return result;
 	}
@@ -69,7 +69,7 @@ public final class Analytics implements IAnalytics {
 	}
 
 	public function get version():String {
-		return context.call("getVersion") as String;
+		return context.call(NativeMethods.GET_VERSION) as String;
 	}
 
     private function statusHandler(event:StatusEvent):void {
