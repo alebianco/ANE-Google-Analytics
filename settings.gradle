@@ -7,6 +7,27 @@
  * Created: 04/06/14 17.04
  */
 
+def verifyJDKVersion() {
+	def stdout = new ByteArrayOutputStream()
+	javaexec {
+		main '-version'
+		errorOutput = stdout;
+	}
+
+	def supportedJDKs = ['1.6']
+	def pattern = ~/^java version "(\d+\.\d+)\.[0-9_]+"$/
+	def matcher = (stdout.toString().readLines()[0] =~ pattern)
+
+	if (!matcher.matches()) {
+		throw new GradleException('Error: Could not determine the JDK version in use.')
+	} else if (!supportedJDKs.contains(matcher[0][1])) {
+		throw new GradleException("Error: JDK $supportedJDKs should be used to build, currently using '${matcher[0][1]}'")
+	}
+	println "Compiling with JDK '${matcher[0][1]}'"
+}
+
+verifyJDKVersion()
+
 def os = System.properties['os.name'].toLowerCase()[0..2]
 
 include 'sources:actionscript:api'
