@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    flexSDK group: 'org.apache', name: 'apache-flex-sdk', version: '4.13.0', ext: 'tar.gz'
+    flexSDK group: 'org.apache', name: 'apache-flex-sdk', version: '4.13.0', ext: 'mac'.equals(project.properties.os) ? 'tar.gz' : 'zip'
     airSDK group: 'com.adobe', name: 'AdobeAIRSDK', version: '15.0', ext: 'zip'
 
     merged files("../libs/abcore-v0.9.swc")
