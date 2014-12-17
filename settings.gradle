@@ -37,8 +37,10 @@ include 'sources:native:android'
 
 if ('mac'.equals(os)) {
 	include 'sources:native:ios:device'
+	project(':sources:native:ios:device'         ).projectDir = new File('sources/native/ios')
 	project(':sources:native:ios:device'         ).buildFileName = 'device.gradle'
 
 	include 'sources:native:ios:simulator'
+	project(':sources:native:ios:simulator'      ).projectDir = new File('sources/native/ios')
 	project(':sources:native:ios:simulator'      ).buildFileName = 'simulator.gradle'
 }
