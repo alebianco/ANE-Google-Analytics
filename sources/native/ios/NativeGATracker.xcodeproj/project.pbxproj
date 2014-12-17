@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F34EC25F1941B401005DCB42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34EC25E1941B401005DCB42 /* Foundation.framework */; };
-		F34EC2641941B401005DCB42 /* NativeGATracker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F34EC2631941B401005DCB42 /* NativeGATracker.h */; };
-		F34EC2661941B401005DCB42 /* NativeGATracker.m in Sources */ = {isa = PBXBuildFile; fileRef = F34EC2651941B401005DCB42 /* NativeGATracker.m */; };
+		F3D797681A4031E50087FE95 /* GAContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D797621A4031E50087FE95 /* GAContext.m */; };
+		F3D797691A4031E50087FE95 /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D797641A4031E50087FE95 /* GAExtension.m */; };
+		F3D7976A1A4031E50087FE95 /* GATypeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D797671A4031E50087FE95 /* GATypeConverter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +20,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				F34EC2641941B401005DCB42 /* NativeGATracker.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29,10 +29,18 @@
 		F34EC25B1941B401005DCB42 /* libNativeGATracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F34EC25E1941B401005DCB42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F34EC2621941B401005DCB42 /* NativeGATracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NativeGATracker-Prefix.pch"; sourceTree = "<group>"; };
-		F34EC2631941B401005DCB42 /* NativeGATracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeGATracker.h; sourceTree = "<group>"; };
-		F34EC2651941B401005DCB42 /* NativeGATracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeGATracker.m; sourceTree = "<group>"; };
 		F34EC26C1941B401005DCB42 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F34EC26F1941B401005DCB42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		F3AAC2F41A3EE07A00B5A20C /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
+		F3D797611A4031E50087FE95 /* GAContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAContext.h; sourceTree = "<group>"; };
+		F3D797621A4031E50087FE95 /* GAContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAContext.m; sourceTree = "<group>"; };
+		F3D797631A4031E50087FE95 /* GAExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
+		F3D797641A4031E50087FE95 /* GAExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
+		F3D797651A4031E50087FE95 /* GAMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMacros.h; sourceTree = "<group>"; };
+		F3D797661A4031E50087FE95 /* GATypeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GATypeConverter.h; sourceTree = "<group>"; };
+		F3D797671A4031E50087FE95 /* GATypeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GATypeConverter.m; sourceTree = "<group>"; };
+		F3D7976B1A4032340087FE95 /* Functions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Functions; sourceTree = "<group>"; };
+		F3D7976D1A4033F90087FE95 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +85,16 @@
 		F34EC2601941B401005DCB42 /* NativeGATracker */ = {
 			isa = PBXGroup;
 			children = (
-				F34EC2631941B401005DCB42 /* NativeGATracker.h */,
-				F34EC2651941B401005DCB42 /* NativeGATracker.m */,
+				F3D7976D1A4033F90087FE95 /* Resources */,
+				F3D7976B1A4032340087FE95 /* Functions */,
+				F3AAC2F41A3EE07A00B5A20C /* FlashRuntimeExtensions.h */,
+				F3D797611A4031E50087FE95 /* GAContext.h */,
+				F3D797621A4031E50087FE95 /* GAContext.m */,
+				F3D797631A4031E50087FE95 /* GAExtension.h */,
+				F3D797641A4031E50087FE95 /* GAExtension.m */,
+				F3D797651A4031E50087FE95 /* GAMacros.h */,
+				F3D797661A4031E50087FE95 /* GATypeConverter.h */,
+				F3D797671A4031E50087FE95 /* GATypeConverter.m */,
 				F34EC2611941B401005DCB42 /* Supporting Files */,
 			);
 			path = NativeGATracker;
@@ -143,7 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F34EC2661941B401005DCB42 /* NativeGATracker.m in Sources */,
+				F3D7976A1A4031E50087FE95 /* GATypeConverter.m in Sources */,
+				F3D797691A4031E50087FE95 /* GAExtension.m in Sources */,
+				F3D797681A4031E50087FE95 /* GAContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
