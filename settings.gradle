@@ -21,7 +21,7 @@ def verifyJDKVersion() {
 	if (!matcher.matches()) {
 		throw new GradleException('Error: Could not determine the JDK version in use.')
 	} else if (!supportedJDKs.contains(matcher[0][1])) {
-		throw new GradleException("Error: JDK $supportedJDKs should be used to build, currently using '${matcher[0][1]}'")
+		println("Warning: JDK $supportedJDKs should be used to build, currently using '${matcher[0][1]}'")
 	}
 	println "Compiling with JDK '${matcher[0][1]}'"
 }
