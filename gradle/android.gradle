@@ -25,10 +25,10 @@ buildscript {
 apply plugin: com.android.build.gradle.LibraryPlugin
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 8
     buildToolsVersion "21.1.1"
     defaultConfig {
-        minSdkVersion 7
+        minSdkVersion 8
         targetSdkVersion 21
         versionCode = Integer.parseInt(productVersionCode)
         versionName productVersion
