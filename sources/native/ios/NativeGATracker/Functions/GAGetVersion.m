@@ -14,7 +14,7 @@ DEFINE_FUNCTION(getVersion) {
     FREObject result;
     
     @try {
-        result = [GAUtils fromString:"hello iOS extension"];
+        result = [GATypeConverter fromString:@"hello iOS extension"];
     }
     @catch (NSException *exception) {
         // TODO handle exception
