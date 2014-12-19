@@ -60,7 +60,7 @@ task build(dependsOn: { subprojects.findAll({ it.tasks.findByName('build') }).bu
             args '-platform', 'Android-x86', '-platformoptions', "$buildDir/platform-android.xml", '-C', "$buildDir/and", '.'
             if ('mac'.equals(project.properties.os)) {
                 args '-platform', 'iPhone-ARM', '-platformoptions', "$buildDir/platform-iphone.xml", '-C', "$buildDir/ios", '.'
-                args '-platform', 'iPhone-x86', '-platformoptions', "$buildDir/platform-iphone.xml", '-C', "$buildDir/ios", '.'
+                args '-platform', 'iPhone-x86', '-platformoptions', "$buildDir/platform-iphone.xml", '-C', "$buildDir/sim", '.'
             }
             args '-platform', 'default', '-C', "$buildDir/def", '.'
         }
