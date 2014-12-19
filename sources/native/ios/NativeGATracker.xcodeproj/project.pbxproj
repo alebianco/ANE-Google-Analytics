@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		F34EC25F1941B401005DCB42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34EC25E1941B401005DCB42 /* Foundation.framework */; };
-		F3D797681A4031E50087FE95 /* GAContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D797621A4031E50087FE95 /* GAContext.m */; };
-		F3D797691A4031E50087FE95 /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D797641A4031E50087FE95 /* GAExtension.m */; };
-		F3D7976A1A4031E50087FE95 /* GATypeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D797671A4031E50087FE95 /* GATypeConverter.m */; };
+		F3E1DD2D1A443AD3002CAD03 /* GAContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1DD271A443AD3002CAD03 /* GAContext.m */; };
+		F3E1DD2E1A443AD3002CAD03 /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1DD291A443AD3002CAD03 /* GAExtension.m */; };
+		F3E1DD2F1A443AD3002CAD03 /* GATypeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1DD2C1A443AD3002CAD03 /* GATypeConverter.m */; };
+		F3E1DD381A443AF1002CAD03 /* GAGetVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1DD331A443AF1002CAD03 /* GAGetVersion.m */; };
+		F3E1DD391A443AF1002CAD03 /* GAInitialise.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1DD351A443AF1002CAD03 /* GAInitialise.m */; };
+		F3E1DD3A1A443AF1002CAD03 /* GAIsSupported.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1DD371A443AF1002CAD03 /* GAIsSupported.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,16 +34,21 @@
 		F34EC2621941B401005DCB42 /* NativeGATracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NativeGATracker-Prefix.pch"; sourceTree = "<group>"; };
 		F34EC26C1941B401005DCB42 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F34EC26F1941B401005DCB42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		F3AAC2F41A3EE07A00B5A20C /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
-		F3D797611A4031E50087FE95 /* GAContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAContext.h; sourceTree = "<group>"; };
-		F3D797621A4031E50087FE95 /* GAContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAContext.m; sourceTree = "<group>"; };
-		F3D797631A4031E50087FE95 /* GAExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
-		F3D797641A4031E50087FE95 /* GAExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
-		F3D797651A4031E50087FE95 /* GAMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMacros.h; sourceTree = "<group>"; };
-		F3D797661A4031E50087FE95 /* GATypeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GATypeConverter.h; sourceTree = "<group>"; };
-		F3D797671A4031E50087FE95 /* GATypeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GATypeConverter.m; sourceTree = "<group>"; };
-		F3D7976B1A4032340087FE95 /* Functions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Functions; sourceTree = "<group>"; };
-		F3D7976D1A4033F90087FE95 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+		F3E1DD261A443AD3002CAD03 /* GAContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAContext.h; sourceTree = "<group>"; };
+		F3E1DD271A443AD3002CAD03 /* GAContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAContext.m; sourceTree = "<group>"; };
+		F3E1DD281A443AD3002CAD03 /* GAExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
+		F3E1DD291A443AD3002CAD03 /* GAExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
+		F3E1DD2A1A443AD3002CAD03 /* GAMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMacros.h; sourceTree = "<group>"; };
+		F3E1DD2B1A443AD3002CAD03 /* GATypeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GATypeConverter.h; sourceTree = "<group>"; };
+		F3E1DD2C1A443AD3002CAD03 /* GATypeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GATypeConverter.m; sourceTree = "<group>"; };
+		F3E1DD301A443AE3002CAD03 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
+		F3E1DD321A443AF1002CAD03 /* GAGetVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAGetVersion.h; sourceTree = "<group>"; };
+		F3E1DD331A443AF1002CAD03 /* GAGetVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAGetVersion.m; sourceTree = "<group>"; };
+		F3E1DD341A443AF1002CAD03 /* GAInitialise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAInitialise.h; sourceTree = "<group>"; };
+		F3E1DD351A443AF1002CAD03 /* GAInitialise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAInitialise.m; sourceTree = "<group>"; };
+		F3E1DD361A443AF1002CAD03 /* GAIsSupported.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIsSupported.h; sourceTree = "<group>"; };
+		F3E1DD371A443AF1002CAD03 /* GAIsSupported.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAIsSupported.m; sourceTree = "<group>"; };
+		F3E1DD3D1A4450DC002CAD03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,16 +93,15 @@
 		F34EC2601941B401005DCB42 /* NativeGATracker */ = {
 			isa = PBXGroup;
 			children = (
-				F3D7976D1A4033F90087FE95 /* Resources */,
-				F3D7976B1A4032340087FE95 /* Functions */,
-				F3AAC2F41A3EE07A00B5A20C /* FlashRuntimeExtensions.h */,
-				F3D797611A4031E50087FE95 /* GAContext.h */,
-				F3D797621A4031E50087FE95 /* GAContext.m */,
-				F3D797631A4031E50087FE95 /* GAExtension.h */,
-				F3D797641A4031E50087FE95 /* GAExtension.m */,
-				F3D797651A4031E50087FE95 /* GAMacros.h */,
-				F3D797661A4031E50087FE95 /* GATypeConverter.h */,
-				F3D797671A4031E50087FE95 /* GATypeConverter.m */,
+				F3E1DD3B1A443AF8002CAD03 /* Resources */,
+				F3E1DD311A443AF1002CAD03 /* Functions */,
+				F3E1DD261A443AD3002CAD03 /* GAContext.h */,
+				F3E1DD271A443AD3002CAD03 /* GAContext.m */,
+				F3E1DD281A443AD3002CAD03 /* GAExtension.h */,
+				F3E1DD291A443AD3002CAD03 /* GAExtension.m */,
+				F3E1DD2A1A443AD3002CAD03 /* GAMacros.h */,
+				F3E1DD2B1A443AD3002CAD03 /* GATypeConverter.h */,
+				F3E1DD2C1A443AD3002CAD03 /* GATypeConverter.m */,
 				F34EC2611941B401005DCB42 /* Supporting Files */,
 			);
 			path = NativeGATracker;
@@ -103,9 +110,31 @@
 		F34EC2611941B401005DCB42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3E1DD301A443AE3002CAD03 /* FlashRuntimeExtensions.h */,
 				F34EC2621941B401005DCB42 /* NativeGATracker-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F3E1DD311A443AF1002CAD03 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				F3E1DD321A443AF1002CAD03 /* GAGetVersion.h */,
+				F3E1DD331A443AF1002CAD03 /* GAGetVersion.m */,
+				F3E1DD341A443AF1002CAD03 /* GAInitialise.h */,
+				F3E1DD351A443AF1002CAD03 /* GAInitialise.m */,
+				F3E1DD361A443AF1002CAD03 /* GAIsSupported.h */,
+				F3E1DD371A443AF1002CAD03 /* GAIsSupported.m */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		F3E1DD3B1A443AF8002CAD03 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F3E1DD3E1A4450DC002CAD03 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,19 +188,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3D7976A1A4031E50087FE95 /* GATypeConverter.m in Sources */,
-				F3D797691A4031E50087FE95 /* GAExtension.m in Sources */,
-				F3D797681A4031E50087FE95 /* GAContext.m in Sources */,
+				F3E1DD2D1A443AD3002CAD03 /* GAContext.m in Sources */,
+				F3E1DD2E1A443AD3002CAD03 /* GAExtension.m in Sources */,
+				F3E1DD3A1A443AF1002CAD03 /* GAIsSupported.m in Sources */,
+				F3E1DD2F1A443AD3002CAD03 /* GATypeConverter.m in Sources */,
+				F3E1DD391A443AF1002CAD03 /* GAInitialise.m in Sources */,
+				F3E1DD381A443AF1002CAD03 /* GAGetVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		F3E1DD3E1A4450DC002CAD03 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3E1DD3D1A4450DC002CAD03 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		F34EC27C1941B401005DCB42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -179,28 +221,21 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -208,7 +243,6 @@
 		F34EC27D1941B401005DCB42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -216,34 +250,26 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		F34EC27F1941B401005DCB42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/NativeGATracker.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeGATracker/NativeGATracker-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -251,11 +277,7 @@
 		F34EC2801941B401005DCB42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/NativeGATracker.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeGATracker/NativeGATracker-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
