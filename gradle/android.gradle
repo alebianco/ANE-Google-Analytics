@@ -26,7 +26,7 @@ apply plugin: com.android.build.gradle.LibraryPlugin
 
 android {
     compileSdkVersion 8
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "21.1.2"
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 21
