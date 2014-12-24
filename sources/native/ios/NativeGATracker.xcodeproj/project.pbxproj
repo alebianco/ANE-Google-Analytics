@@ -16,18 +16,6 @@
 		F3E1DD3A1A443AF1002CAD03 /* GAIsSupported.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1DD371A443AF1002CAD03 /* GAIsSupported.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-		F3D7F89C1A44940B00C9E9E9 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = "com.apple.build-tasks.copy-strings-file";
-			fileType = text.plist.strings;
-			isEditable = 1;
-			outputFiles = (
-			);
-			script = "# builtin-copyStrings\n";
-		};
-/* End PBXBuildRule section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		F34EC2591941B400005DCB42 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -147,7 +135,6 @@
 				F34EC2591941B400005DCB42 /* CopyFiles */,
 			);
 			buildRules = (
-				F3D7F89C1A44940B00C9E9E9 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -170,7 +157,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 			);
 			mainGroup = F34EC2521941B400005DCB42;
 			productRefGroup = F34EC25C1941B401005DCB42 /* Products */;
