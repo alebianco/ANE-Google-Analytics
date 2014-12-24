@@ -16,10 +16,22 @@
 		F3E1DD3A1A443AF1002CAD03 /* GAIsSupported.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1DD371A443AF1002CAD03 /* GAIsSupported.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		F3D7F89C1A44940B00C9E9E9 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = "com.apple.build-tasks.copy-strings-file";
+			fileType = text.plist.strings;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyStrings\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		F34EC2591941B400005DCB42 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
@@ -32,14 +44,12 @@
 		F34EC25B1941B401005DCB42 /* libNativeGATracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F34EC25E1941B401005DCB42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F34EC2621941B401005DCB42 /* NativeGATracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NativeGATracker-Prefix.pch"; sourceTree = "<group>"; };
-		F34EC26C1941B401005DCB42 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		F34EC26F1941B401005DCB42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		F3E1DD261A443AD3002CAD03 /* GAContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAContext.h; sourceTree = "<group>"; };
 		F3E1DD271A443AD3002CAD03 /* GAContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAContext.m; sourceTree = "<group>"; };
 		F3E1DD281A443AD3002CAD03 /* GAExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
 		F3E1DD291A443AD3002CAD03 /* GAExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAExtension.m; sourceTree = "<group>"; };
 		F3E1DD2A1A443AD3002CAD03 /* GAMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMacros.h; sourceTree = "<group>"; };
-		F3E1DD2B1A443AD3002CAD03 /* GATypeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GATypeConverter.h; sourceTree = "<group>"; };
+		F3E1DD2B1A443AD3002CAD03 /* GATypeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GATypeConverter.h; sourceTree = "<group>"; wrapsLines = 0; };
 		F3E1DD2C1A443AD3002CAD03 /* GATypeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GATypeConverter.m; sourceTree = "<group>"; };
 		F3E1DD301A443AE3002CAD03 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		F3E1DD321A443AF1002CAD03 /* GAGetVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAGetVersion.h; sourceTree = "<group>"; };
@@ -48,7 +58,6 @@
 		F3E1DD351A443AF1002CAD03 /* GAInitialise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAInitialise.m; sourceTree = "<group>"; };
 		F3E1DD361A443AF1002CAD03 /* GAIsSupported.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIsSupported.h; sourceTree = "<group>"; };
 		F3E1DD371A443AF1002CAD03 /* GAIsSupported.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAIsSupported.m; sourceTree = "<group>"; };
-		F3E1DD3D1A4450DC002CAD03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				F34EC25E1941B401005DCB42 /* Foundation.framework */,
-				F34EC26C1941B401005DCB42 /* XCTest.framework */,
-				F34EC26F1941B401005DCB42 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -93,7 +100,6 @@
 		F34EC2601941B401005DCB42 /* NativeGATracker */ = {
 			isa = PBXGroup;
 			children = (
-				F3E1DD3B1A443AF8002CAD03 /* Resources */,
 				F3E1DD311A443AF1002CAD03 /* Functions */,
 				F3E1DD261A443AD3002CAD03 /* GAContext.h */,
 				F3E1DD271A443AD3002CAD03 /* GAContext.m */,
@@ -129,14 +135,6 @@
 			path = Functions;
 			sourceTree = "<group>";
 		};
-		F3E1DD3B1A443AF8002CAD03 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F3E1DD3E1A4450DC002CAD03 /* Localizable.strings */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +147,7 @@
 				F34EC2591941B400005DCB42 /* CopyFiles */,
 			);
 			buildRules = (
+				F3D7F89C1A44940B00C9E9E9 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -163,7 +162,7 @@
 		F34EC2531941B400005DCB42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Alessandro Bianco";
 			};
 			buildConfigurationList = F34EC2561941B400005DCB42 /* Build configuration list for PBXProject "NativeGATracker" */;
@@ -198,17 +197,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F3E1DD3E1A4450DC002CAD03 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3E1DD3D1A4450DC002CAD03 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F34EC27C1941B401005DCB42 /* Debug */ = {
