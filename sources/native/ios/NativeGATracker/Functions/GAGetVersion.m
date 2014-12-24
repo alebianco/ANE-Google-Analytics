@@ -12,9 +12,11 @@
 
 DEFINE_FUNCTION(getVersion) {
     FREObject result;
-    
+
     @try {
-        result = [GATypeConverter fromString:@"hello iOS extension"];
+        NSString *name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+        result = [GATypeConverter fromString:[NSString stringWithFormat:@"%@ v%@", name, version]];
     }
     @catch (NSException *exception) {
         // TODO handle exception
