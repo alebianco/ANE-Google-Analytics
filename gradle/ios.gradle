@@ -1,5 +1,5 @@
 /*
- * Project: ANE-Google-Analytics
+ * Project: ANELytics
  *
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
@@ -20,7 +20,7 @@ buildscript {
 apply plugin: org.openbakery.XcodePlugin
 
 xcodebuild {
-  target = 'NativeGATracker'
+  target = "$productName"
   configuration = 'Release'
   infoPlist = {
   	bundleDisplayName = "$productName"

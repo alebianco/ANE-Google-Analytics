@@ -1,5 +1,5 @@
 /*
- * Project: ANE-Google-Analytics
+ * Project: ANELytics
  *
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu
@@ -19,7 +19,7 @@ build {
             from "$buildDir"
             include "*.swc"
             into "$rootProject.buildDir"
-            rename ("$output.$type", "$productName-$productVersion.$type")
+            rename ("$output.$type", "${rootProject.name}-$productVersion.$type")
         }
         copy {
             from zipTree("$buildDir/$output.$type")
@@ -42,6 +42,6 @@ asdoc {
             '-left-frameset-width=320',
             "-window-title=$productTitle $productVersion",
             "-main-title=$productTitle $productVersion",
-            "-footer=$productName - $productUrl"
+            "-footer=${rootProject.name} - $productUrl"
     ]
 }

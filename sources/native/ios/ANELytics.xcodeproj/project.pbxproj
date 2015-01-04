@@ -29,9 +29,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F34EC25B1941B401005DCB42 /* libNativeGATracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNativeGATracker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F34EC25B1941B401005DCB42 /* libANELytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libANELytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F34EC25E1941B401005DCB42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F34EC2621941B401005DCB42 /* NativeGATracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NativeGATracker-Prefix.pch"; sourceTree = "<group>"; };
+		F34EC2621941B401005DCB42 /* ANELytics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ANELytics-Prefix.pch"; sourceTree = "<group>"; };
 		F3E1DD261A443AD3002CAD03 /* GAContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAContext.h; sourceTree = "<group>"; };
 		F3E1DD271A443AD3002CAD03 /* GAContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAContext.m; sourceTree = "<group>"; };
 		F3E1DD281A443AD3002CAD03 /* GAExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAExtension.h; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		F34EC2521941B400005DCB42 = {
 			isa = PBXGroup;
 			children = (
-				F34EC2601941B401005DCB42 /* NativeGATracker */,
+				F34EC2601941B401005DCB42 /* ANELytics */,
 				F34EC25D1941B401005DCB42 /* Frameworks */,
 				F34EC25C1941B401005DCB42 /* Products */,
 			);
@@ -72,7 +72,7 @@
 		F34EC25C1941B401005DCB42 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F34EC25B1941B401005DCB42 /* libNativeGATracker.a */,
+				F34EC25B1941B401005DCB42 /* libANELytics.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,7 +85,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F34EC2601941B401005DCB42 /* NativeGATracker */ = {
+		F34EC2601941B401005DCB42 /* ANELytics */ = {
 			isa = PBXGroup;
 			children = (
 				F3E1DD311A443AF1002CAD03 /* Functions */,
@@ -98,14 +98,14 @@
 				F3E1DD2C1A443AD3002CAD03 /* GATypeConverter.m */,
 				F34EC2611941B401005DCB42 /* Supporting Files */,
 			);
-			path = NativeGATracker;
+			path = ANELytics;
 			sourceTree = "<group>";
 		};
 		F34EC2611941B401005DCB42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				F3E1DD301A443AE3002CAD03 /* FlashRuntimeExtensions.h */,
-				F34EC2621941B401005DCB42 /* NativeGATracker-Prefix.pch */,
+				F34EC2621941B401005DCB42 /* ANELytics-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -126,9 +126,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F34EC25A1941B400005DCB42 /* NativeGATracker */ = {
+		F34EC25A1941B400005DCB42 /* ANELytics */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F34EC27E1941B401005DCB42 /* Build configuration list for PBXNativeTarget "NativeGATracker" */;
+			buildConfigurationList = F34EC27E1941B401005DCB42 /* Build configuration list for PBXNativeTarget "ANELytics" */;
 			buildPhases = (
 				F34EC2571941B400005DCB42 /* Sources */,
 				F34EC2581941B400005DCB42 /* Frameworks */,
@@ -138,9 +138,9 @@
 			);
 			dependencies = (
 			);
-			name = NativeGATracker;
-			productName = NativeGATracker;
-			productReference = F34EC25B1941B401005DCB42 /* libNativeGATracker.a */;
+			name = ANELytics;
+			productName = ANELytics;
+			productReference = F34EC25B1941B401005DCB42 /* libANELytics.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -152,7 +152,7 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Alessandro Bianco";
 			};
-			buildConfigurationList = F34EC2561941B400005DCB42 /* Build configuration list for PBXProject "NativeGATracker" */;
+			buildConfigurationList = F34EC2561941B400005DCB42 /* Build configuration list for PBXProject "ANELytics" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -163,7 +163,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F34EC25A1941B400005DCB42 /* NativeGATracker */,
+				F34EC25A1941B400005DCB42 /* ANELytics */,
 			);
 		};
 /* End PBXProject section */
@@ -243,7 +243,7 @@
 		F34EC27F1941B401005DCB42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREFIX_HEADER = "NativeGATracker/NativeGATracker-Prefix.pch";
+				GCC_PREFIX_HEADER = "ANELytics/ANELytics-Prefix.pch";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -251,7 +251,7 @@
 		F34EC2801941B401005DCB42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREFIX_HEADER = "NativeGATracker/NativeGATracker-Prefix.pch";
+				GCC_PREFIX_HEADER = "ANELytics/ANELytics-Prefix.pch";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -259,7 +259,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F34EC2561941B400005DCB42 /* Build configuration list for PBXProject "NativeGATracker" */ = {
+		F34EC2561941B400005DCB42 /* Build configuration list for PBXProject "ANELytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F34EC27C1941B401005DCB42 /* Debug */,
@@ -268,7 +268,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F34EC27E1941B401005DCB42 /* Build configuration list for PBXNativeTarget "NativeGATracker" */ = {
+		F34EC27E1941B401005DCB42 /* Build configuration list for PBXNativeTarget "ANELytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F34EC27F1941B401005DCB42 /* Debug */,

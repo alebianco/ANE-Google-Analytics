@@ -1,4 +1,4 @@
-# ANE-Google-Analytics
+# ANELytics
 
 This is an Adobe® AIR Native Extension for Google Analytics.
 

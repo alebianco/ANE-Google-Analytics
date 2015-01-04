@@ -1,5 +1,5 @@
 /**
- * Project: ANE-Google-Analytics
+ * Project: ANELytics
  *
  * Author:  Alessandro Bianco
  * Website: http://alessandrobianco.eu

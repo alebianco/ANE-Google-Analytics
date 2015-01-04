@@ -1,6 +1,6 @@
 //
 //  GAExtension.m
-//  NativeGATracker
+//  ANELytics
 //
 //  Created by Alessandro Bianco on 06/06/2014.
 //  Copyright (c) 2014 Alessandro Bianco. All rights reserved.

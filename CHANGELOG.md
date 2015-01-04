@@ -2,6 +2,7 @@
 
 ### 3.0.0 (TBD)
 
+* New project name!
 * New build system powered by Gradle
 * Upgraded to build with Apache Flex 4.13 and AIR 15
 * Added support for Android-x86 platform

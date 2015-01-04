@@ -1,6 +1,6 @@
 //
-//  GAInitialise.h
-//  NativeGATracker
+//  GAGetVersion.h
+//  ANELytics
 //
 //  Created by Alessandro Bianco on 15/12/2014.
 //  Copyright (c) 2014 Alessandro Bianco. All rights reserved.
@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "GATypeConverter.h"
 
-@interface GAInitialise : NSObject
+@interface GAGetVersion : NSObject
 
-DEFINE_FUNCTION(initialise);
+DEFINE_FUNCTION(getVersion);
 
 @end

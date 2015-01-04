@@ -1,6 +1,6 @@
-# Contributing to ANE-Google-Analytics
+# Contributing to ANELytics
 
-♥ [ANE-Google-Analytics](https://alebianco.github.io/ANE-Google-Analytics) and want to get involved?
+♥ [ANELytics](https://alebianco.github.io/ANE-Google-Analytics) and want to get involved?
 Thanks! There are plenty of ways you can help!
 
 ## Donations

@@ -1,6 +1,6 @@
 //
-//  GAIsSupported.h
-//  NativeGATracker
+//  GAInitialise.h
+//  ANELytics
 //
 //  Created by Alessandro Bianco on 15/12/2014.
 //  Copyright (c) 2014 Alessandro Bianco. All rights reserved.
@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "GATypeConverter.h"
 
-@interface GAIsSupported : NSObject
+@interface GAInitialise : NSObject
 
-DEFINE_FUNCTION(isSupported);
+DEFINE_FUNCTION(initialise);
 
 @end
