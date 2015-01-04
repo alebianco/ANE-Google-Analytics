@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Alessandro Bianco. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "GATypeConverter.h"
 
 @interface GAInitialise : NSObject

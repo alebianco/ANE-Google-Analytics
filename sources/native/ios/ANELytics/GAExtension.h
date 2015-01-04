@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Alessandro Bianco. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "FlashRuntimeExtensions.h"
 #import "GAContext.h"
 
 @interface GAExtension : NSObject
