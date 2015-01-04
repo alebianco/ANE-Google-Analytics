@@ -43,22 +43,20 @@ repositories {
 
     ivy {
         name 'Adobe Air SDK'
+        artifactPattern 'http://download.macromedia.com/air/mac/download/[revision]/[module].[ext]'
         artifactPattern 'http://download.macromedia.com/air/win/download/[revision]/[module].[ext]'
     }
 
     ivy {
         name 'Adobe Air SDK labs'
-        url 'http://labsdownload.adobe.com/pub/labs'
-        layout 'pattern', {
-            artifact 'flashruntimes/air/air[revision]_sdk_sa_mac.[ext]'
-            artifact 'flashruntimes/air/air[revision]_sdk_sa_win.[ext]'
-        }
+        artifactPattern 'http://labsdownload.adobe.com/pub/labs/flashruntimes/air/air[revision]_sdk_sa_mac.[ext]'
+        artifactPattern 'http://labsdownload.adobe.com/pub/labs/flashruntimes/air/air[revision]_sdk_sa_win.[ext]'
     }
 }
 
 dependencies {
-    flexSDK group: 'org.apache', name: 'apache-flex-sdk', version: '4.13.0', ext: 'mac'.equals(project.properties.os) ? 'tar.gz' : 'zip'
-    airSDK group: 'com.adobe', name: 'AdobeAIRSDK', version: '16', ext: 'mac'.equals(os) ? 'tbz2' : 'zip'
+    flexSDK group: 'org.apache', name: 'apache-flex-sdk', version: '4.13.0', ext: 'mac'.equals(os) ? 'tar.gz' : 'zip'
+    airSDK group: 'com.adobe', name: 'AdobeAIRSDK', version: '15.0', ext: 'mac'.equals(os) ? 'tbz2' : 'zip'
 
     merged files("../libs/abcore-v0.9.swc")
 }
