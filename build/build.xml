@@ -240,6 +240,7 @@
             <arg line="-static-link-runtime-shared-libraries=true"/>
             <arg line="-verbose-stacktraces=true"/>
             <arg line="-headless-server=true"/>
+            <arg line="-compiler.define+=DEFINE::USES_FLEX,${USES_FLEX}"/>
         </java>
         <mkdir dir="${tmp.dir}/content"/>
         <unzip src="${tmp.dir}/library.swc" dest="${tmp.dir}/content" overwrite="true"/>

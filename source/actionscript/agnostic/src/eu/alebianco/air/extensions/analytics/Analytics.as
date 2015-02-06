@@ -18,8 +18,11 @@ import flash.external.ExtensionContext;
 import flash.utils.Dictionary;
 import flash.utils.getQualifiedClassName;
 
+DEFINE::USES_FLEX
+{
 import mx.logging.ILogger;
 import mx.logging.Log;
+}
 
 public final class Analytics implements IAnalytics {
 
@@ -29,7 +32,10 @@ public final class Analytics implements IAnalytics {
 	private static var instance:Analytics;
 	private static var canBuild:Boolean;
 
+DEFINE::USES_FLEX
+{
 	private var logger:ILogger;
+}
 
 	private var context:ExtensionContext;
 	private var trackers:Dictionary;
@@ -67,7 +73,10 @@ public final class Analytics implements IAnalytics {
 		trackers = new Dictionary();
 
 		var className:String = getQualifiedClassName(this).replace("::", ".");
+DEFINE::USES_FLEX
+{
 		logger = Log.getLogger(className);
+}
 	}
 
 	public function get version():String {
@@ -151,9 +160,12 @@ public final class Analytics implements IAnalytics {
 		context.dispose();
 		context.removeEventListener(StatusEvent.STATUS, statusHandler);
 		context = null;
-		logger = null;
 		trackers = null;
 		instance = null;
+DEFINE::USES_FLEX
+{
+		logger = null;
+}
 	}
 
 	private function disposeAllTrackers():void {
@@ -174,6 +186,8 @@ public final class Analytics implements IAnalytics {
 	}
 
 	logStatusLevel function processStatusEvent(level:String, code:String):void {
+DEFINE::USES_FLEX
+{
 		switch (level.toUpperCase()) {
 			case "INFO":
 				logger.info(code);
@@ -194,6 +208,7 @@ public final class Analytics implements IAnalytics {
 				logger.debug("AsyncStatusEvent level (" + level + ") unknown.");
 				break;
 		}
+}
 	}
 }
 }
