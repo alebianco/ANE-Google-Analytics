@@ -160,7 +160,6 @@
         <mkdir dir="${bin.ios.dir}"/>
         <mkdir dir="${tmp.dir}"/>
         <antcall target="ext_ios">
-            <param name="arch" value="armv7"/>
             <param name="sdk" value="iphoneos"/>
             <param name="dir" value="${bin.ios.dir}"/>
         </antcall>
@@ -182,9 +181,8 @@
         <!-- Build iOS native library -->
         <exec executable="xcodebuild" failonerror="true" dir="${src.ios.dir}">
             <arg line="-project ${project.name}.xcodeproj"/>
-            <arg line="-target ${project.name}"/>
             <arg line="-configuration Release"/>
-            <arg line="-arch ${arch}"/>
+            <arg line="-alltargets"/>
             <arg line="-sdk ${sdk}"/>
             <arg line="SYMROOT=${tmp.dir}"/>
         </exec>

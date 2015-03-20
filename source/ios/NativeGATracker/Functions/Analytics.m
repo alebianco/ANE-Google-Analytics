@@ -10,11 +10,14 @@
  */
 
 #import "Analytics.h"
+#import "GAIFields.h"
 
 @implementation Analytics
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 20;
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
     return YES;
 }
 
@@ -26,15 +29,15 @@ DEFINE_ANE_FUNCTION(createTracker) {
         trackingId = [FREConversionUtil toString:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'trackingId' parameter on method '%s'.", __FUNCTION__);
     }
 
     id tracker = [[GAI sharedInstance] trackerWithTrackingId:trackingId];
-    [tracker setSessionTimeout:-1];
 
     return result;
 }
+
 DEFINE_ANE_FUNCTION(closeTracker) {
     FREObject result = NULL;
 
@@ -43,7 +46,7 @@ DEFINE_ANE_FUNCTION(closeTracker) {
         trackingId = [FREConversionUtil toString:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'trackingId' parameter on method '%s'.", __FUNCTION__);
     }
 
@@ -52,6 +55,7 @@ DEFINE_ANE_FUNCTION(closeTracker) {
 
     return result;
 }
+
 DEFINE_ANE_FUNCTION(setDebug) {
     FREObject result = NULL;
 
@@ -60,29 +64,31 @@ DEFINE_ANE_FUNCTION(setDebug) {
         value = [FREConversionUtil toBoolean:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'value' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'value' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'value' parameter on method '%s'.", __FUNCTION__);
     }
 
-    [[GAI sharedInstance] setDebug:value];
-
+    [[GAI sharedInstance].logger setLogLevel:value];
+                                              
     return result;
 }
+
 DEFINE_ANE_FUNCTION(getDebug) {
     FREObject result = NULL;
 
-    BOOL value = [[GAI sharedInstance] debug];
+    BOOL value = [[GAI sharedInstance].logger logLevel];
 
     @try {
         result = [FREConversionUtil fromBoolean:value];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to create the return value on method '%s'.", __FUNCTION__);
     }
 
     return result;
 }
+
 DEFINE_ANE_FUNCTION(setOptOut) {
     FREObject result = NULL;
 
@@ -91,7 +97,7 @@ DEFINE_ANE_FUNCTION(setOptOut) {
         value = [FREConversionUtil toBoolean:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'value' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'value' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'value' parameter on method '%s'.", __FUNCTION__);
     }
 
@@ -99,6 +105,7 @@ DEFINE_ANE_FUNCTION(setOptOut) {
 
     return result;
 }
+
 DEFINE_ANE_FUNCTION(getOptOut) {
     FREObject result = NULL;
 
@@ -108,12 +115,13 @@ DEFINE_ANE_FUNCTION(getOptOut) {
         result = [FREConversionUtil fromBoolean:value];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to create the return value on method '%s'.", __FUNCTION__);
     }
 
     return result;
 }
+
 DEFINE_ANE_FUNCTION(setDispatchInterval) {
     FREObject result = NULL;
 
@@ -122,7 +130,7 @@ DEFINE_ANE_FUNCTION(setDispatchInterval) {
         interval = [FREConversionUtil toInt:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'interval' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'interval' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'interval' parameter on method '%s'.", __FUNCTION__);
     }
 
@@ -130,6 +138,7 @@ DEFINE_ANE_FUNCTION(setDispatchInterval) {
 
     return result;
 }
+
 DEFINE_ANE_FUNCTION(dispatch) {
     FREObject result = NULL;
 

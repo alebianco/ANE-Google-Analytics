@@ -15,6 +15,6 @@
 
 @interface GetVersion : NSObject
 
-DEFINE_ANE_FUNCTION(getVersion);
+DEFINE_ANE_FUNCTION(GA_getVersion);
 
 @end

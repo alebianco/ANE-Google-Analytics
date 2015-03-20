@@ -17,7 +17,7 @@
 @interface AppInfo : NSObject
 
 DEFINE_ANE_FUNCTION(setAppName);
-DEFINE_ANE_FUNCTION(setAppVersion);
+DEFINE_ANE_FUNCTION(GA_setAppVersion);
 DEFINE_ANE_FUNCTION(setAppID);
 DEFINE_ANE_FUNCTION(getAppID);
 

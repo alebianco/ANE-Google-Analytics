@@ -15,15 +15,20 @@
 		6F808E18168CBA4300CEDFF5 /* FREConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808DFB168CB8A300CEDFF5 /* FREConversionUtil.m */; };
 		6F808E19168CBA4300CEDFF5 /* FREUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808DFD168CB8A300CEDFF5 /* FREUtils.m */; };
 		6F808E1A168CBA4300CEDFF5 /* GAExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F808E0A168CB8A300CEDFF5 /* GAExtension.m */; };
-		6F808E28168CBA6300CEDFF5 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F808E21168CBA6300CEDFF5 /* libGoogleAnalytics.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		6F808E2B168CBAF000CEDFF5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F808E2A168CBAF000CEDFF5 /* CoreData.framework */; };
 		6F808E2D168CBAFD00CEDFF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F808E2C168CBAFD00CEDFF5 /* SystemConfiguration.framework */; };
 		6F808E3C168DA4D300CEDFF5 /* FlashRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1B168CBA6300CEDFF5 /* FlashRuntimeExtensions.h */; };
 		6F808E3D168DA4D300CEDFF5 /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1C168CBA6300CEDFF5 /* GAI.h */; };
 		6F808E3E168DA4D300CEDFF5 /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1D168CBA6300CEDFF5 /* GAITrackedViewController.h */; };
 		6F808E3F168DA4D300CEDFF5 /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1E168CBA6300CEDFF5 /* GAITracker.h */; };
-		6F808E40168DA4D300CEDFF5 /* GAITransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E1F168CBA6300CEDFF5 /* GAITransaction.h */; };
-		6F808E41168DA4D300CEDFF5 /* GAITransactionItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F808E20168CBA6300CEDFF5 /* GAITransactionItem.h */; };
+		C98388861AB1C4C3002ECEE2 /* GAIDictionaryBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = C983887E1AB1C4C3002ECEE2 /* GAIDictionaryBuilder.h */; };
+		C98388871AB1C4C3002ECEE2 /* GAIEcommerceFields.h in Headers */ = {isa = PBXBuildFile; fileRef = C983887F1AB1C4C3002ECEE2 /* GAIEcommerceFields.h */; };
+		C98388881AB1C4C3002ECEE2 /* GAIEcommerceProduct.h in Headers */ = {isa = PBXBuildFile; fileRef = C98388801AB1C4C3002ECEE2 /* GAIEcommerceProduct.h */; };
+		C98388891AB1C4C3002ECEE2 /* GAIEcommerceProductAction.h in Headers */ = {isa = PBXBuildFile; fileRef = C98388811AB1C4C3002ECEE2 /* GAIEcommerceProductAction.h */; };
+		C983888A1AB1C4C3002ECEE2 /* GAIEcommercePromotion.h in Headers */ = {isa = PBXBuildFile; fileRef = C98388821AB1C4C3002ECEE2 /* GAIEcommercePromotion.h */; };
+		C983888B1AB1C4C3002ECEE2 /* GAIFields.h in Headers */ = {isa = PBXBuildFile; fileRef = C98388831AB1C4C3002ECEE2 /* GAIFields.h */; };
+		C983888C1AB1C4C3002ECEE2 /* GAILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C98388841AB1C4C3002ECEE2 /* GAILogger.h */; };
+		C983888D1AB1C4C3002ECEE2 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C98388851AB1C4C3002ECEE2 /* libGoogleAnalyticsServices.a */; };
 		F394778018EAC9650055B33D /* Campaign.h in Headers */ = {isa = PBXBuildFile; fileRef = F394777E18EAC9650055B33D /* Campaign.h */; };
 		F394778118EAC9650055B33D /* Campaign.m in Sources */ = {isa = PBXBuildFile; fileRef = F394777F18EAC9650055B33D /* Campaign.m */; };
 /* End PBXBuildFile section */
@@ -51,11 +56,16 @@
 		6F808E1C168CBA6300CEDFF5 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = Libraries/GAI.h; sourceTree = "<group>"; };
 		6F808E1D168CBA6300CEDFF5 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = Libraries/GAITrackedViewController.h; sourceTree = "<group>"; };
 		6F808E1E168CBA6300CEDFF5 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = Libraries/GAITracker.h; sourceTree = "<group>"; };
-		6F808E1F168CBA6300CEDFF5 /* GAITransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransaction.h; path = Libraries/GAITransaction.h; sourceTree = "<group>"; };
-		6F808E20168CBA6300CEDFF5 /* GAITransactionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransactionItem.h; path = Libraries/GAITransactionItem.h; sourceTree = "<group>"; };
-		6F808E21168CBA6300CEDFF5 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Libraries/libGoogleAnalytics.a; sourceTree = "<group>"; };
-		6F808E2A168CBAF000CEDFF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
-		6F808E2C168CBAFD00CEDFF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		6F808E2A168CBAF000CEDFF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = ../iPhoneOS8.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6F808E2C168CBAFD00CEDFF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = ../iPhoneOS8.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C983887E1AB1C4C3002ECEE2 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = Libraries/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		C983887F1AB1C4C3002ECEE2 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = Libraries/GAIEcommerceFields.h; sourceTree = "<group>"; };
+		C98388801AB1C4C3002ECEE2 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = Libraries/GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		C98388811AB1C4C3002ECEE2 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = Libraries/GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		C98388821AB1C4C3002ECEE2 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = Libraries/GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		C98388831AB1C4C3002ECEE2 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = Libraries/GAIFields.h; sourceTree = "<group>"; };
+		C98388841AB1C4C3002ECEE2 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = Libraries/GAILogger.h; sourceTree = "<group>"; };
+		C98388851AB1C4C3002ECEE2 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = Libraries/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		F394777E18EAC9650055B33D /* Campaign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Campaign.h; sourceTree = "<group>"; };
 		F394777F18EAC9650055B33D /* Campaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campaign.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,7 +77,7 @@
 			files = (
 				6F808E2D168CBAFD00CEDFF5 /* SystemConfiguration.framework in Frameworks */,
 				6F808E2B168CBAF000CEDFF5 /* CoreData.framework in Frameworks */,
-				6F808E28168CBA6300CEDFF5 /* libGoogleAnalytics.a in Frameworks */,
+				C983888D1AB1C4C3002ECEE2 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,13 +156,18 @@
 		6F808E29168CBA6F00CEDFF5 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				C983887E1AB1C4C3002ECEE2 /* GAIDictionaryBuilder.h */,
+				C983887F1AB1C4C3002ECEE2 /* GAIEcommerceFields.h */,
+				C98388801AB1C4C3002ECEE2 /* GAIEcommerceProduct.h */,
+				C98388811AB1C4C3002ECEE2 /* GAIEcommerceProductAction.h */,
+				C98388821AB1C4C3002ECEE2 /* GAIEcommercePromotion.h */,
+				C98388831AB1C4C3002ECEE2 /* GAIFields.h */,
+				C98388841AB1C4C3002ECEE2 /* GAILogger.h */,
+				C98388851AB1C4C3002ECEE2 /* libGoogleAnalyticsServices.a */,
 				6F808E1B168CBA6300CEDFF5 /* FlashRuntimeExtensions.h */,
 				6F808E1C168CBA6300CEDFF5 /* GAI.h */,
 				6F808E1D168CBA6300CEDFF5 /* GAITrackedViewController.h */,
 				6F808E1E168CBA6300CEDFF5 /* GAITracker.h */,
-				6F808E1F168CBA6300CEDFF5 /* GAITransaction.h */,
-				6F808E20168CBA6300CEDFF5 /* GAITransactionItem.h */,
-				6F808E21168CBA6300CEDFF5 /* libGoogleAnalytics.a */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -164,13 +179,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C98388861AB1C4C3002ECEE2 /* GAIDictionaryBuilder.h in Headers */,
+				C983888A1AB1C4C3002ECEE2 /* GAIEcommercePromotion.h in Headers */,
 				6F808E3C168DA4D300CEDFF5 /* FlashRuntimeExtensions.h in Headers */,
+				C98388871AB1C4C3002ECEE2 /* GAIEcommerceFields.h in Headers */,
 				F394778018EAC9650055B33D /* Campaign.h in Headers */,
 				6F808E3D168DA4D300CEDFF5 /* GAI.h in Headers */,
+				C98388881AB1C4C3002ECEE2 /* GAIEcommerceProduct.h in Headers */,
 				6F808E3E168DA4D300CEDFF5 /* GAITrackedViewController.h in Headers */,
 				6F808E3F168DA4D300CEDFF5 /* GAITracker.h in Headers */,
-				6F808E40168DA4D300CEDFF5 /* GAITransaction.h in Headers */,
-				6F808E41168DA4D300CEDFF5 /* GAITransactionItem.h in Headers */,
+				C98388891AB1C4C3002ECEE2 /* GAIEcommerceProductAction.h in Headers */,
+				C983888C1AB1C4C3002ECEE2 /* GAILogger.h in Headers */,
+				C983888B1AB1C4C3002ECEE2 /* GAIFields.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +315,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libraries\"",
+					"$(PROJECT_DIR)/Libraries",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -329,7 +350,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libraries\"",
+					"$(PROJECT_DIR)/Libraries",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

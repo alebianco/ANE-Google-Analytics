@@ -24,7 +24,7 @@ enum LogLevel {
     kFatal
 };
 
-void logEvent(FREContext ctx, enum LogLevel lvl, NSString *format, ...);
+void FRE_logEvent(FREContext ctx, enum LogLevel lvl, NSString *format, ...);
 
 FREObject createRuntimeException(NSString *type, NSInteger id, NSString *message, ...);
 
