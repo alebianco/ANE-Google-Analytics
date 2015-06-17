@@ -32,7 +32,7 @@ public class GAContext extends FREContext {
         // Extension
 
         functions.put("isSupported", new IsSupported());
-        functions.put("getVersion", new GetVersion());
+        functions.put("GA_getVersion", new GetVersion());
 
         // Analytics
 
@@ -48,7 +48,7 @@ public class GAContext extends FREContext {
         // Tracker
 
         functions.put("setAppName", new SetAppName());
-        functions.put("setAppVersion", new SetAppVersion());
+        functions.put("GA_setAppVersion", new SetAppVersion());
         functions.put("getAppID", new GetAppID());
         functions.put("setAppID", new SetAppID());
         functions.put("getAnonymous", new GetAnonymous());

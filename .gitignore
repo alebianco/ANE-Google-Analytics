@@ -29,9 +29,8 @@ build/
 *.dex
 *.class
 local.properties
-bin/
 gen/
-
+source/android/bin/
 html-template/
 bin-debug/
 bin-release/

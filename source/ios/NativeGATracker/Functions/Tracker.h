@@ -13,6 +13,9 @@
 #import "FREConversionUtil.h"
 #import "FREUtils.h"
 #import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+#import "GAILogger.h"
 
 typedef enum {
     NONE,

@@ -14,7 +14,7 @@
 
 @implementation FREUtils
 
-void logEvent(FREContext ctx, enum LogLevel lvl, NSString *format, ...) {
+void FRE_logEvent(FREContext ctx, enum LogLevel lvl, NSString *format, ...) {
     va_list ap;
     va_start(ap, format);
     NSString *message = [[[NSString alloc] initWithFormat:format arguments:ap] autorelease];

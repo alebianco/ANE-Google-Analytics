@@ -71,7 +71,7 @@ public final class Analytics implements IAnalytics {
 	}
 
 	public function get version():String {
-		return handleResultFromExtension(context.call("getVersion"), String);
+		return handleResultFromExtension(context.call("GA_getVersion"), String);
 	}
 
 	public function get debug():Boolean {

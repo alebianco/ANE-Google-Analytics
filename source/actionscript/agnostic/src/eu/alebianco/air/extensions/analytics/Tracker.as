@@ -59,7 +59,7 @@ internal class Tracker implements ITracker {
 	public function set appVersion(value:String):void {
 		if (_lockAppData) return;
 		_appVersion = value;
-		handleResultFromExtension(context.call("setAppVersion", id, _appVersion));
+		handleResultFromExtension(context.call("GA_setAppVersion", id, _appVersion));
 	}
 	public function get trackingID():String {
 		return id;

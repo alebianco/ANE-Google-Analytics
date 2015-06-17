@@ -20,7 +20,7 @@ DEFINE_ANE_FUNCTION(isSupported) {
         result = [FREConversionUtil fromBoolean:YES];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to create the return value on method '%s'.", __FUNCTION__);
     }
 

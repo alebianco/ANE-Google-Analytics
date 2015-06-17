@@ -10,6 +10,7 @@
  */
 
 #import "AppInfo.h"
+#import "GAIFields.h"
 
 @implementation AppInfo
 
@@ -21,7 +22,7 @@ DEFINE_ANE_FUNCTION(setAppName) {
         trackingId = [FREConversionUtil toString:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'trackingId' parameter on method '%s'.", __FUNCTION__);
     }
 
@@ -32,41 +33,43 @@ DEFINE_ANE_FUNCTION(setAppName) {
         name = [FREConversionUtil toString:argv[1]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'name' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'name' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'name' parameter on method '%s'.", __FUNCTION__);
     }
 
-    [tracker setAppName:name];
+    [tracker set:kGAIAppName value:name];
 
     return result;
 }
-DEFINE_ANE_FUNCTION(setAppVersion) {
-    FREObject result = NULL;
 
+DEFINE_ANE_FUNCTION(GA_setAppVersion) {
+    FREObject result = NULL;
+    
     NSString *trackingId;
     @try {
         trackingId = [FREConversionUtil toString:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'trackingId' parameter on method '%s'.", __FUNCTION__);
     }
-
+    
     id tracker = [[GAI sharedInstance] trackerWithTrackingId:trackingId];
-
+    
     NSString *version;
     @try {
         version = [FREConversionUtil toString:argv[1]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'version' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'version' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'version' parameter on method '%s'.", __FUNCTION__);
     }
-
-    [tracker setAppVersion:version];
-
+    
+    [tracker set:kGAIAppVersion value:version];
+    
     return result;
 }
+
 DEFINE_ANE_FUNCTION(setAppID) {
     FREObject result = NULL;
 
@@ -75,7 +78,7 @@ DEFINE_ANE_FUNCTION(setAppID) {
         trackingId = [FREConversionUtil toString:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'trackingId' parameter on method '%s'.", __FUNCTION__);
     }
 
@@ -86,14 +89,15 @@ DEFINE_ANE_FUNCTION(setAppID) {
         id = [FREConversionUtil toString:argv[1]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'id' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'id' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'id' parameter on method '%s'.", __FUNCTION__);
     }
 
-    [tracker setAppId:id];
+    [tracker set:kGAIAppId value:id];
 
     return result;
 }
+
 DEFINE_ANE_FUNCTION(getAppID) {
     FREObject result = NULL;
 
@@ -102,18 +106,18 @@ DEFINE_ANE_FUNCTION(getAppID) {
         trackingId = [FREConversionUtil toString:argv[0]];
     }
     @catch (NSException *exception) {
-        logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+        FRE_logEvent(context, kFatal, @"Unable to read the 'trackingId' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'trackingId' parameter on method '%s'.", __FUNCTION__);
     }
 
     id tracker = [[GAI sharedInstance] trackerWithTrackingId:trackingId];
     
-    if ([tracker appId] != nil) {
+    if ([tracker get:kGAIAppId] != nil) {
         @try {
-            result = [FREConversionUtil fromString:[tracker appId]];
+            result = [FREConversionUtil fromString:[tracker get:kGAIAppId]];
         }
         @catch (NSException *exception) {
-            logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
+            FRE_logEvent(context, kFatal, @"Unable to create the return value. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
             return createRuntimeException(@"ArgumentError", 0, @"Unable to create the return value on method '%s'.", __FUNCTION__);
         }
     }
