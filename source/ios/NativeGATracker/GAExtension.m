@@ -15,7 +15,7 @@ void GAContextInitializer(void *extData, const uint8_t *ctxType, FREContext ctx,
     static FRENamedFunction functionMap[] = {
             MAP_FUNCTION( isSupported, NULL ),
             MAP_FUNCTION( GA_getVersion, NULL ),
-            MAP_FUNCTION( GA_setAppVersion, NULL ),
+
             MAP_FUNCTION( createTracker, NULL ),
             MAP_FUNCTION( closeTracker, NULL ),
             MAP_FUNCTION( setDebug, NULL ),
@@ -27,11 +27,17 @@ void GAContextInitializer(void *extData, const uint8_t *ctxType, FREContext ctx,
             MAP_FUNCTION( dispatch, NULL ),
 
             MAP_FUNCTION( setAppName, NULL),
+            MAP_FUNCTION( GA_setAppVersion, NULL ),
             MAP_FUNCTION( getAppID, NULL ),
             MAP_FUNCTION( setAppID, NULL ),
+            MAP_FUNCTION( startNewSession, NULL),
 
             MAP_FUNCTION( trackData, NULL ),
-        
+            MAP_FUNCTION( setCustomDimension, NULL ),
+            MAP_FUNCTION( clearCustomDimension, NULL ),
+            MAP_FUNCTION( setCustomMetric, NULL ),
+            MAP_FUNCTION( clearCustomMetric, NULL ),
+
             MAP_FUNCTION( getCampaignData, NULL ),
             MAP_FUNCTION( setCampaignData, NULL ),
             MAP_FUNCTION( getReferrer, NULL ),

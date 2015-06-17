@@ -204,9 +204,11 @@ DEFINE_ANE_FUNCTION(startNewSession) {
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'trackingId' parameter on method '%s'.", __FUNCTION__);
     }
 
-    // Not implemented, this has been removed in v3
     id tracker = [[GAI sharedInstance] trackerWithTrackingId:trackingId];
-    
+
+    //Starts a new session with sending event "UX: appstart"
+    [tracker send:[[[GAIDictionaryBuilder createEventWithCategory:@"UX" action:@"appstart" label:nil value:nil] set:@"start" forKey:kGAISessionControl] build]];
+
     return result;
 }
 
@@ -283,10 +285,9 @@ DEFINE_ANE_FUNCTION(setCustomMetric) {
         FRE_logEvent(context, kFatal, @"Unable to read the 'value' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'value' parameter on method '%s'.", __FUNCTION__);
     }
-    
-    // XXX
-    //[tracker setCustom:index metric:value];
-    
+
+    [tracker set:[GAIFields customMetricForIndex:index] value:[value stringValue]];
+
     return result;
 }
 
@@ -321,9 +322,8 @@ DEFINE_ANE_FUNCTION(setCustomDimension) {
         FRE_logEvent(context, kFatal, @"Unable to read the 'value' parameter. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'value' parameter on method '%s'.", __FUNCTION__);
     }
-    
-    // XXX
-    //[tracker setCustom:index dimension:value];
+
+    [tracker set:[GAIFields customDimensionForIndex:index] value:value];
     
     return result;
 }
@@ -351,9 +351,8 @@ DEFINE_ANE_FUNCTION(clearCustomMetric) {
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'index' parameter on method '%s'.", __FUNCTION__);
     }
 
-    // XXX
-    //[tracker setCustom:index metric:nil];
-    
+    [tracker set:[GAIFields customMetricForIndex:index] value:nil];
+
     return result;
 }
 
@@ -380,28 +379,12 @@ DEFINE_ANE_FUNCTION(clearCustomDimension) {
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read the 'index' parameter on method '%s'.", __FUNCTION__);
     }
     
-    // XXX
-    //[tracker setCustom:index dimension:nil];
-    
+    [tracker set:[GAIFields customDimensionForIndex:index] value:nil];
+
     return result;
 }
 
 @end
-
-FREObject setScreenName(FREContext context, id tracker, FREObject *data) {
-    NSString *name;
-    @try {
-        name = [FREConversionUtil toString:[FREConversionUtil getProperty:@"name" fromObject:data]];
-    }
-    @catch (NSException *exception) {
-        FRE_logEvent(context, kFatal, @"Unable to read a property. [Exception:(type:%@, method:%s)].", [exception name], __FUNCTION__);
-        return createRuntimeException(@"ArgumentError", 0, @"Unable to read a property on method '%s'.", __FUNCTION__);
-    }
-
-    [tracker set:kGAIScreenName value:name];
-
-    return NULL;
-}
 
 FREObject trackView(FREContext context, id tracker, FREObject *data) {
 
@@ -414,7 +397,9 @@ FREObject trackView(FREContext context, id tracker, FREObject *data) {
         return createRuntimeException(@"ArgumentError", 0, @"Unable to read a property on method '%s'.", __FUNCTION__);
     }
 
+    [tracker set:kGAIScreenName value:screen];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+
     return NULL;
 }
 
